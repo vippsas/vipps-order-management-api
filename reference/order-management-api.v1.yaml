@@ -10,7 +10,7 @@ servers:
   - url: api.vipps.no/order-management
     description: vipps order management api
 paths:
-  '/order/{vippsTransactionId}':
+  '/v1/order/{vippsTransactionId}':
     parameters:
       - schema:
           type: string
@@ -18,7 +18,7 @@ paths:
         in: path
         required: true
     get:
-      summary: Get info by orderId
+      summary: Get info by vippsTransactionId
       responses:
         '200':
           description: ''
@@ -75,7 +75,7 @@ paths:
       tags:
         - Vipps order management api
     post:
-      summary: ''
+      summary: Add info to vippsTransactionId
       operationId: post_order_info
       responses:
         '200':
