@@ -1,0 +1,125 @@
+openapi: 3.0.0
+info:
+  title: order-management-api
+  version: '1.0'
+  description: Api to add and read additional info for vipps orders
+  contact:
+    name: Team ecom
+    url: 'https://vipps.no/kontakt-oss/bedrift/vipps/'
+servers:
+  - url: api.vipps.no/order-management
+    description: vipps order management api
+paths:
+  '/order/{vippsTransactionId}':
+    parameters:
+      - schema:
+          type: string
+        name: vippsTransactionId
+        in: path
+        required: true
+    get:
+      summary: Get info by orderId
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  category:
+                    type: string
+                    minLength: 1
+                    enum:
+                      - ticketInfo
+                      - bookingInfo
+                      - receipt
+                      - general
+                      - orderConfirmation
+                  url:
+                    type: string
+                    minLength: 1
+                    example: www.vipps.no
+                  imageUrl:
+                    type: string
+                    minLength: 1
+                    example: www.vipps.no/image_32.png
+                required:
+                  - category
+                  - url
+                  - imageUrl
+              examples:
+                Retrieve order info:
+                  value:
+                    category: ticketInfo
+                    url: www.vipps.no
+                    imageUrl: www.vipps.no/image_32.png
+        '404':
+          description: User Not Found
+      operationId: fetch_order_info
+      description: Retrive the metadata for an order
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Ocp-Apim-Subscription-Key
+          description: SubKey
+          required: true
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+          description: Bearer token
+          required: true
+      tags:
+        - Vipps order management api
+    post:
+      summary: ''
+      operationId: post_order_info
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                category:
+                  type: string
+                  enum:
+                    - ticketInfo
+                    - bookingInfo
+                    - general
+                    - receipt
+                    - deliveryInfo
+                    - orderConfirmation
+                url:
+                  type: string
+                imageUrl:
+                  type: string
+              required:
+                - category
+                - url
+      description: 'Post additional information about an order that will show up on the vipps receipt. '
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Ocp-Apim-Subscription-Key
+          description: SubKey
+          required: true
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+          description: Bearer token
+          required: true
+      tags:
+        - Vipps order management api
+components:
+  schemas: {}
+  securitySchemes: {}
+tags:
+  - name: Vipps order management api
