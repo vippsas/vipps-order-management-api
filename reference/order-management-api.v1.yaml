@@ -39,6 +39,7 @@ paths:
                       - booking
                   orderDetailsUrl:
                     type: string
+                    format: uri
                   image:
                     type: object
                     properties:
@@ -47,7 +48,6 @@ paths:
                         enum:
                           - blob
                           - url
-                          - cdn
                       url:
                         type: string
                 required:
@@ -100,6 +100,7 @@ paths:
                     - booking
                 orderDetailsUrl:
                   type: string
+                  format: uri
                 image:
                   type: object
                   properties:
@@ -108,7 +109,6 @@ paths:
                       enum:
                         - blob
                         - url
-                        - cdn
                     url:
                       type: string
               required:
