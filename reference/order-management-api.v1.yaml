@@ -33,12 +33,13 @@ paths:
                     enum:
                       - general
                       - receipt
-                      - order_confirmation
+                      - orderConfirmation
                       - delivery
                       - ticket
                       - booking
                   orderDetailsUrl:
                     type: string
+                    example: 'https://www.vipps.no'
                     format: uri
                   image:
                     type: object
@@ -46,18 +47,17 @@ paths:
                       type:
                         type: string
                         enum:
-                          - blob
                           - url
-                      url:
+                      src:
                         type: string
                 required:
                   - category
+                  - orderDetailsUrl
               examples:
                 Retrieve order info:
                   value:
                     category: ticket
-                    url: www.vipps.no
-                    imageUrl: www.vipps.no/image_32.png
+                    orderDetailsUrl: 'https://www.vipps.no'
         '404':
           description: User Not Found
       operationId: fetch_order_info
@@ -94,12 +94,13 @@ paths:
                   enum:
                     - general
                     - receipt
-                    - order_confirmation
+                    - orderConfirmation
                     - delivery
                     - ticket
                     - booking
                 orderDetailsUrl:
                   type: string
+                  example: 'https://www.vipps.no'
                   format: uri
                 image:
                   type: object
@@ -107,13 +108,21 @@ paths:
                     type:
                       type: string
                       enum:
-                        - blob
                         - url
-                    url:
+                    src:
                       type: string
+                      format: uri
               required:
                 - category
                 - orderDetailsUrl
+            examples:
+              example-1:
+                value:
+                  category: general
+                  orderDetailsUrl: 'https://www.vipps.no'
+                  image:
+                    type: url
+                    url: string
       description: 'Post additional information about an order that will show up on the vipps receipt. '
       parameters:
         - schema:
