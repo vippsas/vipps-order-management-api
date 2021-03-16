@@ -30,29 +30,32 @@ paths:
                 properties:
                   category:
                     type: string
-                    minLength: 1
                     enum:
-                      - ticketInfo
-                      - bookingInfo
-                      - receipt
                       - general
-                      - orderConfirmation
-                  url:
+                      - receipt
+                      - order_confirmation
+                      - delivery
+                      - ticket
+                      - booking
+                  orderDetailsUrl:
                     type: string
-                    minLength: 1
-                    example: www.vipps.no
-                  imageUrl:
-                    type: string
-                    minLength: 1
-                    example: www.vipps.no/image_32.png
+                  image:
+                    type: object
+                    properties:
+                      type:
+                        type: string
+                        enum:
+                          - blob
+                          - url
+                          - cdn
+                      url:
+                        type: string
                 required:
                   - category
-                  - url
-                  - imageUrl
               examples:
                 Retrieve order info:
                   value:
-                    category: ticketInfo
+                    category: ticket
                     url: www.vipps.no
                     imageUrl: www.vipps.no/image_32.png
         '404':
@@ -89,19 +92,28 @@ paths:
                 category:
                   type: string
                   enum:
-                    - ticketInfo
-                    - bookingInfo
                     - general
                     - receipt
-                    - deliveryInfo
-                    - orderConfirmation
-                url:
+                    - order_confirmation
+                    - delivery
+                    - ticket
+                    - booking
+                orderDetailsUrl:
                   type: string
-                imageUrl:
-                  type: string
+                image:
+                  type: object
+                  properties:
+                    type:
+                      type: string
+                      enum:
+                        - blob
+                        - url
+                        - cdn
+                    url:
+                      type: string
               required:
                 - category
-                - url
+                - orderDetailsUrl
       description: 'Post additional information about an order that will show up on the vipps receipt. '
       parameters:
         - schema:
