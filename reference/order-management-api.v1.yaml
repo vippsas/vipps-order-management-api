@@ -25,36 +25,12 @@ paths:
           content:
             application/json:
               schema:
-                description: ''
-                type: object
-                properties:
-                  category:
-                    type: string
-                    minLength: 1
-                    enum:
-                      - ticketInfo
-                      - bookingInfo
-                      - receipt
-                      - general
-                      - orderConfirmation
-                  url:
-                    type: string
-                    minLength: 1
-                    example: www.vipps.no
-                  imageUrl:
-                    type: string
-                    minLength: 1
-                    example: www.vipps.no/image_32.png
-                required:
-                  - category
-                  - url
-                  - imageUrl
+                $ref: '#/components/schemas/Metadata'
               examples:
                 Retrieve order info:
                   value:
-                    category: ticketInfo
-                    url: www.vipps.no
-                    imageUrl: www.vipps.no/image_32.png
+                    category: ticket
+                    orderDetailsUrl: 'https://www.vipps.no'
         '404':
           description: User Not Found
       operationId: fetch_order_info
@@ -84,24 +60,15 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                category:
-                  type: string
-                  enum:
-                    - ticketInfo
-                    - bookingInfo
-                    - general
-                    - receipt
-                    - deliveryInfo
-                    - orderConfirmation
-                url:
-                  type: string
-                imageUrl:
-                  type: string
-              required:
-                - category
-                - url
+              $ref: '#/components/schemas/Metadata'
+            examples:
+              example-1:
+                value:
+                  category: general
+                  orderDetailsUrl: 'https://www.vipps.no'
+                  image:
+                    type: url
+                    url: string
       description: 'Post additional information about an order that will show up on the vipps receipt. '
       parameters:
         - schema:
@@ -119,7 +86,38 @@ paths:
       tags:
         - Vipps order management api
 components:
-  schemas: {}
+  schemas:
+    Metadata:
+      title: Metadata
+      type: object
+      properties:
+        category:
+          type: string
+          enum:
+            - general
+            - receipt
+            - orderConfirmation
+            - delivery
+            - ticket
+            - booking
+          description: Enum containing different categories. These will be shown and might behave diferently in the app
+        orderDetailsUrl:
+          type: string
+          example: 'https://www.vipps.no'
+          format: uri
+          description: URL linking back to the merchant.
+        image:
+          type: object
+          properties:
+            type:
+              type: string
+              enum:
+                - url
+            src:
+              type: string
+      required:
+        - category
+        - orderDetailsUrl
   securitySchemes: {}
 tags:
   - name: Vipps order management api
