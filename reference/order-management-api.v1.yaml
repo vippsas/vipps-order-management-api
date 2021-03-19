@@ -25,34 +25,7 @@ paths:
           content:
             application/json:
               schema:
-                description: ''
-                type: object
-                properties:
-                  category:
-                    type: string
-                    enum:
-                      - general
-                      - receipt
-                      - orderConfirmation
-                      - delivery
-                      - ticket
-                      - booking
-                  orderDetailsUrl:
-                    type: string
-                    example: 'https://www.vipps.no'
-                    format: uri
-                  image:
-                    type: object
-                    properties:
-                      type:
-                        type: string
-                        enum:
-                          - url
-                      src:
-                        type: string
-                required:
-                  - category
-                  - orderDetailsUrl
+                $ref: '#/components/schemas/Metadata'
               examples:
                 Retrieve order info:
                   value:
@@ -87,34 +60,7 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                category:
-                  type: string
-                  enum:
-                    - general
-                    - receipt
-                    - orderConfirmation
-                    - delivery
-                    - ticket
-                    - booking
-                orderDetailsUrl:
-                  type: string
-                  example: 'https://www.vipps.no'
-                  format: uri
-                image:
-                  type: object
-                  properties:
-                    type:
-                      type: string
-                      enum:
-                        - url
-                    src:
-                      type: string
-                      format: uri
-              required:
-                - category
-                - orderDetailsUrl
+              $ref: '#/components/schemas/Metadata'
             examples:
               example-1:
                 value:
@@ -140,7 +86,38 @@ paths:
       tags:
         - Vipps order management api
 components:
-  schemas: {}
+  schemas:
+    Metadata:
+      title: Metadata
+      type: object
+      properties:
+        category:
+          type: string
+          enum:
+            - general
+            - receipt
+            - orderConfirmation
+            - delivery
+            - ticket
+            - booking
+          description: Enum containing different categories. These will be shown and might behave diferently in the app
+        orderDetailsUrl:
+          type: string
+          example: 'https://www.vipps.no'
+          format: uri
+          description: URL linking back to the merchant.
+        image:
+          type: object
+          properties:
+            type:
+              type: string
+              enum:
+                - url
+            src:
+              type: string
+      required:
+        - category
+        - orderDetailsUrl
   securitySchemes: {}
 tags:
   - name: Vipps order management api
