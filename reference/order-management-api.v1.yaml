@@ -112,7 +112,7 @@ paths:
               properties:
                 imageId:
                   type: string
-                  description: Optional - if merchants want to set their own imageId
+                  description: Id of the image to be added
                 src:
                   type: string
                   description: 'Src of the image, like a base64 encoded string'
@@ -121,6 +121,7 @@ paths:
                   enum:
                     - base64
               required:
+                - imageId
                 - src
                 - type
             examples:
