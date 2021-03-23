@@ -31,9 +31,11 @@ paths:
                   value:
                     category: ticket
                     orderDetailsUrl: 'https://www.vipps.no'
+                    imageIds:
+                      - laptop_image4433
         '404':
           description: User Not Found
-      operationId: fetch_order_info
+      operationId: fetch_order_info_v1
       description: Retrive the metadata for an order
       parameters:
         - schema:
@@ -52,7 +54,7 @@ paths:
         - Vipps order management api
     post:
       summary: Add info to vippsTransactionId
-      operationId: post_order_info
+      operationId: post_order_info_v1
       responses:
         '200':
           description: OK
@@ -62,14 +64,77 @@ paths:
             schema:
               $ref: '#/components/schemas/Metadata'
             examples:
-              example-1:
+              Adding metadata with one image:
                 value:
                   category: general
                   orderDetailsUrl: 'https://www.vipps.no'
-                  image:
-                    type: url
-                    url: string
+                  imageIds:
+                    - laptop_image4433
       description: 'Post additional information about an order that will show up on the vipps receipt. '
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Ocp-Apim-Subscription-Key
+          description: SubKey
+          required: true
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+          description: Bearer token
+          required: true
+      tags:
+        - Vipps order management api
+  /v1/image:
+    post:
+      summary: Add an image to vipps
+      operationId: post_image_v1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  imageId:
+                    type: string
+              examples:
+                example-1:
+                  value:
+                    imageId: laptop_image4433
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                imageId:
+                  type: string
+                  description: Id of the image to be added
+                src:
+                  type: string
+                  description: 'Src of the image, like a base64 encoded string'
+                type:
+                  type: string
+                  enum:
+                    - base64
+              required:
+                - imageId
+                - src
+                - type
+            examples:
+              example-1:
+                value:
+                  imageId: laptop_image4433
+                  src: iVBORw0KGgoAAAANSUhEUgAAAKsAAADVCAMAAAAfHv
+                  type: base64
+          application/xml:
+            schema:
+              type: object
+              properties: {}
+      description: Endpoint for uploading images to Vipps. A imageId will be returned that can be used when adding metadata to Vipps Transactions
       parameters:
         - schema:
             type: string
@@ -90,6 +155,12 @@ components:
     Metadata:
       title: Metadata
       type: object
+      x-examples:
+        example-1:
+          category: general
+          orderDetailsUrl: 'https://www.vipps.no'
+          imageId:
+            - laptop_image4433
       properties:
         category:
           type: string
@@ -106,15 +177,11 @@ components:
           example: 'https://www.vipps.no'
           format: uri
           description: URL linking back to the merchant.
-        image:
-          type: object
-          properties:
-            type:
-              type: string
-              enum:
-                - url
-            src:
-              type: string
+        imageIds:
+          type: array
+          description: list of imageIds linked to this transaction
+          items:
+            type: string
       required:
         - category
         - orderDetailsUrl
