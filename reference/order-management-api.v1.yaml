@@ -7,7 +7,7 @@ info:
     name: Team ecom
     url: 'https://vipps.no/kontakt-oss/bedrift/vipps/'
 servers:
-  - url: api.vipps.no/order-management
+  - url: 'https://api.vipps.no/order-management'
     description: vipps order management api
 paths:
   '/v1/order/{vippsTransactionId}':
@@ -25,7 +25,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Metadata'
+                $ref: '#/components/schemas/GetOrderResponse'
               examples:
                 Retrieve order info:
                   value:
@@ -34,8 +34,8 @@ paths:
                     imageIds:
                       - laptop_image4433
         '404':
-          description: User Not Found
-      operationId: fetch_order_info_v1
+          description: Order Not Found
+      operationId: getOrder
       description: Retrive the metadata for an order
       parameters:
         - schema:
@@ -51,10 +51,10 @@ paths:
           description: Bearer token
           required: true
       tags:
-        - Vipps order management api
-    post:
+        - Order
+    put:
       summary: Add info to vippsTransactionId
-      operationId: post_order_info_v1
+      operationId: putOrder
       responses:
         '200':
           description: OK
@@ -62,14 +62,19 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Metadata'
+              $ref: '#/components/schemas/PutOrderRequest'
             examples:
-              Adding metadata with one image:
+              Adding order meta data with one image:
                 value:
                   category: general
                   orderDetailsUrl: 'https://www.vipps.no'
                   imageIds:
                     - laptop_image4433
+          application/xml:
+            schema:
+              type: object
+              properties: {}
+        description: ''
       description: 'Post additional information about an order that will show up on the vipps receipt. '
       parameters:
         - schema:
@@ -85,55 +90,18 @@ paths:
           description: Bearer token
           required: true
       tags:
-        - Vipps order management api
+        - Order
   /v1/image:
     post:
       summary: Add an image to vipps
-      operationId: post_image_v1
+      operationId: postImage
       responses:
         '200':
           description: OK
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  imageId:
-                    type: string
-              examples:
-                example-1:
-                  value:
-                    imageId: laptop_image4433
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                imageId:
-                  type: string
-                  description: Id of the image to be added
-                src:
-                  type: string
-                  description: 'Src of the image, like a base64 encoded string'
-                type:
-                  type: string
-                  enum:
-                    - base64
-              required:
-                - imageId
-                - src
-                - type
-            examples:
-              example-1:
-                value:
-                  imageId: laptop_image4433
-                  src: iVBORw0KGgoAAAANSUhEUgAAAKsAAADVCAMAAAAfHv
-                  type: base64
-          application/xml:
-            schema:
-              type: object
-              properties: {}
+                $ref: '#/components/schemas/PostImageResponse'
       description: Endpoint for uploading images to Vipps. A imageId will be returned that can be used when adding metadata to Vipps Transactions
       parameters:
         - schema:
@@ -146,14 +114,25 @@ paths:
             type: string
           in: header
           name: Authorization
-          description: Bearer token
+          description: Bearer Token
           required: true
       tags:
-        - Vipps order management api
+        - Image
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostImageRequest'
+            examples:
+              example-1:
+                value:
+                  imageId: string
+                  src: string
+                  type: base64
 components:
   schemas:
-    Metadata:
-      title: Metadata
+    PutOrderRequest:
+      title: PostOrderRequest
       type: object
       x-examples:
         example-1:
@@ -161,6 +140,7 @@ components:
           orderDetailsUrl: 'https://www.vipps.no'
           imageId:
             - laptop_image4433
+      description: ''
       properties:
         category:
           type: string
@@ -185,6 +165,49 @@ components:
       required:
         - category
         - orderDetailsUrl
+        - imageIds
+    GetOrderResponse:
+      description: ''
+      type: object
+      properties:
+        category:
+          type: string
+          minLength: 1
+        orderDetailsUrl:
+          type: string
+          minLength: 1
+        imageId:
+          type: array
+          items:
+            type: object
+      required:
+        - category
+        - orderDetailsUrl
+    PostImageRequest:
+      title: PostImageRequest
+      type: object
+      properties:
+        imageId:
+          type: string
+          description: Id of the image to be added
+        src:
+          type: string
+          description: 'Src of the image, like a base64 encoded string'
+        type:
+          type: string
+          enum:
+            - base64
+      required:
+        - imageId
+        - src
+        - type
+    PostImageResponse:
+      title: PostImageResponse
+      type: object
+      properties:
+        imageId:
+          type: string
   securitySchemes: {}
 tags:
-  - name: Vipps order management api
+  - name: Order
+  - name: Image
