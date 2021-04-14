@@ -98,6 +98,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PostImageResponse'
+              examples:
+                example-1:
+                  value:
+                    imageId: laptop_image4433
       description: Endpoint for uploading images to Vipps. A imageId will be returned that can be used when adding metadata to Vipps Transactions
       parameters:
         - schema:
@@ -122,8 +126,8 @@ paths:
             examples:
               example-1:
                 value:
-                  imageId: string
-                  src: string
+                  imageId: laptop_image4433
+                  src: iVBORw0KGgoAAAANSUhEUgAAAKsAAADVCAMAAAAfHv
                   type: base64
 components:
   schemas:
