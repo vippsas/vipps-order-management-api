@@ -149,7 +149,6 @@ components:
         - category
         - orderDetailsUrl
     Image:
-      title: PostImageRequest
       type: object
       properties:
         imageId:
@@ -168,7 +167,6 @@ components:
         - type
       x-examples: {}
     ImageResponse:
-      title: PostImageResponse
       type: object
       properties:
         imageId:
