@@ -64,16 +64,12 @@ paths:
             schema:
               $ref: '#/components/schemas/PutOrderRequest'
             examples:
-              Adding order meta data with one image:
+              Adding order metadata with one image:
                 value:
                   category: general
                   orderDetailsUrl: 'https://www.vipps.no'
                   imageIds:
                     - laptop_image4433
-          application/xml:
-            schema:
-              type: object
-              properties: {}
         description: ''
       description: 'Post additional information about an order that will show up on the vipps receipt. '
       parameters:
