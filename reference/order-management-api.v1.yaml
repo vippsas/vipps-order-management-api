@@ -137,12 +137,24 @@ components:
       properties:
         category:
           type: string
+          enum:
+            - general
+            - receipt
+            - orderConfirmation
+            - delivery
+            - ticket
+            - booking
+          description: Enum containing different categories. These will be shown and might behave diferently in the app
           minLength: 1
         orderDetailsUrl:
           type: string
+          example: 'https://www.vipps.no'
+          format: uri
+          description: URL linking back to the merchant.
           minLength: 1
-        imageId:
+        imageIds:
           type: array
+          description: list of imageIds linked to this transaction
           items:
             type: string
       required:
