@@ -133,6 +133,12 @@ components:
   schemas:
     Order:
       type: object
+      x-examples:
+        example-1:
+          category: general
+          orderDetailsUrl: 'https://www.vipps.no'
+          imageId:
+            - laptop_image4433
       properties:
         category:
           type: string
@@ -176,12 +182,19 @@ components:
         - imageId
         - src
         - type
-      x-examples: {}
+      x-examples:
+        example-1:
+          imageId: laptop_image4433
+          src: iVBORw0KGgoAAAANSUhEUgAAAKsAAADVCAMAAAAfHv
+          type: base64
     ImageResponse:
       type: object
       properties:
         imageId:
           type: string
+      x-examples:
+        example-1:
+          imageId: laptop_image4433
   securitySchemes: {}
 tags:
   - name: Order
