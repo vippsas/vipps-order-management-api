@@ -25,7 +25,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GetOrderResponse'
+                $ref: '#/components/schemas/Order'
               examples:
                 Retrieve order info:
                   value:
@@ -62,7 +62,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/PutOrderRequest'
+              $ref: '#/components/schemas/Order'
             examples:
               Adding order metadata with one image:
                 value:
@@ -97,7 +97,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PostImageResponse'
+                $ref: '#/components/schemas/ImageResponse'
               examples:
                 example-1:
                   value:
@@ -122,7 +122,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/PostImageRequest'
+              $ref: '#/components/schemas/Image'
             examples:
               example-1:
                 value:
@@ -131,42 +131,7 @@ paths:
                   type: base64
 components:
   schemas:
-    PutOrderRequest:
-      title: PostOrderRequest
-      type: object
-      x-examples:
-        example-1:
-          category: general
-          orderDetailsUrl: 'https://www.vipps.no'
-          imageId:
-            - laptop_image4433
-      description: ''
-      properties:
-        category:
-          type: string
-          enum:
-            - general
-            - receipt
-            - orderConfirmation
-            - delivery
-            - ticket
-            - booking
-          description: Enum containing different categories. These will be shown and might behave diferently in the app
-        orderDetailsUrl:
-          type: string
-          example: 'https://www.vipps.no'
-          format: uri
-          description: URL linking back to the merchant.
-        imageIds:
-          type: array
-          description: list of imageIds linked to this transaction
-          items:
-            type: string
-      required:
-        - category
-        - orderDetailsUrl
-        - imageIds
-    GetOrderResponse:
+    Order:
       description: ''
       type: object
       properties:
@@ -179,11 +144,11 @@ components:
         imageId:
           type: array
           items:
-            type: object
+            type: string
       required:
         - category
         - orderDetailsUrl
-    PostImageRequest:
+    Image:
       title: PostImageRequest
       type: object
       properties:
@@ -201,7 +166,8 @@ components:
         - imageId
         - src
         - type
-    PostImageResponse:
+      x-examples: {}
+    ImageResponse:
       title: PostImageResponse
       type: object
       properties:
