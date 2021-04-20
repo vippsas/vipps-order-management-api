@@ -114,7 +114,6 @@ components:
             - ticket
             - booking
           description: Enum containing different categories. These will be shown and might behave diferently in the app
-          minLength: 1
         orderDetailsUrl:
           type: string
           example: 'https://www.vipps.no'
