@@ -37,19 +37,7 @@ paths:
           description: Order Not Found
       operationId: getOrder
       description: Retrive the metadata for an order
-      parameters:
-        - schema:
-            type: string
-          in: header
-          name: Ocp-Apim-Subscription-Key
-          description: SubKey
-          required: true
-        - schema:
-            type: string
-          in: header
-          name: Authorization
-          description: Bearer token
-          required: true
+      parameters: []
       tags:
         - Order
     put:
@@ -72,19 +60,7 @@ paths:
                     - laptop_image4433
         description: ''
       description: 'Post additional information about an order that will show up on the vipps receipt. '
-      parameters:
-        - schema:
-            type: string
-          in: header
-          name: Ocp-Apim-Subscription-Key
-          description: SubKey
-          required: true
-        - schema:
-            type: string
-          in: header
-          name: Authorization
-          description: Bearer token
-          required: true
+      parameters: []
       tags:
         - Order
   /v1/image:
@@ -103,19 +79,7 @@ paths:
                   value:
                     imageId: laptop_image4433
       description: Endpoint for uploading images to Vipps. A imageId will be returned that can be used when adding metadata to Vipps Transactions
-      parameters:
-        - schema:
-            type: string
-          in: header
-          name: Ocp-Apim-Subscription-Key
-          description: SubKey
-          required: true
-        - schema:
-            type: string
-          in: header
-          name: Authorization
-          description: Bearer Token
-          required: true
+      parameters: []
       tags:
         - Image
       requestBody:
@@ -195,7 +159,12 @@ components:
       x-examples:
         example-1:
           imageId: laptop_image4433
-  securitySchemes: {}
+  securitySchemes:
+    BearerToken:
+      type: http
+      scheme: bearer
 tags:
   - name: Order
   - name: Image
+security:
+  - BearerToken: []
