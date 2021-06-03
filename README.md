@@ -4,7 +4,7 @@ Api for adding and retreiving info about vipps transactions. The added data will
 
 This works for both recurring and direct transactions, but not for passthrough payments.
 
-In this setup, images are handled detatched from transactions. This means that the merchant could upload one image and reuse that for all orders, and wont need to send the same image for every transaction. Images needs to be added before the metadata for a transaction is added.
+In this setup, images are handled detatched from transactions. This means that the merchant could upload one image and reuse that for all orders, and won't need to send the same image for every transaction. Images needs to be added before the metadata for a transaction is added.
 
 Api breakdown:
 - Merchant calls /image to upload an image to vipps by adding a b64 string in the body.
