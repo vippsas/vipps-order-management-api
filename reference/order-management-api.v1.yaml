@@ -40,16 +40,14 @@ paths:
       parameters: []
       tags:
         - Order
+      security:
+        - BearerToken: []
     put:
       summary: Add info to vippsTransactionId
       operationId: putOrder
       responses:
         '200':
           description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Order'
       requestBody:
         content:
           application/json:
@@ -67,6 +65,8 @@ paths:
       parameters: []
       tags:
         - Order
+      security:
+        - BearerToken: []
   /v1/image:
     post:
       summary: Add an image to vipps
@@ -97,6 +97,48 @@ paths:
                   imageId: laptop_image4433
                   src: iVBORw0KGgoAAAANSUhEUgAAAKsAAADVCAMAAAAfHv
                   type: base64
+      security:
+        - BearerToken: []
+  '/v1/receipt/{vippsTransactionId}':
+    parameters:
+      - schema:
+          type: string
+        name: vippsTransactionId
+        in: path
+        required: true
+    post:
+      summary: Store receipt by vippsTransactionId
+      operationId: postReceipt
+      responses:
+        '200':
+          description: ''
+        '404':
+          description: Order not Found
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Receipt'
+      description: Endpoint for uploading receipts to Vipps.
+      security:
+        - BearerToken: []
+      tags:
+        - Receipt
+    get:
+      summary: Get receipt by vippsTransactionId
+      operationId: getReceipt
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Receipt'
+      description: Endpoint for downloading receipts to Vipps.
+      security:
+        - BearerToken: []
+      tags:
+        - Receipt
 components:
   schemas:
     Order:
@@ -132,6 +174,7 @@ components:
       required:
         - category
         - orderDetailsUrl
+      description: ''
     Image:
       type: object
       properties:
@@ -162,12 +205,58 @@ components:
       x-examples:
         example-1:
           imageId: laptop_image4433
+    OrderLine:
+      title: OrderLine
+      type: object
+      description: 'All numbers are interpreted as integers with two trailing zeros. ex: 10.00 = 1000'
+      properties:
+        amountExcludingTax:
+          type: integer
+          nullable: true
+        amountIncludingTax:
+          type: integer
+          nullable: true
+        description:
+          type: string
+        id:
+          type: string
+          description: The product ID
+        productUrl:
+          type: string
+        quantity:
+          type: integer
+          nullable: true
+        taxAmount:
+          type: integer
+          nullable: true
+        taxPercentage:
+          type: integer
+          nullable: true
+      required:
+        - amountExcludingTax
+        - amountIncludingTax
+        - description
+        - id
+        - quantity
+        - taxAmount
+        - taxPercentage
+    Receipt:
+      title: Receipt
+      type: object
+      properties:
+        OrderLines:
+          type: array
+          minItems: 1
+          items:
+            $ref: '#/components/schemas/OrderLine'
+      required:
+        - OrderLines
   securitySchemes:
     BearerToken:
       type: http
       scheme: bearer
 tags:
-  - name: Order
   - name: Image
-security:
-  - BearerToken: []
+  - name: MobileOrder
+  - name: Order
+  - name: Receipt

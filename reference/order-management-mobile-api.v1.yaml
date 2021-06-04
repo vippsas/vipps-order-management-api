@@ -1,0 +1,56 @@
+openapi: 3.0.0
+info:
+  title: order-management-mobile-api
+  version: '1.0'
+  description: Api to read additional info for vipps orders
+  contact:
+    name: Team ecom
+    url: 'https://vipps.no/kontakt-oss/bedrift/vipps/'
+servers:
+  - url: 'https://api.vipps.no/order-management'
+paths:
+  '/v1/mobile/order/{vippsTransactionId}':
+    parameters:
+      - schema:
+          type: string
+        name: vippsTransactionId
+        in: path
+        required: true
+    get:
+      summary: Get info by vippsTransactionId
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+        '404':
+          description: Order Not Found
+      operationId: getOrder
+      description: Retrive the metadata for an order
+      tags:
+        - MobileOrder
+components:
+  schemas:
+    Order:
+      description: ''
+      type: object
+      properties:
+        category:
+          type: string
+          minLength: 1
+        orderDetailsUrl:
+          type: string
+          minLength: 1
+        imageId:
+          type: array
+          items:
+            type: string
+      required:
+        - category
+        - orderDetailsUrl
+        - imageId
+  securitySchemes: {}
+tags:
+  - name: MobileOrder
