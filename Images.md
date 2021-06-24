@@ -1,7 +1,7 @@
 # Images
 | Operation | Description | Endpoint |
 | --------- | ----------- | -------- |
-| [Upload image](#cancel) | Upload an image| `POST:/order-management/v1/image` |
+| [Upload image](#upload-image) | Upload an image| `POST:/order-management/v1/image` |
 
 The api experimentally supports image uploading. An image is uploaded in base64 format to the image endpoint and can then be used on any number of orders.
 

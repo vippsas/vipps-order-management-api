@@ -35,7 +35,7 @@ Or
 }
 ```
 ## Get order
-  GET:/order-management/v1/order/{transactionId}
+	GET:/order-management/v1/order/{transactionId}
 Example response 
 ```
 {
