@@ -14,7 +14,7 @@
 
 ## Update order
 	PUT:/order-management/v1/order/{transactionId}
-Examples request body
+Example request body
 ```
 {
   "category": "general",
@@ -24,7 +24,7 @@ Examples request body
       "id": "img1234",
     }
 }
-or  
+Or  
 {
   "category": "ticket",
   "orderDetailsUrl": "ruter:///min/bilett",
@@ -35,7 +35,7 @@ or
 }
 ```
 ## Get order
-GET:/order-management/v1/order/{transactionId}
+  GET:/order-management/v1/order/{transactionId}
 Example response 
 ```
 {
