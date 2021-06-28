@@ -10,13 +10,14 @@ servers:
   - url: 'https://api.vipps.no/order-management'
     description: vipps order management api
 paths:
-  '/v1/order/{vippsTransactionId}':
+  '/{version}/order/{vippsTransactionId}':
     parameters:
       - schema:
           type: string
         name: vippsTransactionId
         in: path
         required: true
+      - $ref: '#/components/parameters/version'
     get:
       summary: Get info by vippsTransactionId
       responses:
@@ -32,7 +33,8 @@ paths:
                     category: ticket
                     orderDetailsUrl: 'https://www.vipps.no'
                     imageIds:
-                      - laptop_image4433
+                      - id: laptop_image4433
+                        sortOrder: 1
         '404':
           description: Order Not Found
       operationId: getOrder
@@ -59,7 +61,8 @@ paths:
                   category: general
                   orderDetailsUrl: 'https://www.vipps.no'
                   imageIds:
-                    - laptop_image4433
+                    - id: laptop_image4433
+                      sortOrder: 1
         description: ''
       description: 'Post additional information about an order that will show up on the vipps receipt. '
       parameters: []
@@ -67,7 +70,7 @@ paths:
         - Order
       security:
         - BearerToken: []
-  /v1/image:
+  '/{version}/image':
     post:
       summary: Add an image to vipps
       operationId: postImage
@@ -99,13 +102,16 @@ paths:
                   type: base64
       security:
         - BearerToken: []
-  '/v1/receipt/{vippsTransactionId}':
+    parameters:
+      - $ref: '#/components/parameters/version'
+  '/{version}/receipt/{vippsTransactionId}':
     parameters:
       - schema:
           type: string
         name: vippsTransactionId
         in: path
         required: true
+      - $ref: '#/components/parameters/version'
     post:
       summary: Store receipt by vippsTransactionId
       operationId: postReceipt
@@ -145,10 +151,13 @@ components:
       type: object
       x-examples:
         example-1:
-          category: general
-          orderDetailsUrl: 'https://www.vipps.no'
-          imageId:
-            - laptop_image4433
+          value:
+            category: general
+            orderDetailsUrl: 'https://www.vipps.no'
+            imageIds:
+              - id: laptop_image4433
+                sortOrder: 1
+      description: ''
       properties:
         category:
           type: string
@@ -167,10 +176,11 @@ components:
           description: URL linking back to the merchant.
           minLength: 1
         imageIds:
-          type: array
           description: list of imageIds linked to this transaction
+          maxItems: 4
+          type: array
           items:
-            type: string
+            $ref: '#/components/schemas/ImageId'
       required:
         - category
         - orderDetailsUrl
@@ -179,8 +189,10 @@ components:
       type: object
       properties:
         imageId:
-          type: string
           description: Id of the image to be added
+          maxLength: 128
+          pattern: '^[0-9A-Za-z-_\.]+$'
+          type: string
         src:
           type: string
           description: 'Src of the image, like a base64 encoded string'
@@ -194,9 +206,10 @@ components:
         - type
       x-examples:
         example-1:
-          imageId: laptop_image4433
-          src: iVBORw0KGgoAAAANSUhEUgAAAKsAAADVCAMAAAAfHv
-          type: base64
+          value:
+            imageId: laptop_image4433
+            src: iVBORw0KGgoAAAANSUhEUgAAAKsAAADVCAMAAAAfHv
+            type: base64
     ImageResponse:
       type: object
       properties:
@@ -251,10 +264,32 @@ components:
             $ref: '#/components/schemas/OrderLine'
       required:
         - OrderLines
+    ImageId:
+      title: ImageId
+      type: object
+      properties:
+        id:
+          type: string
+          pattern: '^[0-9A-Za-z-_\.]+$'
+          maxLength: 128
+        sortOrder:
+          type: integer
+      required:
+        - id
   securitySchemes:
     BearerToken:
       type: http
       scheme: bearer
+  parameters:
+    version:
+      name: version
+      in: path
+      required: true
+      schema:
+        type: string
+        enum:
+          - v1
+      description: The service version number
 tags:
   - name: Image
   - name: MobileOrder
