@@ -10,7 +10,7 @@ The api supports receipt uploading.
 ### Receipt
 |Parameter | Type | Required | Description|
 ----------|------|----------|------------
-|`orderLines` (#orderline) | `array of OrderLine` | Y | Minimum one element |
+|`orderLines` (#orderLine) | `array of OrderLine` | Y | Minimum one element |
 |`shippingAmount` | `integer` | N | Currency without delimiter eg NOK 100.00 is 10000 |
 
 ### OrderLine 
@@ -46,9 +46,11 @@ Example request body
       "productUrl": "https://mystore.no/products/998877",
       "quantity": 1,
       "taxAmount": 2000,
-      "taxPercentage": 20
+      "taxPercentage": 2000,
+      "discount": 0
     }
-  ]
+  ],
+  "shippingAmount": 15000
 }
 ```
 
