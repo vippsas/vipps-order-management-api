@@ -10,7 +10,7 @@ The api supports receipt uploading.
 ### Receipt
 |Parameter | Type | Required | Description|
 ----------|------|----------|------------
-|`orderLines` (#order-line) | `array of OrderLine` | Y | Minimum one element |
+|`orderLines` (#orderline) | `array of OrderLine` | Y | Minimum one element |
 |`shippingAmount` | `integer` | N | Currency without delimiter eg NOK 100.00 is 10000 |
 
 ### OrderLine 
