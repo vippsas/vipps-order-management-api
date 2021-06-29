@@ -184,6 +184,7 @@ components:
       required:
         - category
         - orderDetailsUrl
+      description: ''
     Image:
       type: object
       properties:
