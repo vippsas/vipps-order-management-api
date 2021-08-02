@@ -8,12 +8,12 @@ Vipps Order Management currently has the following capabilities:
 * Images of order
 * Proof of purchase / Valid reciept
 
-### Links and images of order
-In order to provide customers with more up to date information about their order, you can add a URL / link to the payment reciept in Vipps that can take the customer to a location on your site. Links are activated when a customer clicks the link area on the Vipps reciept. The mobile device's standard web browser will open and the user is redirected to the location in the link.
+### Links
+In order to provide customers with more up to date information about their order, you can add a URL / link to the payment reciept in Vipps that can take the customer to a location on your site. Links are activated when a customer clicks the link area on the Vipps reciept. The mobile device's standard web browser will open and the user is redirected to the link location.
 
-Below you can se an example of a Vipps reciept containing a link to "Shipping information" in addition to an image of the product in this order.
+Below you can se an example of a Vipps reciept containing a link to "Shipping information".
 
-![Shipping information link](images/order-link-shipping-information-with-image.png)
+![Shipping information link](images/order-link-shipping-information.png)
 
 Links have a type or category that will affect infographics and how it is handled in the Vipps app. We currently support these cathegories:
 
@@ -26,8 +26,9 @@ Links have a type or category that will affect infographics and how it is handle
 
 
 ### Images of order
-What is it etc...
-How does it look etc.
+With Vipps Order Management API you can upload an image that represents the order. This could be a specific image showing the product in this order, a collection of images that will be shown as a collage in Vipps. Below you can see an example of a Vipps reciept containing an image of the shopping card (single product)
+
+![Shipping information link](images/order-link-shipping-information-with-image.png)
 
 ### Order Lines and Proof of Purchase
 
