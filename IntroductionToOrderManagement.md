@@ -1,5 +1,5 @@
 # Introduction to Vipps Order Management
-Vipps Order Management enables you to communicate with your customers through the payment reciepts in the Vipps app. The purpose of doing this is to give your customers more convenience, better overview and a more compelling shopping experience when they use Vipps to pay for your products and services. Vipps Order management also enables you to draw customers back to your site.
+Vipps Order Management enables you to communicate with your customers through the payment reciepts in the Vipps app. The purpose of doing this is to give your customers more convenience, better overview and a more compelling shopping experience when they use Vipps to pay for your products and services. Vipps Order management also enables you to draw customers back to your website or app from links on the Vipps reciept view.  
 
 ## Vipps Order Management capabilities
 Vipps Order Management currently has the following capabilities:
@@ -7,6 +7,8 @@ Vipps Order Management currently has the following capabilities:
 * Links
 * Images of order
 * Proof of purchase / Valid reciept
+
+We expect to add more capabilities in the future.
 
 ### Links
 In order to provide customers with more up to date information about their order, you can add a URL / link to the payment reciept in Vipps that can take the customer to a location on your site. Links are activated when a customer clicks the link area on the Vipps reciept. The mobile device's standard web browser will open and the user is redirected to the link location.
@@ -31,5 +33,10 @@ With Vipps Order Management API you can upload an image that represents the orde
 ![Shipping information link](images/order-link-shipping-information-with-image.png)
 
 ### Order Lines and Proof of Purchase
+In addition to providing a user with a link to a valid reciept hosted on your site, it is also possible have the reciept hosted inside the Vipps app. To enable this you can send necessary information sich as order lines and VAT rates to the Order Management API and Vipps will generate a reciept that can be used for proof of purchase and expensing.
+
+In addition to providing the user with a valid reciept inside Vipps, order lines will also give the user a much better overview of the purchase. Further, in the case of partial order fulfullments or returns the order lines may be updated to reflect what the user actually ended up paying for using Vipps.
+
+
 
 
