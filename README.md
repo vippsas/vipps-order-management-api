@@ -5,6 +5,11 @@ This functionality is available for both recurring and direct payments, but not 
 
 In this setup, merchants are able to send images, receipts (order lines) and other information. Images are handled detached from transactions. This means that the merchant could upload one image and reuse it for several orders. Images must be added before the metadata for a transaction.
 
+# Resources
+[Introduction to Order Management](IntroductionToOrderManagement.md)
+
+[Getting started](GettingStarted.md)  
+
 # Api summary:
 - `/order-management/v1/image`
 	- Endpoint for uploading pictures of products as a b64-string, along with an ID defined by the merchant. An image exists independently of any transaction. It is not possible to overwrite an image.
@@ -14,7 +19,6 @@ In this setup, merchants are able to send images, receipts (order lines) and oth
 	- Endpoint for sending all other information about a transaction, including ID references to images previously uploaded. This object is mutable, and a new request will completely overwrite previous requests.
 
 
-[Getting started](GettingStarted.md)  
 
 ## API endpoints
 [Orders](Orders.md)  
