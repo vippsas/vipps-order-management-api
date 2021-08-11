@@ -154,37 +154,23 @@ components:
           value:
             category: general
             orderDetailsUrl: 'https://www.vipps.no'
-            imageIds:
-              - id: laptop_image4433
-                sortOrder: 1
+            image:
+              id: laptop_image4433
       description: ''
       properties:
         category:
-          type: string
-          enum:
-            - general
-            - receipt
-            - orderConfirmation
-            - delivery
-            - ticket
-            - booking
-          description: Enum containing different categories. These will be shown and might behave diferently in the app
+          $ref: '#/components/schemas/CategoryEnum'
         orderDetailsUrl:
           type: string
           example: 'https://www.vipps.no'
           format: uri
           description: URL linking back to the merchant.
           minLength: 1
-        imageIds:
-          description: list of imageIds linked to this transaction
-          maxItems: 4
-          type: array
-          items:
-            $ref: '#/components/schemas/ImageId'
+        image:
+          $ref: '#/components/schemas/ImageId'
       required:
         - category
         - orderDetailsUrl
-      description: ''
     Image:
       type: object
       properties:
@@ -245,6 +231,11 @@ components:
         taxPercentage:
           type: integer
           nullable: true
+        discount:
+          type: integer
+          nullable: true
+        quantityUnit:
+          $ref: '#/components/schemas/QuantityUnitEnum'
       required:
         - amountExcludingTax
         - amountIncludingTax
@@ -253,17 +244,23 @@ components:
         - quantity
         - taxAmount
         - taxPercentage
+        - discount
+        - quantityUnit
     Receipt:
       title: Receipt
       type: object
       properties:
-        OrderLines:
+        orderLines:
           type: array
           minItems: 1
           items:
             $ref: '#/components/schemas/OrderLine'
+        shippingAmount:
+          type: integer
+          nullable: true
       required:
-        - OrderLines
+        - orderLines
+        - shippingAmount
     ImageId:
       title: ImageId
       type: object
@@ -272,10 +269,26 @@ components:
           type: string
           pattern: '^[0-9A-Za-z-_\.]+$'
           maxLength: 128
-        sortOrder:
-          type: integer
       required:
         - id
+    CategoryEnum:
+      type: string
+      title: CategoryEnum
+      enum:
+        - general
+        - receipt
+        - orderConfirmation
+        - delivery
+        - ticket
+        - booking
+    QuantityUnitEnum:
+      type: string
+      title: QuantityUnitEnum
+      enum:
+        - Unknown
+        - Kilogram
+        - Meter
+        - Liter
   securitySchemes:
     BearerToken:
       type: http
