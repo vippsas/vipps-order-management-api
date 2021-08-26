@@ -3,7 +3,7 @@
 ## Before you begin
 This document covers the quick steps for getting started with the Order Management API to enrich orders with metadata. This document assumes you have signed up as a organisation with Vipps and have your test credentials from the Merchant Portal.
 
-It also assumes a payment has been initialized and reserved and that you have the transaction id. 
+It also assumes a payment has been initialized and reserved and that you have the transaction id.
 
 ## 1. Authentication
 ```bash
@@ -14,8 +14,12 @@ curl https://apitest.vipps.no/accessToken/get \
 -X POST
 ```
 
-In response you will get a body whith the following schema. 
+In response you will get a body with the following schema.
 The property `access_token` should be used for all other API requests in the `Authorization` header as the Bearer token.
+
+The access token is obtained as described in
+[Getting started](https://github.com/vippsas/vipps-developers/blob/master/vipps-getting-started.md):
+[Get an access token](https://github.com/vippsas/vipps-developers/blob/master/vipps-getting-started.md#get-an-access-token) 
 
 ```json
 {
@@ -42,10 +46,10 @@ Parameter | Type | Required | Description
 `category` | `string` | Y | Category of order
 `orderDetailsUrl` | `string` | Y | Url to external page with order details
 `imageIds` | `string[]` | N | Images associated with this order  
-   
-  
+
+
 To add meta data to an order send a request:   
-  
+
 ```bash
 curl https://apitest.vipps.no/order-management/v1/order/{transactionId} \
 -H "Authorization: Bearer <TOKEN>" \
@@ -66,5 +70,3 @@ A valid request like the one above will result in a response with the following 
   "id": "id of the transaction"
 }
 ```
-
-
