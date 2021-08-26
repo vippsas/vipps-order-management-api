@@ -10,16 +10,16 @@ servers:
   - url: 'https://api.vipps.no/order-management'
     description: Vipps Order Management API
 paths:
-  '/{version}/orders/{vippsTransactionId}':
+  '/{version}/orders/{transactionId}':
     parameters:
       - schema:
           type: string
-        name: vippsTransactionId
+        name: transactionId
         in: path
         required: true
       - $ref: '#/components/parameters/version'
     get:
-      summary: Get order info by vippsTransactionId
+      summary: Get order info by transactionId
       responses:
         '200':
           description: ''
@@ -38,14 +38,16 @@ paths:
         '404':
           description: Order Not Found
       operationId: getOrder
-      description: Retrive the metadata for an order
+      description: >-
+        Retrive the metadata for an order.
+        The transactionId is retrieved by first GET-ing the payment (eCom API) or charge (Recurering API).
       parameters: []
       tags:
         - Order
       security:
         - BearerToken: []
     put:
-      summary: Add info to order by vippsTransactionId
+      summary: Add info to order by transactionId
       operationId: putOrder
       responses:
         '200':
@@ -63,8 +65,9 @@ paths:
                   imageIds:
                     - id: product-image-12345
                       sortOrder: 1
-        description: ''
-      description: 'Post additional information about an order that will show up on the Vipps receipt. '
+      description: >-
+        Post additional information about an order that will show up on the Vipps receipt.
+        The transactionId is retrieved by first GET-ing the payment (eCom API) or charge (Recurering API).
       parameters: []
       tags:
         - Order
@@ -104,16 +107,16 @@ paths:
         - BearerToken: []
     parameters:
       - $ref: '#/components/parameters/version'
-  '/{version}/receipts/{vippsTransactionId}':
+  '/{version}/receipts/{transactionId}':
     parameters:
       - schema:
           type: string
-        name: vippsTransactionId
+        name: transactionId
         in: path
         required: true
       - $ref: '#/components/parameters/version'
     post:
-      summary: Store receipt by vippsTransactionId
+      summary: Store receipt by transactionId
       operationId: postReceipt
       responses:
         '200':
@@ -125,13 +128,15 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Receipt'
-      description: Endpoint for uploading receipts to Vipps.
+      description: >-
+        Endpoint for uploading receipts to Vipps.
+        The transactionId is retrieved by first GET-ing the payment (eCom API) or charge (Recurering API).
       security:
         - BearerToken: []
       tags:
         - Receipt
     get:
-      summary: Get receipt by vippsTransactionId
+      summary: Get receipt by transactionId
       operationId: getReceipt
       responses:
         '200':
@@ -140,7 +145,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Receipt'
-      description: Endpoint for downloading receipts to Vipps.
+      description: >-
+        Endpoint for downloading receipts to Vipps.
+        The transactionId is retrieved by first GET-ing the payment (eCom API) or charge (Recurering API).
       security:
         - BearerToken: []
       tags:
