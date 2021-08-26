@@ -164,7 +164,7 @@ components:
           type: string
           example: 'https://example.com/vipps/orders/acme-shop-123-order123abc'
           format: uri
-          description: URL linking back to the merchant.
+          description: URL the the merchant's website and the order details.
           minLength: 1
         image:
           $ref: '#/components/schemas/ImageId'
@@ -181,7 +181,7 @@ components:
           type: string
         src:
           type: string
-          description: 'Src of the image, like a base64 encoded string'
+          description: 'The image source (data), usually as a base64 encoded string.'
         type:
           type: string
           enum:
@@ -207,7 +207,7 @@ components:
     OrderLine:
       title: OrderLine
       type: object
-      description: 'All numbers are interpreted as integers with two trailing zeros. ex: 10.00 = 1000'
+      description: 'Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 499 kr = 49900 øre.'
       properties:
         amountExcludingTax:
           type: integer
