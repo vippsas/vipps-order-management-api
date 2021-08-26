@@ -104,7 +104,7 @@ paths:
         - BearerToken: []
     parameters:
       - $ref: '#/components/parameters/version'
-  '/{version}/receipt/{vippsTransactionId}':
+  '/{version}/receipts/{vippsTransactionId}':
     parameters:
       - schema:
           type: string
