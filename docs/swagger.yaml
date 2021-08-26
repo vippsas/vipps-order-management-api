@@ -70,7 +70,7 @@ paths:
         - Order
       security:
         - BearerToken: []
-  '/{version}/image':
+  '/{version}/images':
     post:
       summary: Add an image to vipps
       operationId: postImage
