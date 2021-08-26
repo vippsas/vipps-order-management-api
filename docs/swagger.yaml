@@ -1,14 +1,14 @@
 openapi: 3.0.0
 info:
-  title: order-management-api
-  version: '1.0'
-  description: Api to add and read additional info for vipps orders
+  title: vipps-order-management-api
+  version: '1.0.1'
+  description: API to add and read additional info for vVipps orders
   contact:
-    name: Team ecom
+    name: Team eCom
     url: 'https://vipps.no/kontakt-oss/bedrift/vipps/'
 servers:
   - url: 'https://api.vipps.no/order-management'
-    description: vipps order management api
+    description: Vipps Order Management API
 paths:
   '/{version}/order/{vippsTransactionId}':
     parameters:
