@@ -22,7 +22,7 @@ paths:
       summary: Get order info by transactionId
       responses:
         '200':
-          description: ''
+          description: 'OK'
           content:
             application/json:
               schema:
@@ -120,7 +120,7 @@ paths:
       operationId: postReceipt
       responses:
         '200':
-          description: ''
+          description: 'OK'
         '404':
           description: Order not Found
       requestBody:
@@ -140,7 +140,7 @@ paths:
       operationId: getReceipt
       responses:
         '200':
-          description: ''
+          description: 'OK'
           content:
             application/json:
               schema:
@@ -163,7 +163,7 @@ components:
             orderDetailsUrl: 'https://example.com/vipps/orders/acme-shop-123-order123abc'
             image:
               id: product-image-12345
-      description: ''
+      description: 'A Vipps order'
       properties:
         category:
           $ref: '#/components/schemas/CategoryEnum'
@@ -219,28 +219,40 @@ components:
         amountExcludingTax:
           type: integer
           nullable: true
+          example: 39920
         amountIncludingTax:
           type: integer
           nullable: true
+          example: 49900
         description:
           type: string
+          maxLength: 255
+          example: 'One pair of Vipps socks'
         id:
           type: string
           description: The product ID
+          maxLength: 255
+          example: 'product-12345'
         productUrl:
           type: string
+          maxLength: 255
+          example: 'https://example.com/products/product-12345'
         quantity:
           type: integer
           nullable: true
+          example: 1
         taxAmount:
           type: integer
           nullable: true
+          example: 14920
         taxPercentage:
           type: integer
           nullable: true
+          example: 25
         discount:
           type: integer
           nullable: true
+          example: 0
         quantityUnit:
           $ref: '#/components/schemas/QuantityUnitEnum'
       required:
@@ -276,6 +288,7 @@ components:
           type: string
           pattern: '^[0-9A-Za-z-_\.]+$'
           maxLength: 128
+          example: 'image-12345'
       required:
         - id
     CategoryEnum:
