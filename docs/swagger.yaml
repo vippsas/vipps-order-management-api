@@ -75,7 +75,7 @@ paths:
         - BearerToken: []
   '/{version}/images':
     post:
-      summary: Add an image to vipps
+      summary: Add an image to Vipps
       operationId: postImage
       responses:
         '200':
@@ -88,7 +88,9 @@ paths:
                 example-1:
                   value:
                     imageId: product-image-12345
-      description: Endpoint for uploading images to Vipps. A imageId will be returned that can be used when adding metadata to Vipps Transactions
+      description: >-
+        Endpoint for uploading images to Vipps.
+        A imageId will be returned that can be used when adding metadata to Vipps Transactions
       parameters: []
       tags:
         - Image
@@ -130,7 +132,7 @@ paths:
               $ref: '#/components/schemas/Receipt'
       description: >-
         Endpoint for uploading receipts to Vipps.
-        The transactionId is retrieved by first GET-ing the payment (eCom API) or charge (Recurering API).
+        The transactionId is retrieved by first GET-ing the payment (eCom API) or charge (Recurring API).
       security:
         - BearerToken: []
       tags:
@@ -147,7 +149,7 @@ paths:
                 $ref: '#/components/schemas/Receipt'
       description: >-
         Endpoint for downloading receipts to Vipps.
-        The transactionId is retrieved by first GET-ing the payment (eCom API) or charge (Recurering API).
+        The transactionId is retrieved by first GET-ing the payment (eCom API) or charge (Recurring API).
       security:
         - BearerToken: []
       tags:
