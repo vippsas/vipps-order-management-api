@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: vipps-order-management-api
   version: '1.0.1'
-  description: API to add and read additional info for vVipps orders
+  description: API to add and read additional info for Vipps orders
   contact:
     name: Team eCom
     url: 'https://vipps.no/kontakt-oss/bedrift/vipps/'
@@ -19,7 +19,7 @@ paths:
         required: true
       - $ref: '#/components/parameters/version'
     get:
-      summary: Get info by vippsTransactionId
+      summary: Get order info by vippsTransactionId
       responses:
         '200':
           description: ''
@@ -31,9 +31,9 @@ paths:
                 Retrieve order info:
                   value:
                     category: ticket
-                    orderDetailsUrl: 'https://www.vipps.no'
+                    orderDetailsUrl: 'https://example.com/vipps/orders/acme-shop-123-order123abc'
                     imageIds:
-                      - id: laptop_image4433
+                      - id: product-image-12345
                         sortOrder: 1
         '404':
           description: Order Not Found
@@ -45,7 +45,7 @@ paths:
       security:
         - BearerToken: []
     put:
-      summary: Add info to vippsTransactionId
+      summary: Add info to order by vippsTransactionId
       operationId: putOrder
       responses:
         '200':
@@ -59,12 +59,12 @@ paths:
               Adding order metadata with one image:
                 value:
                   category: general
-                  orderDetailsUrl: 'https://www.vipps.no'
+                  orderDetailsUrl: 'https://example.com/vipps/orders/acme-shop-123-order123abc'
                   imageIds:
-                    - id: laptop_image4433
+                    - id: product-image-12345
                       sortOrder: 1
         description: ''
-      description: 'Post additional information about an order that will show up on the vipps receipt. '
+      description: 'Post additional information about an order that will show up on the Vipps receipt. '
       parameters: []
       tags:
         - Order
@@ -84,7 +84,7 @@ paths:
               examples:
                 example-1:
                   value:
-                    imageId: laptop_image4433
+                    imageId: product-image-12345
       description: Endpoint for uploading images to Vipps. A imageId will be returned that can be used when adding metadata to Vipps Transactions
       parameters: []
       tags:
@@ -97,7 +97,7 @@ paths:
             examples:
               example-1:
                 value:
-                  imageId: laptop_image4433
+                  imageId: product-image-12345
                   src: iVBORw0KGgoAAAANSUhEUgAAAKsAAADVCAMAAAAfHv
                   type: base64
       security:
@@ -153,16 +153,16 @@ components:
         example-1:
           value:
             category: general
-            orderDetailsUrl: 'https://www.vipps.no'
+            orderDetailsUrl: 'https://example.com/vipps/orders/acme-shop-123-order123abc'
             image:
-              id: laptop_image4433
+              id: product-image-12345
       description: ''
       properties:
         category:
           $ref: '#/components/schemas/CategoryEnum'
         orderDetailsUrl:
           type: string
-          example: 'https://www.vipps.no'
+          example: 'https://example.com/vipps/orders/acme-shop-123-order123abc'
           format: uri
           description: URL linking back to the merchant.
           minLength: 1
@@ -193,7 +193,7 @@ components:
       x-examples:
         example-1:
           value:
-            imageId: laptop_image4433
+            imageId: product-image-12345
             src: iVBORw0KGgoAAAANSUhEUgAAAKsAAADVCAMAAAAfHv
             type: base64
     ImageResponse:
@@ -203,7 +203,7 @@ components:
           type: string
       x-examples:
         example-1:
-          imageId: laptop_image4433
+          imageId: product-image-12345
     OrderLine:
       title: OrderLine
       type: object
