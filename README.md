@@ -4,15 +4,20 @@
 
 This repository contains developer resources for the Vipps Order Management API.
 
-The Order Management API allows merchants to send rich receipt information to existing Vipps transaction.
-This information is shown to the customer in the app in their order history.
-This functionality is available for both recurring and direct payments, but not for passthrough payments.
+The Vipps Order Management API allows merchants to send rich receipt information
+to existing Vipps transactions. This information is shown to the customer in the app in their order history.
 
-For more information:
-* [Vipps Developers](https://github.com/vippsas/vipps-developers): The starting point for Vipps developers.
-* [Getting Started](https://github.com/vippsas/vipps-developers/blob/master/vipps-getting-started.md): Information about API keys, product activation.
+This functionality is available for both
+[recurring](https://github.com/vippsas/vipps-recurring-api)
+and
+[direct payments](https://github.com/vippsas/vipps-ecom-api),
+but not for
+[passthrough payments](https://github.com/vippsas/vipps-psp-api).
+
+* [API Guide](vipps-order-management-api.md)
 
 You can peruse the API reference documentation as:
+
 * [Swagger UI](https://vippsas.github.io/vipps-order-management-api/)
 * [ReDoc](https://vippsas.github.io/vipps-order-management-api/redoc.html)
 
