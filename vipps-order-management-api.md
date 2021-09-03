@@ -10,6 +10,10 @@ In this setup, merchants are able to send images, receipts (order lines) and oth
 
 Vipps Order Management enables you to communicate with your customers through the payment receipts in the Vipps app. The purpose of doing this is to give your customers more convenience, better overview and a more compelling shopping experience when they use Vipps to pay for your products and services. Vipps Order management also enables you to draw customers back to your website or app from links on the Vipps receipt view.
 
+API version: 1.0.0.
+
+Document version: 0.1.0.
+
 # Table of contents
 
 - [Vipps Order Management capabilities](#vipps-order-management-capabilities)
@@ -18,19 +22,13 @@ Vipps Order Management enables you to communicate with your customers through th
   * [Order Lines and Proof of Purchase](#order-lines-and-proof-of-purchase)
 - [Getting Started](#getting-started)
   * [Before you begin](#before-you-begin)
-  * [1. Authentication](#1-authentication)
-- [Api summary:](#api-summary-)
-  * [API endpoints](#api-endpoints)
-- [Orders](#orders)
-  * [Update order](#update-order)
-  * [Get order](#get-order)
-- [Images (TBA)](#images--tba-)
-  * [Upload image](#upload-image)
-- [Receipts](#receipts)
-    + [Receipt](#receipt)
-    + [OrderLine](#orderline)
-  * [Upload receipt](#upload-receipt)
-  * [Get receipt](#get-receipt)
+  * [Authentication](#authentication)
+  * [Optional Vipps HTTP headers](#optional-vipps-http-headers)
+- [API summary](#api-summary)
+  * [Links](#links-1)
+  * [Images](#images)
+  * [Receipts](#receipts)
+  * [Additional information](#additional-information)
 - [Questions?](#questions-)
 
 # Vipps Order Management capabilities
@@ -46,6 +44,7 @@ We expect to add even more capabilities in the future.
 Images are handled detached from transactions. This means that the merchant could upload one image and reuse it for several orders. Images must be added before the metadata for a transaction.
 
 ## Links
+
 In order to provide customers with more up to date information about their order, you can add a URL / link to the payment receipt in Vipps that can take the customer to a location on your website. Links are activated when a customer clicks the link area on the Vipps receipt. The mobile device's standard web browser will open and the user is redirected to the link location.
 
 Below you can se an example of a Vipps receipt containing a link to "Shipping information".
@@ -78,6 +77,7 @@ In addition to providing the user with a valid receipt inside Vipps, order lines
 # Getting Started
 
 ## Before you begin
+
 This section covers the quick steps for getting started with the Order Management API to enrich orders with metadata. This document assumes you have signed up as a organisation with Vipps and have your test credentials from the Merchant Portal.
 
 It also assumes a payment has been initialized and reserved and that you have the transaction id.
@@ -117,9 +117,9 @@ and we recommend all customers with direct integration with the API to also do s
 
 # API summary
 
-See the API reference for details:
-* [Swagger UI](https://vippsas.github.io/vipps-order-management-api/)
-* [ReDoc](https://vippsas.github.io/vipps-order-management-api/redoc.html)
+## Links
+
+TODO!
 
 ## Images
 
