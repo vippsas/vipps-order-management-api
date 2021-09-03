@@ -61,7 +61,6 @@ Links have a type or category that will affect infographics and how it is handle
 - **Booking**: A link to a location that contains information and status about a booking, such as travel and rental booking. If your webshop or site has a "My bookings" page or similar, this link cathegory can take the customer there.
 - **General**: If none of the other cathegories fit the use case for the link, a *General* category can be used. This is a link to a location that contains any kind of information pertinent to the order. We encourage you to use the more specific cathegories if possible.
 
-
 ## Images of order (TBA)
 
 With Vipps Order Management API you can upload an image that represents the order. This could be a specific image showing the product in this order, a collection of images that will be shown as a collage in Vipps. Below you can see an example of a Vipps receipt containing an image of the shopping card (single product)
@@ -69,10 +68,10 @@ With Vipps Order Management API you can upload an image that represents the orde
 ![Shipping information link](images/order-link-shipping-information-with-image.png)
 
 ## Order Lines and Proof of Purchase
+
 In addition to providing a user with a link to a valid receipt hosted on your site, it is also possible have the receipt hosted inside the Vipps app. To enable this you can send necessary information such as order lines and VAT rates to the Order Management API and Vipps will generate a receipt that can be used for proof of purchase and expensing.
 
-In addition to providing the user with a valid receipt inside Vipps, order lines will also give the user a much better overview of the purchase. Furthermore, in the case of partial order fulfullments or returns the order lines may be updated to reflect what the user actually ended up paying for using Vipps.
-
+In addition to providing the user with a valid receipt inside Vipps, order lines will also give the user a much better overview of the purchase. Furthermore, in the case of partial order fulfillments or returns the order lines may be updated to reflect what the user actually ended up paying for using Vipps.
 
 ![order lines example](images/orderlines.png)
 
@@ -119,32 +118,36 @@ and we recommend all customers with direct integration with the API to also do s
 # API summary
 
 See the API reference for details:
+* [Swagger UI](https://vippsas.github.io/vipps-order-management-api/)
+* [ReDoc](https://vippsas.github.io/vipps-order-management-api/redoc.html)
 
+## Images
 
-## Add image
-
-`POST:/order-management/v1/image`
+[`POST:/order-management/v1/image`](https://vippsas.github.io/vipps-order-management-api/#/Image/postImage)
 
 Endpoint for uploading pictures of products as a base64 string, along with an
 ID defined by the merchant. An image exists independently of any transaction.
 It is not possible to overwrite an image.
 
-## Add order lines
+## Receipts
 
-`POST:/order-management/v1/receipt/{vippsTransactionId}`
+[`POST:/order-management/v1/receipt/{vippsTransactionId}`](https://vippsas.github.io/vipps-order-management-api/#/Receipt/postReceipt)
 
-Endpoint for sending receipt information (an array of order lines). Order
-lines are descriptions of each item present in an order. A receipt is immutable
-and, once sent, cannot be overwritten.
+[`GET:/order-management/v1/receipt/{vippsTransactionId}`](https://vippsas.github.io/vipps-order-management-api/#/Receipt/getReceipt)
 
-## Add additional information
+Endpoints for sending rand receiving receipt information (an array of order lines).
+Order lines are descriptions of each item present in an order.
+A receipt is immutable and, once sent, cannot be overwritten.
 
-`POST:/order-management/v1/order/{vippsTransactionId}`
+## Additional information
 
-Endpoint for sending all other information about a transaction, including ID
+[`PUT:/order-management/v1/order/{vippsTransactionId}`](https://vippsas.github.io/vipps-order-management-api/#/Order/putOrder)
+
+[`GET:/order-management/v1/order/{vippsTransactionId}`](https://vippsas.github.io/vipps-order-management-api/#/Order/getOrder)
+
+Endpoints for sending and retrieving all other information about a transaction, including ID
 references to images previously uploaded. This object is mutable, and a new
 request will completely overwrite previous requests.
-
 
 # Questions?
 
