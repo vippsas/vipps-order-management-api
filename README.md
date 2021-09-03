@@ -57,7 +57,7 @@ In addition to providing a user with a link to a valid receipt hosted on your si
 
 In addition to providing the user with a valid receipt inside Vipps, order lines will also give the user a much better overview of the purchase. Furthermore, in the case of partial order fulfullments or returns the order lines may be updated to reflect what the user actually ended up paying for using Vipps.
 
-![order lines example](images/orderlines.png)
+![order lines example](images/orderlines.png=250px)
 
 # Getting Started
 
