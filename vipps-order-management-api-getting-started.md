@@ -2,28 +2,38 @@
 
 💥 DRAFT! This is unfinished work and subject to change. 💥
 
-The Order Management API allows merchants to send rich receipt information to existing Vipps transaction. This information is shown to the customer in the app in their order history.
-This functionality is available for both recurring and direct payments, but not for passthrough payments.
+The Vipps Order Management API allows merchants to send rich receipt information to existing Vipps transactions. This information is shown to the customer in the app in their order history.
 
-In this setup, merchants are able to send images, receipts (order lines) and other information. Images are handled detached from transactions. This means that the merchant could upload one image and reuse it for several orders. Images must be added before the metadata for a transaction.
+This functionality is available for both
+[direct payments](https://github.com/vippsas/vipps-ecom-api)
+and
+[recurring payments](https://github.com/vippsas/vipps-recurring-api),
+but not for
+[passthrough payments](https://github.com/vippsas/vipps-psp-api).
 
+With this API merchants are able to send images, receipts (order lines) and other information.
+Images are handled detached from transactions.
+This means that the merchant could upload one image and reuse it for several orders.
+Images must be added before the metadata for a transaction.
 
 ## Introduction
-Vipps Order Management enables you to communicate with your customers through the payment receipts in the Vipps app. The purpose of doing this is to give your customers more convenience, better overview and a more compelling shopping experience when they use Vipps to pay for your products and services. Vipps Order management also enables you to draw customers back to your website or app from links on the Vipps receipt view.
+
+The Vipps Order Management API enables you to communicate with your customers through the payment receipts in the Vipps app. The purpose of doing this is to give your customers more convenience, better overview and a more compelling shopping experience when they use Vipps to pay for your products and services. The Vipps Order Management API also enables you to draw customers back to your website or app from links on the Vipps receipt view.
 
 ## Vipps Order Management capabilities
-Vipps Order Management currently has the following capabilities:
+
+The Vipps Order Management API currently has the following capabilities:
 
 * Links
 * Images of orders (TBA)
 * Proof of purchase / Valid receipt
 
-We expect to add even more capabilities in the future.
+We plan to add even more capabilities in the future.
 
 Images are handled detached from transactions. This means that the merchant could upload one image and reuse it for several orders. Images must be added before the metadata for a transaction.
 
-
 ### Links
+
 In order to provide customers with more up to date information about their order, you can add a URL / link to the payment receipt in Vipps that can take the customer to a location on your website. Links are activated when a customer clicks the link area on the Vipps receipt. The mobile device's standard web browser will open and the user is redirected to the link location.
 
 Below you can se an example of a Vipps receipt containing a link to "Shipping information".
@@ -51,17 +61,14 @@ In addition to providing a user with a link to a valid receipt hosted on your si
 
 In addition to providing the user with a valid receipt inside Vipps, order lines will also give the user a much better overview of the purchase. Furthermore, in the case of partial order fulfullments or returns the order lines may be updated to reflect what the user actually ended up paying for using Vipps.
 
-
 ![order lines example](images/orderlines.png)
-
-
 
 # Getting Started
 
 ## Before you begin
 This section covers the quick steps for getting started with the Order Management API to enrich orders with metadata. This document assumes you have signed up as a organisation with Vipps and have your test credentials from the Merchant Portal.
 
-It also assumes a payment has been initialized and reserved and that you have the transaction id.
+It also assumes that a payment has been initialized and reserved and that you have the transaction id.
 
 ## 1. Authentication
 ```bash
@@ -72,7 +79,7 @@ curl https://apitest.vipps.no/accessToken/get \
 -X POST
 ```
 
-In response you will get a body whith the following schema.
+In response you will get a body with the following schema.
 The property `access_token` should be used for all other API requests in the `Authorization` header as the Bearer token.
 
 ```json
@@ -95,7 +102,8 @@ The property `access_token` should be used for all other API requests in the `Au
 ```
 
 
-# Api summary:
+# API summary
+
 - `/order-management/v1/image`
 	- Endpoint for uploading pictures of products as a b64-string, along with an ID defined by the merchant. An image exists independently of any transaction. It is not possible to overwrite an image.
 - `/order-management/v1/receipt/{vippsTransactionId}`
@@ -241,7 +249,8 @@ Example request body
 ```
 
 ## Get receipt
-	GET:/order-management/v1/receipt/{transactionId}
+
+GET:/order-management/v1/receipt/{transactionId}
 
 Example response body
 ```
@@ -262,14 +271,3 @@ Example response body
   "shippingAmount": 15000
 }
 ```
-
-
-# Questions?
-
-We're always happy to help with code or other questions you might have!
-Please create an [issue](https://github.com/vippsas/vipps-ecom-api/issues),
-a [pull request](https://github.com/vippsas/vipps-ecom-api/pulls),
-or [contact us](https://github.com/vippsas/vipps-developers/blob/master/contact.md).
-
-Sign up for our [Technical newsletter for developers](https://github.com/vippsas/vipps-developers/tree/master/newsletters).
-

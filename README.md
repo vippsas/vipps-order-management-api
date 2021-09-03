@@ -1,6 +1,6 @@
 # Vipps Order Management API v1
 
-💥 Release Candidate! This is unfinished work and subject to change. 💥
+💥 DRAFT: This is unfinished work and subject to change. 💥
 
 The Vipps Order Management API allows merchants to send rich receipt information to existing Vipps transactions. This information is shown to the customer in the app in their order history.
 This functionality is available for both
