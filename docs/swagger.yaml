@@ -10,7 +10,7 @@ servers:
   - url: 'https://api.vipps.no/order-management'
     description: vipps order management api
 paths:
-  '/{version}/order/{vippsTransactionId}':
+  '/{version}/orders/{vippsTransactionId}':
     parameters:
       - schema:
           type: string

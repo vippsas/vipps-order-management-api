@@ -123,7 +123,7 @@ See the API reference for details:
 
 ## Images
 
-[`POST:/order-management/v1/image`](https://vippsas.github.io/vipps-order-management-api/#/Image/postImage)
+[`POST:/order-management/v1/images`](https://vippsas.github.io/vipps-order-management-api/#/images/postImage)
 
 Endpoint for uploading pictures of products as a base64 string, along with an
 ID defined by the merchant. An image exists independently of any transaction.
@@ -131,9 +131,9 @@ It is not possible to overwrite an image.
 
 ## Receipts
 
-[`POST:/order-management/v1/receipt/{vippsTransactionId}`](https://vippsas.github.io/vipps-order-management-api/#/Receipt/postReceipt)
+[`POST:/order-management/v1/receipts/{vippsTransactionId}`](https://vippsas.github.io/vipps-order-management-api/#/receipts/postReceipt)
 
-[`GET:/order-management/v1/receipt/{vippsTransactionId}`](https://vippsas.github.io/vipps-order-management-api/#/Receipt/getReceipt)
+[`GET:/order-management/v1/receipts/{vippsTransactionId}`](https://vippsas.github.io/vipps-order-management-api/#/receipts/getReceipt)
 
 Endpoints for sending rand receiving receipt information (an array of order lines).
 Order lines are descriptions of each item present in an order.
@@ -141,9 +141,9 @@ A receipt is immutable and, once sent, cannot be overwritten.
 
 ## Additional information
 
-[`PUT:/order-management/v1/order/{vippsTransactionId}`](https://vippsas.github.io/vipps-order-management-api/#/Order/putOrder)
+[`PUT:/order-management/v1/orders/{vippsTransactionId}`](https://vippsas.github.io/vipps-order-management-api/#/orders/putOrder)
 
-[`GET:/order-management/v1/order/{vippsTransactionId}`](https://vippsas.github.io/vipps-order-management-api/#/Order/getOrder)
+[`GET:/order-management/v1/orders/{vippsTransactionId}`](https://vippsas.github.io/vipps-order-management-api/#/orders/getOrder)
 
 Endpoints for sending and retrieving all other information about a transaction, including ID
 references to images previously uploaded. This object is mutable, and a new
