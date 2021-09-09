@@ -70,7 +70,7 @@ paths:
         - Order
       security:
         - BearerToken: []
-  '/{version}/image':
+  '/{version}/images':
     post:
       summary: Add an image to vipps
       operationId: postImage
@@ -104,7 +104,7 @@ paths:
         - BearerToken: []
     parameters:
       - $ref: '#/components/parameters/version'
-  '/{version}/receipt/{vippsTransactionId}':
+  '/{version}/receipts/{vippsTransactionId}':
     parameters:
       - schema:
           type: string
@@ -222,6 +222,7 @@ components:
           description: The product ID
         productUrl:
           type: string
+          nullable: true
         quantity:
           type: integer
           nullable: true
@@ -286,9 +287,13 @@ components:
       title: QuantityUnitEnum
       enum:
         - Unknown
-        - Kilogram
         - Meter
         - Liter
+        - Minute
+        - kg
+        - Gram
+        - cm
+      description: Quantity must be given as non-decimal numbers
   securitySchemes:
     BearerToken:
       type: http
