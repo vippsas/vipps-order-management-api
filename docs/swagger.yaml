@@ -204,64 +204,6 @@ components:
       x-examples:
         example-1:
           imageId: laptop_image4433
-    OrderLine:
-      title: OrderLine
-      type: object
-      description: 'All numbers are interpreted as integers with two trailing zeros. ex: 10.00 = 1000'
-      properties:
-        amountExcludingTax:
-          type: integer
-          nullable: true
-        amountIncludingTax:
-          type: integer
-          nullable: true
-        description:
-          type: string
-        id:
-          type: string
-          description: The product ID
-        productUrl:
-          type: string
-          nullable: true
-        quantity:
-          type: integer
-          nullable: true
-        taxAmount:
-          type: integer
-          nullable: true
-        taxPercentage:
-          type: integer
-          nullable: true
-        discount:
-          type: integer
-          nullable: true
-        quantityUnit:
-          $ref: '#/components/schemas/QuantityUnitEnum'
-      required:
-        - amountExcludingTax
-        - amountIncludingTax
-        - description
-        - id
-        - quantity
-        - taxAmount
-        - taxPercentage
-        - discount
-        - quantityUnit
-    Receipt:
-      title: Receipt
-      type: object
-      properties:
-        orderLines:
-          type: array
-          minItems: 1
-          items:
-            $ref: '#/components/schemas/OrderLine'
-        shippingAmount:
-          type: integer
-          nullable: true
-      required:
-        - orderLines
-        - shippingAmount
     ImageId:
       title: ImageId
       type: object
@@ -282,18 +224,163 @@ components:
         - delivery
         - ticket
         - booking
+    Receipt:
+      title: Receipt
+      type: object
+      properties:
+        orderLines:
+          type: array
+          minItems: 1
+          items:
+            $ref: '#/components/schemas/OrderLine'
+        bottomLine:
+          $ref: '#/components/schemas/BottomLine'
+      required:
+        - orderLines
+        - bottomLine
+    OrderLine:
+      title: OrderLine
+      type: object
+      description: 'All numbers are interpreted as integers with two trailing zeros. ex: 10.00 = 1000'
+      properties:
+        totalAmount:
+          type: integer
+          description: Total amount of the order line
+          nullable: true
+        totalAmountExcludingTax:
+          type: integer
+          description: Total amount of order line excluding tax
+          nullable: true
+        totalTaxAmount:
+          type: integer
+          description: Total tax amount for the order line
+          nullable: true
+        taxPercentage:
+          type: integer
+          description: Tax percantage for the order line
+          nullable: true
+        currency:
+          $ref: '#/components/schemas/CurrencyEnum'
+        name:
+          type: string
+          description: Name of the product in the order line
+        id:
+          type: string
+          description: The product ID
+        unitInfo:
+          $ref: '#/components/schemas/UnitInfo'
+        discount:
+          type: integer
+          description: Total discount for the order line
+          nullable: true
+        quantityUnit:
+          $ref: '#/components/schemas/QuantityUnitEnum'
+        productUrl:
+          type: string
+          description: ''
+          nullable: true
+        unitPrice:
+          type: string
+      required:
+        - totalAmount
+        - totalAmountExcludingTax
+        - totalTaxAmount
+        - taxPercentage
+        - currency
+        - name
+        - id
+        - unitInfo
+        - discount
+        - quantityUnit
+    BottomLine:
+      title: BottomLine
+      type: object
+      description: Summary of the order
+      properties:
+        totalAmount:
+          type: string
+        totalTax:
+          type: string
+        totalDiscount:
+          type: string
+        currency:
+          $ref: '#/components/schemas/CurrencyEnum'
+        shippingAmount:
+          type: integer
+          description: Shipping amount for the order
+          nullable: true
+        tipAmount:
+          type: integer
+          description: Tip amount for the order
+          nullable: true
+        terminalId:
+          type: string
+        recycleDiscount:
+          type: string
+          description: 'Discount due to recycling '
+        coupon:
+          type: string
+          description: Amount paid by gift card or coupon
+      required:
+        - totalAmount
+        - totalTax
+        - totalDiscount
+        - currency
+    UnitInfo:
+      title: UnitInfo
+      type: object
+      description: Optional. If no quantity info is provided the order line will default to 1 pcs
+      x-examples:
+        example-1:
+          value:
+            quantity: '0.822'
+            unitPrice: 15000
+            quantityUnit: kg
+        example-2:
+          value:
+            quantity: '2'
+            unitPrice: 20000
+            quantityUnit: pcs
+      properties:
+        unitPrice:
+          type: integer
+          description: Price per unit
+          nullable: true
+        quantity:
+          type: string
+          maxLength: 10
+          pattern: '^\d+([\.]\d{1,8})?$'
+          example: '0.822'
+          description: 'Quantity given as a integer or fraction '
+        quantityUnit:
+          $ref: '#/components/schemas/QuantityUnitEnum'
+        '':
+          type: string
+      required:
+        - unitPrice
+        - quantity
+        - quantityUnit
+    CurrencyEnum:
+      type: string
+      title: CurrencyEnum
+      enum:
+        - EUR
+        - NOK
+        - SEK
+        - DKK
+        - GBP
     QuantityUnitEnum:
       type: string
       title: QuantityUnitEnum
       enum:
-        - Unknown
-        - Meter
-        - Liter
         - Minute
         - kg
-        - Gram
         - cm
-      description: Quantity must be given as non-decimal numbers
+        - pcs
+        - Litre
+        - Metre
+        - Gram
+      description: Available units for quantity. Will default to pcs if not set
   securitySchemes:
     BearerToken:
       type: http
