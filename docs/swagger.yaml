@@ -95,7 +95,7 @@ paths:
             schema:
               $ref: '#/components/schemas/Image'
             examples:
-              example-1:
+              ImageUploadExample:
                 value:
                   imageId: laptop_image4433
                   src: iVBORw0KGgoAAAANSUhEUgAAAKsAAADVCAMAAAAfHv
@@ -126,45 +126,12 @@ paths:
             schema:
               $ref: '#/components/schemas/Receipt'
             examples:
-              example-1:
+              ReceiptExample:
                 value:
                   orderLines:
-                    - totalAmount: 1000
-                      totalAmountExcludingTax: 800
-                      totalTaxAmount: 200
-                      taxPercentage: 25
-                      currency: NOK
-                      name: Banana
-                      id: line_item_1
-                      unitInfo:
-                        unitPrice: 400
-                        quantity: '2.5'
-                        quantityUnit: kg
-                      discount: 0
-                      productUrl: www.vipps.no/store/banana
-                    - totalAmount: 2500
-                      totalAmountExcludingTax: 4000
-                      totalTaxAmount: 1000
-                      taxPercentage: 25
-                      currency: NOK
-                      name: Soap
-                      id: line_item_2
-                      unitInfo:
-                        unitPrice: 1000
-                        quantity: '5'
-                        quantityUnit: pcs
-                      discount: 2500
-                      productUrl: www.vipps.no/store/soap
+                    $ref: '#/components/schemas/OrderLine/x-examples/OrderLineExample/value/orderLines'
                   bottomLine:
-                    totalAmount: 3500
-                    totalTax: 1200
-                    totalDiscount: 2500
-                    currency: NOK
-                    shippingAmount: 0
-                    tipAmount: 0
-                    terminalId: cashier_ref_31133
-                    recycleDiscount: 0
-                    coupon: 0
+                    $ref: '#/components/schemas/BottomLine/x-examples/BottomLineExample/value'
       description: Endpoint for uploading receipts to Vipps.
       security:
         - BearerToken: []
@@ -207,8 +174,8 @@ components:
           format: uri
           description: URL linking back to the merchant.
           minLength: 1
-        image:
-          $ref: '#/components/schemas/ImageId'
+        imageId:
+          type: string
       required:
         - category
         - orderDetailsUrl
@@ -237,6 +204,7 @@ components:
             imageId: laptop_image4433
             src: iVBORw0KGgoAAAANSUhEUgAAAKsAAADVCAMAAAAfHv
             type: base64
+      title: ''
     ImageResponse:
       type: object
       properties:
@@ -245,16 +213,6 @@ components:
       x-examples:
         example-1:
           imageId: laptop_image4433
-    ImageId:
-      title: ImageId
-      type: object
-      properties:
-        id:
-          type: string
-          pattern: '^[0-9A-Za-z-_\.]+$'
-          maxLength: 128
-      required:
-        - id
     CategoryEnum:
       type: string
       title: CategoryEnum
@@ -284,17 +242,23 @@ components:
       type: object
       description: 'All numbers are interpreted as integers with two trailing zeros. ex: 10.00 = 1000'
       properties:
+        name:
+          type: string
+          description: Name of the product in the order line
+        id:
+          type: string
+          description: The product ID
         totalAmount:
           type: integer
-          description: Total amount of the order line
+          description: 'Total amount of the order line, including tax and discount'
           nullable: true
         totalAmountExcludingTax:
           type: integer
-          description: Total amount of order line excluding tax
+          description: 'Total amount of order line with discount excluding tax '
           nullable: true
         totalTaxAmount:
           type: integer
-          description: Total tax amount for the order line
+          description: Total tax amount paid for the order line
           nullable: true
         taxPercentage:
           type: integer
@@ -302,12 +266,6 @@ components:
           nullable: true
         currency:
           $ref: '#/components/schemas/CurrencyEnum'
-        name:
-          type: string
-          description: Name of the product in the order line
-        id:
-          type: string
-          description: The product ID
         unitInfo:
           $ref: '#/components/schemas/UnitInfo'
         discount:
@@ -316,25 +274,55 @@ components:
           nullable: true
         productUrl:
           type: string
-          description: ''
+          description: Optional URL linking back to the product at the merchant
           nullable: true
       required:
+        - name
+        - id
         - totalAmount
         - totalAmountExcludingTax
         - totalTaxAmount
         - taxPercentage
         - currency
-        - name
-        - id
         - discount
+      x-examples:
+        OrderLineExample:
+          value:
+            orderLines:
+              - name: Banana
+                id: line_item_1
+                totalAmount: 1000
+                totalAmountExcludingTax: 800
+                totalTaxAmount: 200
+                taxPercentage: 25
+                currency: NOK
+                unitInfo:
+                  unitPrice: 400
+                  quantity: '2.5'
+                  quantityUnit: kg
+                discount: 0
+                productUrl: www.vipps.no/store/banana
+              - name: Soap 3for2
+                id: line_item_2
+                totalAmount: 5000
+                totalAmountExcludingTax: 4000
+                totalTaxAmount: 1000
+                taxPercentage: 25
+                currency: NOK
+                unitInfo:
+                  unitPrice: 2500
+                  quantity: '3'
+                  quantityUnit: pcs
+                discount: 2500
+                productUrl: www.vipps.no/store/soap
     BottomLine:
       title: BottomLine
       type: object
-      description: Summary of the order
+      description: 'Summary of the order. Total amount and total '
       properties:
         totalAmount:
           type: integer
-          description: 'Total amount of the order, including tax and excluding all discount'
+          description: 'The total amount the order, including all taxes and discounts'
           nullable: true
         totalTax:
           type: integer
@@ -354,20 +342,27 @@ components:
           type: integer
           description: Tip amount for the order
           nullable: true
-        terminalId:
-          type: string
-        recycleDiscount:
-          type: integer
-          description: 'Discount due to recycling '
-          nullable: true
-        coupon:
+        giftCardAmount:
           type: integer
           description: Amount paid by gift card or coupon
           nullable: true
+        terminalId:
+          type: string
       required:
         - totalAmount
         - totalTax
         - currency
+      x-examples:
+        BottomLineExample:
+          value:
+            totalAmount: 6000
+            totalTax: 1200
+            totalDiscount: 2500
+            currency: NOK
+            shippingAmount: 0
+            tipAmount: 0
+            giftCardAmount: 0
+            terminalId: vipps_pos_122
     UnitInfo:
       title: UnitInfo
       type: object
