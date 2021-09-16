@@ -30,7 +30,7 @@ paths:
               examples:
                 Retrieve order info:
                   value:
-                    category: Ticket
+                    category: TICKET
                     orderDetailsUrl: 'https://www.vipps.no'
                     imageIds:
                       - id: laptop_image4433
@@ -58,7 +58,7 @@ paths:
             examples:
               Adding order metadata with one image:
                 value:
-                  category: General
+                  category: GENERAL
                   orderDetailsUrl: 'https://www.vipps.no'
                   imageIds:
                     - id: laptop_image4433
@@ -160,7 +160,7 @@ components:
       x-examples:
         example-1:
           value:
-            category: general
+            category: GENERAL
             orderDetailsUrl: 'https://www.vipps.no'
             image:
               id: laptop_image4433
@@ -213,16 +213,6 @@ components:
       x-examples:
         example-1:
           imageId: laptop_image4433
-    CategoryEnum:
-      type: string
-      title: CategoryEnum
-      enum:
-        - General
-        - Receipt
-        - OrderConfirmation
-        - Delivery
-        - Ticket
-        - Booking
     Receipt:
       title: Receipt
       type: object
@@ -395,6 +385,16 @@ components:
         - unitPrice
         - quantity
         - quantityUnit
+    CategoryEnum:
+      type: string
+      title: CategoryEnum
+      enum:
+        - GENERAL
+        - RECEIPT
+        - ORDER_CONFIRMATION
+        - DELIVERY
+        - TICKET
+        - BOOKING
     CurrencyEnum:
       type: string
       title: CurrencyEnum
