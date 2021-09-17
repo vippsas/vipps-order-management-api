@@ -289,7 +289,7 @@ components:
                 unitInfo:
                   unitPrice: 400
                   quantity: '2.5'
-                  quantityUnit: kg
+                  quantityUnit: KG
                 discount: 0
                 productUrl: www.vipps.no/store/banana
               - name: Soap 3for2
@@ -302,13 +302,24 @@ components:
                 unitInfo:
                   unitPrice: 2500
                   quantity: '3'
-                  quantityUnit: pcs
+                  quantityUnit: PCS
                 discount: 2500
                 productUrl: www.vipps.no/store/soap
     BottomLine:
       title: BottomLine
       type: object
       description: 'Summary of the order. Total amount and total '
+      x-examples:
+        BottomLineExample:
+          value:
+            totalAmount: 6000
+            totalTax: 1200
+            totalDiscount: 2500
+            currency: NOK
+            shippingAmount: 0
+            tipAmount: 0
+            giftCardAmount: 0
+            terminalId: vipps_pos_122
       properties:
         totalAmount:
           type: integer
@@ -342,17 +353,6 @@ components:
         - totalAmount
         - totalTax
         - currency
-      x-examples:
-        BottomLineExample:
-          value:
-            totalAmount: 6000
-            totalTax: 1200
-            totalDiscount: 2500
-            currency: NOK
-            shippingAmount: 0
-            tipAmount: 0
-            giftCardAmount: 0
-            terminalId: vipps_pos_122
     UnitInfo:
       title: UnitInfo
       type: object
@@ -362,12 +362,12 @@ components:
           value:
             quantity: '0.822'
             unitPrice: 15000
-            quantityUnit: kg
+            quantityUnit: KG
         example-2:
           value:
             quantity: '2'
             unitPrice: 20000
-            quantityUnit: pcs
+            quantityUnit: PCS
       properties:
         unitPrice:
           type: integer
@@ -404,14 +404,13 @@ components:
       type: string
       title: QuantityUnitEnum
       enum:
-        - Minute
-        - kg
-        - cm
-        - pcs
-        - Litre
-        - Metre
-        - Gram
+        - PCS
+        - KG
+        - KM
+        - MINUTE
+        - LITRE
       description: Available units for quantity. Will default to pcs if not set
+      default: PCS
   securitySchemes:
     BearerToken:
       type: http
