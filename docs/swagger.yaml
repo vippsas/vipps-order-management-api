@@ -30,7 +30,7 @@ paths:
               examples:
                 Retrieve order info:
                   value:
-                    category: ticket
+                    category: TICKET
                     orderDetailsUrl: 'https://www.vipps.no'
                     imageIds:
                       - id: laptop_image4433
@@ -58,7 +58,7 @@ paths:
             examples:
               Adding order metadata with one image:
                 value:
-                  category: general
+                  category: GENERAL
                   orderDetailsUrl: 'https://www.vipps.no'
                   imageIds:
                     - id: laptop_image4433
@@ -95,7 +95,7 @@ paths:
             schema:
               $ref: '#/components/schemas/Image'
             examples:
-              example-1:
+              ImageUploadExample:
                 value:
                   imageId: laptop_image4433
                   src: iVBORw0KGgoAAAANSUhEUgAAAKsAAADVCAMAAAAfHv
@@ -125,6 +125,13 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Receipt'
+            examples:
+              ReceiptExample:
+                value:
+                  orderLines:
+                    $ref: '#/components/schemas/OrderLine/x-examples/OrderLineExample/value/orderLines'
+                  bottomLine:
+                    $ref: '#/components/schemas/BottomLine/x-examples/BottomLineExample/value'
       description: Endpoint for uploading receipts to Vipps.
       security:
         - BearerToken: []
@@ -140,6 +147,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Receipt'
+              examples: {}
       description: Endpoint for downloading receipts to Vipps.
       security:
         - BearerToken: []
@@ -152,7 +160,7 @@ components:
       x-examples:
         example-1:
           value:
-            category: general
+            category: GENERAL
             orderDetailsUrl: 'https://www.vipps.no'
             image:
               id: laptop_image4433
@@ -166,8 +174,8 @@ components:
           format: uri
           description: URL linking back to the merchant.
           minLength: 1
-        image:
-          $ref: '#/components/schemas/ImageId'
+        imageId:
+          type: string
       required:
         - category
         - orderDetailsUrl
@@ -196,6 +204,7 @@ components:
             imageId: laptop_image4433
             src: iVBORw0KGgoAAAANSUhEUgAAAKsAAADVCAMAAAAfHv
             type: base64
+      title: ''
     ImageResponse:
       type: object
       properties:
@@ -204,49 +213,6 @@ components:
       x-examples:
         example-1:
           imageId: laptop_image4433
-    OrderLine:
-      title: OrderLine
-      type: object
-      description: 'All numbers are interpreted as integers with two trailing zeros. ex: 10.00 = 1000'
-      properties:
-        amountExcludingTax:
-          type: integer
-          nullable: true
-        amountIncludingTax:
-          type: integer
-          nullable: true
-        description:
-          type: string
-        id:
-          type: string
-          description: The product ID
-        productUrl:
-          type: string
-          nullable: true
-        quantity:
-          type: integer
-          nullable: true
-        taxAmount:
-          type: integer
-          nullable: true
-        taxPercentage:
-          type: integer
-          nullable: true
-        discount:
-          type: integer
-          nullable: true
-        quantityUnit:
-          $ref: '#/components/schemas/QuantityUnitEnum'
-      required:
-        - amountExcludingTax
-        - amountIncludingTax
-        - description
-        - id
-        - quantity
-        - taxAmount
-        - taxPercentage
-        - discount
-        - quantityUnit
     Receipt:
       title: Receipt
       type: object
@@ -256,44 +222,195 @@ components:
           minItems: 1
           items:
             $ref: '#/components/schemas/OrderLine'
-        shippingAmount:
-          type: integer
-          nullable: true
+        bottomLine:
+          $ref: '#/components/schemas/BottomLine'
       required:
         - orderLines
-        - shippingAmount
-    ImageId:
-      title: ImageId
+        - bottomLine
+    OrderLine:
+      title: OrderLine
       type: object
+      description: 'All numbers are interpreted as integers with two trailing zeros. ex: 10.00 = 1000'
       properties:
+        name:
+          type: string
+          description: Name of the product in the order line
         id:
           type: string
-          pattern: '^[0-9A-Za-z-_\.]+$'
-          maxLength: 128
+          description: The product ID
+        totalAmount:
+          type: integer
+          description: 'Total amount of the order line, including tax and discount'
+          nullable: true
+        totalAmountExcludingTax:
+          type: integer
+          description: 'Total amount of order line with discount excluding tax '
+          nullable: true
+        totalTaxAmount:
+          type: integer
+          description: Total tax amount paid for the order line
+          nullable: true
+        taxPercentage:
+          type: integer
+          description: Tax percantage for the order line
+          nullable: true
+        currency:
+          $ref: '#/components/schemas/CurrencyEnum'
+        unitInfo:
+          $ref: '#/components/schemas/UnitInfo'
+        discount:
+          type: integer
+          description: Total discount for the order line
+          nullable: true
+        productUrl:
+          type: string
+          description: Optional URL linking back to the product at the merchant
+          nullable: true
       required:
+        - name
         - id
+        - totalAmount
+        - totalAmountExcludingTax
+        - totalTaxAmount
+        - taxPercentage
+        - currency
+        - discount
+      x-examples:
+        OrderLineExample:
+          value:
+            orderLines:
+              - name: Banana
+                id: line_item_1
+                totalAmount: 1000
+                totalAmountExcludingTax: 800
+                totalTaxAmount: 200
+                taxPercentage: 25
+                currency: NOK
+                unitInfo:
+                  unitPrice: 400
+                  quantity: '2.5'
+                  quantityUnit: KG
+                discount: 0
+                productUrl: www.vipps.no/store/banana
+              - name: Soap 3for2
+                id: line_item_2
+                totalAmount: 5000
+                totalAmountExcludingTax: 4000
+                totalTaxAmount: 1000
+                taxPercentage: 25
+                currency: NOK
+                unitInfo:
+                  unitPrice: 2500
+                  quantity: '3'
+                  quantityUnit: PCS
+                discount: 2500
+                productUrl: www.vipps.no/store/soap
+    BottomLine:
+      title: BottomLine
+      type: object
+      description: 'Summary of the order. Total amount and total '
+      x-examples:
+        BottomLineExample:
+          value:
+            totalAmount: 6000
+            totalTax: 1200
+            totalDiscount: 2500
+            currency: NOK
+            shippingAmount: 0
+            tipAmount: 0
+            giftCardAmount: 0
+            terminalId: vipps_pos_122
+      properties:
+        totalAmount:
+          type: integer
+          description: 'The total amount the order, including all taxes and discounts'
+          nullable: true
+        totalTax:
+          type: integer
+          description: Total tax for the order
+          nullable: true
+        totalDiscount:
+          type: integer
+          description: Total discount from the orderLines
+          nullable: true
+        currency:
+          $ref: '#/components/schemas/CurrencyEnum'
+        shippingAmount:
+          type: integer
+          description: Shipping amount for the order
+          nullable: true
+        tipAmount:
+          type: integer
+          description: Tip amount for the order
+          nullable: true
+        giftCardAmount:
+          type: integer
+          description: Amount paid by gift card or coupon
+          nullable: true
+        terminalId:
+          type: string
+      required:
+        - totalAmount
+        - totalTax
+        - currency
+    UnitInfo:
+      title: UnitInfo
+      type: object
+      description: Optional. If no quantity info is provided the order line will default to 1 pcs
+      x-examples:
+        example-1:
+          value:
+            quantity: '0.822'
+            unitPrice: 15000
+            quantityUnit: KG
+        example-2:
+          value:
+            quantity: '2'
+            unitPrice: 20000
+            quantityUnit: PCS
+      properties:
+        unitPrice:
+          type: integer
+          description: 'Total price per unit, including tax and excluding discount'
+          nullable: true
+        quantity:
+          type: string
+          maxLength: 10
+          pattern: '^\d+([\.]\d{1,8})?$'
+          example: '0.822'
+          description: 'Quantity given as a integer or fraction '
+        quantityUnit:
+          $ref: '#/components/schemas/QuantityUnitEnum'
+      required:
+        - unitPrice
+        - quantity
+        - quantityUnit
     CategoryEnum:
       type: string
       title: CategoryEnum
       enum:
-        - general
-        - receipt
-        - orderConfirmation
-        - delivery
-        - ticket
-        - booking
+        - GENERAL
+        - RECEIPT
+        - ORDER_CONFIRMATION
+        - DELIVERY
+        - TICKET
+        - BOOKING
+    CurrencyEnum:
+      type: string
+      title: CurrencyEnum
+      enum:
+        - NOK
     QuantityUnitEnum:
       type: string
       title: QuantityUnitEnum
       enum:
-        - Unknown
-        - Meter
-        - Liter
-        - Minute
-        - kg
-        - Gram
-        - cm
-      description: Quantity must be given as non-decimal numbers
+        - PCS
+        - KG
+        - KM
+        - MINUTE
+        - LITRE
+      description: Available units for quantity. Will default to pcs if not set
+      default: PCS
   securitySchemes:
     BearerToken:
       type: http
