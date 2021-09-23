@@ -39,7 +39,9 @@ paths:
           description: Order Not Found
       operationId: getOrder
       description: Retrive the metadata for an order
-      parameters: []
+      parameters:
+        - $ref: '#/components/parameters/Merchant-Serial-Number'
+        - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
       tags:
         - Order
       security:
@@ -65,7 +67,9 @@ paths:
                       sortOrder: 1
         description: ''
       description: 'Post additional information about an order that will show up on the vipps receipt. '
-      parameters: []
+      parameters:
+        - $ref: '#/components/parameters/Merchant-Serial-Number'
+        - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
       tags:
         - Order
       security:
@@ -86,7 +90,9 @@ paths:
                   value:
                     imageId: laptop_image4433
       description: Endpoint for uploading images to Vipps. A imageId will be returned that can be used when adding metadata to Vipps Transactions
-      parameters: []
+      parameters:
+        - $ref: '#/components/parameters/Merchant-Serial-Number'
+        - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
       tags:
         - Image
       requestBody:
@@ -137,6 +143,9 @@ paths:
         - BearerToken: []
       tags:
         - Receipt
+      parameters:
+        - $ref: '#/components/parameters/Merchant-Serial-Number'
+        - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
     get:
       summary: Get receipt by vippsTransactionId
       operationId: getReceipt
@@ -153,6 +162,9 @@ paths:
         - BearerToken: []
       tags:
         - Receipt
+      parameters:
+        - $ref: '#/components/parameters/Merchant-Serial-Number'
+        - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
 components:
   schemas:
     Order:
@@ -425,6 +437,19 @@ components:
         enum:
           - v1
       description: The service version number
+    Merchant-Serial-Number:
+      name: Merchant-Serial-Number
+      in: header
+      required: true
+      schema:
+        type: string
+      description: The vipps merchant serial number
+    Ocp-Apim-Subscription-Key:
+      name: Ocp-Apim-Subscription-Key
+      in: header
+      required: true
+      schema:
+        type: string
 tags:
   - name: Image
   - name: MobileOrder
