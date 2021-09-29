@@ -243,13 +243,43 @@ components:
       title: OrderLine
       type: object
       description: 'All numbers are interpreted as integers with two trailing zeros. ex: 10.00 = 1000'
+      x-examples:
+        OrderLineExample:
+          value:
+            orderLines:
+              - name: Banana
+                id: line_item_1
+                totalAmount: 1000
+                totalAmountExcludingTax: 800
+                totalTaxAmount: 200
+                taxPercentage: 25
+                unitInfo:
+                  unitPrice: 400
+                  quantity: '2.5'
+                  quantityUnit: KG
+                discount: 0
+                productUrl: www.vipps.no/store/banana
+              - name: Soap 3for2
+                id: line_item_2
+                totalAmount: 5000
+                totalAmountExcludingTax: 4000
+                totalTaxAmount: 1000
+                taxPercentage: 25
+                unitInfo:
+                  unitPrice: 2500
+                  quantity: '3'
+                  quantityUnit: PCS
+                discount: 2500
+                productUrl: www.vipps.no/store/soap
       properties:
         name:
           type: string
           description: Name of the product in the order line
+          nullable: true
         id:
           type: string
           description: The product ID
+          nullable: true
         totalAmount:
           type: integer
           description: 'Total amount of the order line, including tax and discount'
@@ -266,8 +296,6 @@ components:
           type: integer
           description: Tax percantage for the order line
           nullable: true
-        currency:
-          $ref: '#/components/schemas/CurrencyEnum'
         unitInfo:
           $ref: '#/components/schemas/UnitInfo'
         discount:
@@ -285,38 +313,7 @@ components:
         - totalAmountExcludingTax
         - totalTaxAmount
         - taxPercentage
-        - currency
         - discount
-      x-examples:
-        OrderLineExample:
-          value:
-            orderLines:
-              - name: Banana
-                id: line_item_1
-                totalAmount: 1000
-                totalAmountExcludingTax: 800
-                totalTaxAmount: 200
-                taxPercentage: 25
-                currency: NOK
-                unitInfo:
-                  unitPrice: 400
-                  quantity: '2.5'
-                  quantityUnit: KG
-                discount: 0
-                productUrl: www.vipps.no/store/banana
-              - name: Soap 3for2
-                id: line_item_2
-                totalAmount: 5000
-                totalAmountExcludingTax: 4000
-                totalTaxAmount: 1000
-                taxPercentage: 25
-                currency: NOK
-                unitInfo:
-                  unitPrice: 2500
-                  quantity: '3'
-                  quantityUnit: PCS
-                discount: 2500
-                productUrl: www.vipps.no/store/soap
     BottomLine:
       title: BottomLine
       type: object
@@ -361,6 +358,7 @@ components:
           nullable: true
         terminalId:
           type: string
+          nullable: true
       required:
         - totalAmount
         - totalTax
@@ -412,6 +410,7 @@ components:
       title: CurrencyEnum
       enum:
         - NOK
+      nullable: true
     QuantityUnitEnum:
       type: string
       title: QuantityUnitEnum
