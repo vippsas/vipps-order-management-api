@@ -62,9 +62,7 @@ paths:
                 value:
                   category: GENERAL
                   orderDetailsUrl: 'https://www.vipps.no'
-                  imageIds:
-                    - id: laptop_image4433
-                      sortOrder: 1
+                  imageId: laptop_image4433
         description: ''
       description: 'Post additional information about an order that will show up on the vipps receipt. '
       parameters:
@@ -135,9 +133,39 @@ paths:
               ReceiptExample:
                 value:
                   orderLines:
-                    $ref: '#/components/schemas/OrderLine/x-examples/OrderLineExample/value/orderLines'
+                    - name: Banana
+                      id: line_item_1
+                      totalAmount: 1000
+                      totalAmountExcludingTax: 800
+                      totalTaxAmount: 200
+                      taxPercentage: 25
+                      unitInfo:
+                        unitPrice: 400
+                        quantity: '2.5'
+                        quantityUnit: KG
+                      discount: 0
+                      productUrl: www.vipps.no/store/banana
+                    - name: Soap 3for2
+                      id: line_item_2
+                      totalAmount: 5000
+                      totalAmountExcludingTax: 4000
+                      totalTaxAmount: 1000
+                      taxPercentage: 25
+                      unitInfo:
+                        unitPrice: 2500
+                        quantity: '3'
+                        quantityUnit: PCS
+                      discount: 2500
+                      productUrl: www.vipps.no/store/soap
                   bottomLine:
-                    $ref: '#/components/schemas/BottomLine/x-examples/BottomLineExample/value'
+                    totalAmount: 6000
+                    totalTax: 1200
+                    totalDiscount: 2500
+                    currency: NOK
+                    shippingAmount: 0
+                    tipAmount: 0
+                    giftCardAmount: 0
+                    terminalId: vipps_pos_122
       description: Endpoint for uploading receipts to Vipps.
       security:
         - BearerToken: []
@@ -174,8 +202,7 @@ components:
           value:
             category: GENERAL
             orderDetailsUrl: 'https://www.vipps.no'
-            image:
-              id: laptop_image4433
+            imageId: laptop_image4433
       description: ''
       properties:
         category:
