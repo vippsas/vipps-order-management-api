@@ -213,8 +213,11 @@ components:
           format: uri
           description: URL linking back to the merchant.
           minLength: 1
+          nullable: true
         imageId:
           type: string
+          maxLength: 128
+          pattern: '^[0-9A-Za-z-_\\.]+$'
       required:
         - category
         - orderDetailsUrl
