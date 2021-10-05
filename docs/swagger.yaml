@@ -217,7 +217,8 @@ components:
         imageId:
           type: string
           maxLength: 128
-          pattern: '^[0-9A-Za-z-_\\.]+$'
+          pattern: '^[0-9A-Za-z-_\.]+$'
+          minLength: 1
       required:
         - category
         - orderDetailsUrl
