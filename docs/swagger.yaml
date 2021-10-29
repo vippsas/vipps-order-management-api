@@ -10,14 +10,13 @@ servers:
   - url: 'https://api.vipps.no/order-management'
     description: vipps order management api
 paths:
-  '/{version}/orders/{vippsTransactionId}':
+  '/v1/orders/{vippsTransactionId}':
     parameters:
       - schema:
           type: string
         name: vippsTransactionId
         in: path
         required: true
-      - $ref: '#/components/parameters/version'
     get:
       summary: Get info by vippsTransactionId
       responses:
@@ -42,10 +41,9 @@ paths:
       parameters:
         - $ref: '#/components/parameters/Merchant-Serial-Number'
         - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
+        - $ref: '#/components/parameters/Authorization'
       tags:
         - Order
-      security:
-        - BearerToken: []
     put:
       summary: Add info to vippsTransactionId
       operationId: putOrder
@@ -68,11 +66,10 @@ paths:
       parameters:
         - $ref: '#/components/parameters/Merchant-Serial-Number'
         - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
+        - $ref: '#/components/parameters/Authorization'
       tags:
         - Order
-      security:
-        - BearerToken: []
-  '/{version}/images':
+  /v1/images:
     post:
       summary: Add an image to vipps
       operationId: postImage
@@ -91,6 +88,7 @@ paths:
       parameters:
         - $ref: '#/components/parameters/Merchant-Serial-Number'
         - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
+        - $ref: '#/components/parameters/Authorization'
       tags:
         - Image
       requestBody:
@@ -104,18 +102,14 @@ paths:
                   imageId: laptop_image4433
                   src: iVBORw0KGgoAAAANSUhEUgAAAKsAAADVCAMAAAAfHv
                   type: base64
-      security:
-        - BearerToken: []
-    parameters:
-      - $ref: '#/components/parameters/version'
-  '/{version}/receipts/{vippsTransactionId}':
+    parameters: []
+  '/v1/receipts/{vippsTransactionId}':
     parameters:
       - schema:
           type: string
         name: vippsTransactionId
         in: path
         required: true
-      - $ref: '#/components/parameters/version'
     post:
       summary: Store receipt by vippsTransactionId
       operationId: postReceipt
@@ -167,13 +161,12 @@ paths:
                     giftCardAmount: 0
                     terminalId: vipps_pos_122
       description: Endpoint for uploading receipts to Vipps.
-      security:
-        - BearerToken: []
       tags:
         - Receipt
       parameters:
         - $ref: '#/components/parameters/Merchant-Serial-Number'
         - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
+        - $ref: '#/components/parameters/Authorization'
     get:
       summary: Get receipt by vippsTransactionId
       operationId: getReceipt
@@ -186,13 +179,12 @@ paths:
                 $ref: '#/components/schemas/Receipt'
               examples: {}
       description: Endpoint for downloading receipts to Vipps.
-      security:
-        - BearerToken: []
       tags:
         - Receipt
       parameters:
         - $ref: '#/components/parameters/Merchant-Serial-Number'
         - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
+        - $ref: '#/components/parameters/Authorization'
 components:
   schemas:
     Order:
@@ -480,8 +472,17 @@ components:
       required: true
       schema:
         type: string
+    Authorization:
+      name: authorization
+      in: header
+      required: true
+      schema:
+        type: string
+      description: Bearer <MSI token issued to the identity of the client>
 tags:
   - name: Image
   - name: MobileOrder
   - name: Order
   - name: Receipt
+security:
+  - BearerToken: []
