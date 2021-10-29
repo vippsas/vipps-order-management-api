@@ -17,6 +17,39 @@ paths:
         name: vippsTransactionId
         in: path
         required: true
+    put:
+      summary: Add info to vippsTransactionId
+      operationId: putOrder
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Order'
+            examples:
+              Adding order metadata with one image:
+                value:
+                  category: GENERAL
+                  orderDetailsUrl: 'https://www.vipps.no'
+                  imageId: laptop_image4433
+        description: ''
+      description: 'Post additional information about an order that will show up on the vipps receipt. '
+      parameters:
+        - $ref: '#/components/parameters/Merchant-Serial-Number'
+        - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
+        - $ref: '#/components/parameters/Authorization'
+      tags:
+        - Order
+  '/{version}/orders/{vippsTransactionId}':
+    parameters:
+      - schema:
+          type: string
+        name: vippsTransactionId
+        in: path
+        required: true
+      - $ref: '#/components/parameters/version'
     get:
       summary: Get info by vippsTransactionId
       responses:
@@ -38,31 +71,6 @@ paths:
           description: Order Not Found
       operationId: getOrder
       description: Retrive the metadata for an order
-      parameters:
-        - $ref: '#/components/parameters/Merchant-Serial-Number'
-        - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
-        - $ref: '#/components/parameters/Authorization'
-      tags:
-        - Order
-    put:
-      summary: Add info to vippsTransactionId
-      operationId: putOrder
-      responses:
-        '200':
-          description: OK
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Order'
-            examples:
-              Adding order metadata with one image:
-                value:
-                  category: GENERAL
-                  orderDetailsUrl: 'https://www.vipps.no'
-                  imageId: laptop_image4433
-        description: ''
-      description: 'Post additional information about an order that will show up on the vipps receipt. '
       parameters:
         - $ref: '#/components/parameters/Merchant-Serial-Number'
         - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
@@ -103,6 +111,32 @@ paths:
                   src: iVBORw0KGgoAAAANSUhEUgAAAKsAAADVCAMAAAAfHv
                   type: base64
     parameters: []
+  '/{version}/receipts/{vippsTransactionId}':
+    parameters:
+      - schema:
+          type: string
+        name: vippsTransactionId
+        in: path
+        required: true
+      - $ref: '#/components/parameters/version'
+    get:
+      summary: Get receipt by vippsTransactionId
+      operationId: getReceipt
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Receipt'
+              examples: {}
+      description: Endpoint for downloading receipts to Vipps.
+      tags:
+        - Receipt
+      parameters:
+        - $ref: '#/components/parameters/Merchant-Serial-Number'
+        - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
+        - $ref: '#/components/parameters/Authorization'
   '/v1/receipts/{vippsTransactionId}':
     parameters:
       - schema:
@@ -161,24 +195,6 @@ paths:
                     giftCardAmount: 0
                     terminalId: vipps_pos_122
       description: Endpoint for uploading receipts to Vipps.
-      tags:
-        - Receipt
-      parameters:
-        - $ref: '#/components/parameters/Merchant-Serial-Number'
-        - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
-        - $ref: '#/components/parameters/Authorization'
-    get:
-      summary: Get receipt by vippsTransactionId
-      operationId: getReceipt
-      responses:
-        '200':
-          description: ''
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Receipt'
-              examples: {}
-      description: Endpoint for downloading receipts to Vipps.
       tags:
         - Receipt
       parameters:
