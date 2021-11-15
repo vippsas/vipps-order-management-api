@@ -10,15 +10,15 @@ servers:
   - url: 'https://api.vipps.no/order-management'
     description: vipps order management api
 paths:
-  '/v1/orders/{vippsTransactionId}':
+  '/v1/orders/{transactionId}':
     parameters:
       - schema:
           type: string
-        name: vippsTransactionId
+        name: transactionId
         in: path
         required: true
     put:
-      summary: Add info to vippsTransactionId
+      summary: Add info to transactionId
       operationId: putOrder
       responses:
         '200':
@@ -42,16 +42,16 @@ paths:
         - $ref: '#/components/parameters/Authorization'
       tags:
         - Order
-  '/{version}/orders/{vippsTransactionId}':
+  '/{version}/orders/{transactionId}':
     parameters:
       - schema:
           type: string
-        name: vippsTransactionId
+        name: transactionId
         in: path
         required: true
       - $ref: '#/components/parameters/version'
     get:
-      summary: Get info by vippsTransactionId
+      summary: Get info by transactionId
       responses:
         '200':
           description: ''
@@ -111,16 +111,16 @@ paths:
                   src: iVBORw0KGgoAAAANSUhEUgAAAKsAAADVCAMAAAAfHv
                   type: base64
     parameters: []
-  '/{version}/receipts/{vippsTransactionId}':
+  '/{version}/receipts/{transactionId}':
     parameters:
       - schema:
           type: string
-        name: vippsTransactionId
+        name: transactionId
         in: path
         required: true
       - $ref: '#/components/parameters/version'
     get:
-      summary: Get receipt by vippsTransactionId
+      summary: Get receipt by transactionId
       operationId: getReceipt
       responses:
         '200':
@@ -137,15 +137,15 @@ paths:
         - $ref: '#/components/parameters/Merchant-Serial-Number'
         - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
         - $ref: '#/components/parameters/Authorization'
-  '/v1/receipts/{vippsTransactionId}':
+  '/v1/receipts/{transactionId}':
     parameters:
       - schema:
           type: string
-        name: vippsTransactionId
+        name: transactionId
         in: path
         required: true
     post:
-      summary: Store receipt by vippsTransactionId
+      summary: Store receipt by transactionId
       operationId: postReceipt
       responses:
         '200':
