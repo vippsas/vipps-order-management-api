@@ -478,7 +478,6 @@ components:
     Merchant-Serial-Number:
       name: Merchant-Serial-Number
       in: header
-      required: true
       schema:
         type: string
       description: The vipps merchant serial number
