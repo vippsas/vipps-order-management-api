@@ -12,7 +12,7 @@ Vipps Order Management enables you to communicate with your customers through th
 
 API version: 1.0.0.
 
-Document version: 0.1.0.
+Document version: 0.1.1.
 
 # Table of contents
 
@@ -23,7 +23,8 @@ Document version: 0.1.0.
 - [Getting Started](#getting-started)
   * [Before you begin](#before-you-begin)
   * [Authentication](#authentication)
-  * [Optional Vipps HTTP headers](#optional-vipps-http-headers)
+  - [Vipps HTTP headers](#vipps-http-headers)
+    - [Example headers](#example-headers)
 - [API summary](#api-summary)
   * [Links](#links-1)
   * [Images](#images)
@@ -97,23 +98,43 @@ For more information about how to obtain an access token and all details around 
 in the
 [Getting started guide](https://github.com/vippsas/vipps-developers/blob/master/vipps-getting-started.md).
 
-## Optional Vipps HTTP headers
+## Vipps HTTP headers
 
-We recommend using the following _optional_ HTTP headers for all requests to the
+We recommend using the following (optional) HTTP headers for all requests to the
 Vipps eCom API. These headers provide useful metadata about the merchant's system,
 which help Vipps improve our services, and also help in investigating problems.
 
+These headers are **required for plugins and partners** and sent by the recent versions of
+[the official Vipps plugins](https://github.com/vippsas/vipps-developers#plugins)
+and we recommend all customers with direct integration with the API to also do so.
+
+Partners must always send the `Merchant-Serial-Number` header, and we recommend that
+everyone sends it too. It can speed up any trouble-shooting quite a bit.
+
 | Header                        | Description                                  | Example value       |
 | ----------------------------- | -------------------------------------------- | ------------------- |
-| `Merchant-Serial-Number`      | The merchant serial number                   | `123456`            |
+| `Merchant-Serial-Number`      | The MSN for the sale unit                    | `123456`            |
 | `Vipps-System-Name`           | The name of the ecommerce solution           | `woocommerce`       |
 | `Vipps-System-Version`        | The version number of the ecommerce solution | `5.4`               |
 | `Vipps-System-Plugin-Name`    | The name of the ecommerce plugin             | `vipps-woocommerce` |
 | `Vipps-System-Plugin-Version` | The version number of the ecommerce plugin   | `1.4.1`             |
 
-These headers are required for plugins and partners and sent by the recent versions of
-[the official Vipps plugins](https://github.com/vippsas/vipps-developers#plugins)
-and we recommend all customers with direct integration with the API to also do so.
+### Example headers
+
+If the vendor's name is "Acme AS", and the vendor offers two different systems
+one for point of sale (POS) integrations and one for web shops,
+the headers should be:
+
+| Header                        | Example value for POS | Example value for webshop | Example value for Vending machines |
+| ----------------------------- | --------------------- | ------------------- | ------------------- |
+| `Vipps-System-Name`           | `acme`                | `acme`              | `acme`              |
+| `Vipps-System-Version`        | `1.7`                 | `2.6`               | `2.6`               |
+| `Vipps-System-Plugin-Name`    | `acme-pos`            | `acme-webshop`      | `acme-vending`      |
+| `Vipps-System-Plugin-Version` | `3.2`                 | `4.3`               | `4.3`               |
+
+**Important:** Please use self-explanatory, human readable and reasonably short
+values that uniquely identify the system (and plugin).
+
 
 # API summary
 
