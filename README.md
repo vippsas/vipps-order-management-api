@@ -1,7 +1,5 @@
 # Vipps Order Management API v1
 
-💥 DRAFT: This is unfinished work and subject to change. 💥
-
 This repository contains developer resources for the Vipps Order Management API.
 
 The Vipps Order Management API allows merchants to send rich receipt information
