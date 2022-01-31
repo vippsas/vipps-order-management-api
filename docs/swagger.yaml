@@ -1,24 +1,25 @@
 openapi: 3.0.0
 info:
-  title: order-management-api
+  title: Vipps Order Management API
   version: '1.0'
-  description: Api to add and read additional info for vipps orders
+  description: API to add and read additional info for Vipps orders.
   contact:
-    name: Team ecom
+    name: Vipps
     url: 'https://vipps.no/kontakt-oss/bedrift/vipps/'
 servers:
   - url: 'https://api.vipps.no/order-management'
-    description: vipps order management api
+    description: Vipps Order Management API
 paths:
-  '/v1/orders/{transactionId}':
+  '/{version}/orders/{transactionId}':
     parameters:
       - schema:
           type: string
         name: transactionId
         in: path
         required: true
+      - $ref: '#/components/parameters/version'
     put:
-      summary: Add info to transactionId
+      summary: Add info to an order
       operationId: putOrder
       responses:
         '200':
@@ -33,9 +34,9 @@ paths:
                 value:
                   category: GENERAL
                   orderDetailsUrl: 'https://www.vipps.no'
-                  imageId: laptop_image4433
+                  imageId: vipps-socks-orange-123
         description: ''
-      description: 'Post additional information about an order that will show up on the vipps receipt. '
+      description: 'Post additional information about an order that will show up on the Vipps receipt. '
       parameters:
         - $ref: '#/components/parameters/Merchant-Serial-Number'
         - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
@@ -51,7 +52,7 @@ paths:
         required: true
       - $ref: '#/components/parameters/version'
     get:
-      summary: Get info by transactionId
+      summary: Get info for an order
       responses:
         '200':
           description: ''
@@ -65,21 +66,21 @@ paths:
                     category: TICKET
                     orderDetailsUrl: 'https://www.vipps.no'
                     imageIds:
-                      - id: laptop_image4433
+                      - id: vipps-socks-orange-123
                         sortOrder: 1
         '404':
           description: Order Not Found
       operationId: getOrder
-      description: Retrive the metadata for an order
+      description: Retrieve the metadata for an order
       parameters:
         - $ref: '#/components/parameters/Merchant-Serial-Number'
         - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
         - $ref: '#/components/parameters/Authorization'
       tags:
         - Order
-  /v1/images:
+  /{version}/images:
     post:
-      summary: Add an image to vipps
+      summary: Add an image to an order
       operationId: postImage
       responses:
         '200':
@@ -91,12 +92,13 @@ paths:
               examples:
                 example-1:
                   value:
-                    imageId: laptop_image4433
-      description: Endpoint for uploading images to Vipps. A imageId will be returned that can be used when adding metadata to Vipps Transactions
+                    imageId: vipps-socks-orange-123
+      description: Endpoint for uploading images. A imageId will be returned that can be used when adding metadata to orders.
       parameters:
         - $ref: '#/components/parameters/Merchant-Serial-Number'
         - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
         - $ref: '#/components/parameters/Authorization'
+        - $ref: '#/components/parameters/version'
       tags:
         - Image
       requestBody:
@@ -107,7 +109,7 @@ paths:
             examples:
               ImageUploadExample:
                 value:
-                  imageId: laptop_image4433
+                  imageId: vipps-socks-orange-123
                   src: iVBORw0KGgoAAAANSUhEUgAAAKsAAADVCAMAAAAfHv
                   type: base64
     parameters: []
@@ -120,7 +122,7 @@ paths:
         required: true
       - $ref: '#/components/parameters/version'
     get:
-      summary: Get receipt by transactionId
+      summary: Get receipt for an order
       operationId: getReceipt
       responses:
         '200':
@@ -130,28 +132,29 @@ paths:
               schema:
                 $ref: '#/components/schemas/Receipt'
               examples: {}
-      description: Endpoint for downloading receipts to Vipps.
+      description: Endpoint for retrieving receipts.
       tags:
         - Receipt
       parameters:
         - $ref: '#/components/parameters/Merchant-Serial-Number'
         - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
         - $ref: '#/components/parameters/Authorization'
-  '/v1/receipts/{transactionId}':
+  '/{version}/receipts/{transactionId}':
     parameters:
       - schema:
           type: string
         name: transactionId
         in: path
         required: true
+      - $ref: '#/components/parameters/version'
     post:
-      summary: Store receipt by transactionId
+      summary: Add receipt to an order
       operationId: postReceipt
       responses:
         '200':
           description: ''
         '404':
-          description: Order not Found
+          description: Order not found
       requestBody:
         content:
           application/json:
@@ -161,7 +164,7 @@ paths:
               ReceiptExample:
                 value:
                   orderLines:
-                    - name: Banana
+                    - name: Vipps socks
                       id: line_item_1
                       totalAmount: 1000
                       totalAmountExcludingTax: 800
@@ -172,8 +175,8 @@ paths:
                         quantity: '2.5'
                         quantityUnit: KG
                       discount: 0
-                      productUrl: www.vipps.no/store/banana
-                    - name: Soap 3for2
+                      productUrl: www.vipps.no/store/socks
+                    - name: Vipps flip-flops
                       id: line_item_2
                       totalAmount: 5000
                       totalAmountExcludingTax: 4000
@@ -184,7 +187,7 @@ paths:
                         quantity: '3'
                         quantityUnit: PCS
                       discount: 2500
-                      productUrl: www.vipps.no/store/soap
+                      productUrl: www.vipps.no/store/flipflops
                   bottomLine:
                     totalAmount: 6000
                     totalTax: 1200
@@ -194,7 +197,7 @@ paths:
                     tipAmount: 0
                     giftCardAmount: 0
                     terminalId: vipps_pos_122
-      description: Endpoint for uploading receipts to Vipps.
+      description: Endpoint for adding receipts to an order.
       tags:
         - Receipt
       parameters:
@@ -210,7 +213,7 @@ components:
           value:
             category: GENERAL
             orderDetailsUrl: 'https://www.vipps.no'
-            imageId: laptop_image4433
+            imageId: vipps-socks-orange-123
       description: ''
       properties:
         category:
@@ -219,7 +222,7 @@ components:
           type: string
           example: 'https://www.vipps.no'
           format: uri
-          description: URL linking back to the merchant.
+          description: URL linking back to the merchant's website/store.
           minLength: 1
           nullable: true
         imageId:
@@ -227,6 +230,7 @@ components:
           maxLength: 128
           pattern: '^[0-9A-Za-z-_\.]+$'
           minLength: 1
+          example: vipps-socks-orange-123
       required:
         - category
         - orderDetailsUrl
@@ -238,9 +242,10 @@ components:
           maxLength: 128
           pattern: '^[0-9A-Za-z-_\.]+$'
           type: string
+          example: vipps-socks-orange-123
         src:
           type: string
-          description: 'Src of the image, like a base64 encoded string'
+          description: 'The image dat as a base64 encoded string (not a URL)'
         type:
           type: string
           enum:
@@ -252,7 +257,7 @@ components:
       x-examples:
         example-1:
           value:
-            imageId: laptop_image4433
+            imageId: vipps-socks-orange-123
             src: iVBORw0KGgoAAAANSUhEUgAAAKsAAADVCAMAAAAfHv
             type: base64
       title: ''
@@ -263,7 +268,7 @@ components:
           type: string
       x-examples:
         example-1:
-          imageId: laptop_image4433
+          imageId: vipps-socks-orange-123
     Receipt:
       title: Receipt
       type: object
@@ -286,7 +291,7 @@ components:
         OrderLineExample:
           value:
             orderLines:
-              - name: Banana
+              - name: Vipps socks
                 id: line_item_1
                 totalAmount: 1000
                 totalAmountExcludingTax: 800
@@ -297,8 +302,8 @@ components:
                   quantity: '2.5'
                   quantityUnit: KG
                 discount: 0
-                productUrl: www.vipps.no/store/banana
-              - name: Soap 3for2
+                productUrl: www.vipps.no/store/socks
+              - name: Vipps flip-flops
                 id: line_item_2
                 totalAmount: 5000
                 totalAmountExcludingTax: 4000
@@ -309,42 +314,50 @@ components:
                   quantity: '3'
                   quantityUnit: PCS
                 discount: 2500
-                productUrl: www.vipps.no/store/soap
+                productUrl: www.vipps.no/store/flipflops
       properties:
         name:
           type: string
           description: Name of the product in the order line
           nullable: true
+          example: Vipps socks
         id:
           type: string
           description: The product ID
           nullable: true
+          example: 1234567890
         totalAmount:
           type: integer
           description: 'Total amount of the order line, including tax and discount'
           nullable: true
+          example: 1000
         totalAmountExcludingTax:
           type: integer
           description: 'Total amount of order line with discount excluding tax '
           nullable: true
+          example: 1000
         totalTaxAmount:
           type: integer
           description: Total tax amount paid for the order line
           nullable: true
+          example: 250
         taxPercentage:
           type: integer
           description: Tax percantage for the order line
           nullable: true
+          example: 25
         unitInfo:
           $ref: '#/components/schemas/UnitInfo'
         discount:
           type: integer
           description: Total discount for the order line
           nullable: true
+          example: 0
         productUrl:
           type: string
           description: Optional URL linking back to the product at the merchant
           nullable: true
+          example: www.vipps.no/store/socks
       required:
         - name
         - id
@@ -459,7 +472,7 @@ components:
         - KM
         - MINUTE
         - LITRE
-      description: Available units for quantity. Will default to pcs if not set
+      description: Available units for quantity. Will default to PCS if not set
       default: PCS
   securitySchemes:
     BearerToken:
@@ -474,22 +487,23 @@ components:
         type: string
         enum:
           - v1
-      description: The service version number
+      description: The API version
     Merchant-Serial-Number:
       name: Merchant-Serial-Number
       in: header
       required: true
       schema:
         type: string
-      description: The vipps merchant serial number
+      description: The Vipps merchant serial number for this sale unit.
     Ocp-Apim-Subscription-Key:
       name: Ocp-Apim-Subscription-Key
       in: header
       required: true
       schema:
         type: string
+      description: The API subscription key.
     Authorization:
-      name: authorization
+      name: Authorization
       in: header
       required: true
       schema:
