@@ -1,10 +1,21 @@
 # Vipps Order Management API v1
 
-The Order Management API allows merchants to enrich Vipps Transactions. The information given in this API will be shown to the customer in the order history in their app. This functionality is available for both recurring and direct payments, but not for passthrough payments.
+The Order Management API allows merchants to enrich Vipps Transactions.
+The information given in this API will be shown to the customer in the order
+history in their app. This functionality is available for both recurring and
+direct payments, but not for passthrough payments.
 
-In this setup, merchants are able to send images, receipts (order lines) and other information. Images are handled detached from transactions. This means that the merchant could upload one image and reuse it for several orders. Images must be added before the metadata for a transaction.
+In this setup, merchants are able to send images, receipts (order lines) and
+other information. Images are handled detached from transactions. This means
+that the merchant could upload one image and reuse it for several orders.
+Images must be added before the metadata for a transaction.
 
-Vipps Order Management enables you to communicate with your customers through the payment receipts in the Vipps app. The purpose of doing this is to give your customers more convenience, better overview and a more compelling shopping experience when they use Vipps to pay for your products and services. Vipps Order management also enables you to draw customers back to your website or app from links on the Vipps receipt view.
+Vipps Order Management enables you to communicate with your customers through
+the payment receipts in the Vipps app. The purpose of doing this is to give
+your customers more convenience, better overview and a more compelling shopping
+experience when they use Vipps to pay for your products and services.
+Vipps Order management also enables you to draw customers back to your website
+or app from links on the Vipps receipt view.
 
 API version: 1.0.2.
 
@@ -38,40 +49,79 @@ Vipps Order Management currently has the following capabilities:
   * Category
 * Receipt
 
-`OrderInfo` is added using the `/orders` endpoint. With this endpoint it is possible to add an `Image`, a `Link` and a `Category` to a payment. The `/receipts` endpoint is used to add receipt info like `orderLines` and VAT information.
+`OrderInfo` is added using the `/orders` endpoint. With this endpoint it is
+possible to add an `Image`, a `Link` and a `Category` to a payment. The
+`/receipts` endpoint is used to add receipt info like `orderLines` and VAT
+information.
 
 # OrderInfo
 
-The `/orders` endpoint allows the addition of `Image`, `Links` and `Categories` to Vipps transactions. `Link` and `Category` is mandatory when using this API, and `Images` are optional.
+The `/orders` endpoint allows the addition of `Image`, `Links` and `Categories`
+to Vipps transactions. `Link` and `Category` is mandatory when using this API,
+and `Images` are optional.
 
 ## link
-In order to provide customers with more up to date information about their order, you can add a URL or link to the payment receipt in Vipps that can take the customer to a location on your website. Links are activated when a customer clicks the link area on the Vipps receipt. The mobile device's standard web browser will open and the user is redirected to the link location.
+In order to provide customers with more up to date information about their order,
+you can add a URL or link to the payment receipt in Vipps that can take the
+customer to a location on your website. Links are activated when a customer
+clicks the link area on the Vipps receipt. The mobile device's standard web
+browser will open and the user is redirected to the link location.
 
-Below you can se an example of a Vipps receipt containing a link to "Shipping information".
+Below you can se an example of a Vipps receipt containing a link to "Shipping
+information".
 <p align="center">
   <img src="images/order-link-shipping-information.png" alt="Shipping information link" width="250">
 </p>
-OrderInfo has a category that will affect infographics and how it is handled in the Vipps app. We currently support these categories:
+OrderInfo has a category that will affect infographics and how it is handled
+in the Vipps app. We currently support these categories:
 
-- **Receipt**: A link to a location where the customer can access and download a valid proof of purchase and receipt for this particular order
-- **Order Confirmation**: A link to a location that contains information and status of the order. If your webshop or site has a "My orders" page or similar - this link category can take the customer there.
-- **Delivery information**: A link to a location that contains information and status about the shipping or delivery related to the order. This could be a link to hosted by your freight carrier, or a link to your site. If your webshop or site has a "My order" page that includes delivery related information about the order - this link category can be used.
-- **Ticket**: A link to a location where the customer can access and download a ticket to an event, trip or transportation.
-- **Booking**: A link to a location that contains information and status about a booking, such as travel and rental booking. If your webshop or site has a "My bookings" page or similar, this link category can take the customer there.
-- **General**: If none of the other cahegories fit the use case for the link, a *General* category can be used. This is a link to a location that contains any kind of information pertinent to the order. We encourage you to use the more specific categories if possible.
+* **Receipt**: A link to a location where the customer can access and download
+  a valid proof of purchase and receipt for this particular order
+* **Order Confirmation**: A link to a location that contains information and
+  status of the order. If your webshop or site has a "My orders" page or
+  similar - this link category can take the customer there.
+* **Delivery information**: A link to a location that contains information and
+  status about the shipping or delivery related to the order. This could be a
+  link to hosted by your freight carrier, or a link to your site. If your
+  webshop or site has a "My order" page that includes delivery related
+  information about the order - this link category can be used.
+* **Ticket**: A link to a location where the customer can access and download a
+  ticket to an event, trip or transportation.
+* **Booking**: A link to a location that contains information and status about a
+  booking, such as travel and rental booking. If your webshop or site has a
+  "My bookings" page or similar, this link category can take the customer there.
+* **General**: If none of the other cahegories fit the use case for the link,
+  a *General* category can be used. This is a link to a location that contains
+  any kind of information pertinent to the order. We encourage you to use the
+  more specific categories if possible.
 
 ## Image
 
-With Vipps Order Management API you can upload an image that is shown on the transaction in the Vipps app. To add an image to an order you first need to use the `/images` endpoint to upload an image. Thereafter, the newly uploaded image's `imageId` can be added using the `orderInfo` API. The same image may be used for multiple transactions, but uploading a unique image for each transactions is also OK. Imaged are fetched authenticated from the app, so feel free add tickets and receipts as images. Below you can see an example of a Vipps receipt containing an image of the shopping card (single product)
+With Vipps Order Management API you can upload an image that is shown on the
+transaction in the Vipps app. To add an image to an order you first need to use
+the `/images` endpoint to upload an image. Thereafter, the newly uploaded
+image's `imageId` can be added using the `orderInfo` API. The same image may
+be used for multiple transactions, but uploading a unique image for each
+transactions is also OK. Imaged are fetched authenticated from the app, so feel
+free add tickets and receipts as images. Below you can see an example of a Vipps
+receipt containing an image of the shopping card (single product)
 <p align="center">
-  <img src="images/order-link-shipping-information-with-image.png" alt="Shipping information link" width="150">
+  <img src="images/order-link-shipping-information-with-image.png"
+       alt="Shipping information link" width="150">
 </p>
 
 # Receipt
 
-In addition to providing a user with a link to a valid receipt hosted on your site, it is also possible have the receipt hosted inside the Vipps app. To enable this you can send necessary information such as order lines and VAT rates to the Order Management API and Vipps will generate a receipt that can be used for proof of purchase and expensing. This is done using the `/receipts` endpoint.
+In addition to providing a user with a link to a valid receipt hosted on your
+site, it is also possible have the receipt hosted inside the Vipps app. To
+enable this you can send necessary information such as order lines and VAT rates
+to the Order Management API and Vipps will generate a receipt that can be used
+for proof of purchase and expensing. This is done using the `/receipts` endpoint.
 
-In addition to providing the user with a valid receipt inside Vipps, order lines will also give the user a much better overview of the purchase. Furthermore, in the case of partial order fulfillments or returns the order lines may be updated to reflect what the user actually ended up paying for using Vipps.
+In addition to providing the user with a valid receipt inside Vipps, order lines
+will also give the user a much better overview of the purchase. Furthermore, in
+the case of partial order fulfillments or returns the order lines may be updated
+to reflect what the user actually ended up paying for using Vipps.
 
 <p align="center">
   <img src="images/orderlines.png" width="150">
@@ -81,9 +131,12 @@ In addition to providing the user with a valid receipt inside Vipps, order lines
 
 ## Before you begin
 
-This section covers the quick steps for getting started with the Order Management API to enrich orders with metadata. This document assumes you have signed up as a organisation with Vipps and have your test credentials from the Merchant Portal.
+This section covers the quick steps for getting started with the Order Management
+API to enrich orders with metadata. This document assumes you have signed up as
+a organisation with Vipps and have your test credentials from the Merchant Portal.
 
-It also assumes a payment has been initialized and reserved and that you have the transaction id.
+It also assumes a payment has been initialized and reserved and that you have
+the transaction id.
 
 ## Authentication
 
