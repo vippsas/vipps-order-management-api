@@ -1,8 +1,8 @@
 # Vipps Order Management API v1
 
-The Order Management API allows merchants to enrich Vipps Transactions. The information given in this api will be shown to the customer in the order history in their app. This functionality is available for both recurring and direct payments, but not for passthrough payments.
+The Order Management API allows merchants to enrich Vipps Transactions. The information given in this API will be shown to the customer in the order history in their app. This functionality is available for both recurring and direct payments, but not for passthrough payments.
 
-In this setup, merchants are able to send images, receipts (order lines) and other information. Images are handled detached from transactions. This means that the merchant could upload one image and reuse it for several orders. Images must be added before the metadata for a transaction. 
+In this setup, merchants are able to send images, receipts (order lines) and other information. Images are handled detached from transactions. This means that the merchant could upload one image and reuse it for several orders. Images must be added before the metadata for a transaction.
 
 Vipps Order Management enables you to communicate with your customers through the payment receipts in the Vipps app. The purpose of doing this is to give your customers more convenience, better overview and a more compelling shopping experience when they use Vipps to pay for your products and services. Vipps Order management also enables you to draw customers back to your website or app from links on the Vipps receipt view.
 
@@ -21,7 +21,7 @@ Document version: 0.1.2.
   * [Authentication](#authentication)
   - [Vipps HTTP headers](#vipps-http-headers)
     - [Example headers](#example-headers)
-- [API summary](#api-summary)
+- [API summary](#API-summary)
   * [Links](#links-1)
   * [Images](#images)
   * [Receipts](#receipts)
@@ -38,10 +38,10 @@ Vipps Order Management currently has the following capabilities:
   * Category
 * Receipt
 
-OrderInfo is added using the /orders endpoint. On this api it is possible to add an Image, a Link and a Category to a payment. The /receipt endpoint is used to add receipt-info like orderLines and VAT information.
+OrderInfo is added using the /orders endpoint. On this API it is possible to add an Image, a Link and a Category to a payment. The /receipt endpoint is used to add receipt-info like orderLines and VAT information.
 
 # OrderInfo
-The /orders api allows the addition of Image, Links and Categories to Vipps transactions. Link and category is mandatory when using this api, and Images are optional.
+The /orders API allows the addition of Image, Links and Categories to Vipps transactions. Link and category is mandatory when using this API, and Images are optional.
 
 ## link
 In order to provide customers with more up to date information about their order, you can add a URL / link to the payment receipt in Vipps that can take the customer to a location on your website. Links are activated when a customer clicks the link area on the Vipps receipt. The mobile device's standard web browser will open and the user is redirected to the link location.
@@ -61,7 +61,7 @@ OrderInfo have a category that will affect infographics and how it is handled in
 
 ## Image
 
-With Vipps Order Management API you can upload an image that is shown on the transaction in the Vipps app. To add an image to an order you first need to use the /image endpoint to upload an image. Thereafter, that imageId can be added using the orderInfo api. The same image may be used for multiple transactions, but uploading a unique image for each transactions is also OK. Imaged are fetched authenticated from the app, so feel free add tickets/receipts as images. Below you can see an example of a Vipps receipt containing an image of the shopping card (single product)
+With Vipps Order Management API you can upload an image that is shown on the transaction in the Vipps app. To add an image to an order you first need to use the /image endpoint to upload an image. Thereafter, that imageId can be added using the orderInfo API. The same image may be used for multiple transactions, but uploading a unique image for each transactions is also OK. Imaged are fetched authenticated from the app, so feel free add tickets/receipts as images. Below you can see an example of a Vipps receipt containing an image of the shopping card (single product)
 <p align="center">
   <img src="images/order-link-shipping-information-with-image.png" alt="Shipping information link" width="150">
 </p>
