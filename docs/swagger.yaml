@@ -43,16 +43,9 @@ paths:
         - $ref: '#/components/parameters/Authorization'
       tags:
         - Order
-  '/{version}/orders/{transactionId}':
-    parameters:
-      - schema:
-          type: string
-        name: transactionId
-        in: path
-        required: true
-      - $ref: '#/components/parameters/version'
     get:
       summary: Get info for an order
+      operationId: getOrder
       responses:
         '200':
           description: ''
@@ -70,7 +63,6 @@ paths:
                         sortOrder: 1
         '404':
           description: Order Not Found
-      operationId: getOrder
       description: Retrieve the metadata for an order
       parameters:
         - $ref: '#/components/parameters/Merchant-Serial-Number'
@@ -79,8 +71,10 @@ paths:
       tags:
         - Order
   /{version}/images:
+    parameters:
+      - $ref: '#/components/parameters/version'
     post:
-      summary: Add an image to an order
+      summary: Add an image
       operationId: postImage
       responses:
         '200':
@@ -98,7 +92,6 @@ paths:
         - $ref: '#/components/parameters/Merchant-Serial-Number'
         - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
         - $ref: '#/components/parameters/Authorization'
-        - $ref: '#/components/parameters/version'
       tags:
         - Image
       requestBody:
@@ -112,7 +105,6 @@ paths:
                   imageId: vipps-socks-orange-123
                   src: iVBORw0KGgoAAAANSUhEUgAAAKsAAADVCAMAAAAfHv
                   type: base64
-    parameters: []
   '/{version}/receipts/{transactionId}':
     parameters:
       - schema:
@@ -139,17 +131,9 @@ paths:
         - $ref: '#/components/parameters/Merchant-Serial-Number'
         - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
         - $ref: '#/components/parameters/Authorization'
-  '/{version}/receipts/{transactionId}':
-    parameters:
-      - schema:
-          type: string
-        name: transactionId
-        in: path
-        required: true
-      - $ref: '#/components/parameters/version'
     post:
       summary: Add receipt to an order
-      operationId: postReceipt
+      operationId: postReceipt  
       responses:
         '200':
           description: ''
@@ -325,7 +309,7 @@ components:
           type: string
           description: The product ID
           nullable: true
-          example: 1234567890
+          example: "1234567890"
         totalAmount:
           type: integer
           description: 'Total amount of the order line, including tax and discount'
@@ -511,7 +495,6 @@ components:
       description: Bearer <MSI token issued to the identity of the client>
 tags:
   - name: Image
-  - name: MobileOrder
   - name: Order
   - name: Receipt
 security:
