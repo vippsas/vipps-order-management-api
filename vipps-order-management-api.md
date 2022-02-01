@@ -219,8 +219,8 @@ A receipt is immutable and, once sent, cannot be overwritten.
 [`GET:/order-management/v1/orders/{transactionId}`](https://vippsas.github.io/vipps-order-management-api/#/orders/getOrder)
 
 Endpoints for sending and retrieving OrderInfo for a transaction, including ID
-references to images previously uploaded and Links for redirection back to merchants. This object is mutable, and a new
-request will completely overwrite previous requests.
+references to images previously uploaded and Links for redirection back to merchants.
+This object is mutable, and a new request will completely overwrite previous requests.
 
 # Questions?
 
