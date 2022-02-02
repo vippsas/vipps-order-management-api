@@ -49,14 +49,14 @@ Vipps Order Management currently has the following capabilities:
   * Category
 * Receipt
 
-`OrderInfo` is added using the `/orders` endpoint. With this endpoint it is
+`OrderInfo` is added using the [`PUT:/orders`](https://vippsas.github.io/vipps-order-management-api/#/orders/putOrder) endpoint. With this endpoint it is
 possible to add an `Image`, a `Link` and a `Category` to a payment. The
-`/receipts` endpoint is used to add receipt info like `orderLines` and VAT
+[`POST:/receipts`](https://vippsas.github.io/vipps-order-management-api/#/receipts/postReceipt) endpoint is used to add receipt info like `orderLines` and VAT
 information.
 
 # OrderInfo
 
-The `/orders` endpoint allows the addition of `Image`, `Links` and `Categories`
+The [`PUT:/orders`](https://vippsas.github.io/vipps-order-management-api/#/orders/putOrder) endpoint allows the addition of `Image`, `Links` and `Categories`
 to Vipps transactions. `Link` and `Category` is mandatory when using this API,
 and `Images` are optional.
 
@@ -99,7 +99,7 @@ in the Vipps app. We currently support these categories:
 
 With Vipps Order Management API you can upload an image that is shown on the
 transaction in the Vipps app. To add an image to an order you first need to use
-the `/images` endpoint to upload an image. Thereafter, the newly uploaded
+the [`POST:/images`](https://vippsas.github.io/vipps-order-management-api/#/images/postImage) endpoint to upload an image. Thereafter, the newly uploaded
 image's `imageId` can be added using the `orderInfo` API. The same image may
 be used for multiple transactions, but uploading a unique image for each
 transactions is also OK. Imaged are fetched authenticated from the app, so feel
@@ -116,7 +116,7 @@ In addition to providing a user with a link to a valid receipt hosted on your
 site, it is also possible have the receipt hosted inside the Vipps app. To
 enable this you can send necessary information such as order lines and VAT rates
 to the Order Management API and Vipps will generate a receipt that can be used
-for proof of purchase and expensing. This is done using the `/receipts` endpoint.
+for proof of purchase and expensing. This is done using the [`POST:/receipts`](https://vippsas.github.io/vipps-order-management-api/#/receipts/postReceipt) endpoint.
 
 In addition to providing the user with a valid receipt inside Vipps, order lines
 will also give the user a much better overview of the purchase. Furthermore, in
