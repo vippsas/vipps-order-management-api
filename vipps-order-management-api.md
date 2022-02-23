@@ -23,21 +23,28 @@ Document version: 0.1.2.
 
 # Table of contents
 
+- [Vipps Order Management API v1](#vipps-order-management-api-v1)
+- [Table of contents](#table-of-contents)
 - [Vipps Order Management capabilities](#vipps-order-management-capabilities)
-  * [Links](#links)
-  * [Images of order](#images-of-order)
-  * [Order Lines and Proof of Purchase](#order-lines-and-proof-of-purchase)
+- [OrderInfo](#orderinfo)
+  - [link](#link)
+  - [Image](#image)
+- [Receipt](#receipt)
 - [Getting Started](#getting-started)
-  * [Before you begin](#before-you-begin)
-  * [Authentication](#authentication)
+  - [Before you begin](#before-you-begin)
+  - [Authentication](#authentication)
   - [Vipps HTTP headers](#vipps-http-headers)
     - [Example headers](#example-headers)
-- [API summary](#API-summary)
-  * [Links](#links-1)
-  * [Images](#images)
-  * [Receipts](#receipts)
-  * [Additional information](#additional-information)
-- [Questions?](#questions-)
+- [Vipps Assited Content Monitoring](#vipps-assited-content-monitoring)
+  - [Mandatory use case](#mandatory-use-case)
+  - [Guidance](#guidance)
+- [API summary](#api-summary)
+  - [Images](#images)
+  - [Receipts](#receipts)
+    - [Recommended integration (currently in pilot mode)](#recommended-integration-currently-in-pilot-mode)
+    - [Legacy integration](#legacy-integration)
+  - [OrderInfo](#orderinfo-1)
+- [Questions?](#questions)
 
 # Vipps Order Management capabilities
 
@@ -191,6 +198,15 @@ the headers should be:
 **Important:** Please use self-explanatory, human readable and reasonably short
 values that uniquely identify the system (and plugin).
 
+# Vipps Assited Content Monitoring
+
+Vipps offers assited content monitoring as a way for Merchants to deal with the regulatory demands of content monitoring. For some merchants Vipps can utilize the merchant's webpage for content monitoring, continously verifying that the actual products being sold coincides with the expected products.
+
+## Mandatory use case
+However if you as a merchant does not have a permanent website that can be utilized for content montitoring, for example you do not have a user facing website or the website is ephemeral/short lived then you must utilize Vipps Assited Content Monitoring.
+
+## Guidance
+In order to comply with Vipps Assisted Content Monitoring all transactions must be posted to the Order Management receipts functionality described in the [Receipts](#receipts) section.
 
 # API summary
 
@@ -211,6 +227,12 @@ It is not possible to overwrite an image.
 Endpoints for sending and receiving receipt information (an array of order lines).
 Order lines are descriptions of each item present in an order.
 A receipt is immutable and, once sent, cannot be overwritten.
+
+### Recommended integration (currently in pilot mode)
+In order to integrate with the receipts functionality you need to retrieve the pspreference in the `"paymentAction": "AUTHORISATION"` event from the [eventlog](https://vippsas.github.io/vipps-epayment-api/index.html#operation/getPaymentEventLog) endpoint. *This is required if utilizing receipts with Vipps Checkout or Free standing card payments* The `pspReference` must then be utilized as the transactionId in the [`POST:/order-management/v1/receipts/{transactionId}`](https://vippsas.github.io/vipps-order-management-api/#/receipts/postReceipt) endpoint.
+
+### Legacy integration
+Optionally you may integrate with the [EcomV2Api](https://github.com/vippsas/vipps-ecom-api), retrieving the `transactionLogHistory.transactionId` value found in the [details](https://vippsas.github.io/vipps-ecom-api/#/Vipps%20eCom%20API/getPaymentDetailsUsingGET) endpoint. *This will not be compatible with Vipps Checkout or Free Standing Card Payments*.
 
 ## OrderInfo
 
