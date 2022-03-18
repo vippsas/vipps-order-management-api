@@ -159,7 +159,7 @@ paths:
                         quantity: '2.5'
                         quantityUnit: KG
                       discount: 0
-                      productUrl: www.vipps.no/store/socks
+                      productUrl: https://www.vipps.no/store/socks
                     - name: Vipps flip-flops
                       id: line_item_2
                       totalAmount: 5000
@@ -171,7 +171,7 @@ paths:
                         quantity: '3'
                         quantityUnit: PCS
                       discount: 2500
-                      productUrl: www.vipps.no/store/flipflops
+                      productUrl: https://www.vipps.no/store/flipflops
                   bottomLine:
                     totalAmount: 6000
                     totalTax: 1200
@@ -286,7 +286,7 @@ components:
                   quantity: '2.5'
                   quantityUnit: KG
                 discount: 0
-                productUrl: www.vipps.no/store/socks
+                productUrl: https://www.vipps.no/store/socks
               - name: Vipps flip-flops
                 id: line_item_2
                 totalAmount: 5000
@@ -298,7 +298,7 @@ components:
                   quantity: '3'
                   quantityUnit: PCS
                 discount: 2500
-                productUrl: www.vipps.no/store/flipflops
+                productUrl: https://www.vipps.no/store/flipflops
       properties:
         name:
           type: string
@@ -341,7 +341,7 @@ components:
           type: string
           description: Optional URL linking back to the product at the merchant
           nullable: true
-          example: www.vipps.no/store/socks
+          example: https://www.vipps.no/store/socks
       required:
         - name
         - id
