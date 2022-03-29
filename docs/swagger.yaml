@@ -194,7 +194,7 @@ paths:
       - $ref: '#/components/parameters/Transaction-Type'
       - $ref: '#/components/parameters/Order-Id'
     post:
-      summary: ''
+      summary: Endpoint for adding receipts to an order.
       operationId: postReceiptV2
       responses:
         '201':
@@ -222,7 +222,7 @@ paths:
       - $ref: '#/components/parameters/Transaction-Type'
       - $ref: '#/components/parameters/Order-Id'
     put:
-      summary: ''
+      summary: Post additional information about an order that will show up on the Vipps receipt.
       operationId: putCategoryV2
       responses:
         '200':
@@ -258,7 +258,7 @@ paths:
       - $ref: '#/components/parameters/Transaction-Type'
       - $ref: '#/components/parameters/Order-Id'
     get:
-      summary: Get order
+      summary: Get order with category and receipt
       operationId: getOrderV2
       responses:
         '200':
