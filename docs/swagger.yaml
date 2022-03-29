@@ -10,14 +10,13 @@ servers:
   - url: 'https://api.vipps.no/order-management'
     description: Vipps Order Management API
 paths:
-  '/{version}/orders/{transactionId}':
+  '/v1/orders/{transactionId}':
     parameters:
       - schema:
           type: string
         name: transactionId
         in: path
         required: true
-      - $ref: '#/components/parameters/version'
     put:
       summary: Add info to an order
       operationId: putOrder
@@ -70,9 +69,8 @@ paths:
         - $ref: '#/components/parameters/Authorization'
       tags:
         - Order
-  /{version}/images:
-    parameters:
-      - $ref: '#/components/parameters/version'
+  /v1/images:
+    parameters: []
     post:
       summary: Add an image
       operationId: postImage
@@ -105,14 +103,13 @@ paths:
                   imageId: vipps-socks-orange-123
                   src: iVBORw0KGgoAAAANSUhEUgAAAKsAAADVCAMAAAAfHv
                   type: base64
-  '/{version}/receipts/{transactionId}':
+  '/v1/receipts/{transactionId}':
     parameters:
       - schema:
           type: string
         name: transactionId
         in: path
         required: true
-      - $ref: '#/components/parameters/version'
     get:
       summary: Get receipt for an order
       operationId: getReceipt
@@ -133,12 +130,16 @@ paths:
         - $ref: '#/components/parameters/Authorization'
     post:
       summary: Add receipt to an order
-      operationId: postReceipt  
+      operationId: postReceipt
       responses:
         '200':
           description: ''
+        '400':
+          $ref: '#/components/responses/400BadRequest'
+        '401':
+          description: Unauthorized
         '404':
-          description: Order not found
+          $ref: '#/components/responses/404NotFound'
       requestBody:
         content:
           application/json:
@@ -159,7 +160,7 @@ paths:
                         quantity: '2.5'
                         quantityUnit: KG
                       discount: 0
-                      productUrl: https://www.vipps.no/store/socks
+                      productUrl: 'https://www.vipps.no/store/socks'
                     - name: Vipps flip-flops
                       id: line_item_2
                       totalAmount: 5000
@@ -171,7 +172,7 @@ paths:
                         quantity: '3'
                         quantityUnit: PCS
                       discount: 2500
-                      productUrl: https://www.vipps.no/store/flipflops
+                      productUrl: 'https://www.vipps.no/store/flipflops'
                   bottomLine:
                     totalAmount: 6000
                     totalTax: 1200
@@ -184,6 +185,110 @@ paths:
       description: Endpoint for adding receipts to an order.
       tags:
         - Receipt
+      parameters:
+        - $ref: '#/components/parameters/Merchant-Serial-Number'
+        - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
+        - $ref: '#/components/parameters/Authorization'
+  '/v2/{type}/receipts/{orderId}':
+    parameters:
+      - $ref: '#/components/parameters/Transaction-Type'
+      - $ref: '#/components/parameters/Order-Id'
+    post:
+      summary: ''
+      operationId: postReceiptV2
+      responses:
+        '201':
+          $ref: '#/components/responses/201Created'
+        '400':
+          $ref: '#/components/responses/400BadRequest'
+        '401':
+          description: Unauthorized
+        '404':
+          $ref: '#/components/responses/404NotFound'
+      tags:
+        - Receipt
+      description: Endpoint for adding receipts to an order.
+      parameters:
+        - $ref: '#/components/parameters/Merchant-Serial-Number'
+        - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
+        - $ref: '#/components/parameters/Authorization'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Receipt'
+  '/v2/{type}/categories/{orderId}':
+    parameters:
+      - $ref: '#/components/parameters/Transaction-Type'
+      - $ref: '#/components/parameters/Order-Id'
+    put:
+      summary: ''
+      operationId: putCategoryV2
+      responses:
+        '200':
+          description: OK
+        '400':
+          $ref: '#/components/responses/400BadRequest'
+        '401':
+          description: Unauthorized
+        '404':
+          $ref: '#/components/responses/404NotFound'
+        '409':
+          $ref: '#/components/responses/409Conflict'
+      tags:
+        - Category
+      description: Post additional information about an order that will show up on the Vipps receipt.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Order'
+            examples:
+              Adding order metadata with one image:
+                value:
+                  category: GENERAL
+                  orderDetailsUrl: 'https://www.vipps.no'
+                  imageId: vipps-socks-orange-123
+      parameters:
+        - $ref: '#/components/parameters/Merchant-Serial-Number'
+        - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
+        - $ref: '#/components/parameters/Authorization'
+  '/v2/{type}/{orderId}':
+    parameters:
+      - name: type
+        in: path
+        required: true
+        schema:
+          type: string
+          enum:
+            - ecom
+            - recurring
+            - checkout
+        description: 'The type of transaction {ecom, recurring, checkout} '
+      - name: orderId
+        in: path
+        required: true
+        schema:
+          type: string
+          pattern: '^[0-9A-Za-z-_\.]+$'
+        description: 'The orderId of the transaction, unique and managed by merchant'
+    get:
+      summary: Get order
+      operationId: getOrderV2
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderV2Response'
+        '401':
+          description: Unauthorized
+        '404':
+          $ref: '#/components/responses/404NotFound'
+      tags:
+        - Order
+      description: Get order with category and receipt
       parameters:
         - $ref: '#/components/parameters/Merchant-Serial-Number'
         - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
@@ -229,7 +334,7 @@ components:
           example: vipps-socks-orange-123
         src:
           type: string
-          description: 'The image dat as a base64 encoded string (not a URL)'
+          description: The image dat as a base64 encoded string (not a URL)
         type:
           type: string
           enum:
@@ -286,7 +391,7 @@ components:
                   quantity: '2.5'
                   quantityUnit: KG
                 discount: 0
-                productUrl: https://www.vipps.no/store/socks
+                productUrl: 'https://www.vipps.no/store/socks'
               - name: Vipps flip-flops
                 id: line_item_2
                 totalAmount: 5000
@@ -298,7 +403,7 @@ components:
                   quantity: '3'
                   quantityUnit: PCS
                 discount: 2500
-                productUrl: https://www.vipps.no/store/flipflops
+                productUrl: 'https://www.vipps.no/store/flipflops'
       properties:
         name:
           type: string
@@ -309,7 +414,7 @@ components:
           type: string
           description: The product ID
           nullable: true
-          example: "1234567890"
+          example: '1234567890'
         totalAmount:
           type: integer
           description: 'Total amount of the order line, including tax and discount'
@@ -341,7 +446,7 @@ components:
           type: string
           description: Optional URL linking back to the product at the merchant
           nullable: true
-          example: https://www.vipps.no/store/socks
+          example: 'https://www.vipps.no/store/socks'
       required:
         - name
         - id
@@ -458,20 +563,62 @@ components:
         - LITRE
       description: Available units for quantity. Will default to PCS if not set
       default: PCS
+    ErrorResponse:
+      description: ''
+      type: object
+      x-examples:
+        example-1:
+          type: 'https://datatracker.ietf.org/doc/html/rfc7231#section-6.5.1'
+          title: One or more validation errors occurred.
+          detail: BadRequest
+          instance: 00-616e415f5af7584eb4d9369d0fe8d7cc-48b90041faff204c-00
+          invalidParams:
+            - name: RedirectUrl
+              reason: 'The field RedirectUrl must match the regular expression ''^https://[\w\.]+([\w#!:.?+=&%@\-/]+)?$''.'
+      properties:
+        type:
+          type: string
+          minLength: 1
+        title:
+          type: string
+          minLength: 1
+        detail:
+          type: string
+          minLength: 1
+        instance:
+          type: string
+          minLength: 1
+        invalidParams:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                minLength: 1
+              reason:
+                type: string
+                minLength: 1
+            required:
+              - name
+              - reason
+      required:
+        - title
+        - detail
+        - instance
+    OrderV2Response:
+      title: OrderV2Response
+      type: object
+      properties:
+        category:
+          $ref: '#/components/schemas/Order'
+        receipt:
+          $ref: '#/components/schemas/Receipt'
   securitySchemes:
     BearerToken:
       type: http
       scheme: bearer
   parameters:
-    version:
-      name: version
-      in: path
-      required: true
-      schema:
-        type: string
-        enum:
-          - v1
-      description: The API version
     Merchant-Serial-Number:
       name: Merchant-Serial-Number
       in: header
@@ -493,7 +640,54 @@ components:
       schema:
         type: string
       description: Bearer <MSI token issued to the identity of the client>
+    Transaction-Type:
+      name: type
+      in: path
+      required: true
+      schema:
+        type: string
+        enum:
+          - ecom
+          - recurring
+          - checkout
+      description: 'The type of transaction {ecom, recurring, checkout} '
+    Order-Id:
+      name: orderId
+      in: path
+      required: true
+      schema:
+        type: string
+        pattern: '^[0-9A-Za-z-_\.]+$'
+      description: 'The orderId of the transaction, unique and managed by merchant'
+  responses:
+    400BadRequest:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    409Conflict:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            properties:
+              id:
+                type: string
+    404NotFound:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    201Created:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            type: string
 tags:
+  - name: Category
   - name: Image
   - name: Order
   - name: Receipt
