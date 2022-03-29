@@ -319,7 +319,7 @@ components:
           example: vipps-socks-orange-123
         src:
           type: string
-          description: The image dat as a base64 encoded string (not a URL)
+          description: The image data as a base64 encoded string (not a URL)
         type:
           type: string
           enum:
@@ -634,8 +634,7 @@ components:
         enum:
           - ecom
           - recurring
-          - checkout
-      description: 'The type of transaction {ecom, recurring, checkout} '
+      description: 'The type of transaction {ecom, recurring} '
     Order-Id:
       name: orderId
       in: path
