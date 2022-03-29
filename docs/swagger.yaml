@@ -255,23 +255,8 @@ paths:
         - $ref: '#/components/parameters/Authorization'
   '/v2/{type}/{orderId}':
     parameters:
-      - name: type
-        in: path
-        required: true
-        schema:
-          type: string
-          enum:
-            - ecom
-            - recurring
-            - checkout
-        description: 'The type of transaction {ecom, recurring, checkout} '
-      - name: orderId
-        in: path
-        required: true
-        schema:
-          type: string
-          pattern: '^[0-9A-Za-z-_\.]+$'
-        description: 'The orderId of the transaction, unique and managed by merchant'
+      - $ref: '#/components/parameters/Transaction-Type'
+      - $ref: '#/components/parameters/Order-Id'
     get:
       summary: Get order
       operationId: getOrderV2
