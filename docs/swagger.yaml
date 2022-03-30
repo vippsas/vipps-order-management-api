@@ -193,7 +193,7 @@ paths:
         - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
         - $ref: '#/components/parameters/Authorization'
       deprecated: true
-  '/v2/{type}/receipts/{orderId}':
+  '/v2/{paymentType}/receipts/{orderId}':
     parameters:
       - $ref: '#/components/parameters/Transaction-Type'
       - $ref: '#/components/parameters/Order-Id'
@@ -221,7 +221,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Receipt'
-  '/v2/{type}/categories/{orderId}':
+  '/v2/{paymentType}/categories/{orderId}':
     parameters:
       - $ref: '#/components/parameters/Transaction-Type'
       - $ref: '#/components/parameters/Order-Id'
@@ -257,7 +257,7 @@ paths:
         - $ref: '#/components/parameters/Merchant-Serial-Number'
         - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
         - $ref: '#/components/parameters/Authorization'
-  '/v2/{type}/{orderId}':
+  '/v2/{paymentType}/{orderId}':
     parameters:
       - $ref: '#/components/parameters/Transaction-Type'
       - $ref: '#/components/parameters/Order-Id'
@@ -630,7 +630,7 @@ components:
         type: string
       description: Bearer <MSI token issued to the identity of the client>
     Transaction-Type:
-      name: type
+      name: paymentType
       in: path
       required: true
       schema:
