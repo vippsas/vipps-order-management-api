@@ -42,6 +42,7 @@ paths:
         - $ref: '#/components/parameters/Authorization'
       tags:
         - Order
+      deprecated: true
     get:
       summary: Get info for an order
       operationId: getOrder
@@ -69,6 +70,7 @@ paths:
         - $ref: '#/components/parameters/Authorization'
       tags:
         - Order
+      deprecated: true
   /v1/images:
     parameters: []
     post:
@@ -128,6 +130,7 @@ paths:
         - $ref: '#/components/parameters/Merchant-Serial-Number'
         - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
         - $ref: '#/components/parameters/Authorization'
+      deprecated: true
     post:
       summary: Add receipt to an order
       operationId: postReceipt
@@ -189,6 +192,7 @@ paths:
         - $ref: '#/components/parameters/Merchant-Serial-Number'
         - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
         - $ref: '#/components/parameters/Authorization'
+      deprecated: true
   '/v2/{type}/receipts/{orderId}':
     parameters:
       - $ref: '#/components/parameters/Transaction-Type'
