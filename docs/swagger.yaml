@@ -110,7 +110,7 @@ paths:
       - $ref: '#/components/parameters/Transaction-Type'
       - $ref: '#/components/parameters/Order-Id'
     post:
-      summary: Endpoint for adding receipts to an order.
+      summary: Add receipt to an order.
       operationId: postReceiptV2
       responses:
         '201':
@@ -125,7 +125,7 @@ paths:
           $ref: '#/components/responses/409Conflict'
       tags:
         - Receipt
-      description: Endpoint for adding receipts to an order.
+      description: Add receipt to an order.
       parameters:
         - $ref: '#/components/parameters/Merchant-Serial-Number'
         - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
@@ -228,7 +228,7 @@ paths:
       - $ref: '#/components/parameters/Transaction-Type'
       - $ref: '#/components/parameters/Order-Id'
     put:
-      summary: Post additional information about an order that will show up on the Vipps receipt.
+      summary: Add category to an order.
       operationId: putCategoryV2
       responses:
         '200':
@@ -243,7 +243,7 @@ paths:
           $ref: '#/components/responses/409Conflict'
       tags:
         - Category
-      description: Post additional information about an order that will show up on the Vipps receipt.
+      description: Add category to an order.
       requestBody:
         content:
           application/json:
