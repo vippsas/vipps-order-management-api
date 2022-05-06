@@ -17,7 +17,7 @@ experience when they use Vipps to pay for your products and services.
 Vipps Order management also enables you to draw customers back to your website
 or app from links on the Vipps receipt view.
 
-API version: 1.0.2.
+API version: 1.0.3.
 
 Document version: 0.1.2.
 
