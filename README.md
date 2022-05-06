@@ -19,7 +19,7 @@ You can peruse the API reference documentation as:
 * [Swagger UI](https://vippsas.github.io/vipps-order-management-api/)
 * [ReDoc](https://vippsas.github.io/vipps-order-management-api/redoc.html)
 
-# Questions?
+## Questions?
 
 We're always happy to help with code or other questions you might have!
 Please create an [issue](https://github.com/vippsas/vipps-ecom-api/issues),
