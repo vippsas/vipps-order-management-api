@@ -2,7 +2,7 @@
 
 The Order Management API allows merchants to enrich Vipps Transactions.
 The information given in this API will be shown to the customer in the order
-history in their app. Order Management operates with 2 concepts: [Categories](#categories) (with images) and [Receipts](#Receipts). These concepts may be used separately or combined, and this guide will explain how to add them.
+history in their app. Order Management operates with two concepts: [Categories](#categories) (with images) and [Receipts](#Receipts). These concepts may be used separately or combined, and this guide will explain how to add them.
 
 Vipps Order Management enables you to communicate with your customers through
 the payment receipts in the Vipps app. The purpose of doing this is to give
@@ -16,11 +16,13 @@ API version: 1.0.3.
 Document version: 0.1.2.
 
 ## Table of contents
+- [Vipps Order Management API v1](#vipps-order-management-api-v1)
+  - [Table of contents](#table-of-contents)
 - [Before you begin](#before-you-begin)
   - [Authentication](#authentication)
   - [Vipps HTTP headers](#vipps-http-headers)
   - [OrderId and PaymentType](#orderid-and-paymenttype)
-  - [Basic Flow](#basic-flow)
+  - [Basic flow](#basic-flow)
 - [Categories](#categories)
   - [Category](#category)
   - [Images](#images)
@@ -30,8 +32,8 @@ Document version: 0.1.2.
   - [Adding a Receipt](#adding-a-receipt)
   - [Fetching Category and Receipt](#fetching-category-and-receipt)
 - [Vipps Assisted Content Monitoring](#vipps-assisted-content-monitoring)
-  - [Mandatory use case](#mandatory-use-case)
-- [Questions?](#questions)
+    - [Mandatory use case](#mandatory-use-case)
+  - [Questions?](#questions)
 
 
 # Before you begin
@@ -79,9 +81,9 @@ everyone sends it too. It can speed up any trouble-shooting quite a bit.
 | `Vipps-System-Plugin-Version` | The version number of the ecommerce plugin   | `1.4.1`             |
 
 ## OrderId and PaymentType
-The idea with order management is to add a Receipt or Category to a Vipps transaction made with the Ecom or Recurring api. So, the receipts needs to be connected to a `OrderId`. The `OrderId` is what **you** use when either initiating a Ecom payment or creating a recurring charge.
+The idea with order management is to add a Receipt or Category to a Vipps transaction made with the Ecom or Recurring API. So, the receipt needs to be connected to a `OrderId`. The `OrderId` is what **you** use when either initiating a Ecom payment or creating a recurring charge.
 
-The Order Management Api does **no validation if the order exist**. This means that the order management enrichment may be added before or after the payment is actually created. The preferred way is to add the Order Management Data simultaneously as you initiate the payment. 
+The Order Management API does **no validation if the order exists**. This means that the order management enrichment may be added before or after the payment is actually created. The preferred way is to add the Order Management Data simultaneously as you initiate the payment. 
 
 As the same OrderId can be used for both a Recurring charge and a Ecom payment, you need to supply which Vipps Product is being used by setting the appropriate `paymentType`
 
@@ -108,7 +110,7 @@ whereas `Images` are optional.
 In order to provide customers with more up to date information about their order,
 you can add a `Category` with a URL to the Vipps Transaction that can take the
 customer to a location on your website. Links are activated when a customer
-clicks the link in the transaction page in the Vipps App. The mobile device's standard web browser will open and the user is redirected to the link location. Below you can se an example of a Vipps transaction with the "Shipping information" `Category`.
+clicks the link in the transaction page in the Vipps App. The mobile device's standard web browser will open and the user will be redirected to the link location. Below you can see an example of a Vipps transaction with the "Shipping information" `Category`.
 
 <p align="center">
   <img src="images/order-link-shipping-information.png" alt="Shipping information link" width="250">
@@ -129,10 +131,10 @@ The category will determine how the app handles the link, additional information
 With Vipps Order Management API you can upload an Image that is shown on the
 transaction in the Vipps app. When adding an `Image` along with a `Category`, the Image needs to already exist. This means that the Image needs to be uploaded first. After uploading a image to 
 the [`POST:/images`](https://vippsas.github.io/vipps-order-management-api/#/images/postImage) endpoint, the newly uploaded
-image's `ImageId` needs be used in the Categories api.
+image's `ImageId` needs be used in the Categories API.
 
 The same image may be used for multiple transactions, but uploading a unique image for each
-transactions is also OK. Imaged are fetched authenticated from the app, so feel
+transaction is also OK. Imaged are fetched authenticated from the app, so feel
 free to add tickets and receipts as images. Below you can see an example of a Vipps
 transaction containing an Image with the "Shipping information" `Category`.
 
@@ -144,7 +146,7 @@ transaction containing an Image with the "Shipping information" `Category`.
 ## Adding an Image
 [`POST:/order-management/v1/images`](https://vippsas.github.io/vipps-order-management-api/#/images/postImage)
 
-Endpoint for uploading pictures. Images exists independently of any transaction.
+Endpoint for uploading pictures. Images exist independently of any transaction.
 It is not possible to overwrite an image. Base64 is the only supported media type at the moment.
 Example request:
 
@@ -192,10 +194,10 @@ This is the endpoint used for adding and updating the Category for a Vipps Trans
 
 # Receipts
 
-By using the [`POST:/receipts`](https://vippsas.github.io/vipps-order-management-api/#/receipts/postReceipt) endpoint, it is possible to add a `Receipt` to a Vipps transaction. This is done by sending each OrderLine with its relevant VAT info. In environments where a paper printer isn't accessible, this can be very valuable. The receipt generated in the Vipps app is an "electronic copy" and should be approved by all norwegian accounting firms.
+By using the [`POST:/receipts`](https://vippsas.github.io/vipps-order-management-api/#/receipts/postReceipt) endpoint, it is possible to add a `Receipt` to a Vipps transaction. This is done by sending each OrderLine with its relevant VAT info. In environments where a paper printer isn't accessible, this can be very valuable. The receipt generated in the Vipps app is an "electronic copy" and should be approved by all Norwegian accounting firms.
 
 <p align="center">
-  <img src="images/orderlines.png" width="150">
+  <img src="images/order-lines-extended.png" width="150">
 </p>
 
 ## Adding a Receipt
@@ -277,7 +279,7 @@ Vipps offers assisted content monitoring as a way for Merchants to deal with the
 
 ### Mandatory use case
 
-If you as a merchant does not have a permanent website that can be utilized for content monitoring, for example you do not have a user facing website or the website is ephemeral/short lived then you must utilize Vipps Assisted Content Monitoring.
+If you, as a merchant, do not have a permanent website that can be utilized for content monitoring, for example you do not have a user facing website or the website is ephemeral/short lived then you must utilize Vipps Assisted Content Monitoring.
 
 In order to comply with Vipps Assisted Content Monitoring all transactions must be posted to the Order Management receipts functionality described in the [Receipts](#receipts) section.
 
