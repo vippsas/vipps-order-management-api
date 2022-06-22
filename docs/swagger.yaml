@@ -413,7 +413,7 @@ components:
           example: 1000
         totalAmountExcludingTax:
           type: integer
-          description: 'Total amount of order line with discount excluding tax '
+          description: Total amount of order line with discount excluding tax
           nullable: true
           example: 1000
         totalTaxAmount:
@@ -464,7 +464,7 @@ components:
       properties:
         totalAmount:
           type: integer
-          description: 'The total amount the order, including all taxes and discounts'
+          description: 'The total amount the order, including all taxes, discounts and shipping'
           nullable: true
         totalTax:
           type: integer
@@ -476,10 +476,8 @@ components:
           nullable: true
         currency:
           $ref: '#/components/schemas/CurrencyEnum'
-        shippingAmount:
-          type: integer
-          description: Shipping amount for the order
-          nullable: true
+        shippingInfo:
+          $ref: '#/components/schemas/ShippingInfo'
         tipAmount:
           type: integer
           description: Tip amount for the order
@@ -543,6 +541,7 @@ components:
       enum:
         - NOK
       nullable: true
+      description: Currency information
     QuantityUnitEnum:
       type: string
       title: QuantityUnitEnum
@@ -605,6 +604,36 @@ components:
           $ref: '#/components/schemas/Order'
         receipt:
           $ref: '#/components/schemas/Receipt'
+    ShippingInfo:
+      title: ShippingInfo
+      type: object
+      description: Shipping-Information for the Order
+      properties:
+        amount:
+          type: integer
+          description: 'Total amount for the shipping, including tax and discount'
+          example: 1000
+          nullable: true
+        amountExcludingTax:
+          type: integer
+          description: Total amount for shipping excluding tax
+          example: 1000
+          nullable: true
+        taxAmount:
+          type: integer
+          description: Total tax amount paid for the shipping
+          example: 250
+          nullable: true
+        taxPercentage:
+          type: integer
+          description: Tax-percentage for the Shipping
+          example: 25
+          nullable: true
+      required:
+        - amount
+        - amountExcludingTax
+        - taxAmount
+        - taxPercentage
   securitySchemes:
     BearerToken:
       type: http
