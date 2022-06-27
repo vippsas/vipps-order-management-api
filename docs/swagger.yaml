@@ -207,14 +207,18 @@ paths:
                       discount: 2500
                       productUrl: 'https://www.vipps.no/store/flipflops'
                   bottomLine:
-                    totalAmount: 6000
-                    totalTax: 1200
+                    totalAmount: 7000
+                    totalTax: 1400
                     totalDiscount: 2500
                     currency: NOK
-                    shippingAmount: 0
                     tipAmount: 0
                     giftCardAmount: 0
                     terminalId: vipps_pos_122
+                    shippingInfo:
+                      amount: 1000
+                      amountExcludingTax: 800
+                      taxAmount: 200
+                      taxPercentage: 25
       description: Endpoint for adding receipts to an order.
       tags:
         - Receipt
@@ -413,7 +417,7 @@ components:
           example: 1000
         totalAmountExcludingTax:
           type: integer
-          description: 'Total amount of order line with discount excluding tax '
+          description: Total amount of order line with discount excluding tax
           nullable: true
           example: 1000
         totalTaxAmount:
@@ -457,14 +461,13 @@ components:
             totalTax: 1200
             totalDiscount: 2500
             currency: NOK
-            shippingAmount: 0
             tipAmount: 0
             giftCardAmount: 0
             terminalId: vipps_pos_122
       properties:
         totalAmount:
           type: integer
-          description: 'The total amount the order, including all taxes and discounts'
+          description: 'The total amount the order, including all taxes, discounts and shipping'
           nullable: true
         totalTax:
           type: integer
@@ -476,10 +479,8 @@ components:
           nullable: true
         currency:
           $ref: '#/components/schemas/CurrencyEnum'
-        shippingAmount:
-          type: integer
-          description: Shipping amount for the order
-          nullable: true
+        shippingInfo:
+          $ref: '#/components/schemas/ShippingInfo'
         tipAmount:
           type: integer
           description: Tip amount for the order
@@ -490,6 +491,11 @@ components:
           nullable: true
         terminalId:
           type: string
+          nullable: true
+        shippingAmount:
+          type: integer
+          deprecated: true
+          description: 'Deprecated, using ShippingInfo object instead. Using this will result in faulty calculation of sum and tax.'
           nullable: true
       required:
         - totalAmount
@@ -543,6 +549,7 @@ components:
       enum:
         - NOK
       nullable: true
+      description: Currency information
     QuantityUnitEnum:
       type: string
       title: QuantityUnitEnum
@@ -605,6 +612,36 @@ components:
           $ref: '#/components/schemas/Order'
         receipt:
           $ref: '#/components/schemas/Receipt'
+    ShippingInfo:
+      title: ShippingInfo
+      type: object
+      description: Shipping-Information for the Order
+      properties:
+        amount:
+          type: integer
+          description: 'Total amount for the shipping, including tax and discount'
+          example: 1000
+          nullable: true
+        amountExcludingTax:
+          type: integer
+          description: Total amount for shipping excluding tax
+          example: 1000
+          nullable: true
+        taxAmount:
+          type: integer
+          description: Total tax amount paid for the shipping
+          example: 250
+          nullable: true
+        taxPercentage:
+          type: integer
+          description: Tax-percentage for the Shipping
+          example: 25
+          nullable: true
+      required:
+        - amount
+        - amountExcludingTax
+        - taxAmount
+        - taxPercentage
   securitySchemes:
     BearerToken:
       type: http
