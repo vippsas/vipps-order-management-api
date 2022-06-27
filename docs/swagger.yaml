@@ -207,14 +207,18 @@ paths:
                       discount: 2500
                       productUrl: 'https://www.vipps.no/store/flipflops'
                   bottomLine:
-                    totalAmount: 6000
-                    totalTax: 1200
+                    totalAmount: 7000
+                    totalTax: 1400
                     totalDiscount: 2500
                     currency: NOK
-                    shippingAmount: 0
                     tipAmount: 0
                     giftCardAmount: 0
                     terminalId: vipps_pos_122
+                    shippingInfo:
+                      amount: 1000
+                      amountExcludingTax: 800
+                      taxAmount: 200
+                      taxPercentage: 25
       description: Endpoint for adding receipts to an order.
       tags:
         - Receipt
@@ -457,7 +461,6 @@ components:
             totalTax: 1200
             totalDiscount: 2500
             currency: NOK
-            shippingAmount: 0
             tipAmount: 0
             giftCardAmount: 0
             terminalId: vipps_pos_122
@@ -488,6 +491,11 @@ components:
           nullable: true
         terminalId:
           type: string
+          nullable: true
+        shippingAmount:
+          type: integer
+          deprecated: true
+          description: 'Deprecated, using ShippingInfo object instead. Using this will result in faulty calculation of sum and tax.'
           nullable: true
       required:
         - totalAmount
