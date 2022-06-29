@@ -1,4 +1,4 @@
-# Vipps Order Management API v1
+# Vipps Order Management API v2
 
 The Order Management API allows merchants to enrich Vipps Transactions.
 The information given in this API will be shown to the customer in the order
@@ -13,10 +13,10 @@ or app from links on the Vipps receipt view.
 
 API version: 1.0.3.
 
-Document version: 0.1.2.
+Document version: 1.0.1.
 
 ## Table of contents
-- [Vipps Order Management API v1](#vipps-order-management-api-v1)
+- [Vipps Order Management API v2](#vipps-order-management-api-v2)
   - [Table of contents](#table-of-contents)
 - [Before you begin](#before-you-begin)
   - [Authentication](#authentication)
