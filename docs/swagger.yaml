@@ -415,18 +415,21 @@ components:
           description: 'Total amount of the order line, including tax and discount'
           example: 1000
           minimum: 0
+          format: int64
           nullable: true
         totalAmountExcludingTax:
           type: integer
           description: Total amount of order line with discount excluding tax
           example: 1000
           minimum: 0
+          format: int64
           nullable: true
         totalTaxAmount:
           type: integer
           description: Total tax amount paid for the order line
           example: 250
           minimum: 0
+          format: int64
           nullable: true
         taxPercentage:
           type: integer
@@ -442,13 +445,14 @@ components:
           description: Total discount for the order line
           example: 0
           minimum: 0
+          format: int64
           nullable: true
         productUrl:
           type: string
           description: Optional URL linking back to the product at the merchant
           example: 'https://www.vipps.no/store/socks'
           nullable: true
-        isReturned:
+        isReturn:
           type: boolean
           description: Flag for marking the orderline as returned. This will make it count negative towards all the sums in bottomLine
       required:
@@ -476,16 +480,21 @@ components:
       properties:
         totalAmount:
           type: integer
-          description: 'The total amount the order, including all taxes, discounts and shipping'
+          description: 'The total amount of the order, including all taxes, discounts and shipping. Can be negative'
+          format: int64
           nullable: true
         totalTax:
           type: integer
           description: Total tax for the order
           nullable: true
+          minimum: 0
+          format: int64
         totalDiscount:
           type: integer
           description: Total discount from the orderLines
           nullable: true
+          minimum: 0
+          format: int64
         currency:
           $ref: '#/components/schemas/CurrencyEnum'
         shippingInfo:
@@ -494,11 +503,13 @@ components:
           type: integer
           description: Tip amount for the order
           minimum: 0
+          format: int64
           nullable: true
         giftCardAmount:
           type: integer
           description: Amount paid by gift card or coupon
           minimum: 0
+          format: int64
           nullable: true
         terminalId:
           type: string
@@ -506,7 +517,9 @@ components:
         shippingAmount:
           type: integer
           deprecated: true
-          description: 'Deprecated, using ShippingInfo object instead. Using this will result in faulty calculation of sum and tax.'
+          description: 'Deprecated, use ShippingInfo object instead. Using this will result in faulty calculation of sum and tax.'
+          minimum: 0
+          format: int64
           nullable: true
       required:
         - totalAmount
@@ -530,6 +543,8 @@ components:
       properties:
         unitPrice:
           type: integer
+          minimum: 0
+          format: int64
           description: 'Total price per unit, including tax and excluding discount'
           nullable: true
         quantity:
@@ -630,21 +645,29 @@ components:
       properties:
         amount:
           type: integer
+          minimum: 0
+          format: int64
           description: 'Total amount for the shipping, including tax and discount'
           example: 1000
           nullable: true
         amountExcludingTax:
           type: integer
+          minimum: 0
+          format: int64
           description: Total amount for shipping excluding tax
           example: 1000
           nullable: true
         taxAmount:
           type: integer
+          minimum: 0
+          format: int64
           description: Total tax amount paid for the shipping
           example: 250
           nullable: true
         taxPercentage:
           type: integer
+          minimum: 0
+          maximum: 100
           description: Tax-percentage for the Shipping
           example: 25
           nullable: true
