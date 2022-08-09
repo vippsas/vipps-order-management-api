@@ -211,7 +211,7 @@ paths:
                     - name: Home Delivery
                       id: delivery
                       totalAmount: 1000
-                      totalAmountExcludingTax: 750 
+                      totalAmountExcludingTax: 750
                       totalTaxAmount: 250
                       taxPercentage: 25
                       isShipping: true
@@ -426,7 +426,7 @@ components:
         totalAmountExcludingTax:
           type: integer
           description: Total amount of order line with discount excluding tax
-          example: 1000
+          example: 750
           minimum: 0
           format: int64
           nullable: true
@@ -461,6 +461,10 @@ components:
         isReturn:
           type: boolean
           description: Flag for marking the orderline as returned. This will make it count negative towards all the sums in bottomLine
+          nullable: true
+        isShipping:
+          type: boolean
+          description: Flag for marking the orderline as a shipping line. This will be shown differently in the app.
       required:
         - name
         - id
@@ -468,7 +472,6 @@ components:
         - totalAmountExcludingTax
         - totalTaxAmount
         - taxPercentage
-        - discount
     BottomLine:
       title: BottomLine
       type: object
@@ -503,8 +506,6 @@ components:
           format: int64
         currency:
           $ref: '#/components/schemas/CurrencyEnum'
-        shippingInfo:
-          $ref: '#/components/schemas/ShippingInfo'
         tipAmount:
           type: integer
           description: Tip amount for the order
@@ -522,11 +523,13 @@ components:
           nullable: true
         shippingAmount:
           type: integer
-          deprecated: true
           description: 'Deprecated, use a regular orderLine with "isShipping" flag. Using this will result in faulty calculation of sum and tax.'
           minimum: 0
           format: int64
           nullable: true
+          deprecated: true
+        shippingInfo:
+          $ref: '#/components/schemas/ShippingInfo'
       required:
         - totalAmount
         - totalTax
