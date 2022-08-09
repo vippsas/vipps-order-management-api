@@ -194,6 +194,7 @@ paths:
                         quantityUnit: KG
                       discount: 0
                       productUrl: 'https://www.vipps.no/store/socks'
+                      isReturn: false
                     - name: Vipps flip-flops
                       id: line_item_2
                       totalAmount: 5000
@@ -206,6 +207,16 @@ paths:
                         quantityUnit: PCS
                       discount: 2500
                       productUrl: 'https://www.vipps.no/store/flipflops'
+                      isReturn: false
+                    - name: Home Delivery
+                      id: delivery
+                      totalAmount: 1000
+                      totalAmountExcludingTax: 750 
+                      totalTaxAmount: 250
+                      taxPercentage: 25
+                      isShipping: true
+                      isReturn: false
+                      discount: 0
                   bottomLine:
                     totalAmount: 7000
                     totalTax: 1400
@@ -214,11 +225,6 @@ paths:
                     tipAmount: 0
                     giftCardAmount: 0
                     terminalId: vipps_pos_122
-                    shippingInfo:
-                      amount: 1000
-                      amountExcludingTax: 800
-                      taxAmount: 200
-                      taxPercentage: 25
       description: Endpoint for adding receipts to an order.
       tags:
         - Receipt
@@ -517,7 +523,7 @@ components:
         shippingAmount:
           type: integer
           deprecated: true
-          description: 'Deprecated, use ShippingInfo object instead. Using this will result in faulty calculation of sum and tax.'
+          description: 'Deprecated, use a regular orderLine with "isShipping" flag. Using this will result in faulty calculation of sum and tax.'
           minimum: 0
           format: int64
           nullable: true
@@ -641,7 +647,8 @@ components:
     ShippingInfo:
       title: ShippingInfo
       type: object
-      description: Shipping-Information for the Order
+      description: 'Deprecated, use a regular orderLine with "isShipping" flag. Using this will result in faulty calculation of sum and tax.'
+      deprecated: true
       properties:
         amount:
           type: integer
