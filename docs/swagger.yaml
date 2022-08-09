@@ -207,9 +207,6 @@ paths:
                       discount: 2500
                       productUrl: 'https://www.vipps.no/store/flipflops'
                   bottomLine:
-                    totalAmount: 7000
-                    totalTax: 1400
-                    totalDiscount: 2500
                     currency: NOK
                     tipAmount: 0
                     giftCardAmount: 0
@@ -470,9 +467,6 @@ components:
       x-examples:
         BottomLineExample:
           value:
-            totalAmount: 6000
-            totalTax: 1200
-            totalDiscount: 2500
             currency: NOK
             tipAmount: 0
             giftCardAmount: 0
@@ -480,21 +474,24 @@ components:
       properties:
         totalAmount:
           type: integer
-          description: 'The total amount of the order, including all taxes, discounts and shipping. Can be negative'
+          description: 'Deprecated, sum will be calculated based on the sum of the orderLines'
           format: int64
           nullable: true
+          deprecated: true
         totalTax:
           type: integer
-          description: Total tax for the order
+          description: 'Deprecated, tax will be calculated based on the sum of the orderLines'
           nullable: true
           minimum: 0
           format: int64
+          deprecated: true
         totalDiscount:
           type: integer
-          description: Total discount from the orderLines
+          description: 'Deprecated, discount will be calculated based on the sum of the orderLines'
           nullable: true
           minimum: 0
           format: int64
+          deprecated: true
         currency:
           $ref: '#/components/schemas/CurrencyEnum'
         shippingInfo:
@@ -516,14 +513,12 @@ components:
           nullable: true
         shippingAmount:
           type: integer
-          deprecated: true
           description: 'Deprecated, use ShippingInfo object instead. Using this will result in faulty calculation of sum and tax.'
           minimum: 0
           format: int64
           nullable: true
+          deprecated: true
       required:
-        - totalAmount
-        - totalTax
         - currency
     UnitInfo:
       title: UnitInfo
