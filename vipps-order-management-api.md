@@ -11,9 +11,9 @@ experience when they use Vipps to pay for your products and services.
 Vipps Order management also enables you to draw customers back to your website
 or app from links on the Vipps receipt view.
 
-API version: 1.0.3.
+API version: 2.1.0.
 
-Document version: 1.0.1.
+Document version: 1.1.0.
 
 ## Table of contents
 - [Vipps Order Management API v2](#vipps-order-management-api-v2)
@@ -194,7 +194,7 @@ This is the endpoint used for adding and updating the Category for a Vipps Trans
 
 # Receipts
 
-By using the [`POST:/receipts`](https://vippsas.github.io/vipps-order-management-api/#/receipts/postReceipt) endpoint, it is possible to add a `Receipt` to a Vipps transaction. This is done by sending each OrderLine with its relevant VAT info. In environments where a paper printer isn't accessible, this can be very valuable. The receipt generated in the Vipps app is an "electronic copy" and should be approved by all Norwegian accounting firms.
+By using the [`POST:/receipts`](https://vippsas.github.io/vipps-order-management-api/#/receipts/postReceipt) endpoint, it is possible to add a `Receipt` to a Vipps transaction. This is done by sending each OrderLine with its relevant VAT info. The Sum of the receipt will be calculated based on the orderlines that are sent in. In environments where a paper printer isn't accessible, this can be very valuable. The receipt generated in the Vipps app is an "electronic copy" and should be approved by all Norwegian accounting firms.
 
 <p align="center">
   <img src="images/order-lines-extended.png" width="150">
@@ -256,9 +256,6 @@ Body:
     }
   ],
   "bottomLine": {
-    "totalAmount": 6000,
-    "totalTax": 1200,
-    "totalDiscount": 2500,
     "currency": "NOK",
     "shippingAmount": 0,
     "tipAmount": 0,
