@@ -218,9 +218,6 @@ paths:
                       isReturn: false
                       discount: 0
                   bottomLine:
-                    totalAmount: 7000
-                    totalTax: 1400
-                    totalDiscount: 2500
                     currency: NOK
                     tipAmount: 0
                     giftCardAmount: 0
@@ -479,9 +476,6 @@ components:
       x-examples:
         BottomLineExample:
           value:
-            totalAmount: 6000
-            totalTax: 1200
-            totalDiscount: 2500
             currency: NOK
             tipAmount: 0
             giftCardAmount: 0
@@ -489,21 +483,24 @@ components:
       properties:
         totalAmount:
           type: integer
-          description: 'The total amount of the order, including all taxes, discounts and shipping. Can be negative'
+          description: 'Deprecated, sum will be calculated based on the sum of the orderLines'
           format: int64
           nullable: true
+          deprecated: true
         totalTax:
           type: integer
-          description: Total tax for the order
+          description: 'Deprecated, tax will be calculated based on the sum of the totalTaxAmount field on each orderLine'
           nullable: true
           minimum: 0
           format: int64
+          deprecated: true
         totalDiscount:
           type: integer
-          description: Total discount from the orderLines
+          description: 'Deprecated, discount will be calculated based on the sum of the discount field on each orderLine'
           nullable: true
           minimum: 0
           format: int64
+          deprecated: true
         currency:
           $ref: '#/components/schemas/CurrencyEnum'
         tipAmount:
@@ -531,8 +528,6 @@ components:
         shippingInfo:
           $ref: '#/components/schemas/ShippingInfo'
       required:
-        - totalAmount
-        - totalTax
         - currency
     UnitInfo:
       title: UnitInfo
