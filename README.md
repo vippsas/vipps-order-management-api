@@ -32,7 +32,7 @@ The `category` concept may be added to a Vipps Transaction to give extra informa
 * [Categories API Guide](vipps-order-management-api.md#categories)
 
 <p align="center">
-  <img src="images/order-link-shipping-information-with-image.png" width=150" />
+  <img src="images/order-link-shipping-information-with-image.png" width="150" />
 </p>
 
 ## Questions?
