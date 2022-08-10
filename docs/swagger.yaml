@@ -480,14 +480,14 @@ components:
           deprecated: true
         totalTax:
           type: integer
-          description: 'Deprecated, tax will be calculated based on the sum of the orderLines'
+          description: 'Deprecated, tax will be calculated based on the sum of the totalTaxAmount field on each orderLine'
           nullable: true
           minimum: 0
           format: int64
           deprecated: true
         totalDiscount:
           type: integer
-          description: 'Deprecated, discount will be calculated based on the sum of the orderLines'
+          description: 'Deprecated, discount will be calculated based on the sum of the discount field on each orderLine'
           nullable: true
           minimum: 0
           format: int64
