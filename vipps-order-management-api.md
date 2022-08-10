@@ -11,7 +11,7 @@ experience when they use Vipps to pay for your products and services.
 Vipps Order management also enables you to draw customers back to your website
 or app from links on the Vipps receipt view.
 
-API version: 2.1.0.
+API version: 2.3.0.
 
 Document version: 1.1.0.
 
@@ -237,7 +237,9 @@ Body:
         "quantityUnit": "KG"
       },
       "discount": 0,
-      "productUrl": "https://www.vipps.no/store/socks"
+      "productUrl": "https://www.vipps.no/store/socks",
+      "isRefund": false,
+      "isShipping": false
     },
     {
       "name": "Vipps flip-flops",
@@ -252,12 +254,24 @@ Body:
         "quantityUnit": "PCS"
       },
       "discount": 2500,
-      "productUrl": "https://www.vipps.no/store/flipflops"
+      "productUrl": "https://www.vipps.no/store/flipflops",
+      "isRefund": false,
+      "isShipping": false
+    },
+        {
+      "name": "Home delivery",
+      "id": "shipping_1",
+      "totalAmount": 1000,
+      "totalAmountExcludingTax": 1000,
+      "totalTaxAmount": 0,
+      "taxPercentage": 0,
+      "discount": 0,
+      "isRefund": false,
+      "isShipping": true
     }
   ],
   "bottomLine": {
     "currency": "NOK",
-    "shippingAmount": 0,
     "tipAmount": 0,
     "giftCardAmount": 0,
     "terminalId": "vipps_pos_122"

@@ -211,7 +211,7 @@ paths:
                     - name: Home Delivery
                       id: delivery
                       totalAmount: 1000
-                      totalAmountExcludingTax: 750
+                      totalAmountExcludingTax: 800
                       totalTaxAmount: 250
                       taxPercentage: 25
                       isShipping: true
@@ -423,7 +423,7 @@ components:
         totalAmountExcludingTax:
           type: integer
           description: Total amount of order line with discount excluding tax
-          example: 750
+          example: 800
           minimum: 0
           format: int64
           nullable: true
@@ -457,9 +457,10 @@ components:
           nullable: true
         isReturn:
           type: boolean
+          example: false
           description: Flag for marking the orderline as returned. This will make it count negative towards all the sums in bottomLine
-          nullable: true
         isShipping:
+          example: false
           type: boolean
           description: Flag for marking the orderline as a shipping line. This will be shown differently in the app.
       required:
@@ -481,6 +482,23 @@ components:
             giftCardAmount: 0
             terminalId: vipps_pos_122
       properties:
+        currency:
+          $ref: '#/components/schemas/CurrencyEnum'
+        tipAmount:
+          type: integer
+          description: Tip amount for the order
+          minimum: 0
+          format: int64
+          nullable: true
+        giftCardAmount:
+          type: integer
+          description: Amount paid by gift card or coupon
+          minimum: 0
+          format: int64
+          nullable: true
+        terminalId:
+          type: string
+          nullable: true
         totalAmount:
           type: integer
           description: 'Deprecated, sum will be calculated based on the sum of the orderLines'
@@ -501,23 +519,6 @@ components:
           minimum: 0
           format: int64
           deprecated: true
-        currency:
-          $ref: '#/components/schemas/CurrencyEnum'
-        tipAmount:
-          type: integer
-          description: Tip amount for the order
-          minimum: 0
-          format: int64
-          nullable: true
-        giftCardAmount:
-          type: integer
-          description: Amount paid by gift card or coupon
-          minimum: 0
-          format: int64
-          nullable: true
-        terminalId:
-          type: string
-          nullable: true
         shippingAmount:
           type: integer
           description: 'Deprecated, use a regular orderLine with "isShipping" flag. Using this will result in faulty calculation of sum and tax.'
