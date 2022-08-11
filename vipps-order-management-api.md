@@ -113,7 +113,7 @@ customer to a location on your website. Links are activated when a customer
 clicks the link in the transaction page in the Vipps App. The mobile device's standard web browser will open and the user will be redirected to the link location. Below you can see an example of a Vipps transaction with the "Shipping information" `Category`.
 
 <p align="center">
-  <img src="images/order-link-shipping-information.png" alt="Shipping information link" width="250">
+  <img src="images/order-link-shipping-information.png" alt="Shipping information link" width="250" />
 </p>
 
 The category will determine how the app handles the link, additional information and push. We currently support these categories:
@@ -140,7 +140,7 @@ transaction containing an Image with the "Shipping information" `Category`.
 
 <p align="center">
   <img src="images/order-link-shipping-information-with-image.png"
-       alt="Shipping information link" width="150">
+       alt="Shipping information link" width="150" />
 </p>
 
 ## Adding an Image
@@ -197,13 +197,13 @@ This is the endpoint used for adding and updating the Category for a Vipps Trans
 By using the [`POST:/receipts`](https://vippsas.github.io/vipps-order-management-api/#/receipts/postReceipt) endpoint, it is possible to add a `Receipt` to a Vipps transaction. This is done by sending each OrderLine with its relevant VAT info. The Sum of the receipt will be calculated based on the orderlines that are sent in. In environments where a paper printer isn't accessible, this can be very valuable. The receipt generated in the Vipps app is an "electronic copy" and should be approved by all Norwegian accounting firms.
 
 <p align="center">
-  <img src="images/order-lines-extended.png" width="150">
+  <img src="images/order-lines-extended.png" width="150" />
 </p>
 
 ## Adding a Receipt
 [`POST:/v2/{paymentType}/receipts/{orderId}`](https://vippsas.github.io/vipps-order-management-api/redoc.html#operation/postReceiptV2)
 
-Endpoint for sending receipt information. Receipt information is a combination of a list of orderLines, and a bottomline with sum and vat. An OrderLine is a description of each item present in the order. Detailed information about each property is available in the [swagger](https://vippsas.github.io/vipps-order-management-api/redoc.html#operation/postReceiptV2). A receipt is immutable and, once sent, cannot be overwritten.
+This is the endpoint for sending receipt information. Receipt information is a combination of a list of orderLines, and a bottom line with sum and vat. An OrderLine is a description of each item present in the order. Detailed information about each property is available in the [swagger](https://vippsas.github.io/vipps-order-management-api/redoc.html#operation/postReceiptV2). A receipt is immutable and, once sent, cannot be overwritten.
 
 Example request:
 
