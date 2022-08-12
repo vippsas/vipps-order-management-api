@@ -178,50 +178,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Receipt'
-            examples:
-              ReceiptExample:
-                value:
-                  orderLines:
-                    - name: Vipps socks
-                      id: line_item_1
-                      totalAmount: 1000
-                      totalAmountExcludingTax: 800
-                      totalTaxAmount: 200
-                      taxPercentage: 25
-                      unitInfo:
-                        unitPrice: 400
-                        quantity: '2.5'
-                        quantityUnit: KG
-                      discount: 0
-                      productUrl: 'https://www.vipps.no/store/socks'
-                      isReturn: false
-                    - name: Vipps flip-flops
-                      id: line_item_2
-                      totalAmount: 5000
-                      totalAmountExcludingTax: 4000
-                      totalTaxAmount: 1000
-                      taxPercentage: 25
-                      unitInfo:
-                        unitPrice: 2500
-                        quantity: '3'
-                        quantityUnit: PCS
-                      discount: 2500
-                      productUrl: 'https://www.vipps.no/store/flipflops'
-                      isReturn: false
-                    - name: Home Delivery
-                      id: delivery
-                      totalAmount: 1000
-                      totalAmountExcludingTax: 800
-                      totalTaxAmount: 250
-                      taxPercentage: 25
-                      isShipping: true
-                      isReturn: false
-                      discount: 0
-                  bottomLine:
-                    currency: NOK
-                    tipAmount: 0
-                    giftCardAmount: 0
-                    terminalId: vipps_pos_122
       description: Endpoint for adding receipts to an order.
       tags:
         - Receipt
@@ -370,6 +326,51 @@ components:
       required:
         - orderLines
         - bottomLine
+      x-examples:
+        ReceiptExample:
+          orderLines:
+            - name: Vipps socks
+              id: line_item_1
+              totalAmount: 1000
+              totalAmountExcludingTax: 800
+              totalTaxAmount: 200
+              taxPercentage: 25
+              unitInfo:
+                unitPrice: 400
+                quantity: '2.5'
+                quantityUnit: KG
+              discount: 0
+              productUrl: 'https://www.vipps.no/store/socks'
+              isReturn: false
+              isShipping: false
+            - name: Vipps flip-flops
+              id: line_item_2
+              totalAmount: 5000
+              totalAmountExcludingTax: 4000
+              totalTaxAmount: 1000
+              taxPercentage: 25
+              unitInfo:
+                unitPrice: 2500
+                quantity: '3'
+                quantityUnit: PCS
+              discount: 2500
+              productUrl: 'https://www.vipps.no/store/flipflops'
+              isReturn: false
+              isShipping: false
+            - name: Home Delivery
+              id: delivery
+              totalAmount: 1000
+              totalAmountExcludingTax: 800
+              totalTaxAmount: 250
+              taxPercentage: 25
+              discount: 0
+              isReturn: false
+              isShipping: true
+          bottomLine:
+            currency: NOK
+            tipAmount: 0
+            giftCardAmount: 0
+            terminalId: vipps_pos_122
     OrderLine:
       title: OrderLine
       type: object
