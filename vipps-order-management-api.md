@@ -119,7 +119,7 @@ The mobile device's standard web browser will open and the user will be redirect
 </p>
 
 The category will determine how the app handles the link, additional information, and the push.
-You can only use one category. If you send more than one, only the last one will be honoured.
+You can only use one category. If you send more than one, only the last one will be shown in the app.
 
 We currently support these categories:
 | Category                      | Description                                                        |
