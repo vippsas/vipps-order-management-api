@@ -252,7 +252,7 @@ paths:
           $ref: '#/components/responses/409Conflict'
       tags:
         - Category
-      description: Add category to an order.
+      description: The category adds a link, specified by you, to the Transaction page on the Vipps app. Only one category is allowed.
       requestBody:
         content:
           application/json:
