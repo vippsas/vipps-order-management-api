@@ -13,7 +13,7 @@ or app from links on the Vipps receipt view.
 
 API version: 2.3.0.
 
-Document version: 1.1.0.
+Document version: 1.1.1.
 
 ## Table of contents
 - [Vipps Order Management API v2](#vipps-order-management-api-v2)
@@ -103,28 +103,34 @@ As the same OrderId can be used for both a Recurring charge and a Ecom payment, 
 # Categories
 * [API Documentation with examples here](https://vippsas.github.io/vipps-order-management-api/redoc.html#tag/Category)
 
-The following section will explain how to enrich a Vipps transaction with `Categories` and `Images`. A `Link` and `Category` is required when using this API,
+The following section will explain how to enrich a Vipps transaction with `Categories` and `Images`. `Link` and `Category` are required when using this API,
 whereas `Images` are optional.
 
 ## Category
-In order to provide customers with more up to date information about their order,
-you can add a `Category` with a URL to the Vipps Transaction that can take the
+In order to provide customers with more up-to-date information about their order,
+you can add a `Category`. This creates a link on the Vipps Transaction page of the Vipps app and can take the
 customer to a location on your website. Links are activated when a customer
-clicks the link in the transaction page in the Vipps App. The mobile device's standard web browser will open and the user will be redirected to the link location. Below you can see an example of a Vipps transaction with the "Shipping information" `Category`.
+clicks the corresponding button in the transaction page in the Vipps App.
+
+The mobile device's standard web browser will open and the user will be redirected to the link location. Below you can see an example of a Vipps transaction with the "Shipping information" `Category`.
 
 <p align="center">
   <img src="images/order-link-shipping-information.png" alt="Shipping information link" width="250" />
 </p>
 
-The category will determine how the app handles the link, additional information and push. We currently support these categories:
+The category will determine how the app handles the link, additional information, and the push.
+You can only use one category. If you send more than one, only the last one will be honoured.
+
+We currently support these categories:
 | Category                      | Description                                                        |
 | ----------------------------- | ------------------------------------------------------------------ |
-| `Receipt`                     | A link to a location where the customer can access and download a valid proof of purchase and receipt for this particular order     |
-| `Order Confirmation`          | A link to a location that contains information and status of the order. If your webshop or site has a "My orders" page or similar - this link category can take the customer there |
-| `Delivery information`        | A link to a location that contains information and status about the shipping or delivery related to the order. This could be a link to hosted by your freight carrier, or a link to your site. If your webshop or site has a "My order" page that includes delivery related information about the order - this link category can be used |
-| `Ticket`                      | A link to a location where the customer can access and download a ticket to an event, trip or transportation |
-| `Booking`                     | A link to a location that contains information and status about a booking, such as travel and rental booking. If your webshop or site has a "My bookings" page or similar, this link category can take the customer there |
-| `General`                     | If none of the other categories fit the use case for the link, a *General* category can be used. This is a link to a location that contains any kind of information pertinent to the order |
+| `Receipt`                     | A link to a location where the customer can access and download a valid proof of purchase and receipt for this particular order.     |
+| `Order Confirmation`          | A link to a location that contains information and status of the order. If your webshop or site has a "My orders" page or similar, this link category can take the customer there. |
+| `Delivery information`        | A link to a location that contains information and status about the shipping or delivery related to the order. This could be a link to a site hosted by your freight carrier, or a link to your site. If your webshop or site has a "My order" page that includes delivery related information about the order, this link category can be used. |
+| `Ticket`                      | A link to a location where the customer can access and download a ticket to an event, trip or transportation. |
+| `Booking`                     | A link to a location that contains information and status about a booking, such as travel and rental booking. If your webshop or site has a "My bookings" page or similar, this link category can take the customer there. |
+| `General`                     | If none of the other categories fit the use case for the link, a *General* category can be used. This is a link to a location that contains any kind of information pertinent to the order. |
+
 
 ## Images
 
