@@ -252,7 +252,7 @@ paths:
           $ref: '#/components/responses/409Conflict'
       tags:
         - Category
-      description: The category adds a link, specified by you, to the Transaction page on the Vipps app. Only one category is allowed.
+      description: The category adds a link, specified by you, to the Transaction page on the Vipps app. Only one (the latest) category is shown in the app.
       requestBody:
         content:
           application/json:
@@ -438,7 +438,7 @@ components:
           nullable: true
         taxPercentage:
           type: integer
-          description: Tax percantage for the order line
+          description: Tax percentage for the order line
           example: 25
           minimum: 0
           maximum: 100
