@@ -13,7 +13,7 @@ or app from links on the Vipps receipt view.
 
 API version: 2.3.0.
 
-Document version: 1.1.1.
+Document version: 1.1.2.
 
 ## Table of contents
 - [Vipps Order Management API v2](#vipps-order-management-api-v2)
