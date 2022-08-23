@@ -122,7 +122,7 @@ The category will determine how the app handles the link, additional information
 You can only use one category. If you send more than one, only the last one will be shown in the app.
 
 We currently support these categories:
-| Category                      | Description                                  | Example image      |
+| Category                      | Description                                  | Example images      |
 | ----------------------------- | -------------------------------------------- | ------------------- |
 | `Receipt`                     | A link to a location where the customer can access and download a valid proof of purchase and receipt for this particular order.     | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ![show receipt example](images/show-receipt.png) ![show receipt example](images/show-receipt-img.png)|
 | `Order Confirmation`          | A link to a location that contains information and status of the order. If your webshop or site has a "My orders" page or similar, this link category can take the customer there. | ![show order info example](images/show-order-info.png) ![show order info example](images/show-order-info-img.png)|
