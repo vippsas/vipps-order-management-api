@@ -13,7 +13,7 @@ or app from links on the Vipps receipt view.
 
 API version: 2.3.0.
 
-Document version: 1.1.1.
+Document version: 1.1.2.
 
 ## Table of contents
 - [Vipps Order Management API v2](#vipps-order-management-api-v2)
@@ -122,14 +122,17 @@ The category will determine how the app handles the link, additional information
 You can only use one category. If you send more than one, only the last one will be shown in the app.
 
 We currently support these categories:
-| Category                      | Description                                                        |
-| ----------------------------- | ------------------------------------------------------------------ |
-| `Receipt`                     | A link to a location where the customer can access and download a valid proof of purchase and receipt for this particular order.     |
-| `Order Confirmation`          | A link to a location that contains information and status of the order. If your webshop or site has a "My orders" page or similar, this link category can take the customer there. |
-| `Delivery information`        | A link to a location that contains information and status about the shipping or delivery related to the order. This could be a link to a site hosted by your freight carrier, or a link to your site. If your webshop or site has a "My order" page that includes delivery related information about the order, this link category can be used. |
-| `Ticket`                      | A link to a location where the customer can access and download a ticket to an event, trip or transportation. |
-| `Booking`                     | A link to a location that contains information and status about a booking, such as travel and rental booking. If your webshop or site has a "My bookings" page or similar, this link category can take the customer there. |
-| `General`                     | If none of the other categories fit the use case for the link, a *General* category can be used. This is a link to a location that contains any kind of information pertinent to the order. |
+| Category                      | Description                                  | Example images      |
+| ----------------------------- | -------------------------------------------- | ------------------- |
+| `Receipt`                     | A link to a location where the customer can access and download a valid proof of purchase and receipt for this particular order.     | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ![show receipt example](images/show-receipt.png) ![show receipt example](images/show-receipt-img.png)|
+| `Order Confirmation`          | A link to a location that contains information and status of the order. If your webshop or site has a "My orders" page or similar, this link category can take the customer there. | ![show order info example](images/show-order-info.png) ![show order info example](images/show-order-info-img.png)|
+| `Delivery information`        | A link to a location that contains information and status about the shipping or delivery related to the order. This could be a link to a site hosted by your freight carrier, or a link to your site. If your webshop or site has a "My order" page that includes delivery related information about the order, this link category can be used. | ![show delivery example](images/track-your-order.png) ![show delivery example](images/track-your-order-img.png)|
+| `Ticket`                      | A link to a location where the customer can access and download a ticket to an event, trip or transportation. | ![show ticket example](images/show-ticket.png) ![show ticket example](images/show-ticket-img.png)|
+| `Booking`                     | A link to a location that contains information and status about a booking, such as travel and rental booking. If your webshop or site has a "My bookings" page or similar, this link category can take the customer there. | ![show receipt example](images/show-booking-info.png) ![show receipt example](images/show-booking-info-img.png)|
+| `General`                     | If none of the other categories fit the use case for the link, a *General* category can be used. This is a link to a location that contains any kind of information pertinent to the order. | ![show more info example](images/show-more-info.png) ![show more info example](images/show-more-info-img.png)|
+
+
+
 
 
 ## Images
