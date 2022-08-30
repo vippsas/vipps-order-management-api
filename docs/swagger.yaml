@@ -171,7 +171,7 @@ paths:
                       id: delivery
                       totalAmount: 1000
                       totalAmountExcludingTax: 800
-                      totalTaxAmount: 250
+                      totalTaxAmount: 200
                       taxPercentage: 25
                       discount: 0
                       isReturn: false
