@@ -409,13 +409,13 @@ components:
           type: string
           description: Name of the product in the order line
           example: Vipps socks
-          pattern: '^[-_+%æøåÆØÅ\w\s]*$'
+          pattern: '^[ -~æøåÆØÅ]*$'
           nullable: true
         id:
           type: string
           description: The product ID
           example: '1234567890'
-          pattern: '^[-_+%æøåÆØÅ\w\s]*$'
+          pattern: '^[-_+\/\\\|%æøåÆØÅ\w\s]*$'
           nullable: true
         totalAmount:
           type: integer
@@ -503,15 +503,15 @@ components:
         barcode:
           type: string
           description: 'Experimental: Show a barcode on the receipt '
-          pattern: '^[-_+%æøåÆØÅ\w\s]*$'
+          pattern: '^[-_+\/\\\|%æøåÆØÅ\w\s]*$'
         qr:
           type: string
           description: 'Experimental: Show a QR on the receipt. It could either be to a webpage, receipt or pick-up number. '
-          pattern: '^[-_+%æøåÆØÅ\w\s]*$'
+          pattern: '^[-_+\/\\\|%æøåÆØÅ\w\s]*$'
         terminalId:
           type: string
           description: 'Experimental: Id of the physical terminal used'
-          pattern: '^[-_+%æøåÆØÅ\w\s]*$'
+          pattern: '^[-_+\/\\\|%æøåÆØÅ\w\s]*$'
           nullable: true
         totalAmount:
           type: integer
