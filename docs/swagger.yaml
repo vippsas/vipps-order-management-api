@@ -252,7 +252,7 @@ paths:
           $ref: '#/components/responses/409Conflict'
       tags:
         - Category
-      description: The category adds a link, specified by you, to the Transaction page on the Vipps app. Only one (the latest) category is shown in the app.
+      description: 'The category adds a link, specified by you, to the Transaction page on the Vipps app. Only one (the latest) category is shown in the app.'
       requestBody:
         content:
           application/json:
@@ -409,11 +409,13 @@ components:
           type: string
           description: Name of the product in the order line
           example: Vipps socks
+          pattern: '^[-_+%æøåÆØÅ\w\s]*$'
           nullable: true
         id:
           type: string
           description: The product ID
           example: '1234567890'
+          pattern: '^[-_+%æøåÆØÅ\w\s]*$'
           nullable: true
         totalAmount:
           type: integer
@@ -475,7 +477,7 @@ components:
     BottomLine:
       title: BottomLine
       type: object
-      description: 'Summary of the order. Total amount and total '
+      description: Currency and other info about the order
       x-examples:
         BottomLineExample:
           value:
@@ -498,36 +500,46 @@ components:
           minimum: 0
           format: int64
           nullable: true
+        barcode:
+          type: string
+          description: 'Experimental: Show a barcode on the receipt '
+          pattern: '^[-_+%æøåÆØÅ\w\s]*$'
+        qr:
+          type: string
+          description: 'Experimental: Show a QR on the receipt. It could either be to a webpage, receipt or pick-up number. '
+          pattern: '^[-_+%æøåÆØÅ\w\s]*$'
         terminalId:
           type: string
+          description: 'Experimental: Id of the physical terminal used'
+          pattern: '^[-_+%æøåÆØÅ\w\s]*$'
           nullable: true
         totalAmount:
           type: integer
           description: 'Deprecated, sum will be calculated based on the sum of the orderLines'
           format: int64
-          nullable: true
           deprecated: true
+          nullable: true
         totalTax:
           type: integer
           description: 'Deprecated, tax will be calculated based on the sum of the totalTaxAmount field on each orderLine'
-          nullable: true
           minimum: 0
           format: int64
           deprecated: true
+          nullable: true
         totalDiscount:
           type: integer
           description: 'Deprecated, discount will be calculated based on the sum of the discount field on each orderLine'
-          nullable: true
           minimum: 0
           format: int64
           deprecated: true
+          nullable: true
         shippingAmount:
           type: integer
           description: 'Deprecated, use a regular orderLine with "isShipping" flag. Using this will result in faulty calculation of sum and tax.'
           minimum: 0
           format: int64
-          nullable: true
           deprecated: true
+          nullable: true
         shippingInfo:
           $ref: '#/components/schemas/ShippingInfo'
       required:
