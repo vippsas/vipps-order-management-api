@@ -1,4 +1,5 @@
-<!-- START_METADATA---
+<!-- START_METADATA
+---
 title: API Guide
 sidebar_position: 12
 ---
