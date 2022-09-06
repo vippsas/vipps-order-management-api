@@ -20,7 +20,7 @@ This functionality is available for
 and
 [direct payments](https://github.com/vippsas/vipps-ecom-api),
 but not for
-[passthrough payments](https://github.com/vippsas/vipps-psp-api).
+[pass-through payments](https://github.com/vippsas/vipps-psp-api).
 
 Detailed documentation on how to use the Order Management Api can be found here:
 
@@ -35,19 +35,15 @@ You can peruse the API reference documentation as:
 
 The `receipt` concept will allow the merchant to add order lines to a Vipps Transaction. This can be used as proof of purchase when returning goods, as an electronic copy for expensing or in scenarios where a paper printer is not available. We also know our customers love this information.
 * [Receipts API Guide](vipps-order-management-api.md#receipts)
-<p align="center">
-  <img src="images/order-lines.png" width="150" />
-</p>
 
+!["Example with orderlines"](images/order-lines_sm.png)
 
 ## Categories and Images
 
 The `category` concept may be added to a Vipps Transaction to give extra information and can be used as a way to draw customers back to the merchants web page. In addition to the category, it is possible to add a image to the Vipps transaction.
 * [Categories API Guide](vipps-order-management-api.md#categories)
 
-<p align="center">
-  <img src="images/order-link-shipping-information-with-image.png" width="150" />
-</p>
+!["Example with shipping information"](images/order-link-shipping-information-with-image.png)
 
 ## Questions?
 
