@@ -7,43 +7,19 @@ END_METADATA -->
 
 # Vipps Order Management API v2
 
-This repository contains developer resources for the Vipps Order Management API. The Vipps Order Management API allows merchants to enrich Vipps transactions with a [Receipt](#receipts) and a [Category](#category) that contains an image. This information is shown to the customer in the app in their order history and right after in-store purchases.
+This repository contains developer resources for the Vipps Order Management API. 
 
-The purpose of enriching transactions is to give
-your customers more convenience, better overview and a more compelling shopping
-experience when they use Vipps to pay for your products and services.
-Vipps Order management also enables you to draw customers back to your website
-or app from links on the Vipps receipt view.
+## Getting started
 
-This functionality is available for
-[recurring](https://github.com/vippsas/vipps-recurring-api)
-and
-[direct payments](https://github.com/vippsas/vipps-ecom-api),
-but not for
-[pass-through payments](https://github.com/vippsas/vipps-psp-api).
+Review the [Getting Started](https://github.com/vippsas/vipps-developers/blob/master/vipps-getting-started.md) pages for information about API keys, product activation, contact information, contribution guidelines, etc.
 
-Detailed documentation on how to use the Order Management Api can be found here:
+## Order Management API
+
+Detailed documentation on how to use the Order Management API can be found here:
 
 * [API Guide](vipps-order-management-api.md)
+* [Swagger](https://vippsas.github.io/vipps-order-management-api/), [ReDoc](https://vippsas.github.io/vipps-order-management-api/redoc.html): Order Management API Reference Specifications.
 
-You can peruse the API reference documentation as:
-
-* [Swagger UI](https://vippsas.github.io/vipps-order-management-api/)
-* [ReDoc](https://vippsas.github.io/vipps-order-management-api/redoc.html)
-
-## Receipts
-
-The `receipt` concept will allow the merchant to add order lines to a Vipps Transaction. This can be used as proof of purchase when returning goods, as an electronic copy for expensing or in scenarios where a paper printer is not available. We also know our customers love this information.
-* [Receipts API Guide](vipps-order-management-api.md#receipts)
-
-!["Example with orderlines"](images/order-lines_sm.png)
-
-## Categories and Images
-
-The `category` concept may be added to a Vipps Transaction to give extra information and can be used as a way to draw customers back to the merchants web page. In addition to the category, it is possible to add a image to the Vipps transaction.
-* [Categories API Guide](vipps-order-management-api.md#categories)
-
-!["Example with shipping information"](images/order-link-shipping-information-with-image.png)
 
 ## Questions?
 

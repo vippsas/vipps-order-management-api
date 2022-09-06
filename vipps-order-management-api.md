@@ -11,12 +11,22 @@ The Order Management API allows merchants to enrich Vipps Transactions.
 The information given in this API will be shown to the customer in the order
 history in their app. Order Management operates with two concepts: [Categories](#categories) (with images) and [Receipts](#Receipts). These concepts may be used separately or combined, and this guide will explain how to add them.
 
+This information is shown to the customer in the app in their order history and immediately after in-store purchases.
+
 Vipps Order Management enables you to communicate with your customers through
 the payment receipts in the Vipps app. The purpose of doing this is to give
 your customers more convenience, better overview and a more compelling shopping
 experience when they use Vipps to pay for your products and services.
 Vipps Order management also enables you to draw customers back to your website
 or app from links on the Vipps receipt view.
+
+This functionality is available for
+[recurring](https://github.com/vippsas/vipps-recurring-api)
+and
+[direct payments](https://github.com/vippsas/vipps-ecom-api),
+but not for
+[pass-through payments](https://github.com/vippsas/vipps-psp-api).
+
 
 API version: 2.3.0.
 
@@ -39,8 +49,8 @@ Document version: 1.1.2.
   - [Adding a Receipt](#adding-a-receipt)
   - [Fetching Category and Receipt](#fetching-category-and-receipt)
 - [Vipps Assisted Content Monitoring](#vipps-assisted-content-monitoring)
-    - [Mandatory use case](#mandatory-use-case)
-  - [Questions?](#questions)
+  - [Mandatory use case](#mandatory-use-case)
+- [Questions?](#questions)
 
 <!-- END_TOC -->
 
@@ -110,11 +120,15 @@ As the same OrderId can be used for both a Recurring charge and a Ecom payment, 
 
 ## Categories
 
-* [API specification with examples](https://vippsas.github.io/vipps-order-management-api/redoc.html#tag/Category)
+The `category` concept may be added to a Vipps Transaction to give extra information and can be used as a way to draw customers back to the merchants web page. In addition to the category, it is possible to add a image to the Vipps transaction.
+
+!["Example with a link to shipping information"](images/order-link-shipping-information-with-image.png)
 
 
 The following section will explain how to enrich a Vipps transaction with `Categories` and `Images`. `Link` and `Category` are required when using this API,
 whereas `Images` are optional.
+
+* [OpenAPI Spec with examples](https://vippsas.github.io/vipps-order-management-api/redoc.html#tag/Category)
 
 ### Category
 
@@ -212,8 +226,11 @@ This is the endpoint used for adding and updating the Category for a Vipps Trans
 
 ## Receipts
 
+The `receipt` concept will allow the merchant to add order lines to a Vipps Transaction. This can be used as proof of purchase when returning goods, as an electronic copy for expensing or in scenarios where a paper printer is not available. We also know our customers love this information.
 
-By using the [`POST:/receipts`](https://vippsas.github.io/vipps-order-management-api/#/receipts/postReceipt) endpoint, it is possible to add a `Receipt` to a Vipps transaction. This is done by sending each OrderLine with its relevant VAT info. The Sum of the receipt will be calculated based on the orderlines that are sent in. In environments where a paper printer isn't accessible, this can be very valuable. The receipt generated in the Vipps app is an "electronic copy" and should be approved by all Norwegian accounting firms.
+!["Example with order lines"](images/order-lines_sm.png)
+
+By using the [`POST:/receipts`](https://vippsas.github.io/vipps-order-management-api/#/receipts/postReceipt) endpoint, it is possible to add a `Receipt` to a Vipps transaction. This is done by sending each OrderLine with its relevant VAT info. The Sum of the receipt will be calculated based on the order lines that are sent in. In environments where a paper printer isn't accessible, this can be very valuable. The receipt generated in the Vipps app is an "electronic copy" and should be approved by all Norwegian accounting firms.
 
 !["Extended order lines"](images/order-lines-extended_sm.png)
 
