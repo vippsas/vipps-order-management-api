@@ -7,7 +7,10 @@ END_METADATA -->
 
 # Vipps Order Management API v2
 
-This repository contains developer resources for the Vipps Order Management API. 
+This repository contains developer resources for the Vipps Order Management API.
+
+💥 Preview the new documentation pages here: https://vippsas.github.io/vipps-developer-docs/
+See the disclaimer: https://vippsas.github.io/vipps-developer-docs/docs/examples/
 
 ## Getting started
 
