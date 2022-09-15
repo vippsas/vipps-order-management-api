@@ -5,7 +5,7 @@ sidebar_position: 1
 ---
 END_METADATA -->
 
-# Vipps Order Management API v2
+# Vipps Order Management API
 
 This repository contains developer resources for the Vipps Order Management API. 
 
