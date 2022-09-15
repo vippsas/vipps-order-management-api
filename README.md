@@ -24,7 +24,7 @@ Review the [Getting Started](https://github.com/vippsas/vipps-developers/blob/ma
 
 Detailed documentation on how to use the Order Management API can be found here:
 
-* [API Guide](vipps-order-management-api.md)
+* [API guide](vipps-order-management-api.md)
 * [API reference](https://vippsas.github.io/vipps-developer-docs/api/order-management): Order Management API Reference Specifications.
 
 ## Questions?
