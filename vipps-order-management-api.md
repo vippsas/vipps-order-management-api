@@ -5,7 +5,7 @@ sidebar_position: 12
 ---
 END_METADATA -->
 
-# Vipps Order Management API v2
+# Vipps Order Management API
 
 The Order Management API allows merchants to enrich Vipps Transactions.
 The information given in this API will be shown to the customer in the order
