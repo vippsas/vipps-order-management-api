@@ -5,7 +5,7 @@ sidebar_position: 1
 ---
 END_METADATA -->
 
-# Vipps Order Management API v2
+# Vipps Order Management API
 
 This repository contains developer resources for the Vipps Order Management API. 
 
@@ -24,9 +24,8 @@ Review the [Getting Started](https://github.com/vippsas/vipps-developers/blob/ma
 
 Detailed documentation on how to use the Order Management API can be found here:
 
-* [API Guide](vipps-order-management-api.md)
-* [Swagger](https://vippsas.github.io/vipps-order-management-api/), [ReDoc](https://vippsas.github.io/vipps-developer-docs/api/order-management): Order Management API Reference Specifications.
-
+* [API guide](vipps-order-management-api.md)
+* [API reference](https://vippsas.github.io/vipps-developer-docs/api/order-management): Order Management API Reference Specifications.
 
 ## Questions?
 
