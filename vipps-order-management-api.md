@@ -182,14 +182,14 @@ Example request:
 
 Headers:
 
-```text
+```http
 Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni <snip>
 Ocp-Apim-Subscription-Key: 0f14ebcab0ec4b29ae0cb90d91b4a84a
 Merchant-Serial-Number: 123456
 Vipps-System-Name: Acme Enterprises Ecommerce DeLuxe
 Vipps-System-Version: 3.1.2
 Vipps-System-Plugin-Name: Point Of Sale Excellence
-Vipps-System-Plugin-Version 4.5.6
+Vipps-System-Plugin-Version: 4.5.6
 ```
 
 Body:
@@ -244,14 +244,14 @@ Example request:
 
 Headers:
 
-```text
+```http
 Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni <snip>
 Ocp-Apim-Subscription-Key: 0f14ebcab0ec4b29ae0cb90d91b4a84a
 Merchant-Serial-Number: 123456
 Vipps-System-Name: Acme Enterprises Ecommerce DeLuxe
 Vipps-System-Version: 3.1.2
 Vipps-System-Plugin-Name: Point Of Sale Excellence
-Vipps-System-Plugin-Version 4.5.6
+Vipps-System-Plugin-Version: 4.5.6
 ```
 
 Body:
