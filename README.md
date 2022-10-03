@@ -2,12 +2,13 @@
 ---
 title: Introduction
 sidebar_position: 1
+hide_table_of_contents: true
 ---
 END_METADATA -->
 
 # Vipps Order Management API
 
-This repository contains developer resources for the Vipps Order Management API. 
+This repository contains developer resources for the Vipps Order Management API.
 
 <!-- START_COMMENT -->
 
@@ -18,7 +19,9 @@ See the disclaimer: <https://vippsas.github.io/vipps-developer-docs/docs/example
 
 ## Getting started
 
-Review the [Getting Started](https://github.com/vippsas/vipps-developers/blob/master/vipps-getting-started.md) pages for information about API keys, product activation, contact information, contribution guidelines, etc.
+Review the
+[Getting Started](https://github.com/vippsas/vipps-developers/blob/master/vipps-getting-started.md)
+pages for information about API keys, product activation, contact information, contribution guidelines, etc.
 
 ## Order Management API
 
