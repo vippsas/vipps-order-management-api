@@ -7,6 +7,13 @@ END_METADATA -->
 
 # Vipps Order Management API
 
+<!-- START_COMMENT -->
+
+💥 Please use the new documentation:
+[Vipps Technical Documentation](https://vippsas.github.io/vipps-developer-docs/).
+
+<!-- END_COMMENT -->
+
 The Order Management API allows merchants to enrich Vipps Transactions.
 The information given in this API will be shown to the customer in the order
 history in their app. Order Management operates with two concepts: [Categories](#categories) (with images) and [Receipts](#Receipts). These concepts may be used separately or combined, and this guide will explain how to add them.
@@ -100,21 +107,21 @@ everyone sends it too. It can speed up any trouble-shooting quite a bit.
 
 The idea with order management is to add a Receipt or Category to a Vipps transaction made with the Ecom or Recurring API. So, the receipt needs to be connected to a `OrderId`. The `OrderId` is what **you** use when either initiating a Ecom payment or creating a recurring charge.
 
-The Order Management API does **no validation if the order exists**. This means that the order management enrichment may be added before or after the payment is actually created. The preferred way is to add the Order Management Data simultaneously as you initiate the payment. 
+The Order Management API does **no validation if the order exists**. This means that the order management enrichment may be added before or after the payment is actually created. The preferred way is to add the Order Management Data simultaneously as you initiate the payment.
 
 As the same OrderId can be used for both a Recurring charge and a Ecom payment, you need to supply which Vipps Product is being used by setting the appropriate `paymentType`
 
 ### Basic flow
 
 1. Initiate a Vipps eCom or recurring payment
-    - `POST:/ecomm/v2/payments` 
+    - `POST:/ecomm/v2/payments`
 2. Save the **orderId** you used when initiating
 3. Add an image (optional)
-    - `POST:/v1/images` 
+    - `POST:/v1/images`
 4. Save the imageId
 5. Add a category with link and image
     - `/v2/{paymentType}/categories/{orderId}`
-6. Add a receipt 
+6. Add a receipt
     - `/v2/{paymentType}/receipts/{orderId}`
 
 
@@ -161,7 +168,7 @@ We currently support these categories:
 ### Images
 
 With Vipps Order Management API you can upload an Image that is shown on the
-transaction in the Vipps app. When adding an `Image` along with a `Category`, the Image needs to already exist. This means that the Image needs to be uploaded first. After uploading a image to 
+transaction in the Vipps app. When adding an `Image` along with a `Category`, the Image needs to already exist. This means that the Image needs to be uploaded first. After uploading a image to
 the [`POST:/images`](https://vippsas.github.io/vipps-developer-docs/api/order-management#tag/Image/operation/postImage) endpoint, the newly uploaded
 image's `ImageId` needs be used in the Categories API.
 
