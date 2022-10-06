@@ -15,7 +15,7 @@ This repository contains developer resources for the Vipps Order Management API.
 
 <!-- START_COMMENT -->
 
-💥 Preview the new documentation pages here: <https://vippsas.github.io/vipps-developer-docs/>.
+ℹ️ Preview the new documentation pages here: <https://vippsas.github.io/vipps-developer-docs/>.
 See the disclaimer: <https://vippsas.github.io/vipps-developer-docs/docs/examples/>.
 
 <!-- END_COMMENT -->
