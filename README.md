@@ -22,9 +22,9 @@ This repository contains developer resources for the Vipps Order Management API.
 
 ## Getting started
 
-Review the
+See
 [Getting Started](https://github.com/vippsas/vipps-developers/blob/master/vipps-getting-started.md)
-pages for information about API keys, product activation, contact information, contribution guidelines, etc.
+for information about API keys, product activation, how to make API calls, etc.
 
 ## Order Management API
 
