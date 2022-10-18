@@ -37,7 +37,7 @@ but not for
 
 API version: 2.3.0.
 
-Document version: 1.1.2.
+Document version: 1.2.0.
 
 <!-- START_TOC -->
 ## Table of contents
@@ -71,37 +71,17 @@ from
 
 ### Authentication
 
-All Vipps API calls are authenticated and authorized with an access token
-(JWT bearer token) and an API subscription key:
-
-| Header Name | Header Value | Description |
-| ----------- | ------------ | ----------- |
-| `Authorization` | `Bearer <JWT access token>` | Type: Authorization token. This obtained as described in [Getting started](https://github.com/vippsas/vipps-developers/blob/master/vipps-getting-started.md): [Get an access token](https://github.com/vippsas/vipps-developers/blob/master/vipps-getting-started.md#get-an-access-token) |
-| `Ocp-Apim-Subscription-Key` | Base 64 encoded string | The subscription key for this API. This is available on [portal.vipps.no](https://portal.vipps.no). |
-
-For more information about how to obtain an access token and all details around this, please see:
-[Quick overview of how to make an API call](https://github.com/vippsas/vipps-developers/blob/master/vipps-getting-started.md#quick-overview-of-how-to-make-an-api-call).
+All Vipps API calls are authenticated with an access token and an API subscription key.
+See
+[Get an access token](https://github.com/vippsas/vipps-developers/blob/master/vipps-getting-started.md#get-an-access-token)
+in the Getting started guide, for details.
 
 ### Vipps HTTP headers
 
-We recommend using the following (optional) HTTP headers for all requests to the
-Vipps eCom API. These headers provide useful metadata about the merchant's system,
-which help Vipps improve our services, and also help in investigating problems.
+We recommend using the standard Vipps HTTP headers for all requests.
 
-These headers are **required for plugins and partners** and sent by the recent versions of
-[the official Vipps plugins](https://github.com/vippsas/vipps-plugins)
-and we recommend all customers with direct integration with the API to also do so.
-
-Partners must always send the `Merchant-Serial-Number` header, and we recommend that
-everyone sends it too. It can speed up any trouble-shooting quite a bit.
-
-| Header                        | Description                                  | Example value       |
-| ----------------------------- | -------------------------------------------- | ------------------- |
-| `Merchant-Serial-Number`      | The MSN for the sale unit                    | `123456`            |
-| `Vipps-System-Name`           | The name of the ecommerce solution           | `woocommerce`       |
-| `Vipps-System-Version`        | The version number of the ecommerce solution | `5.4`               |
-| `Vipps-System-Plugin-Name`    | The name of the ecommerce plugin             | `vipps-woocommerce` |
-| `Vipps-System-Plugin-Version` | The version number of the ecommerce plugin   | `1.4.1`             |
+See [Vipps HTTP headers](https://github.com/vippsas/vipps-developers/blob/master/vipps-getting-started.md#vipps-http-headers)
+in the Getting started guide, for details.
 
 ### OrderId and PaymentType
 
