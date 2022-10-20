@@ -42,22 +42,24 @@ Document version: 1.2.0.
 <!-- START_TOC -->
 ## Table of contents
 
-- [Before you begin](#before-you-begin)
-  - [Authentication](#authentication)
-  - [Vipps HTTP headers](#vipps-http-headers)
-  - [OrderId and PaymentType](#orderid-and-paymenttype)
-  - [Basic flow](#basic-flow)
-- [Categories](#categories)
-  - [Category](#category)
-  - [Images](#images)
-  - [Adding an Image](#adding-an-image)
-  - [Adding and changing Category](#adding-and-changing-category)
-- [Receipts](#receipts)
-  - [Adding a Receipt](#adding-a-receipt)
-  - [Fetching Category and Receipt](#fetching-category-and-receipt)
-- [Vipps Assisted Content Monitoring](#vipps-assisted-content-monitoring)
-  - [Mandatory use case](#mandatory-use-case)
-- [Questions?](#questions)
+- [Vipps Order Management API](#vipps-order-management-api)
+  - [Table of contents](#table-of-contents)
+  - [Before you begin](#before-you-begin)
+    - [Authentication](#authentication)
+    - [Vipps HTTP headers](#vipps-http-headers)
+    - [OrderId and PaymentType](#orderid-and-paymenttype)
+    - [Basic flow](#basic-flow)
+  - [Categories](#categories)
+    - [Category](#category)
+    - [Images](#images)
+    - [Adding an Image](#adding-an-image)
+    - [Adding and changing Category](#adding-and-changing-category)
+  - [Receipts](#receipts)
+    - [Adding a Receipt](#adding-a-receipt)
+    - [Fetching Category and Receipt](#fetching-category-and-receipt)
+  - [Vipps Assisted Content Monitoring](#vipps-assisted-content-monitoring)
+    - [Mandatory use case](#mandatory-use-case)
+  - [Questions?](#questions)
 
 <!-- END_TOC -->
 
@@ -89,7 +91,7 @@ The idea with order management is to add a Receipt or Category to a Vipps transa
 
 The Order Management API does **no validation if the order exists**. This means that the order management enrichment may be added before or after the payment is actually created. The preferred way is to add the Order Management Data simultaneously as you initiate the payment.
 
-As the same OrderId can be used for both a Recurring charge and a Ecom payment, you need to supply which Vipps Product is being used by setting the appropriate `paymentType`
+As the same OrderId can be used for both a Recurring charge and a Ecom payment, you need to supply which Vipps Product is being used by setting the appropriate `paymentType` - which is either `ecom` or `recurring`
 
 ### Basic flow
 
@@ -199,7 +201,7 @@ The response will then look like this:
 
 ### Adding and changing Category
 
-[`PUT:/v2/{paymentType}/categories/{orderId}`](https://vippsas.github.io/vipps-developer-docs/api/order-management#operation/putCategoryV2)
+[`PUT:/order-management/v2/{paymentType}/categories/{orderId}`](https://vippsas.github.io/vipps-developer-docs/api/order-management#operation/putCategoryV2)
 
 This is the endpoint used for adding and updating the Category for a Vipps Transaction. The category is mutable, and a new request will completely overwrite previous requests. Here is an example request:
 
@@ -223,7 +225,7 @@ By using the [`POST:/receipts`](https://vippsas.github.io/vipps-developer-docs/a
 
 ### Adding a Receipt
 
-[`POST:/v2/{paymentType}/receipts/{orderId}`](https://vippsas.github.io/vipps-developer-docs/api/order-management#operation/postReceiptV2)
+[`POST:/order-management/v2/{paymentType}/receipts/{orderId}`](https://vippsas.github.io/vipps-developer-docs/api/order-management#operation/postReceiptV2)
 
 This is the endpoint for sending receipt information. Receipt information is a combination of a list of orderLines, and a bottom line with sum and vat. An OrderLine is a description of each item present in the order. Detailed information about each property is available in the [swagger](https://vippsas.github.io/vipps-developer-docs/api/order-management#operation/postReceiptV2). A receipt is immutable and, once sent, cannot be overwritten.
 
@@ -303,7 +305,7 @@ Body:
 
 ### Fetching Category and Receipt
 
-[`GET:/v2/{paymentType}/{orderId}`](https://vippsas.github.io/vipps-developer-docs/api/order-management#operation/getOrderV2)
+[`GET:/order-management/v2/{paymentType}/{orderId}`](https://vippsas.github.io/vipps-developer-docs/api/order-management#operation/getOrderV2)
 
 This endpoint is used for getting both `Category` and `Receipt` for the Vipps Transaction. The response body includes ID references to images previously uploaded, Links, and the OrderLines added.
 
