@@ -37,7 +37,7 @@ but not for
 
 API version: 2.3.0.
 
-Document version: 1.2.0.
+Document version: 1.2.1.
 
 <!-- START_TOC -->
 ## Table of contents
@@ -93,17 +93,18 @@ As the same OrderId can be used for both a Recurring charge and a Ecom payment, 
 
 ### Basic flow
 
-1. Initiate a Vipps eCom or recurring payment
-    - `POST:/ecomm/v2/payments`
-2. Save the **orderId** you used when initiating
+1. Initiate a Vipps eCom API payment or a Vipps Recurring API charge:
+  [`POST:/ecomm/v2/payments`](https://vippsas.github.io/vipps-developer-docs/api/ecom#tag/Vipps-eCom-API/operation/initiatePaymentV3UsingPOST)
+  or
+  [https://vippsas.github.io/vipps-developer-docs/api/recurring#tag/Charge-v2-endpoints/operation/CreateCharge]
+2. Save the `orderId` you used when initiating.
 3. Add an image (optional)
-    - `POST:/v1/images`
-4. Save the imageId
+  [`POST:/v1/images`](https://vippsas.github.io/vipps-developer-docs/api/order-management#tag/Image/operation/postImage)
+4. Save the `imageId`
 5. Add a category with link and image
-    - `/v2/{paymentType}/categories/{orderId}`
+  [`POST:/order-management/v1/{paymentType}/categories/{orderId}`](https://vippsas.github.io/vipps-developer-docs/api/order-management#tag/Category/operation/putCategoryV2)
 6. Add a receipt
-    - `/v2/{paymentType}/receipts/{orderId}`
-
+  [`POST:/order-management/v1/{paymentType}/receipts/{orderId}`](https://vippsas.github.io/vipps-developer-docs/api/order-management#tag/Receipt/operation/postReceiptV2)
 
 ## Categories
 
@@ -303,7 +304,7 @@ Body:
 
 ### Fetching Category and Receipt
 
-[`GET:/v2/{paymentType}/{orderId}`](https://vippsas.github.io/vipps-developer-docs/api/order-management#operation/getOrderV2)
+[`GET:/order-management/v2/{paymentType}/{orderId}`](https://vippsas.github.io/vipps-developer-docs/api/order-management#tag/Order/operation/getOrderV2)
 
 This endpoint is used for getting both `Category` and `Receipt` for the Vipps Transaction. The response body includes ID references to images previously uploaded, Links, and the OrderLines added.
 

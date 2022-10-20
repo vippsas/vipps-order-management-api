@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: Vipps Order Management API
-  version: '1.0'
+  version: '1.1.0'
   description: >-
     API to add and read additional info for Vipps orders.
     See the [API Guide](https://vippsas.github.io/vipps-developer-docs/docs/APIs/order-management-api) for more information.
@@ -12,7 +12,7 @@ servers:
   - url: 'https://api.vipps.no/order-management'
     description: Vipps Order Management API
 paths:
-  '/v1/orders/{transactionId}':
+  '/order-management/v1/orders/{transactionId}':
     parameters:
       - schema:
           type: string
@@ -73,7 +73,7 @@ paths:
       tags:
         - Order
       deprecated: true
-  /v1/images:
+  /order-management/v1/images:
     parameters: []
     post:
       summary: Add an image
@@ -183,7 +183,7 @@ paths:
                     tipAmount: 0
                     giftCardAmount: 0
                     terminalId: vipps_pos_122
-  '/v1/receipts/{transactionId}':
+  '/order-management/v1/receipts/{transactionId}':
     parameters:
       - schema:
           type: string
