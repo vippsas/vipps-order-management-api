@@ -99,7 +99,7 @@ As the same OrderId can be used for both a Recurring charge and a Ecom payment, 
   [https://vippsas.github.io/vipps-developer-docs/api/recurring#tag/Charge-v2-endpoints/operation/CreateCharge]
 2. Save the `orderId` you used when initiating.
 3. Add an image (optional)
-  [`POST:/v1/images`](https://vippsas.github.io/vipps-developer-docs/api/order-management#tag/Image/operation/postImage)
+  [`POST:/order-management/v1/images`](https://vippsas.github.io/vipps-developer-docs/api/order-management#tag/Image/operation/postImage)
 4. Save the `imageId`
 5. Add a category with link and image
   [`POST:/order-management/v1/{paymentType}/categories/{orderId}`](https://vippsas.github.io/vipps-developer-docs/api/order-management#tag/Category/operation/putCategoryV2)
