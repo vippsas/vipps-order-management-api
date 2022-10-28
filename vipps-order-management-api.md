@@ -67,7 +67,7 @@ Document version: 1.2.0.
 
 This document assumes you have signed up as a organization with Vipps and have
 retrieved your API credentials for
-[the Vipps test environment](https://github.com/vippsas/vipps-developers/blob/master/vipps-test-environment.md)
+[the Vipps test environment](https://github.com/vippsas/vipps-developers/blob/master/developer-resources/test-environment.md)
 from
 [portal.vipps.no](https://portal.vipps.no).
 
@@ -324,6 +324,6 @@ In order to comply with Vipps Assisted Content Monitoring all transactions must 
 We're always happy to help with code or other questions you might have!
 Please create an [issue](https://github.com/vippsas/vipps-ecom-api/issues),
 a [pull request](https://github.com/vippsas/vipps-ecom-api/pulls),
-or [contact us](https://github.com/vippsas/vipps-developers/blob/master/contact.md).
+or [contact us](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/contact).
 
-Sign up for our [Technical newsletter for developers](https://github.com/vippsas/vipps-developers/tree/master/newsletters).
+Sign up for our [Technical newsletter for developers](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/newsletters).
