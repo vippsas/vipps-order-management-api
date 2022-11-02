@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: Vipps Order Management API
-  version: '1.0'
+  version: '1.0.1'
   description: >-
     API to add and read additional info for Vipps orders.
     See the [API Guide](https://vippsas.github.io/vipps-developer-docs/docs/APIs/order-management-api) for more information.
@@ -419,21 +419,21 @@ components:
           nullable: true
         totalAmount:
           type: integer
-          description: 'Total amount of the order line, including tax and discount'
+          description: 'Total amount of the order line, including tax and discount. Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 499 kr = 49900 øre.'
           example: 1000
           minimum: 0
           format: int64
           nullable: true
         totalAmountExcludingTax:
           type: integer
-          description: Total amount of order line with discount excluding tax
+          description: 'Total amount of order line with discount excluding tax. Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 499 kr = 49900 øre.'
           example: 800
           minimum: 0
           format: int64
           nullable: true
         totalTaxAmount:
           type: integer
-          description: Total tax amount paid for the order line
+          description: 'Total tax amount paid for the order line. Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 499 kr = 49900 øre.'
           example: 250
           minimum: 0
           format: int64
@@ -449,7 +449,7 @@ components:
           $ref: '#/components/schemas/UnitInfo'
         discount:
           type: integer
-          description: Total discount for the order line
+          description: 'Total discount for the order line. Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 499 kr = 49900 øre.'
           example: 0
           minimum: 0
           format: int64
@@ -477,7 +477,7 @@ components:
     BottomLine:
       title: BottomLine
       type: object
-      description: 'Summary of the order. Total amount and total '
+      description: 'Summary of the order. Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 499 kr = 49900 øre.'
       x-examples:
         BottomLineExample:
           value:
@@ -490,13 +490,13 @@ components:
           $ref: '#/components/schemas/CurrencyEnum'
         tipAmount:
           type: integer
-          description: Tip amount for the order
+          description: 'Tip amount for the order. Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 499 kr = 49900 øre.'
           minimum: 0
           format: int64
           nullable: true
         giftCardAmount:
           type: integer
-          description: Amount paid by gift card or coupon
+          description: 'Amount paid by gift card or coupon. Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 499 kr = 49900 øre.'
           minimum: 0
           format: int64
           nullable: true
@@ -657,28 +657,28 @@ components:
           type: integer
           minimum: 0
           format: int64
-          description: 'Total amount for the shipping, including tax and discount'
+          description: 'Total amount for the shipping, including tax and discount. Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 499 kr = 49900 øre.'
           example: 1000
           nullable: true
         amountExcludingTax:
           type: integer
           minimum: 0
           format: int64
-          description: Total amount for shipping excluding tax
+          description: 'Total amount for shipping excluding tax. Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 499 kr = 49900 øre.'
           example: 1000
           nullable: true
         taxAmount:
           type: integer
           minimum: 0
           format: int64
-          description: Total tax amount paid for the shipping
+          description: 'Total tax amount paid for the shipping. Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 499 kr = 49900 øre.'
           example: 250
           nullable: true
         taxPercentage:
           type: integer
           minimum: 0
           maximum: 100
-          description: Tax-percentage for the Shipping
+          description: Tax percentage for the shipping
           example: 25
           nullable: true
       required:
