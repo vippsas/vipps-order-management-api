@@ -16,7 +16,7 @@ END_METADATA -->
 
 The Order Management API allows merchants to enrich Vipps Transactions.
 The information given in this API will be shown to the customer in the order
-history in their app. Order Management operates with two concepts: [Categories](#categories) (with images) and [Receipts](#Receipts). These concepts may be used separately or combined, and this guide will explain how to add them.
+history in their app. Order Management operates with two concepts: [Categories](#categories) (with images) and [Receipts](#receipts). These concepts may be used separately or combined, and this guide will explain how to add them.
 
 This information is shown to the customer in the app in their order history and immediately after in-store purchases.
 
@@ -28,16 +28,16 @@ Vipps Order management also enables you to draw customers back to your website
 or app from links on the Vipps receipt view.
 
 This functionality is available for
-[recurring](https://github.com/vippsas/vipps-recurring-api)
+[recurring](https://vippsas.github.io/vipps-developer-docs/docs/APIs/recurring-api/)
 and
-[direct payments](https://github.com/vippsas/vipps-ecom-api),
+[direct payments](https://vippsas.github.io/vipps-developer-docs/docs/APIs/ecom-api/),
 but not for
-[pass-through payments](https://github.com/vippsas/vipps-psp-api).
+[pass-through payments](https://vippsas.github.io/vipps-developer-docs/docs/APIs/psp-api/).
 
 
 API version: 2.3.0.
 
-Document version: 1.2.0.
+Document version: 1.2.1.
 
 <!-- START_TOC -->
 ## Table of contents
@@ -67,7 +67,7 @@ Document version: 1.2.0.
 
 This document assumes you have signed up as a organization with Vipps and have
 retrieved your API credentials for
-[the Vipps test environment](https://github.com/vippsas/vipps-developers/blob/master/developer-resources/test-environment.md)
+[the Vipps test environment](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/developer-resources/test-environment)
 from
 [portal.vipps.no](https://portal.vipps.no).
 
@@ -75,14 +75,14 @@ from
 
 All Vipps API calls are authenticated with an access token and an API subscription key.
 See
-[Get an access token](https://github.com/vippsas/vipps-developers/blob/master/vipps-getting-started.md#get-an-access-token)
+[Get an access token](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/vipps-getting-started#get-an-access-token)
 in the Getting started guide, for details.
 
 ### Vipps HTTP headers
 
 We recommend using the standard Vipps HTTP headers for all requests.
 
-See [Vipps HTTP headers](https://github.com/vippsas/vipps-developers/blob/master/common-topics/http-headers.md)
+See [Vipps HTTP headers](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/common-topics/http-headers)
 in the Getting started guide, for details.
 
 ### OrderId and PaymentType
@@ -227,7 +227,7 @@ By using the [`POST:/receipts`](https://vippsas.github.io/vipps-developer-docs/a
 
 [`POST:/order-management/v2/{paymentType}/receipts/{orderId}`](https://vippsas.github.io/vipps-developer-docs/api/order-management#operation/postReceiptV2)
 
-This is the endpoint for sending receipt information. Receipt information is a combination of a list of orderLines, and a bottom line with sum and vat. An OrderLine is a description of each item present in the order. Detailed information about each property is available in the [swagger](https://vippsas.github.io/vipps-developer-docs/api/order-management#operation/postReceiptV2). A receipt is immutable and, once sent, cannot be overwritten.
+This is the endpoint for sending receipt information. Receipt information is a combination of a list of orderLines, and a bottom line with sum and vat. An OrderLine is a description of each item present in the order. Detailed information about each property is available in the [OpenAPI spec](https://vippsas.github.io/vipps-developer-docs/api/order-management#operation/postReceiptV2). A receipt is immutable and, once sent, cannot be overwritten.
 
 Example request:
 
@@ -322,8 +322,8 @@ In order to comply with Vipps Assisted Content Monitoring all transactions must 
 ## Questions?
 
 We're always happy to help with code or other questions you might have!
-Please create an [issue](https://github.com/vippsas/vipps-ecom-api/issues),
-a [pull request](https://github.com/vippsas/vipps-ecom-api/pulls),
+Please create an [issue](https://github.com/vippsas/vipps-order-management-api/issues),
+a [pull request](https://github.com/vippsas/vipps-order-management-api/pulls),
 or [contact us](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/contact).
 
 Sign up for our [Technical newsletter for developers](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/newsletters).
