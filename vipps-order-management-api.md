@@ -67,7 +67,7 @@ Document version: 1.2.1.
 
 This document assumes you have signed up as a organization with Vipps and have
 retrieved your API credentials for
-[the Vipps test environment](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/developer-resources/test-environment)
+[the Vipps test environment](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/test-environment)
 from
 [portal.vipps.no](https://portal.vipps.no).
 
