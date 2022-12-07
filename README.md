@@ -30,6 +30,7 @@ for information about API keys, product activation, how to make API calls, etc.
 
 Detailed documentation on how to use the Order Management API can be found here:
 
+* [API Quick Start](vipps-order-management-api-quick-start.md): Quick Start.
 * [API guide](vipps-order-management-api.md)
 * [API reference](https://vippsas.github.io/vipps-developer-docs/api/order-management): Order Management API Reference Specifications.
 
