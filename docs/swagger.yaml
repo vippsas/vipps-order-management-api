@@ -2,9 +2,7 @@ openapi: 3.0.0
 info:
   title: Vipps Order Management API
   version: '1.0'
-  description: >-
-    API to add and read additional info for Vipps orders.
-    See the [API Guide](https://vippsas.github.io/vipps-developer-docs/docs/APIs/order-management-api) for more information.
+  description: 'API to add and read additional info for Vipps orders. See the [API Guide](https://vippsas.github.io/vipps-developer-docs/docs/APIs/order-management-api) for more information.'
   contact:
     name: Vipps
     url: 'https://vipps.no/kontakt-oss/bedrift/vipps/'
@@ -254,7 +252,7 @@ paths:
           $ref: '#/components/responses/409Conflict'
       tags:
         - Category
-      description: The category adds a link, specified by you, to the Transaction page on the Vipps app. Only one (the latest) category is shown in the app.
+      description: 'The category adds a link, specified by you, to the Transaction page on the Vipps app. Only one (the latest) category is shown in the app.'
       requestBody:
         content:
           application/json:
@@ -485,6 +483,7 @@ components:
             tipAmount: 0
             giftCardAmount: 0
             terminalId: vipps_pos_122
+            paymentSource: card
       properties:
         currency:
           $ref: '#/components/schemas/CurrencyEnum'
@@ -507,31 +506,33 @@ components:
           type: integer
           description: 'Deprecated, sum will be calculated based on the sum of the orderLines'
           format: int64
-          nullable: true
           deprecated: true
+          nullable: true
         totalTax:
           type: integer
           description: 'Deprecated, tax will be calculated based on the sum of the totalTaxAmount field on each orderLine'
-          nullable: true
           minimum: 0
           format: int64
           deprecated: true
+          nullable: true
         totalDiscount:
           type: integer
           description: 'Deprecated, discount will be calculated based on the sum of the discount field on each orderLine'
-          nullable: true
           minimum: 0
           format: int64
           deprecated: true
+          nullable: true
         shippingAmount:
           type: integer
           description: 'Deprecated, use a regular orderLine with "isShipping" flag. Using this will result in faulty calculation of sum and tax.'
           minimum: 0
           format: int64
-          nullable: true
           deprecated: true
+          nullable: true
         shippingInfo:
           $ref: '#/components/schemas/ShippingInfo'
+        paymentSource:
+          $ref: '#/components/schemas/PaymentSourceEnum'
       required:
         - currency
     UnitInfo:
@@ -686,6 +687,15 @@ components:
         - amountExcludingTax
         - taxAmount
         - taxPercentage
+    PaymentSourceEnum:
+      type: string
+      title: PaymentSourceEnum
+      enum:
+        - card
+        - voucher
+        - cash
+        - giftcard
+        - wallet
   securitySchemes:
     BearerToken:
       type: http
