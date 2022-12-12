@@ -695,7 +695,6 @@ components:
         - voucher
         - cash
         - giftcard
-        - wallet
   securitySchemes:
     BearerToken:
       type: http
