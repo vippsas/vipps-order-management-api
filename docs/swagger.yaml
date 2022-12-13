@@ -179,8 +179,12 @@ paths:
                   bottomLine:
                     currency: NOK
                     tipAmount: 0
-                    giftCardAmount: 0
                     terminalId: vipps_pos_122
+                    paymentSources:
+                      giftCard: 0
+                      card: 0
+                      voucher: 0
+                      cash: 0
   '/v1/receipts/{transactionId}':
     parameters:
       - schema:
@@ -372,6 +376,32 @@ components:
       required:
         - orderLines
         - bottomLine
+      x-examples:
+        ReceiptExample:
+          orderLines:
+            - name: Vipps socks
+              id: '1234567890'
+              totalAmount: 1000
+              totalAmountExcludingTax: 800
+              totalTaxAmount: 250
+              taxPercentage: 25
+              unitInfo:
+                unitPrice: 0
+                quantity: '0.822'
+                quantityUnit: PCS
+              discount: 0
+              productUrl: 'https://www.vipps.no/store/socks'
+              isReturn: false
+              isShipping: false
+          bottomLine:
+            tipAmount: 0
+            currency: NOK
+            terminalId: string
+            paymentSources:
+              giftCard: 0
+              card: 0
+              voucher: 0
+              cash: 0
     OrderLine:
       title: OrderLine
       type: object
@@ -481,9 +511,8 @@ components:
           value:
             currency: NOK
             tipAmount: 0
-            giftCardAmount: 0
             terminalId: vipps_pos_122
-            paymentSource:
+            paymentSources:
               card: 100
               giftCard: 50
       properties:
@@ -500,6 +529,7 @@ components:
           description: Amount paid by gift card or coupon
           minimum: 0
           format: int64
+          deprecated: true
           nullable: true
         terminalId:
           type: string
@@ -533,7 +563,7 @@ components:
           nullable: true
         shippingInfo:
           $ref: '#/components/schemas/ShippingInfo'
-        paymentSource:
+        paymentSources:
           $ref: '#/components/schemas/PaymentSources'
       required:
         - currency
@@ -701,7 +731,7 @@ components:
         cash:
           type: integer
       x-examples:
-        example-1:
+        PaymentSourcesExample:
           giftCard: 200
           card: 50
           voucher: 25
