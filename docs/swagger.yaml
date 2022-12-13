@@ -483,7 +483,9 @@ components:
             tipAmount: 0
             giftCardAmount: 0
             terminalId: vipps_pos_122
-            paymentSource: card
+            paymentSource:
+              card: 100
+              giftCard: 50
       properties:
         currency:
           $ref: '#/components/schemas/CurrencyEnum'
@@ -532,7 +534,7 @@ components:
         shippingInfo:
           $ref: '#/components/schemas/ShippingInfo'
         paymentSource:
-          $ref: '#/components/schemas/PaymentSourceEnum'
+          $ref: '#/components/schemas/PaymentSources'
       required:
         - currency
     UnitInfo:
@@ -687,14 +689,23 @@ components:
         - amountExcludingTax
         - taxAmount
         - taxPercentage
-    PaymentSourceEnum:
-      type: string
-      title: PaymentSourceEnum
-      enum:
-        - card
-        - voucher
-        - cash
-        - giftcard
+    PaymentSources:
+      type: object
+      properties:
+        giftCard:
+          type: integer
+        card:
+          type: integer
+        voucher:
+          type: integer
+        cash:
+          type: integer
+      x-examples:
+        example-1:
+          giftCard: 200
+          card: 50
+          voucher: 25
+          cash: 25
   securitySchemes:
     BearerToken:
       type: http
