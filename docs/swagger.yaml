@@ -185,6 +185,7 @@ paths:
                       card: 0
                       voucher: 0
                       cash: 0
+                    receiptNumber: '123456789'
   '/v1/receipts/{transactionId}':
     parameters:
       - schema:
@@ -402,6 +403,7 @@ components:
               card: 0
               voucher: 0
               cash: 0
+            receiptNumber: '123456789'
     OrderLine:
       title: OrderLine
       type: object
@@ -515,6 +517,7 @@ components:
             paymentSources:
               card: 100
               giftCard: 50
+            receiptNumber: '123456789'
       properties:
         currency:
           $ref: '#/components/schemas/CurrencyEnum'
@@ -565,6 +568,9 @@ components:
           $ref: '#/components/schemas/ShippingInfo'
         paymentSources:
           $ref: '#/components/schemas/PaymentSources'
+        'receiptNumber ':
+          type: string
+          nullable: true
       required:
         - currency
     UnitInfo:
