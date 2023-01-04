@@ -407,7 +407,10 @@ components:
     OrderLine:
       title: OrderLine
       type: object
-      description: 'All numbers are interpreted as integers with two trailing zeros. ex: 10.00 = 1000'
+      description: >-
+        All numbers are interpreted as integers with two trailing zeros. ex: 10.00 = 1000.
+        Amounts are specified in minor units.
+        For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 10 kr = 1000 øre.
       x-examples:
         OrderLineExample:
           value:
