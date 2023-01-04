@@ -369,6 +369,10 @@ components:
       properties:
         orderLines:
           type: array
+          description:  >-
+            All numbers are interpreted as integers with two trailing zeros. ex: 10.00 = 1000.
+            Amounts are specified in minor units.
+            For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 10 kr = 1000 øre.
           minItems: 1
           items:
             $ref: '#/components/schemas/OrderLine'
@@ -409,8 +413,6 @@ components:
       type: object
       description: >-
         All numbers are interpreted as integers with two trailing zeros. ex: 10.00 = 1000.
-        Amounts are specified in minor units.
-        For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 10 kr = 1000 øre.
       x-examples:
         OrderLineExample:
           value:
@@ -454,8 +456,8 @@ components:
           type: integer
           description: >-
            Total amount of the order line, including tax and discount.
-            Amounts are specified in minor units.
-            For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 10 kr = 1000 øre.
+           Amounts are specified in minor units.
+           For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 10 kr = 1000 øre.
           example: 1000
           minimum: 0
           format: int64
@@ -527,7 +529,10 @@ components:
     BottomLine:
       title: BottomLine
       type: object
-      description: Summary of the order. Total amount and total.
+      description: >-
+        Summary of the order. Total amount and total.
+        Amounts are specified in minor units.
+        For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 20 kr = 2000 øre.
       x-examples:
         BottomLineExample:
           value:
@@ -553,10 +558,7 @@ components:
           nullable: true
         giftCardAmount:
           type: integer
-          description: >-
-            Amount paid by gift card or coupon.
-            Amounts are specified in minor units.
-            For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 200 kr = 20000 øre.
+          description: 'Amount paid by gift card or coupon.'
           example: 20000
           minimum: 0
           format: int64
