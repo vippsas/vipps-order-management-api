@@ -369,6 +369,10 @@ components:
       properties:
         orderLines:
           type: array
+          description:  >-
+            All numbers are interpreted as integers with two trailing zeros. ex: 10.00 = 1000.
+            Amounts are specified in minor units.
+            For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 10 kr = 1000 øre.
           minItems: 1
           items:
             $ref: '#/components/schemas/OrderLine'
@@ -407,7 +411,8 @@ components:
     OrderLine:
       title: OrderLine
       type: object
-      description: 'All numbers are interpreted as integers with two trailing zeros. ex: 10.00 = 1000'
+      description: >-
+        All numbers are interpreted as integers with two trailing zeros. ex: 10.00 = 1000.
       x-examples:
         OrderLineExample:
           value:
@@ -439,7 +444,7 @@ components:
       properties:
         name:
           type: string
-          description: Name of the product in the order line
+          description: Name of the product in the order line.
           example: Vipps socks
           nullable: true
         id:
@@ -449,28 +454,40 @@ components:
           nullable: true
         totalAmount:
           type: integer
-          description: 'Total amount of the order line, including tax and discount'
+          description: >-
+           Total amount of the order line, including tax and discount.
+           Amounts are specified in minor units.
+           For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 10 kr = 1000 øre.
           example: 1000
           minimum: 0
           format: int64
           nullable: true
         totalAmountExcludingTax:
           type: integer
-          description: Total amount of order line with discount excluding tax
+          description: >-
+            Total amount of order line with discount excluding tax.
+            Amounts are specified in minor units.
+            For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 8 kr = 800 øre.
           example: 800
           minimum: 0
           format: int64
           nullable: true
         totalTaxAmount:
           type: integer
-          description: Total tax amount paid for the order line
+          description: >-
+            Total tax amount paid for the order line.
+            Amounts are specified in minor units.
+            For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 2.5 kr = 250 øre.
           example: 250
           minimum: 0
           format: int64
           nullable: true
         taxPercentage:
           type: integer
-          description: Tax percentage for the order line
+          description: >-
+            Tax percentage for the order line.
+            Amounts are specified in minor units.
+            For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 0.25 kr = 25 øre.
           example: 25
           minimum: 0
           maximum: 100
@@ -479,24 +496,29 @@ components:
           $ref: '#/components/schemas/UnitInfo'
         discount:
           type: integer
-          description: Total discount for the order line
-          example: 0
+          description: >-
+            Total discount for the order line.
+            Amounts are specified in minor units.
+            For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 20 kr = 2000 øre.
+          example: 2000
           minimum: 0
           format: int64
           nullable: true
         productUrl:
           type: string
-          description: Optional URL linking back to the product at the merchant
+          description: Optional URL linking back to the product at the merchant.
           example: 'https://www.vipps.no/store/socks'
           nullable: true
         isReturn:
           type: boolean
           example: false
-          description: Flag for marking the orderline as returned. This will make it count negative towards all the sums in bottomLine
+          description: >-
+            Flag for marking the order line as returned.
+            This will make it count negative towards all the sums in bottomLine.
         isShipping:
           example: false
           type: boolean
-          description: Flag for marking the orderline as a shipping line. This will be shown differently in the app.
+          description: Flag for marking the order line as a shipping line. This will be shown differently in the app.
       required:
         - name
         - id
@@ -507,7 +529,10 @@ components:
     BottomLine:
       title: BottomLine
       type: object
-      description: 'Summary of the order. Total amount and total '
+      description: >-
+        Summary of the order. Total amount and total.
+        Amounts are specified in minor units.
+        For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 20 kr = 2000 øre.
       x-examples:
         BottomLineExample:
           value:
@@ -523,13 +548,18 @@ components:
           $ref: '#/components/schemas/CurrencyEnum'
         tipAmount:
           type: integer
-          description: Tip amount for the order
+          description: >-
+            Tip amount for the order.
+            Amounts are specified in minor units.
+            For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 20 kr = 2000 øre.
+          example: 2000
           minimum: 0
           format: int64
           nullable: true
         giftCardAmount:
           type: integer
-          description: Amount paid by gift card or coupon
+          description: 'Amount paid by gift card or coupon.'
+          example: 20000
           minimum: 0
           format: int64
           deprecated: true
