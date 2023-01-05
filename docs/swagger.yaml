@@ -663,6 +663,7 @@ components:
         - KM
         - MINUTE
         - LITRE
+        - KWH
       description: Available units for quantity. Will default to PCS if not set
       default: PCS
     ErrorResponse:
