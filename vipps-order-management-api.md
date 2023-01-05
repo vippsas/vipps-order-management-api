@@ -2,6 +2,8 @@
 ---
 title: API Guide
 sidebar_position: 12
+pagination_next: null
+pagination_prev: null
 ---
 END_METADATA -->
 

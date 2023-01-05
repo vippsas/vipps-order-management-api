@@ -2,9 +2,7 @@ openapi: 3.0.0
 info:
   title: Vipps Order Management API
   version: '1.0'
-  description: >-
-    API to add and read additional info for Vipps orders.
-    See the [API Guide](https://vippsas.github.io/vipps-developer-docs/docs/APIs/order-management-api) for more information.
+  description: 'API to add and read additional info for Vipps orders. See the [API Guide](https://vippsas.github.io/vipps-developer-docs/docs/APIs/order-management-api) for more information.'
   contact:
     name: Vipps
     url: 'https://vipps.no/kontakt-oss/bedrift/vipps/'
@@ -181,8 +179,13 @@ paths:
                   bottomLine:
                     currency: NOK
                     tipAmount: 0
-                    giftCardAmount: 0
                     terminalId: vipps_pos_122
+                    paymentSources:
+                      giftCard: 0
+                      card: 0
+                      voucher: 0
+                      cash: 0
+                    receiptNumber: '123456789'
   '/v1/receipts/{transactionId}':
     parameters:
       - schema:
@@ -254,7 +257,7 @@ paths:
           $ref: '#/components/responses/409Conflict'
       tags:
         - Category
-      description: The category adds a link, specified by you, to the Transaction page on the Vipps app. Only one (the latest) category is shown in the app.
+      description: 'The category adds a link, specified by you, to the Transaction page on the Vipps app. Only one (the latest) category is shown in the app.'
       requestBody:
         content:
           application/json:
@@ -366,6 +369,10 @@ components:
       properties:
         orderLines:
           type: array
+          description:  >-
+            All numbers are interpreted as integers with two trailing zeros. ex: 10.00 = 1000.
+            Amounts are specified in minor units.
+            For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 10 kr = 1000 øre.
           minItems: 1
           items:
             $ref: '#/components/schemas/OrderLine'
@@ -374,10 +381,38 @@ components:
       required:
         - orderLines
         - bottomLine
+      x-examples:
+        ReceiptExample:
+          orderLines:
+            - name: Vipps socks
+              id: '1234567890'
+              totalAmount: 1000
+              totalAmountExcludingTax: 800
+              totalTaxAmount: 250
+              taxPercentage: 25
+              unitInfo:
+                unitPrice: 0
+                quantity: '0.822'
+                quantityUnit: PCS
+              discount: 0
+              productUrl: 'https://www.vipps.no/store/socks'
+              isReturn: false
+              isShipping: false
+          bottomLine:
+            tipAmount: 0
+            currency: NOK
+            terminalId: string
+            paymentSources:
+              giftCard: 0
+              card: 0
+              voucher: 0
+              cash: 0
+            receiptNumber: '123456789'
     OrderLine:
       title: OrderLine
       type: object
-      description: 'All numbers are interpreted as integers with two trailing zeros. ex: 10.00 = 1000'
+      description: >-
+        All numbers are interpreted as integers with two trailing zeros. ex: 10.00 = 1000.
       x-examples:
         OrderLineExample:
           value:
@@ -409,7 +444,7 @@ components:
       properties:
         name:
           type: string
-          description: Name of the product in the order line
+          description: Name of the product in the order line.
           example: Vipps socks
           nullable: true
         id:
@@ -419,28 +454,40 @@ components:
           nullable: true
         totalAmount:
           type: integer
-          description: 'Total amount of the order line, including tax and discount'
+          description: >-
+           Total amount of the order line, including tax and discount.
+           Amounts are specified in minor units.
+           For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 10 kr = 1000 øre.
           example: 1000
           minimum: 0
           format: int64
           nullable: true
         totalAmountExcludingTax:
           type: integer
-          description: Total amount of order line with discount excluding tax
+          description: >-
+            Total amount of order line with discount excluding tax.
+            Amounts are specified in minor units.
+            For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 8 kr = 800 øre.
           example: 800
           minimum: 0
           format: int64
           nullable: true
         totalTaxAmount:
           type: integer
-          description: Total tax amount paid for the order line
+          description: >-
+            Total tax amount paid for the order line.
+            Amounts are specified in minor units.
+            For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 2.5 kr = 250 øre.
           example: 250
           minimum: 0
           format: int64
           nullable: true
         taxPercentage:
           type: integer
-          description: Tax percentage for the order line
+          description: >-
+            Tax percentage for the order line.
+            Amounts are specified in minor units.
+            For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 0.25 kr = 25 øre.
           example: 25
           minimum: 0
           maximum: 100
@@ -449,24 +496,29 @@ components:
           $ref: '#/components/schemas/UnitInfo'
         discount:
           type: integer
-          description: Total discount for the order line
-          example: 0
+          description: >-
+            Total discount for the order line.
+            Amounts are specified in minor units.
+            For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 20 kr = 2000 øre.
+          example: 2000
           minimum: 0
           format: int64
           nullable: true
         productUrl:
           type: string
-          description: Optional URL linking back to the product at the merchant
+          description: Optional URL linking back to the product at the merchant.
           example: 'https://www.vipps.no/store/socks'
           nullable: true
         isReturn:
           type: boolean
           example: false
-          description: Flag for marking the orderline as returned. This will make it count negative towards all the sums in bottomLine
+          description: >-
+            Flag for marking the order line as returned.
+            This will make it count negative towards all the sums in bottomLine.
         isShipping:
           example: false
           type: boolean
-          description: Flag for marking the orderline as a shipping line. This will be shown differently in the app.
+          description: Flag for marking the order line as a shipping line. This will be shown differently in the app.
       required:
         - name
         - id
@@ -477,28 +529,40 @@ components:
     BottomLine:
       title: BottomLine
       type: object
-      description: 'Summary of the order. Total amount and total '
+      description: >-
+        Summary of the order. Total amount and total.
+        Amounts are specified in minor units.
+        For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 20 kr = 2000 øre.
       x-examples:
         BottomLineExample:
           value:
             currency: NOK
             tipAmount: 0
-            giftCardAmount: 0
             terminalId: vipps_pos_122
+            paymentSources:
+              card: 100
+              giftCard: 50
+            receiptNumber: '123456789'
       properties:
         currency:
           $ref: '#/components/schemas/CurrencyEnum'
         tipAmount:
           type: integer
-          description: Tip amount for the order
+          description: >-
+            Tip amount for the order.
+            Amounts are specified in minor units.
+            For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 20 kr = 2000 øre.
+          example: 2000
           minimum: 0
           format: int64
           nullable: true
         giftCardAmount:
           type: integer
-          description: Amount paid by gift card or coupon
+          description: 'Amount paid by gift card or coupon.'
+          example: 20000
           minimum: 0
           format: int64
+          deprecated: true
           nullable: true
         terminalId:
           type: string
@@ -507,31 +571,36 @@ components:
           type: integer
           description: 'Deprecated, sum will be calculated based on the sum of the orderLines'
           format: int64
-          nullable: true
           deprecated: true
+          nullable: true
         totalTax:
           type: integer
           description: 'Deprecated, tax will be calculated based on the sum of the totalTaxAmount field on each orderLine'
-          nullable: true
           minimum: 0
           format: int64
           deprecated: true
+          nullable: true
         totalDiscount:
           type: integer
           description: 'Deprecated, discount will be calculated based on the sum of the discount field on each orderLine'
-          nullable: true
           minimum: 0
           format: int64
           deprecated: true
+          nullable: true
         shippingAmount:
           type: integer
           description: 'Deprecated, use a regular orderLine with "isShipping" flag. Using this will result in faulty calculation of sum and tax.'
           minimum: 0
           format: int64
-          nullable: true
           deprecated: true
+          nullable: true
         shippingInfo:
           $ref: '#/components/schemas/ShippingInfo'
+        paymentSources:
+          $ref: '#/components/schemas/PaymentSources'
+        receiptNumber:
+          type: string
+          nullable: true
       required:
         - currency
     UnitInfo:
@@ -687,6 +756,23 @@ components:
         - amountExcludingTax
         - taxAmount
         - taxPercentage
+    PaymentSources:
+      type: object
+      properties:
+        giftCard:
+          type: integer
+        card:
+          type: integer
+        voucher:
+          type: integer
+        cash:
+          type: integer
+      x-examples:
+        PaymentSourcesExample:
+          giftCard: 200
+          card: 50
+          voucher: 25
+          cash: 25
   securitySchemes:
     BearerToken:
       type: http
