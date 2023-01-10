@@ -11,7 +11,8 @@ END_METADATA -->
 
 # Vipps Order Management API
 
-This repository contains developer resources for the Vipps Order Management API.
+The Order Management API allows you to associate extra information (e.g., images and receipts)
+with Vipps transactions. Users can later find this information in the order history of their Vipps app.
 
 <!-- START_COMMENT -->
 
