@@ -16,9 +16,11 @@ END_METADATA -->
 
 <!-- END_COMMENT -->
 
-The Order Management API allows merchants to enrich Vipps Transactions.
+The Order Management API allows merchants to enrich Vipps transactions.
 The information given in this API will be shown to the customer in the order
-history in their app. Order Management operates with two concepts: [Categories](#categories) (with images) and [Receipts](#receipts). These concepts may be used separately or combined, and this guide will explain how to add them.
+history in their app. Order Management operates with two concepts:
+[Categories](#categories) (with images) and [Receipts](#receipts).
+These concepts may be used separately or combined, and this guide will explain how to add them.
 
 This information is shown to the customer in the app in their order history and immediately after in-store purchases.
 
