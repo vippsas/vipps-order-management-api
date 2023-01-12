@@ -38,12 +38,10 @@ and
 but not for
 [pass-through payments](https://vippsas.github.io/vipps-developer-docs/docs/APIs/psp-api/).
 
-
 API version: 2.3.0.
 
-Document version: 1.2.1.
 
-<!-- START_TOC -->
+<!-- START_COMMENT -->
 ## Table of contents
 
 - [Vipps Order Management API](#vipps-order-management-api)
@@ -65,7 +63,7 @@ Document version: 1.2.1.
     - [Mandatory use case](#mandatory-use-case)
   - [Questions?](#questions)
 
-<!-- END_TOC -->
+<!-- END_COMMENT -->
 
 ## Before you begin
 
@@ -110,13 +108,11 @@ As the same OrderId can be used for both a Recurring charge and a Ecom payment, 
 6. Add a receipt
     - `/v2/{paymentType}/receipts/{orderId}`
 
-
 ## Categories
 
 The `category` concept may be added to a Vipps Transaction to give extra information and can be used as a way to draw customers back to the merchants web page. In addition to the category, it is possible to add a image to the Vipps transaction.
 
 !["Example with a link to shipping information"](images/order-link-shipping-information-with-image.png)
-
 
 The following section will explain how to enrich a Vipps transaction with `Categories` and `Images`. `Link` and `Category` are required when using this API,
 whereas `Images` are optional.
