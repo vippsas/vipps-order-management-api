@@ -9,16 +9,12 @@ END_METADATA -->
 
 # Quick start
 
+Use the Order Management API to generate enriched receipts.
+
 <!-- START_COMMENT -->
 
 ℹ️ Please use the new documentation:
 [Vipps Technical Documentation](https://vippsas.github.io/vipps-developer-docs/).
-
-<!-- END_COMMENT -->
-
-Use the Order Management API to generate enriched receipts.
-
-<!-- START_TOC -->
 
 ## Table of Contents
 
@@ -33,9 +29,8 @@ Use the Order Management API to generate enriched receipts.
     - [Add receipt with order info and image](#add-receipt-with-order-info-and-image)
   - [Questions?](#questions)
 
-<!-- END_TOC -->
+<!-- END_COMMENT -->
 
-Document version 1.1.2.
 
 ## Postman
 

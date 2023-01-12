@@ -150,7 +150,7 @@ paths:
                         quantity: '2.5'
                         quantityUnit: KG
                       discount: 0
-                      productUrl: 'https://www.vipps.no/store/socks'
+                      productUrl: 'https://example.com/store/socks'
                       isReturn: false
                       isShipping: false
                     - name: Vipps flip-flops
@@ -164,7 +164,7 @@ paths:
                         quantity: '3'
                         quantityUnit: PCS
                       discount: 2500
-                      productUrl: 'https://www.vipps.no/store/flipflops'
+                      productUrl: 'https://example.com/store/flipflops'
                       isReturn: false
                       isShipping: false
                     - name: Home Delivery
@@ -395,7 +395,7 @@ components:
                 quantity: '0.822'
                 quantityUnit: PCS
               discount: 0
-              productUrl: 'https://www.vipps.no/store/socks'
+              productUrl: 'https://example.com/store/socks'
               isReturn: false
               isShipping: false
           bottomLine:
@@ -428,7 +428,7 @@ components:
                   quantity: '2.5'
                   quantityUnit: KG
                 discount: 0
-                productUrl: 'https://www.vipps.no/store/socks'
+                productUrl: 'https://example.com/store/socks'
               - name: Vipps flip-flops
                 id: line_item_2
                 totalAmount: 5000
@@ -440,7 +440,7 @@ components:
                   quantity: '3'
                   quantityUnit: PCS
                 discount: 2500
-                productUrl: 'https://www.vipps.no/store/flipflops'
+                productUrl: 'https://example.com/store/flipflops'
       properties:
         name:
           type: string
@@ -507,7 +507,7 @@ components:
         productUrl:
           type: string
           description: Optional URL linking back to the product at the merchant.
-          example: 'https://www.vipps.no/store/socks'
+          example: 'https://example.com/store/socks'
           nullable: true
         isReturn:
           type: boolean
