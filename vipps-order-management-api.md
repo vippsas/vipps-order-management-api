@@ -265,7 +265,7 @@ Body:
         "quantityUnit": "KG"
       },
       "discount": 0,
-      "productUrl": "https://www.vipps.no/store/socks",
+      "productUrl": "https://example.com/store/socks",
       "isRefund": false,
       "isShipping": false
     },
@@ -282,7 +282,7 @@ Body:
         "quantityUnit": "PCS"
       },
       "discount": 2500,
-      "productUrl": "https://www.vipps.no/store/flipflops",
+      "productUrl": "https://example.com/store/flipflops",
       "isRefund": false,
       "isShipping": false
     },
