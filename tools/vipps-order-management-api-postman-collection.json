@@ -269,7 +269,7 @@
 					{
 						"description": "(Required) The Vipps merchant serial number for this sale unit.",
 						"key": "Merchant-Serial-Number",
-						"value": "{{merchant_serial_number}}"
+						"value": "{{merchantSerialNumber}}"
 					},
 					{
 						"description": "(Required) The API subscription key.",
@@ -337,7 +337,7 @@
 					{
 						"description": "(Required) The Vipps merchant serial number for this sale unit.",
 						"key": "Merchant-Serial-Number",
-						"value": "{{merchant_serial_number}}"
+						"value": "{{merchantSerialNumber}}"
 					},
 					{
 						"description": "(Required) The API subscription key.",
@@ -405,7 +405,7 @@
 					{
 						"description": "(Required) The Vipps merchant serial number for this sale unit.",
 						"key": "Merchant-Serial-Number",
-						"value": "{{merchant_serial_number}}"
+						"value": "{{merchantSerialNumber}}"
 					},
 					{
 						"description": "(Required) The API subscription key.",
