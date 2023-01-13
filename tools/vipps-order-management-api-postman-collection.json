@@ -7,7 +7,7 @@
 	},
 	"item": [
 		{
-			"name": "1. GetAccessToken",
+			"name": "Get Access Token",
 			"event": [
 				{
 					"listen": "test",
@@ -61,7 +61,7 @@
 			"response": []
 		},
 		{
-			"name": "2. Initiate Payment",
+			"name": "Initiate Payment",
 			"event": [
 				{
 					"listen": "test",
