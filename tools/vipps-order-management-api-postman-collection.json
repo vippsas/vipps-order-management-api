@@ -312,7 +312,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"category\": \"GENERAL\",\n  \"orderDetailsUrl\": \"https://www.vipps.no\",\n  \"imageId\": \"vipps-socks-orange-123\"\n}",
+					"raw": "{\n  \"category\": \"GENERAL\",\n  \"orderDetailsUrl\": \"https://example.com/{{orderId}}\",\n  \"imageId\": \"{{imageId}}\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -320,29 +320,16 @@
 					}
 				},
 				"url": {
-					"raw": "https://{{url}}/order-management/v2/:paymentType/categories/:orderId",
-					"protocol": "https",
+					"raw": "{{base_url}}/order-management/v2/eCom/categories/{{orderId}}",
 					"host": [
-						"{{url}}"
+						"{{base_url}}"
 					],
 					"path": [
 						"order-management",
 						"v2",
-						":paymentType",
+						"eCom",
 						"categories",
-						":orderId"
-					],
-					"variable": [
-						{
-							"key": "paymentType",
-							"value": "ECOM",
-							"description": "(Required) The type of transaction {ecom, recurring} "
-						},
-						{
-							"key": "orderId",
-							"value": "{{order_id}}",
-							"description": "(Required) The orderId of the transaction, unique and managed by merchant"
-						}
+						"{{orderId}}"
 					]
 				},
 				"description": "The category adds a link, specified by you, to the Transaction page on the Vipps app. Only one (the latest) category is shown in the app."
@@ -408,29 +395,16 @@
 					}
 				},
 				"url": {
-					"raw": "https://{{url}}/order-management/v2/:paymentType/receipts/:orderId",
-					"protocol": "https",
+					"raw": "{{base_url}}/order-management/v2/eCom/receipts/{{orderId}}",
 					"host": [
-						"{{url}}"
+						"{{base_url}}"
 					],
 					"path": [
 						"order-management",
 						"v2",
-						":paymentType",
+						"eCom",
 						"receipts",
-						":orderId"
-					],
-					"variable": [
-						{
-							"key": "paymentType",
-							"value": "ecom",
-							"description": "(Required) The type of transaction {ecom, recurring} "
-						},
-						{
-							"key": "orderId",
-							"value": "{{order_id}}",
-							"description": "(Required) The orderId of the transaction, unique and managed by merchant"
-						}
+						"{{orderId}}"
 					]
 				},
 				"description": "Add receipt to an order."
@@ -460,36 +434,51 @@
 						"key": "Authorization",
 						"value": "Bearer {{access_token}}",
 						"type": "default"
+					},
+					{
+						"key": "Vipps-System-Name",
+						"value": "{{vipps_system_name}}",
+						"type": "default"
+					},
+					{
+						"key": "Vipps-System-Version",
+						"value": "{{vipps_system_version}}",
+						"type": "default"
+					},
+					{
+						"key": "Vipps-System-Plugin-Name",
+						"value": "{{vipps_system_plugin_name}}",
+						"type": "default"
+					},
+					{
+						"key": "Vipps-System-Plugin-Version",
+						"value": "{{vipps_system_plugin_version}}",
+						"type": "default"
 					}
 				],
 				"url": {
-					"raw": "https://{{url}}/order-management/v2/:paymentType/:orderId",
-					"protocol": "https",
+					"raw": "{{base_url}}/order-management/v2/{{paymentType}}/{{orderId}}?paymentType=eCom",
 					"host": [
-						"{{url}}"
+						"{{base_url}}"
 					],
 					"path": [
 						"order-management",
 						"v2",
-						":paymentType",
-						":orderId"
+						"{{paymentType}}",
+						"{{orderId}}"
 					],
-					"variable": [
+					"query": [
 						{
 							"key": "paymentType",
-							"value": "ecom",
-							"description": "(Required) The type of transaction {ecom, recurring} "
-						},
-						{
-							"key": "orderId",
-							"value": "{{order_id}}",
-							"description": "(Required) The orderId of the transaction, unique and managed by merchant"
+							"value": "eCom"
 						}
 					]
 				},
 				"description": "Get order with category and receipt"
 			},
-			"response": [],
+			"response": []
+		}
+	],
 	"event": [
 		{
 			"listen": "prerequest",
