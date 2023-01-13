@@ -1,7 +1,7 @@
 <!-- START_METADATA
 ---
 title: Quick start
-sidebar_position: 20
+sidebar_position: 10
 pagination_next: null
 pagination_prev: null
 ---
@@ -26,8 +26,7 @@ Use the Order Management API to generate enriched receipts.
     * [Step 2: Import the Vipps Postman files](#step-2-import-the-vipps-postman-files)
     * [Step 3: Set up Postman environment](#step-3-set-up-postman-environment)
   * [Make API calls](#make-api-calls)
-    * [Add receipt with order info and image](#add-receipt-with-order-info-and-image)
-  * [Questions?](#questions)
+
 
 <!-- END_COMMENT -->
 
@@ -65,21 +64,24 @@ Save the following files to your computer:
 
 ## Make API calls
 
-For all of the following, you will start by sending request [Get Access Token](https://vippsas.github.io/vipps-developer-docs/api/ecom#tag/Authorization-Service/operation/fetchAuthorizationTokenUsingPost).
+For all of the following, you will start by sending request `Get Access Token` which uses
+[Get Access Token][access-token-endpoint].
 This provides you with access to the API.
 
 The access token is valid for 1 hour in the test environment
 and 24 hours in the production environment.
 See the
-[API reference](https://vippsas.github.io/vipps-developer-docs/api/order-management)
+[API reference][order-mgmt-api-reference-url]
 for details about the calls.
 
-### Add receipt with order info and image
+### Add receipt with order info and image to an existing order
 
 1. Send request `Get Access Token`. This provides you with access to the API.
 
-1. Send request `Initiate Payment`. This generates an one-time payment by using
-   [`POST:/ecomm/v2/payments`](https://vippsas.github.io/vipps-developer-docs/api/ecom#tag/Vipps-eCom-API/operation/initiatePaymentV3UsingPOST)
+1. Create an order.
+   In this example, we will create an eCom order by sending request `Initiate Payment`.
+   This generates an one-time payment by using
+   [`POST:/ecomm/v2/payments`][ecom-initiate-payment-endpoint]
     and sets an `order_Id` in environment for usage in subsequent steps.
 
    The response will be a URL to the Vipps landing page.
@@ -90,23 +92,26 @@ for details about the calls.
    You have now confirmed the payment in Vipps, setting the payment status to reserved.
 
 1. Send request `Add an image to an order`. This creates an image that can be used in one or many receipts by using
-   [POST:/order-management/v1/images](https://vippsas.github.io/vipps-developer-docs/api/order-management#tag/Image/operation/postImage).
+   [`POST:/order-management/v1/images`][add-image-endpoint].
 
 1. Send request `Add category to an order`. This sets the category, image, and order details url by using
-   [PUT:/order-management/v2/{{paymentType}}/categories/{{orderId}}](https://vippsas.github.io/vipps-developer-docs/api/order-management#tag/Category/operation/putCategoryV2).
+   [`PUT:/order-management/v2/{{paymentType}}/categories/{{orderId}}`][add-category-endpoint].
    In this and the following steps, we use the paymentType of `eCom` and the `orderId` that was set in the `Initiate Payment` request.
 
 1. Send request `Add receipt to an order`. This sets all details about the receipt by using
-   [POST:/order-management/v2/{{paymentType}}/receipts/{{orderId}}](https://vippsas.github.io/vipps-developer-docs/api/order-management#tag/Receipt/operation/postReceiptV2).
+   [`POST:/order-management/v2/{{paymentType}}/receipts/{{orderId}}`][add-receipt-endpoint].
 
 1. Send request `Get order with category and receipt`. This gets all details stored about the order and the receipt by using
-   [GET:/order-management/v2/{{paymentType}}/{{orderId}}](https://vippsas.github.io/vipps-developer-docs/api/order-management#tag/Order/operation/getOrderV2).
+   [`GET:/order-management/v2/{{paymentType}}/{{orderId}}`][get-order-endpoint].
 
-## Questions?
 
-We're always happy to help with code or other questions you might have!
-Please create an [issue](https://github.com/vippsas/vipps-order-management-api/issues),
-a [pull request](https://github.com/vippsas/vipps-order-management-api/pulls),
-or [contact us](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/contact).
 
-Sign up for our [Technical newsletter for developers](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/newsletters).
+
+[order-mgmt-api-reference-url]: https://vippsas.github.io/vipps-developer-docs/api/order-management
+[add-image-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/order-management#tag/Image/operation/postImage
+[add-category-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/order-management#tag/Category/operation/putCategoryV2
+[add-receipt-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/order-management#tag/Receipt/operation/postReceiptV2
+[get-order-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/order-management#tag/Order/operation/getOrderV2
+[access-token-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/ecom#tag/Authorization-Service/operation/fetchAuthorizationTokenUsingPost
+[portal-url]: https://portal.vipps.no
+[ecom-initiate-payment-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/ecom#tag/Vipps-eCom-API/operation/initiatePaymentV3UsingPOST
