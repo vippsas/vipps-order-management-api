@@ -288,6 +288,26 @@
 						"key": "Authorization",
 						"value": "Bearer {{access_token}}",
 						"type": "default"
+					},
+					{
+						"key": "Vipps-System-Name",
+						"value": "{{vipps_system_name}}",
+						"type": "default"
+					},
+					{
+						"key": "Vipps-System-Version",
+						"value": "{{vipps_system_version}}",
+						"type": "default"
+					},
+					{
+						"key": "Vipps-System-Plugin-Name",
+						"value": "{{vipps_system_plugin_name}}",
+						"type": "default"
+					},
+					{
+						"key": "Vipps-System-Plugin-Version",
+						"value": "{{vipps_system_plugin_version}}",
+						"type": "default"
 					}
 				],
 				"body": {
@@ -355,6 +375,26 @@
 					{
 						"key": "Authorization",
 						"value": "Bearer {{access_token}}",
+						"type": "default"
+					},
+					{
+						"key": "Vipps-System-Name",
+						"value": "{{vipps_system_name}}",
+						"type": "default"
+					},
+					{
+						"key": "Vipps-System-Version",
+						"value": "{{vipps_system_version}}",
+						"type": "default"
+					},
+					{
+						"key": "Vipps-System-Plugin-Name",
+						"value": "{{vipps_system_plugin_name}}",
+						"type": "default"
+					},
+					{
+						"key": "Vipps-System-Plugin-Version",
+						"value": "{{vipps_system_plugin_version}}",
 						"type": "default"
 					}
 				],
