@@ -18,22 +18,22 @@ API version: 1.0.
 
 ## Checklist
 
-- [ ] Integrate _all_ the [API endpoints][order-mgmt-api-reference-url]:
-    - [ ] As this API allows you to update transactions that have been created by using the [eCom API](https://vippsas.github.io/vipps-developer-docs/docs/APIs/ecom-api), [ePayment API](https://vippsas.github.io/vipps-developer-docs/docs/APIs/epayment-api), or [Recurring API](https://vippsas.github.io/vipps-developer-docs/docs/APIs/recurring-api), you will need to implement the associated checklist(s) from these.
+- [ ] Integrate the applicable [API endpoints][order-mgmt-api-reference-url]:
+    - [ ] As this API allows you to update transactions that have been created by using the [eCom API](https://vippsas.github.io/vipps-developer-docs/docs/APIs/ecom-api), [ePayment API](https://vippsas.github.io/vipps-developer-docs/docs/APIs/epayment-api), or [Recurring API](https://vippsas.github.io/vipps-developer-docs/docs/APIs/recurring-api), you may need to implement the associated checklist(s) from these.
     - [ ] Add an image to an order [`POST:/order-management/v1/images`][add-image-endpoint]
     - [ ] Add category to an order [`PUT:/order-management/v2/{{paymentType}}/categories/{{orderId}}`][add-category-endpoint]
     - [ ] Add receipt to an order [`POST:/order-management/v2/{{paymentType}}/receipts/{{orderId}}`][add-receipt-endpoint]
     - [ ] Get order with category and receipt [`GET:/order-management/v2/{{paymentType}}/{{orderId}}`][get-order-endpoint]
-    - For examples of requests and responses, see the [Postman collection](tools/vipps-order-management-api-postman-collection.json) and [environment](https://github.com/vippsas/vipps-developers/blob/master/tools/vipps-api-global-postman-environment.json).
+       - For examples of requests and responses, see the
+         [Order Management Postman collection](tools/vipps-order-management-api-postman-collection.json) and
+         [environment](https://github.com/vippsas/vipps-developers/blob/master/tools/vipps-api-global-postman-environment.json).
 - [ ] Send the [Vipps HTTP headers](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/common-topics/http-headers)
-      in all API requests for better tracking and troubleshooting
-      (mandatory for partners and platforms, who must send these headers as part of the checklist approval):
+      in all API requests for better tracking and troubleshooting:
     - [ ] `Merchant-Serial-Number`
     - [ ] `Vipps-System-Name`
     - [ ] `Vipps-System-Version`
     - [ ] `Vipps-System-Plugin-Name`
     - [ ] `Vipps-System-Plugin-Version`
-- [ ] Follow the [orderId recommendations](vipps-ecom-api.md#orderid-recommendations).
  - [ ] Make sure to log and handle all errors.
        All integrations should to display errors in a way that the user can see and understand them.
  - [ ] Avoid Integration pitfalls

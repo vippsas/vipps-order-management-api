@@ -91,6 +91,9 @@ for details about the calls.
 
    You have now confirmed the payment in Vipps, setting the payment status to reserved.
 
+   **Note:**
+   The order doesn't need to exist yet. It is possible to add the receipt first, then create the order afterwards.
+
 1. Send request `Add an image to an order`. This creates an image that can be used in one or many receipts by using
    [`POST:/order-management/v1/images`][add-image-endpoint].
 
