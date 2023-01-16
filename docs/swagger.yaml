@@ -179,7 +179,7 @@ paths:
                   bottomLine:
                     currency: NOK
                     tipAmount: 0
-                    terminalId: vipps_pos_122
+                    posId: vipps_pos_122
                     paymentSources:
                       giftCard: 0
                       card: 0
@@ -401,7 +401,7 @@ components:
           bottomLine:
             tipAmount: 0
             currency: NOK
-            terminalId: string
+            posId: string
             paymentSources:
               giftCard: 0
               card: 0
@@ -538,7 +538,7 @@ components:
           value:
             currency: NOK
             tipAmount: 0
-            terminalId: vipps_pos_122
+            posId: vipps_pos_122
             paymentSources:
               card: 100
               giftCard: 50
@@ -564,7 +564,7 @@ components:
           format: int64
           deprecated: true
           nullable: true
-        terminalId:
+        posId:
           type: string
           nullable: true
         totalAmount:
