@@ -74,7 +74,7 @@ See the
 [API reference][order-mgmt-api-reference-url]
 for details about the calls.
 
-### Add receipt with order info and image to an existing order
+### Add receipt with order info and image
 
 1. Send request `Get Access Token`. This provides you with access to the API.
 
