@@ -1,7 +1,7 @@
 <!-- START_METADATA
 ---
 title: API Guide
-sidebar_position: 12
+sidebar_position: 20
 pagination_next: null
 pagination_prev: null
 ---
