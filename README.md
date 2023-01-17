@@ -34,12 +34,3 @@ Detailed documentation on how to use the Order Management API can be found here:
 * [API Quick Start](vipps-order-management-api-quick-start.md): Quick Start.
 * [API guide](vipps-order-management-api.md)
 * [API reference](https://vippsas.github.io/vipps-developer-docs/api/order-management): Order Management API Reference Specifications.
-
-## Questions?
-
-We're always happy to help with code or other questions you might have!
-Please create an [issue](https://github.com/vippsas/vipps-order-management-api/issues),
-a [pull request](https://github.com/vippsas/vipps-order-management-api/pulls),
-or [contact us](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/contact).
-
-Sign up for our [Technical newsletter for developers](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/newsletters).
