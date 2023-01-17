@@ -32,11 +32,11 @@ Vipps Order management also enables you to draw customers back to your website
 or app from links on the Vipps receipt view.
 
 This functionality is available for
-[recurring](https://vippsas.github.io/vipps-developer-docs/docs/APIs/recurring-api/)
+[recurring](https://vippsas.github.io/vipps-developer-docs/docs/APIs/recurring-api)
 and
-[direct payments](https://vippsas.github.io/vipps-developer-docs/docs/APIs/ecom-api/),
+[direct payments](https://vippsas.github.io/vipps-developer-docs/docs/APIs/ecom-api),
 but not for
-[pass-through payments](https://vippsas.github.io/vipps-developer-docs/docs/APIs/psp-api/).
+[pass-through payments](https://vippsas.github.io/vipps-developer-docs/docs/APIs/psp-api).
 
 API version: 2.3.0.
 
