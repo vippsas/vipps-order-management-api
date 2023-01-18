@@ -411,6 +411,10 @@ components:
           properties:
             isRegisteredInMvaForetakregisteret:
               type: boolean
+              description: Is registered in the register of business enterprises
+              nullable: true
+          required:
+            - isRegisteredInMvaForetakregisteret
       required:
         - orderLines
         - bottomLine
