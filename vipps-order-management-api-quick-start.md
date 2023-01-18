@@ -27,7 +27,6 @@ Use the Order Management API to generate enriched receipts.
     * [Step 3: Set up Postman environment](#step-3-set-up-postman-environment)
   * [Make API calls](#make-api-calls)
 
-
 <!-- END_COMMENT -->
 
 ## Postman
@@ -106,8 +105,6 @@ for details about the calls.
 
 1. Send request `Get order with category and receipt`. This gets all details stored about the order and the receipt by using
    [`GET:/order-management/v2/{{paymentType}}/{{orderId}}`][get-order-endpoint].
-
-
 
 
 [order-mgmt-api-reference-url]: https://vippsas.github.io/vipps-developer-docs/api/order-management
