@@ -67,7 +67,7 @@ API version: 1.0.
 
 ## Flow to go live for direct integrations for partners
 
-See: [Vipps partners](https://vippsas.github.io/vipps-developer-docs/docs/vipps-partner/).
+See: [Vipps partners](https://vippsas.github.io/vipps-developer-docs/docs/vipps-partner).
 
 [order-mgmt-api-reference-url]: https://vippsas.github.io/vipps-developer-docs/api/order-management
 [add-image-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/order-management#tag/Image/operation/postImage

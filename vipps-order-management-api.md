@@ -32,11 +32,11 @@ Vipps Order management also enables you to draw customers back to your website
 or app from links on the Vipps receipt view.
 
 This functionality is available for
-[recurring](https://vippsas.github.io/vipps-developer-docs/docs/APIs/recurring-api/)
+[recurring](https://vippsas.github.io/vipps-developer-docs/docs/APIs/recurring-api)
 and
-[direct payments](https://vippsas.github.io/vipps-developer-docs/docs/APIs/ecom-api/),
+[direct payments](https://vippsas.github.io/vipps-developer-docs/docs/APIs/ecom-api),
 but not for
-[pass-through payments](https://vippsas.github.io/vipps-developer-docs/docs/APIs/psp-api/).
+[pass-through payments](https://vippsas.github.io/vipps-developer-docs/docs/APIs/psp-api).
 
 API version: 2.3.0.
 
@@ -318,12 +318,3 @@ Vipps offers assisted content monitoring as a way for Merchants to deal with the
 If you, as a merchant, do not have a permanent website that can be utilized for content monitoring, for example you do not have a user facing website or the website is ephemeral/short lived then you must utilize Vipps Assisted Content Monitoring.
 
 In order to comply with Vipps Assisted Content Monitoring all transactions must be posted to the Order Management receipts functionality described in the [Receipts](#receipts) section.
-
-## Questions?
-
-We're always happy to help with code or other questions you might have!
-Please create an [issue](https://github.com/vippsas/vipps-order-management-api/issues),
-a [pull request](https://github.com/vippsas/vipps-order-management-api/pulls),
-or [contact us](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/contact).
-
-Sign up for our [Technical newsletter for developers](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/newsletters).
