@@ -368,18 +368,6 @@ components:
     Receipt:
       title: Receipt
       type: object
-      properties:
-        orderLines:
-          type: array
-          description: 'All numbers are interpreted as integers with two trailing zeros. ex: 10.00 = 1000. Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 10 kr = 1000 øre.'
-          minItems: 1
-          items:
-            $ref: '#/components/schemas/OrderLine'
-        bottomLine:
-          $ref: '#/components/schemas/BottomLine'
-      required:
-        - orderLines
-        - bottomLine
       x-examples:
         ReceiptExample:
           orderLines:
@@ -409,6 +397,23 @@ components:
             barcode:
               format: EAN-13
               data: '123456'
+      properties:
+        orderLines:
+          type: array
+          description: 'All numbers are interpreted as integers with two trailing zeros. ex: 10.00 = 1000. Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 10 kr = 1000 øre.'
+          minItems: 1
+          items:
+            $ref: '#/components/schemas/OrderLine'
+        bottomLine:
+          $ref: '#/components/schemas/BottomLine'
+        merchantInfo:
+          type: object
+          properties:
+            isRegisteredInMvaForetakregisteret:
+              type: boolean
+      required:
+        - orderLines
+        - bottomLine
     OrderLine:
       title: OrderLine
       type: object
@@ -545,6 +550,7 @@ components:
           nullable: true
         posId:
           type: string
+          description: POS ID is the device number of the POS terminal
           nullable: true
         totalAmount:
           type: integer
