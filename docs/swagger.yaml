@@ -411,10 +411,8 @@ components:
           properties:
             isRegisteredInMvaForetakregisteret:
               type: boolean
-              description: Is registered in the register of business enterprises
+              description: Is registered in the register of business enterprises. For norwegian business only
               nullable: true
-          required:
-            - isRegisteredInMvaForetakregisteret
       required:
         - orderLines
         - bottomLine
