@@ -9,7 +9,7 @@ pagination_prev: null
 ---
 END_METADATA -->
 
-# Vipps Order Management API
+# Order Management API
 
 The Order Management API allows you to associate extra information (e.g., images and receipts)
 with Vipps transactions. Users can later find this information in the order history of their Vipps app.
@@ -17,20 +17,18 @@ with Vipps transactions. Users can later find this information in the order hist
 <!-- START_COMMENT -->
 
 ℹ️ Please use the new documentation:
-[Vipps Technical Documentation](https://vippsas.github.io/vipps-developer-docs/).
+[Vipps Technical Documentation](https://vippsas.github.io/vipps-developer-docs/docs/APIs/order-management-api).
 
 <!-- END_COMMENT -->
 
-## Getting started
+## Next steps
 
 See
 [Getting Started](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/vipps-getting-started)
 for information about API keys, product activation, how to make API calls, etc.
 
-## Order Management API
+Follow by reviewing the detailed documentation found here:
 
-Detailed documentation on how to use the Order Management API can be found here:
-
-* [API Quick Start](vipps-order-management-api-quick-start.md): Quick Start.
-* [API guide](vipps-order-management-api.md)
-* [API reference](https://vippsas.github.io/vipps-developer-docs/api/order-management): Order Management API Reference Specifications.
+* [API quick start guide](vipps-order-management-api-quick-start.md): Quick start
+* [API guide](vipps-order-management-api.md): API guide
+* [API reference](https://vippsas.github.io/vipps-developer-docs/api/order-management): API reference specifications

@@ -5,18 +5,18 @@ sidebar_position: 50
 ---
 END_METADATA -->
 
-# Vipps Order Management API Checklist
+# Checklist
 
 <!-- START_COMMENT -->
 
 ℹ️ Please use the new documentation:
-[Vipps Technical Documentation](https://vippsas.github.io/vipps-developer-docs/).
+[Vipps Technical Documentation](https://vippsas.github.io/vipps-developer-docs/docs/APIs/order-management-api).
 
 <!-- END_COMMENT -->
 
 API version: 1.0.
 
-## Checklist
+## Checklist for full integration
 
 - [ ] Integrate the applicable [API endpoints][order-mgmt-api-reference-url]:
     - [ ] As this API allows you to update transactions that have been created by using the [eCom API](https://vippsas.github.io/vipps-developer-docs/docs/APIs/ecom-api), [ePayment API](https://vippsas.github.io/vipps-developer-docs/docs/APIs/epayment-api), or [Recurring API](https://vippsas.github.io/vipps-developer-docs/docs/APIs/recurring-api), you may need to implement the associated checklist(s) from these.
