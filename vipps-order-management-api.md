@@ -7,12 +7,12 @@ pagination_prev: null
 ---
 END_METADATA -->
 
-# Vipps Order Management API
+# API guide
 
 <!-- START_COMMENT -->
 
 ℹ️ Please use the new documentation:
-[Vipps Technical Documentation](https://vippsas.github.io/vipps-developer-docs/).
+[Vipps Technical Documentation](https://vippsas.github.io/vipps-developer-docs/docs/APIs/order-management-api).
 
 <!-- END_COMMENT -->
 
