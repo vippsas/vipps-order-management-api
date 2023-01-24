@@ -763,6 +763,7 @@ components:
           $ref: '#/components/schemas/BarcodeFormatEnum'
         data:
           type: string
+          pattern: ^\d+$
       required:
         - format
         - data
