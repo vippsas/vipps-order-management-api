@@ -406,13 +406,6 @@ components:
             $ref: '#/components/schemas/OrderLine'
         bottomLine:
           $ref: '#/components/schemas/BottomLine'
-        merchantInfo:
-          type: object
-          properties:
-            isRegisteredInMvaForetakregisteret:
-              type: boolean
-              description: Is registered in the register of business enterprises. For norwegian business only
-              nullable: true
       required:
         - orderLines
         - bottomLine
