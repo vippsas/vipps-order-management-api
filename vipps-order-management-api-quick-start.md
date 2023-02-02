@@ -112,6 +112,6 @@ for details about the calls.
 [add-category-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/order-management#tag/Category/operation/putCategoryV2
 [add-receipt-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/order-management#tag/Receipt/operation/postReceiptV2
 [get-order-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/order-management#tag/Order/operation/getOrderV2
-[access-token-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/ecom#tag/Authorization-Service/operation/fetchAuthorizationTokenUsingPost
+[access-token-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/access-token#tag/Authorization-Service/operation/fetchAuthorizationTokenUsingPost
 [portal-url]: https://portal.vipps.no
 [ecom-initiate-payment-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/ecom#tag/Vipps-eCom-API/operation/initiatePaymentV3UsingPOST
