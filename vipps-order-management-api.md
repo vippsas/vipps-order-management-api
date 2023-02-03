@@ -1,6 +1,6 @@
 <!-- START_METADATA
 ---
-title: API Guide
+title: API guide
 sidebar_position: 20
 pagination_next: null
 pagination_prev: null
@@ -40,30 +40,6 @@ but not for
 
 API version: 2.3.0.
 
-
-<!-- START_COMMENT -->
-## Table of contents
-
-- [Vipps Order Management API](#vipps-order-management-api)
-  - [Table of contents](#table-of-contents)
-  - [Before you begin](#before-you-begin)
-    - [Authentication](#authentication)
-    - [Vipps HTTP headers](#vipps-http-headers)
-    - [OrderId and PaymentType](#orderid-and-paymenttype)
-    - [Basic flow](#basic-flow)
-  - [Categories](#categories)
-    - [Category](#category)
-    - [Images](#images)
-    - [Adding an Image](#adding-an-image)
-    - [Adding and changing Category](#adding-and-changing-category)
-  - [Receipts](#receipts)
-    - [Adding a Receipt](#adding-a-receipt)
-    - [Fetching Category and Receipt](#fetching-category-and-receipt)
-  - [Vipps Assisted Content Monitoring](#vipps-assisted-content-monitoring)
-    - [Mandatory use case](#mandatory-use-case)
-  - [Questions?](#questions)
-
-<!-- END_COMMENT -->
 
 ## Before you begin
 
