@@ -194,7 +194,7 @@
 				"method": "POST",
 				"header": [
 					{
-						"description": "(Required) The Vipps merchant serial number for this sale unit.",
+						"description": "(Required) The Vipps merchant serial number for this sales unit.",
 						"key": "Merchant-Serial-Number",
 						"value": "{{merchantSerialNumber}}"
 					},
@@ -267,7 +267,7 @@
 				"method": "PUT",
 				"header": [
 					{
-						"description": "(Required) The Vipps merchant serial number for this sale unit.",
+						"description": "(Required) The Vipps merchant serial number for this sales unit.",
 						"key": "Merchant-Serial-Number",
 						"value": "{{merchantSerialNumber}}"
 					},
@@ -342,7 +342,7 @@
 				"method": "POST",
 				"header": [
 					{
-						"description": "(Required) The Vipps merchant serial number for this sale unit.",
+						"description": "(Required) The Vipps merchant serial number for this sales unit.",
 						"key": "Merchant-Serial-Number",
 						"value": "{{merchantSerialNumber}}"
 					},
@@ -417,7 +417,7 @@
 				"method": "GET",
 				"header": [
 					{
-						"description": "(Required) The Vipps merchant serial number for this sale unit.",
+						"description": "(Required) The Vipps merchant serial number for this sales unit.",
 						"key": "Merchant-Serial-Number",
 						"value": "{{merchantSerialNumber}}"
 					},

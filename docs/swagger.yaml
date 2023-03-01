@@ -779,7 +779,7 @@ components:
       required: true
       schema:
         type: string
-      description: The Vipps merchant serial number for this sale unit.
+      description: The Vipps merchant serial number for this sales unit.
     Ocp-Apim-Subscription-Key:
       name: Ocp-Apim-Subscription-Key
       in: header
