@@ -764,7 +764,10 @@ components:
           $ref: '#/components/schemas/BarcodeFormatEnum'
         data:
           type: string
-          pattern: ^\d+$
+          enum:
+            - EAN-13
+            - CODE 39
+            - CODE 128
       required:
         - format
         - data
