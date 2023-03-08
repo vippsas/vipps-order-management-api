@@ -186,8 +186,9 @@ paths:
                       voucher: 0
                       cash: 0
                     barcode:
-                      format: EAN-13
-                      data: '123456'
+                      format: CODE 39
+                      data: 'SC0527013501 '
+                    receiptNumber: '0527013501'
   '/v1/receipts/{transactionId}':
     parameters:
       - schema:
@@ -397,6 +398,7 @@ components:
             barcode:
               format: EAN-13
               data: '123456'
+            receiptNumber: '1234567'
       properties:
         orderLines:
           type: array
@@ -525,6 +527,7 @@ components:
             barcode:
               format: EAN-13
               data: '123456'
+            receiptNumber: '1234567'
       properties:
         currency:
           $ref: '#/components/schemas/CurrencyEnum'
@@ -580,6 +583,9 @@ components:
           $ref: '#/components/schemas/PaymentSources'
         barcode:
           $ref: '#/components/schemas/Barcode'
+        receiptNumber:
+          type: string
+          nullable: true
       required:
         - currency
     UnitInfo:
