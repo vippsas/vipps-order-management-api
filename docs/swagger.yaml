@@ -759,8 +759,12 @@ components:
           voucher: 25
           cash: 25
     BarcodeFormatEnum:
-      title: BarcodeFormatEnum
       type: string
+      title: BarcodeFormatEnum
+      enum:
+        - EAN-13
+        - CODE 39
+        - CODE 128
     Barcode:
       title: Barcode
       type: object
@@ -770,10 +774,6 @@ components:
           $ref: '#/components/schemas/BarcodeFormatEnum'
         data:
           type: string
-          enum:
-            - EAN-13
-            - CODE 39
-            - CODE 128
       required:
         - format
         - data
