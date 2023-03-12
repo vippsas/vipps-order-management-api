@@ -1,7 +1,11 @@
 <!-- START_METADATA
 ---
-title: Checklist
+title: Order Management API checklist
+sidebar_label: Checklist
 sidebar_position: 50
+description: Checklist for full integration with the Order Management API.
+pagination_next: null
+pagination_prev: null
 ---
 END_METADATA -->
 
