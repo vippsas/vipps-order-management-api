@@ -1,9 +1,11 @@
 <!-- START_METADATA
 ---
-title: API guide
+title: Order Management API guide
+sidebar_label: API guide
 sidebar_position: 20
-pagination_next: null
-pagination_prev: null
+description: Find technical details about integrating with the Order Management API.
+pagination_prev: Null
+pagination_next: Null
 ---
 END_METADATA -->
 
@@ -11,8 +13,8 @@ END_METADATA -->
 
 <!-- START_COMMENT -->
 
-ℹ️ Please use the new documentation:
-[Vipps Technical Documentation](https://vippsas.github.io/vipps-developer-docs/docs/APIs/order-management-api).
+ℹ️ Please use the website:
+[Vipps MobilePay Technical Documentation](https://vippsas.github.io/vipps-developer-docs/docs/APIs/order-management-api).
 
 <!-- END_COMMENT -->
 
@@ -55,11 +57,11 @@ All Vipps API calls are authenticated with an access token and an API subscripti
 See
 [Get an access token](https://vippsas.github.io/vipps-developer-docs/docs/APIs/access-token-api#get-an-access-token), for details.
 
-### Vipps HTTP headers
+### HTTP headers
 
-We recommend using the standard Vipps HTTP headers for all requests.
+We recommend using the standard HTTP headers for all requests.
 
-See [Vipps HTTP headers](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/common-topics/http-headers)
+See [HTTP headers](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/common-topics/http-headers)
 in the Getting started guide, for details.
 
 ### OrderId and PaymentType
