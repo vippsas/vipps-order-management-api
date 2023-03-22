@@ -765,15 +765,16 @@ components:
         - EAN-13
         - CODE 39
         - CODE 128
+      nullable: true
     Barcode:
       title: Barcode
       type: object
-      nullable: true
       properties:
         format:
           $ref: '#/components/schemas/BarcodeFormatEnum'
         data:
           type: string
+          nullable: true
       required:
         - format
         - data
