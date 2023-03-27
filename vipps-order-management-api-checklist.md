@@ -13,8 +13,8 @@ END_METADATA -->
 
 <!-- START_COMMENT -->
 
-ℹ️ Please use the website:
-[Vipps MobilePay Technical Documentation](https://vippsas.github.io/vipps-developer-docs/docs/APIs/order-management-api).
+ℹ️ Please use the new documentation:
+[Vipps MobilePay Technical Documentation](https://developer.vippsmobilepay.com/docs/APIs/order-management-api).
 
 <!-- END_COMMENT -->
 
@@ -23,7 +23,7 @@ API version: 1.0.
 ## Checklist for full integration
 
 - [ ] Integrate the applicable [API endpoints][order-mgmt-api-reference-url]:
-    - [ ] As this API allows you to update transactions that have been created by using the [eCom API](https://vippsas.github.io/vipps-developer-docs/docs/APIs/ecom-api), [ePayment API](https://vippsas.github.io/vipps-developer-docs/docs/APIs/epayment-api), or [Recurring API](https://vippsas.github.io/vipps-developer-docs/docs/APIs/recurring-api), you may need to implement the associated checklist(s) from these.
+    - [ ] As this API allows you to update transactions that have been created by using the [eCom API](https://developer.vippsmobilepay.com/docs/APIs/ecom-api), [ePayment API](https://developer.vippsmobilepay.com/docs/APIs/epayment-api), or [Recurring API](https://developer.vippsmobilepay.com/docs/APIs/recurring-api), you may need to implement the associated checklist(s) from these.
     - [ ] Add an image to an order [`POST:/order-management/v1/images`][add-image-endpoint]
     - [ ] Add category to an order [`PUT:/order-management/v2/{{paymentType}}/categories/{{orderId}}`][add-category-endpoint]
     - [ ] Add receipt to an order [`POST:/order-management/v2/{{paymentType}}/receipts/{{orderId}}`][add-receipt-endpoint]
@@ -31,7 +31,7 @@ API version: 1.0.
        - For examples of requests and responses, see the
          [Order Management Postman collection](tools/vipps-order-management-api-postman-collection.json) and
          [environment](https://github.com/vippsas/vipps-developers/blob/master/tools/vipps-api-global-postman-environment.json).
-- [ ] Send the [Vipps HTTP headers](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/common-topics/http-headers)
+- [ ] Send the [Vipps HTTP headers](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/http-headers)
       in all API requests for better tracking and troubleshooting:
     - [ ] `Merchant-Serial-Number`
     - [ ] `Vipps-System-Name`
@@ -71,11 +71,11 @@ API version: 1.0.
 
 ## Flow to go live for direct integrations for partners
 
-See: [Vipps partners](https://vippsas.github.io/vipps-developer-docs/docs/vipps-partner).
+See: [Vipps partners](https://developer.vippsmobilepay.com/docs/vipps-partner).
 
-[order-mgmt-api-reference-url]: https://vippsas.github.io/vipps-developer-docs/api/order-management
-[add-image-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/order-management#tag/Image/operation/postImage
-[add-category-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/order-management#tag/Category/operation/putCategoryV2
-[add-receipt-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/order-management#tag/Receipt/operation/postReceiptV2
-[get-order-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/order-management#tag/Order/operation/getOrderV2
+[order-mgmt-api-reference-url]: https://developer.vippsmobilepay.com/api/order-management
+[add-image-endpoint]: https://developer.vippsmobilepay.com/api/order-management#tag/Image/operation/postImage
+[add-category-endpoint]: https://developer.vippsmobilepay.com/api/order-management#tag/Category/operation/putCategoryV2
+[add-receipt-endpoint]: https://developer.vippsmobilepay.com/api/order-management#tag/Receipt/operation/postReceiptV2
+[get-order-endpoint]: https://developer.vippsmobilepay.com/api/order-management#tag/Order/operation/getOrderV2
 [portal-url]: https://portal.vipps.no

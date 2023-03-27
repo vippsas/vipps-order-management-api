@@ -15,8 +15,8 @@ END_METADATA -->
 
 <!-- START_COMMENT -->
 
-ℹ️ Please use the website:
-[Vipps MobilePay Technical Documentation](https://vippsas.github.io/vipps-developer-docs/docs/APIs/order-management-api).
+ℹ️ Please use the new documentation:
+[Vipps MobilePay Technical Documentation](https://developer.vippsmobilepay.com/docs/APIs/order-management-api).
 
 <!-- END_COMMENT -->
 
@@ -26,11 +26,11 @@ with Vipps MobilePay transactions. Users can later find this information in the 
 ## Getting started
 
 See the
-[Vipps MobilePay getting started guide](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/getting-started)
+[Getting started guide](https://developer.vippsmobilepay.com/docs/vipps-developers/vipps-getting-started)
 for information about API keys, product activation, how to make API calls, etc.
 
 Review the detailed documentation found here:
 
 * [API quick start guide](vipps-order-management-api-quick-start.md): Quick start
 * [API guide](vipps-order-management-api.md): API guide
-* [API reference](https://vippsas.github.io/vipps-developer-docs/api/order-management): API reference specifications
+* [API reference](https://developer.vippsmobilepay.com/api/order-management): API reference specifications

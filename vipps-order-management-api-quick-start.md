@@ -15,8 +15,8 @@ Use the Order Management API to generate enriched receipts.
 
 <!-- START_COMMENT -->
 
-ℹ️ Please use the website:
-[Vipps MobilePay Technical Documentation](https://vippsas.github.io/vipps-developer-docs/docs/APIs/order-management-api).
+ℹ️ Please use the new documentation:
+[Vipps MobilePay Technical Documentation](https://developer.vippsmobilepay.com/docs/APIs/order-management-api).
 
 ## Table of Contents
 
@@ -36,7 +36,7 @@ Use the Order Management API to generate enriched receipts.
 ### Prerequisites
 
 Review
-[Vipps MobilePay quick start guides](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/quick-start-guides)
+[Vipps quick start guides](https://developer.vippsmobilepay.com/docs/vipps-developers/quick-start-guides)
 for information about getting your test environment set up.
 
 ### Step 1: Get the Postman collection and environment
@@ -109,11 +109,11 @@ for details about the calls.
    [`GET:/order-management/v2/{{paymentType}}/{{orderId}}`][get-order-endpoint].
 
 
-[order-mgmt-api-reference-url]: https://vippsas.github.io/vipps-developer-docs/api/order-management
-[add-image-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/order-management#tag/Image/operation/postImage
-[add-category-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/order-management#tag/Category/operation/putCategoryV2
-[add-receipt-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/order-management#tag/Receipt/operation/postReceiptV2
-[get-order-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/order-management#tag/Order/operation/getOrderV2
-[access-token-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/access-token#tag/Authorization-Service/operation/fetchAuthorizationTokenUsingPost
+[order-mgmt-api-reference-url]: https://developer.vippsmobilepay.com/api/order-management
+[add-image-endpoint]: https://developer.vippsmobilepay.com/api/order-management#tag/Image/operation/postImage
+[add-category-endpoint]: https://developer.vippsmobilepay.com/api/order-management#tag/Category/operation/putCategoryV2
+[add-receipt-endpoint]: https://developer.vippsmobilepay.com/api/order-management#tag/Receipt/operation/postReceiptV2
+[get-order-endpoint]: https://developer.vippsmobilepay.com/api/order-management#tag/Order/operation/getOrderV2
+[access-token-endpoint]: https://developer.vippsmobilepay.com/api/access-token#tag/Authorization-Service/operation/fetchAuthorizationTokenUsingPost
 [portal-url]: https://portal.vipps.no
-[ecom-initiate-payment-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/ecom#tag/Vipps-eCom-API/operation/initiatePaymentV3UsingPOST
+[ecom-initiate-payment-endpoint]: https://developer.vippsmobilepay.com/api/ecom#tag/Vipps-eCom-API/operation/initiatePaymentV3UsingPOST
