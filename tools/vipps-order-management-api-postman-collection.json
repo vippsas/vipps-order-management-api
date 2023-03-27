@@ -2,7 +2,7 @@
 	"info": {
 		"_postman_id": "f3d33b32-222c-43bb-8f53-a850b70d8b6e",
 		"name": "Vipps Order Management API",
-		"description": "API to add and read additional info for Vipps orders. See the [API Guide](https://vippsas.github.io/vipps-developer-docs/docs/APIs/order-management-api) for more information.\n\nContact Support:\n Name: Vipps",
+		"description": "API to add and read additional info for Vipps orders. See the [API Guide](https://developer.vippsmobilepay.com/docs/APIs/order-management-api) for more information.\n\nContact Support:\n Name: Vipps",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
