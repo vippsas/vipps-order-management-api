@@ -1,7 +1,11 @@
 <!-- START_METADATA
 ---
-title: Checklist
+title: Order Management API checklist
+sidebar_label: Checklist
 sidebar_position: 50
+description: Checklist for full integration with the Order Management API.
+pagination_next: null
+pagination_prev: null
 ---
 END_METADATA -->
 
@@ -10,7 +14,7 @@ END_METADATA -->
 <!-- START_COMMENT -->
 
 ℹ️ Please use the new documentation:
-[Vipps Technical Documentation](https://developer.vippsmobilepay.com/docs/APIs/order-management-api).
+[Vipps MobilePay Technical Documentation](https://developer.vippsmobilepay.com/docs/APIs/order-management-api).
 
 <!-- END_COMMENT -->
 
