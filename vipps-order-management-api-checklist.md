@@ -42,7 +42,7 @@ API version: 1.0.
        All integrations should to display errors in a way that the user can see and understand them.
  - [ ] Avoid Integration pitfalls
     - [ ] The Vipps branding must be according to the
-          [Vipps design guidelines](https://github.com/vippsas/vipps-design-guidelines).
+          [Vipps design guidelines](https://developer.vippsmobilepay.com/docs/vipps-design-guidelines).
     - [ ] Make sure your customer service, etc has all the tools and information they need
           available in _your_ system, through the APIs listed in the first item in this checklist,
           and that they do not need to visit
