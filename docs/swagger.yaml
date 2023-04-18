@@ -4,8 +4,8 @@ info:
   version: '1.0'
   description: 'API to add and read additional info for Vipps orders. See the [API Guide](https://developer.vippsmobilepay.com/docs/APIs/order-management-api) for more information.'
   contact:
-    name: Vipps
-    url: 'https://vipps.no/kontakt-oss/bedrift/vipps/'
+    name: Vipps MobilePay
+    url: 'https://developer.vippsmobilepay.com/docs/vipps-developers/contact/'
 servers:
   - url: 'https://api.vipps.no/order-management'
     description: Vipps Order Management API
