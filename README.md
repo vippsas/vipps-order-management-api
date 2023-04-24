@@ -1,4 +1,3 @@
-<!-- START_METADATA
 ---
 title: Introduction to the Order Management API
 sidebar_label: Introduction
@@ -9,16 +8,9 @@ pagination_next: null
 pagination_prev: null
 
 ---
-END_METADATA -->
 
 # Order Management API
 
-<!-- START_COMMENT -->
-
-ℹ️ Please use the new documentation:
-[Vipps MobilePay Technical Documentation](https://developer.vippsmobilepay.com/docs/APIs/order-management-api).
-
-<!-- END_COMMENT -->
 
 The Order Management API allows you to associate extra information (e.g., images and receipts)
 with Vipps MobilePay transactions. Users can later find this information in the order history of their Vipps MobilePay app.

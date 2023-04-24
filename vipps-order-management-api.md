@@ -1,4 +1,3 @@
-<!-- START_METADATA
 ---
 title: Order Management API guide
 sidebar_label: API guide
@@ -7,16 +6,9 @@ description: Find technical details about integrating with the Order Management 
 pagination_prev: Null
 pagination_next: Null
 ---
-END_METADATA -->
 
 # API guide
 
-<!-- START_COMMENT -->
-
-ℹ️ Please use the new documentation:
-[Vipps MobilePay Technical Documentation](https://developer.vippsmobilepay.com/docs/APIs/order-management-api).
-
-<!-- END_COMMENT -->
 
 The Order Management API allows merchants to enrich Vipps transactions.
 The information given in this API will be shown to the customer in the order

@@ -1,4 +1,3 @@
-<!-- START_METADATA
 ---
 title: Quick start for the Order Management API
 sidebar_label: Quick start
@@ -7,29 +6,10 @@ description: Quick start guide for the using the Order Management API with Postm
 pagination_next: null
 pagination_prev: null
 ---
-END_METADATA -->
 
 # Quick start
 
 Use the Order Management API to generate enriched receipts.
-
-<!-- START_COMMENT -->
-
-ℹ️ Please use the new documentation:
-[Vipps MobilePay Technical Documentation](https://developer.vippsmobilepay.com/docs/APIs/order-management-api).
-
-## Table of Contents
-
-* [Quick start](#quick-start)
-  * [Table of Contents](#table-of-contents)
-  * [Postman](#postman)
-    * [Prerequisites](#prerequisites)
-    * [Step 1: Get the Postman collection and environment](#step-1-get-the-postman-collection-and-environment)
-    * [Step 2: Import the Postman files](#step-2-import-the-postman-files)
-    * [Step 3: Set up Postman environment](#step-3-set-up-postman-environment)
-  * [Make API calls](#make-api-calls)
-
-<!-- END_COMMENT -->
 
 ## Postman
 
