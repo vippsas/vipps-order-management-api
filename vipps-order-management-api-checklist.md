@@ -29,7 +29,7 @@ API version: 1.0.
     - [ ] Add receipt to an order [`POST:/order-management/v2/{{paymentType}}/receipts/{{orderId}}`][add-receipt-endpoint]
     - [ ] Get order with category and receipt [`GET:/order-management/v2/{{paymentType}}/{{orderId}}`][get-order-endpoint]
        - For examples of requests and responses, see the
-         [Order Management Postman collection](tools/vipps-order-management-api-postman-collection.json) and
+         [Order Management Postman collection](/tools/vipps-order-management-api-postman-collection.json) and
          [environment](https://github.com/vippsas/vipps-developers/blob/master/tools/vipps-api-global-postman-environment.json).
 - [ ] Send the [Vipps HTTP headers](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/http-headers)
       in all API requests for better tracking and troubleshooting:

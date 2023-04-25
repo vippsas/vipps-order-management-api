@@ -43,7 +43,7 @@ for information about getting your test environment set up.
 
 Save the following files to your computer:
 
-* [Order Management API Postman collection](tools/vipps-order-management-api-postman-collection.json)
+* [Order Management API Postman collection](/tools/vipps-order-management-api-postman-collection.json)
 * [API Global Postman environment](https://raw.githubusercontent.com/vippsas/vipps-developers/master/tools/vipps-api-global-postman-environment.json)
 
 ### Step 2: Import the Postman files
