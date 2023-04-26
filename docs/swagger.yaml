@@ -861,7 +861,10 @@ components:
       schema:
         type: string
         maxLength: 30
-      description: 'The version number of the ecommerce solution.         See [http-headers](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/http-headers).'
+        example: '5.4.0'
+      description: |-
+        The version number of the ecommerce solution.
+        See [http-headers](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/http-headers).
     Vipps-System-Plugin-Name:
       name: Vipps-System-Plugin-Name
       in: header
@@ -869,14 +872,23 @@ components:
       schema:
         type: string
         maxLength: 30
-      description: 'The name of the ecommerce plugin (if applicable).         One word in lowercase letters is good.         See [http-headers](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/http-headers).'
+        example: 'vipps-woocommerce'
+      description: |-
+        The name of the ecommerce plugin (if applicable).
+        One word in lowercase letters is good.
+        See [http-headers](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/http-headers).
     Vipps-System-Name:
       name: Vipps-System-Name
       in: header
       required: false
       schema:
         type: string
-      description: 'The name of the ecommerce solution.         One word in lowercase letters is good.         See [http-headers](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/http-headers).'
+        maxLength: 30
+        example: woocommerce
+      description: |- 
+        The name of the ecommerce solution. 
+        One word in lowercase letters is good. 
+        See [http-headers](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/http-headers).
     Vipps-System-Plugin-Version:
       name: Vipps-System-Plugin-Version
       in: header
@@ -884,9 +896,13 @@ components:
       schema:
         type: string
         maxLength: 30
-      description: 'The version number of the ecommerce plugin (if applicable).         See [http-headers](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/http-headers).'
+        example: "1.2.1"
+      description: |-
+        The version number of the ecommerce plugin (if applicable).
+        See [http-headers](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/http-headers).
   responses:
     400BadRequest:
+
       description: Example response
       content:
         application/json:
