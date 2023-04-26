@@ -40,6 +40,10 @@ paths:
         - $ref: '#/components/parameters/Merchant-Serial-Number'
         - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
         - $ref: '#/components/parameters/Authorization'
+        - $ref: '#/components/parameters/Vipps-System-Version'
+        - $ref: '#/components/parameters/Vipps-System-Plugin-Name'
+        - $ref: '#/components/parameters/Vipps-System-Name'
+        - $ref: '#/components/parameters/Vipps-System-Plugin-Version'
       tags:
         - Order
       deprecated: true
@@ -68,6 +72,10 @@ paths:
         - $ref: '#/components/parameters/Merchant-Serial-Number'
         - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
         - $ref: '#/components/parameters/Authorization'
+        - $ref: '#/components/parameters/Vipps-System-Version'
+        - $ref: '#/components/parameters/Vipps-System-Plugin-Name'
+        - $ref: '#/components/parameters/Vipps-System-Name'
+        - $ref: '#/components/parameters/Vipps-System-Plugin-Version'
       tags:
         - Order
       deprecated: true
@@ -92,6 +100,10 @@ paths:
         - $ref: '#/components/parameters/Merchant-Serial-Number'
         - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
         - $ref: '#/components/parameters/Authorization'
+        - $ref: '#/components/parameters/Vipps-System-Version'
+        - $ref: '#/components/parameters/Vipps-System-Plugin-Name'
+        - $ref: '#/components/parameters/Vipps-System-Name'
+        - $ref: '#/components/parameters/Vipps-System-Plugin-Version'
       tags:
         - Image
       requestBody:
@@ -130,6 +142,10 @@ paths:
         - $ref: '#/components/parameters/Merchant-Serial-Number'
         - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
         - $ref: '#/components/parameters/Authorization'
+        - $ref: '#/components/parameters/Vipps-System-Version'
+        - $ref: '#/components/parameters/Vipps-System-Plugin-Name'
+        - $ref: '#/components/parameters/Vipps-System-Name'
+        - $ref: '#/components/parameters/Vipps-System-Plugin-Version'
       requestBody:
         content:
           application/json:
@@ -214,6 +230,10 @@ paths:
         - $ref: '#/components/parameters/Merchant-Serial-Number'
         - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
         - $ref: '#/components/parameters/Authorization'
+        - $ref: '#/components/parameters/Vipps-System-Version'
+        - $ref: '#/components/parameters/Vipps-System-Plugin-Name'
+        - $ref: '#/components/parameters/Vipps-System-Name'
+        - $ref: '#/components/parameters/Vipps-System-Plugin-Version'
       deprecated: true
     post:
       summary: Add receipt to an order
@@ -239,6 +259,10 @@ paths:
         - $ref: '#/components/parameters/Merchant-Serial-Number'
         - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
         - $ref: '#/components/parameters/Authorization'
+        - $ref: '#/components/parameters/Vipps-System-Version'
+        - $ref: '#/components/parameters/Vipps-System-Plugin-Name'
+        - $ref: '#/components/parameters/Vipps-System-Name'
+        - $ref: '#/components/parameters/Vipps-System-Plugin-Version'
       deprecated: true
   '/v2/{paymentType}/categories/{orderId}':
     parameters:
@@ -276,6 +300,10 @@ paths:
         - $ref: '#/components/parameters/Merchant-Serial-Number'
         - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
         - $ref: '#/components/parameters/Authorization'
+        - $ref: '#/components/parameters/Vipps-System-Version'
+        - $ref: '#/components/parameters/Vipps-System-Plugin-Name'
+        - $ref: '#/components/parameters/Vipps-System-Name'
+        - $ref: '#/components/parameters/Vipps-System-Plugin-Version'
   '/v2/{paymentType}/{orderId}':
     parameters:
       - $ref: '#/components/parameters/Transaction-Type'
@@ -301,6 +329,10 @@ paths:
         - $ref: '#/components/parameters/Merchant-Serial-Number'
         - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
         - $ref: '#/components/parameters/Authorization'
+        - $ref: '#/components/parameters/Vipps-System-Version'
+        - $ref: '#/components/parameters/Vipps-System-Plugin-Name'
+        - $ref: '#/components/parameters/Vipps-System-Name'
+        - $ref: '#/components/parameters/Vipps-System-Plugin-Version'
 components:
   schemas:
     Order:
@@ -803,13 +835,7 @@ components:
       required: true
       schema:
         type: string
-      description: >-
-        The access token is a base64-encoded string that is required for all API calls.
-        It is a JWT (JSON Web Token).
-        The access token is fetched from the
-        [`POST:/accesstoken/get`](https://developer.vippsmobilepay.com/api/access-token#tag/Authorization-Service/operation/fetchAuthorizationTokenUsingPost)
-        endpoint.
-        It is valid for 1 hour in the test environment and 24 hours in the production environment.
+      description: 'The access token is a base64-encoded string that is required for all API calls. It is a JWT (JSON Web Token). The access token is fetched from the [`POST:/accesstoken/get`](https://developer.vippsmobilepay.com/api/access-token#tag/Authorization-Service/operation/fetchAuthorizationTokenUsingPost) endpoint. It is valid for 1 hour in the test environment and 24 hours in the production environment.'
     Transaction-Type:
       name: paymentType
       in: path
@@ -828,8 +854,55 @@ components:
         type: string
         pattern: '^[0-9A-Za-z-_\.]+$'
       description: 'The orderId of the transaction, unique and managed by merchant'
+    Vipps-System-Version:
+      name: Vipps-System-Version
+      in: header
+      required: false
+      schema:
+        type: string
+        maxLength: 30
+        example: '5.4.0'
+      description: |-
+        The version number of the ecommerce solution.
+        See [http-headers](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/http-headers).
+    Vipps-System-Plugin-Name:
+      name: Vipps-System-Plugin-Name
+      in: header
+      required: false
+      schema:
+        type: string
+        maxLength: 30
+        example: 'vipps-woocommerce'
+      description: |-
+        The name of the ecommerce plugin (if applicable).
+        One word in lowercase letters is good.
+        See [http-headers](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/http-headers).
+    Vipps-System-Name:
+      name: Vipps-System-Name
+      in: header
+      required: false
+      schema:
+        type: string
+        maxLength: 30
+        example: woocommerce
+      description: |- 
+        The name of the ecommerce solution. 
+        One word in lowercase letters is good. 
+        See [http-headers](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/http-headers).
+    Vipps-System-Plugin-Version:
+      name: Vipps-System-Plugin-Version
+      in: header
+      required: false
+      schema:
+        type: string
+        maxLength: 30
+        example: "1.2.1"
+      description: |-
+        The version number of the ecommerce plugin (if applicable).
+        See [http-headers](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/http-headers).
   responses:
     400BadRequest:
+
       description: Example response
       content:
         application/json:
