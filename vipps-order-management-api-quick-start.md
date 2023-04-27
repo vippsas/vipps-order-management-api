@@ -65,7 +65,7 @@ Save the following files to your computer:
 
 ## Make API calls
 
-For all of the following, you will start by sending request `Get Access Token` which uses
+For all the following, you will start by sending request `Get Access Token` which uses
 [Get Access Token][access-token-endpoint].
 This provides you with access to the API.
 
@@ -81,12 +81,12 @@ for details about the calls.
 
 1. Create an order.
    In this example, we will create an eCom order by sending request `Initiate Payment`.
-   This generates an one-time payment by using
+   This generates a one-time payment by using
    [`POST:/ecomm/v2/payments`][ecom-initiate-payment-endpoint]
     and sets an `order_Id` in environment for usage in subsequent steps.
 
    The response will be a URL to the Vipps landing page.
-   *Ctrl+click* (*Command-click* on macOS) on the link that appears and it will take
+   *Ctrl+click* (*Command-click* on macOS) on the link that appears, and it will take
    you to the Vipps landing page.
    The phone number of your test user should already be filled in, so you only have to click "Next".
 
@@ -98,9 +98,9 @@ for details about the calls.
 1. Send request `Add an image to an order`. This creates an image that can be used in one or many receipts by using
    [`POST:/order-management/v1/images`][add-image-endpoint].
 
-1. Send request `Add category to an order`. This sets the category, image, and order details url by using
+1. Send request `Add category to an order`. This sets the category, image, and order details URL by using
    [`PUT:/order-management/v2/{{paymentType}}/categories/{{orderId}}`][add-category-endpoint].
-   In this and the following steps, we use the paymentType of `eCom` and the `orderId` that was set in the `Initiate Payment` request.
+   In this and the following steps, we use the `paymentType` of `eCom` and the `orderId` that was set in the `Initiate Payment` request.
 
 1. Send request `Add receipt to an order`. This sets all details about the receipt by using
    [`POST:/order-management/v2/{{paymentType}}/receipts/{{orderId}}`][add-receipt-endpoint].

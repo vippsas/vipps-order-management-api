@@ -43,7 +43,7 @@ API version: 1.0.
  - [ ] Avoid Integration pitfalls
     - [ ] The Vipps branding must be according to the
           [Vipps design guidelines](https://developer.vippsmobilepay.com/docs/vipps-design-guidelines).
-    - [ ] Make sure your customer service, etc has all the tools and information they need
+    - [ ] Make sure your customer service, etc. has all the tools and information they need
           available in _your_ system, through the APIs listed in the first item in this checklist,
           and that they do not need to visit
           [portal.vipps.no](https://portal.vipps.no)
@@ -53,7 +53,7 @@ API version: 1.0.
 
 1. The merchant orders
    [Vipps på Nett](https://www.vipps.no/produkter-og-tjenester/bedrift/ta-betalt-paa-nett/ta-betalt-paa-nett/).
-1. Vipps completes customer control (KYC, PEP, AML, etc).
+1. Vipps completes customer control (KYC, PEP, AML, etc.).
 1. The merchant receives an email from Vipps saying that they can log in with
    BankID on
    [portal.vipps.no][portal-url]

@@ -1,4 +1,3 @@
-<!-- START_METADATA
 ---
 title: Introduction to the Order Management API
 sidebar_label: Introduction
@@ -7,9 +6,7 @@ hide_table_of_contents: true
 description: Use the Order Management API to associate extra information with transactions.
 pagination_next: null
 pagination_prev: null
-
 ---
-END_METADATA -->
 
 # Order Management API
 
