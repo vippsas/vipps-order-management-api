@@ -60,12 +60,12 @@ Save the following files to your computer:
    * `client_id` - Merchant key is required for getting the access token.
    * `client_secret` - Merchant key is required for getting the access token.
    * `Ocp-Apim-Subscription-Key` - Merchant subscription key.
-   * `merchantSerialNumber` - Merchant id.
+   * `merchantSerialNumber` - Merchant ID.
    * `mobileNumber` - The mobile number for the test app profile you have received or registered.
 
 ## Make API calls
 
-For all the following, you will start by sending request `Get Access Token` which uses
+For all of the following, you will start by sending request `Get Access Token` which uses
 [Get Access Token][access-token-endpoint].
 This provides you with access to the API.
 

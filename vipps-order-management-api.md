@@ -202,7 +202,7 @@ By using the [`POST:/receipts`](https://developer.vippsmobilepay.com/api/order-m
 
 [`POST:/order-management/v2/{paymentType}/receipts/{orderId}`](https://developer.vippsmobilepay.com/api/order-management#operation/postReceiptV2)
 
-This is endpoint is for sending receipt information. Receipt information is a combination of order lines and a bottom line with sum and VAT. An `OrderLine` is a description of each item present in the order. Detailed information about each property is available in the [OpenAPI spec](https://developer.vippsmobilepay.com/api/order-management#operation/postReceiptV2). A receipt is immutable and, once sent, cannot be overwritten.
+This endpoint is for sending receipt information. Receipt information is a combination of order lines and a bottom line with sum and VAT. An `OrderLine` is a description of each item present in the order. Detailed information about each property is available in the [OpenAPI spec](https://developer.vippsmobilepay.com/api/order-management#operation/postReceiptV2). A receipt is immutable and, once sent, cannot be overwritten.
 
 Example request:
 
