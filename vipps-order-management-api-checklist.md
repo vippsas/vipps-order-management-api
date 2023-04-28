@@ -30,7 +30,7 @@ As this API allows you to update transactions that have been created by using th
 
 | Action | Comment |
 |--------|---------|
-|     Handle errors | Make sure to log and handle all errors. All integrations should to display errors in a way that the users (customers and merchant employees/administrators) can see and understand them.|
+|     Handle errors | Make sure to log and handle all errors. All integrations should display errors in a way that the users (customers and merchant employees/administrators) can see and understand them.|
 |     Include Vipps HTTP headers | Send the [Vipps HTTP headers](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/http-headers) in all API requests for better tracking and troubleshooting (mandatory for partners and platforms, who must send these headers as part of the checklist approval). |
 
 ## Avoid integration pitfalls
