@@ -1,3 +1,4 @@
+<!-- START_METADATA
 ---
 title: Introduction to the Order Management API
 sidebar_label: Introduction
@@ -7,6 +8,7 @@ description: Use the Order Management API to associate extra information with tr
 pagination_next: null
 pagination_prev: null
 ---
+END_METADATA -->
 
 # Order Management API
 
