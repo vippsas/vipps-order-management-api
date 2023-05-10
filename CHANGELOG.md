@@ -10,7 +10,7 @@ END_METADATA -->
 
 # Changelog
 
-All notable changes to the current API will be documented in this file. 
+All notable changes to the current Order Management API will be documented in this file. 
 
 
 ## May 2023
