@@ -2,7 +2,7 @@
 ---
 title: Order Management API changelog
 sidebar_label: Changelog
-sidebar_position: 200
+sidebar_position: 400
 pagination_next: null
 pagination_prev: null
 ---
