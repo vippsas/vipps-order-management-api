@@ -480,40 +480,29 @@ components:
           type: string
           description: Name of the product in the order line.
           example: Vipps socks
-          nullable: true
         id:
           type: string
           description: The product ID
           example: '1234567890'
-          nullable: true
         totalAmount:
           type: integer
           description: 'Total amount of the order line, including tax and discount. Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 10 kr = 1000 øre.'
           example: 1000
-          minimum: 0
           format: int64
-          nullable: true
         totalAmountExcludingTax:
           type: integer
           description: 'Total amount of order line with discount excluding tax. Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 8 kr = 800 øre.'
           example: 800
-          minimum: 0
           format: int64
-          nullable: true
         totalTaxAmount:
           type: integer
           description: 'Total tax amount paid for the order line. Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 2.5 kr = 250 øre.'
           example: 250
-          minimum: 0
           format: int64
-          nullable: true
         taxPercentage:
           type: integer
           description: 'Tax percentage for the order line. Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 0.25 kr = 25 øre.'
           example: 25
-          minimum: 0
-          maximum: 100
-          nullable: true
         unitInfo:
           $ref: '#/components/schemas/UnitInfo'
         discount:
@@ -861,7 +850,7 @@ components:
       schema:
         type: string
         maxLength: 30
-        example: '5.4.0'
+        example: 5.4.0
       description: |-
         The version number of the ecommerce solution.
         See [http-headers](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/http-headers).
@@ -872,7 +861,7 @@ components:
       schema:
         type: string
         maxLength: 30
-        example: 'vipps-woocommerce'
+        example: vipps-woocommerce
       description: |-
         The name of the ecommerce plugin (if applicable).
         One word in lowercase letters is good.
@@ -885,7 +874,7 @@ components:
         type: string
         maxLength: 30
         example: woocommerce
-      description: |- 
+      description: |-
         The name of the ecommerce solution. 
         One word in lowercase letters is good. 
         See [http-headers](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/http-headers).
@@ -896,13 +885,12 @@ components:
       schema:
         type: string
         maxLength: 30
-        example: "1.2.1"
+        example: 1.2.1
       description: |-
         The version number of the ecommerce plugin (if applicable).
         See [http-headers](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/http-headers).
   responses:
     400BadRequest:
-
       description: Example response
       content:
         application/json:
