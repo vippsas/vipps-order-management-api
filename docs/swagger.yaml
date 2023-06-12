@@ -343,7 +343,6 @@ components:
             category: GENERAL
             orderDetailsUrl: 'https://www.vipps.no'
             imageId: vipps-socks-orange-123
-      description: ''
       properties:
         category:
           $ref: '#/components/schemas/CategoryEnum'
@@ -353,13 +352,13 @@ components:
           format: uri
           description: URL linking back to the merchant's website/store.
           minLength: 1
-          nullable: true
         imageId:
           type: string
           maxLength: 128
           pattern: '^[0-9A-Za-z-_\.]+$'
           minLength: 1
           example: vipps-socks-orange-123
+          nullable: true
       required:
         - category
         - orderDetailsUrl
