@@ -491,12 +491,6 @@ components:
           example: 1000
           format: int64
           nullable: true
-        totalAmount - copy:
-          type: integer
-          description: 'Total amount of the order line, including tax and discount. Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 10 kr = 1000 øre.'
-          example: 1000
-          format: int64
-          nullable: true
         totalAmountExcludingTax:
           type: integer
           description: 'Total amount of order line with discount excluding tax. Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 8 kr = 800 øre.'
@@ -539,7 +533,6 @@ components:
         - name
         - id
         - totalAmount
-        - totalAmount - copy
         - totalAmountExcludingTax
         - totalTaxAmount
         - taxPercentage
