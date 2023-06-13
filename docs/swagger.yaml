@@ -503,7 +503,7 @@ components:
           nullable: true
         taxPercentage:
           type: integer
-          description: 'Tax percentage for the order line. between 0-100'
+          description: 'Tax percentage for the order line. Between 0-100'
           example: 25
           minimum: 0
           maximum: 100
