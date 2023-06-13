@@ -75,15 +75,15 @@ As the same `OrderId` can be used for both a Recurring charge and an eCom paymen
 ### Basic flow
 
 1. Initiate a Vipps eCom or recurring payment
-    - `POST:/ecomm/v2/payments`
+   * `POST:/ecomm/v2/payments`
 2. Save the **orderId** you used when initiating
 3. Add an image (optional)
-    - `POST:/v1/images`
+   * `POST:/v1/images`
 4. Save the imageId
 5. Add a category with link and image
-    - `/v2/{paymentType}/categories/{orderId}`
+   * `/v2/{paymentType}/categories/{orderId}`
 6. Add a receipt
-    - `/v2/{paymentType}/receipts/{orderId}`
+   * `/v2/{paymentType}/receipts/{orderId}`
 
 ## Categories
 

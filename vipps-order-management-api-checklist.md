@@ -53,9 +53,9 @@ As this API allows you to update transactions that have been created by using th
 1. The merchant completes all checklist items above.
    Please double-check to avoid mistakes.
 1. The merchant verifies the integration in the production environment:
-    - We recommend checking this using both the API itself and the API Dashboard available under _Utvikler_ on
+   * We recommend checking this using both the API itself and the API Dashboard available under _Utvikler_ on
       [portal.vipps.no][portal-url].
-    - **Please note:** Vipps does not do any kind of activation or make any changes based on this checklist.
+   * **Please note:** Vipps does not do any kind of activation or make any changes based on this checklist.
       The API keys for the production environment are made available on
       [portal.vipps.no][portal-url]
       as soon as the customer control (see step 2) is completed, independently of this checklist.
