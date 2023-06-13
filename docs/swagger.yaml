@@ -479,37 +479,32 @@ components:
           type: string
           description: Name of the product in the order line.
           example: Vipps socks
-          nullable: true
         id:
           type: string
           description: The product ID
           example: '1234567890'
-          nullable: true
         totalAmount:
           type: integer
           description: 'Total amount of the order line, including tax and discount. Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 10 kr = 1000 øre.'
           example: 1000
           format: int64
-          nullable: true
         totalAmountExcludingTax:
           type: integer
           description: 'Total amount of order line with discount excluding tax. Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 8 kr = 800 øre.'
           example: 800
           format: int64
-          nullable: true
         totalTaxAmount:
           type: integer
           description: 'Total tax amount paid for the order line. Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 2.5 kr = 250 øre.'
           example: 250
           format: int64
-          nullable: true
         taxPercentage:
           type: integer
           description: 'Tax percentage for the order line. Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 0.25 kr = 25 øre.'
           example: 25
+          format: int32
           minimum: 0
           maximum: 100
-          nullable: true
         unitInfo:
           $ref: '#/components/schemas/UnitInfo'
         discount:
@@ -539,7 +534,6 @@ components:
         - totalAmountExcludingTax
         - totalTaxAmount
         - taxPercentage
-        - isReturn
     BottomLine:
       title: BottomLine
       type: object
