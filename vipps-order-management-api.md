@@ -42,7 +42,6 @@ but not for
 
 API version: 2.3.0.
 
-
 ## Before you begin
 
 This document assumes you have signed up as an organization with Vipps and have
@@ -76,10 +75,10 @@ As the same `OrderId` can be used for both a Recurring charge and an eCom paymen
 
 1. Initiate a Vipps eCom or recurring payment
    * `POST:/ecomm/v2/payments`
-2. Save the **orderId** you used when initiating
+2. Save the `orderId` you used when initiating
 3. Add an image (optional)
    * `POST:/v1/images`
-4. Save the imageId
+4. Save the `imageId`
 5. Add a category with link and image
    * `/v2/{paymentType}/categories/{orderId}`
 6. Add a receipt
@@ -120,7 +119,6 @@ We currently support these categories:
 | `Ticket`                      | A link to a location where the customer can access and download a ticket to an event, trip or transportation. | ![show ticket example](images/show-ticket.png) ![show ticket example](images/show-ticket-img.png)|
 | `Booking`                     | A link to a location that contains information and status about a booking, such as travel and rental booking. If your webshop or site has a "My bookings" page or similar, this link category can take the customer there. | ![show receipt example](images/show-booking-info.png) ![show receipt example](images/show-booking-info-img.png)|
 | `General`                     | If none of the other categories fit the use case for the link, a *General* category can be used. This is a link to a location that contains any kind of information pertinent to the order. | ![show more info example](images/show-more-info.png) ![show more info example](images/show-more-info-img.png)|
-
 
 ### Images
 

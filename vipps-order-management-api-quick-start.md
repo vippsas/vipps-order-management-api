@@ -65,7 +65,7 @@ Save the following files to your computer:
 
 ## Make API calls
 
-For all of the following, you will start by sending request `Get Access Token` which uses
+For all the following, you will start by sending request `Get Access Token` which uses
 [Get Access Token][access-token-endpoint].
 This provides you with access to the API.
 
@@ -107,7 +107,6 @@ for details about the calls.
 
 1. Send request `Get order with category and receipt`. This gets all details stored about the order and the receipt by using
    [`GET:/order-management/v2/{{paymentType}}/{{orderId}}`][get-order-endpoint].
-
 
 [order-mgmt-api-reference-url]: https://developer.vippsmobilepay.com/api/order-management
 [add-image-endpoint]: https://developer.vippsmobilepay.com/api/order-management#tag/Image/operation/postImage

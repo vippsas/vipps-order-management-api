@@ -40,7 +40,6 @@ As this API allows you to update transactions that have been created by using th
 |     Follow design guidelines| The Vipps branding must be according to the [Vipps design guidelines](https://developer.vippsmobilepay.com/docs/vipps-design-guidelines).|
 |     Educate customer support| Make sure your customer service, etc. has all the tools and information they need available in _your_ system, through the APIs listed in the first item in this checklist, and that they do not need to visit [portal.vipps.no](https://portal.vipps.no) for normal work.|
 
-
 ## Flow to go live for direct integrations
 
 1. The merchant orders
