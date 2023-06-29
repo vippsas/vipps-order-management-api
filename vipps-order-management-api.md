@@ -27,7 +27,7 @@ These concepts may be used separately or combined, and this guide will explain h
 This information is shown to the customer in the app in their order history and immediately after in-store purchases.
 
 Order Management enables you to communicate with your customers through
-the payment receipts in the Vipps or MobilePay app. The purpose of doing this is to give
+the payment receipts in the app. The purpose of doing this is to give
 your customers more convenience, better overview and a more compelling shopping
 experience when they use Vipps MobilePay to pay for your products and services.
 Order management also enables you to draw customers back to your website
