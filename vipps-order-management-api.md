@@ -58,7 +58,8 @@ See
 
 ### HTTP headers
 
-We recommend using the standard HTTP headers for all requests.
+We recommend using the standard HTTP headers for all requests
+
 See [HTTP headers](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/http-headers)
 in the Getting started guide, for details.
 
@@ -72,8 +73,8 @@ As the same `OrderId` can be used for both a Recurring charge and an eCom paymen
 
 ### Basic flow
 
-1. Initiate a ePayment, eCom, or recurring payment
-   * [`POST:/epayment/v1/payments`](https://developer.vippsmobilepay.com/api/epayment/#tag/CreatePayments/operation/createPayment)
+1. Initiate a eCom or recurring payments
+   * [`POST:/ecomm/v2/payments`](https://developer.vippsmobilepay.com/api/ecom/#tag/Vipps-eCom-API/operation/initiatePaymentV3UsingPOST)
 2. Save the `orderId` you used when initiating
 3. Add an image (optional)
    * [`POST:/v1/images`](https://developer.vippsmobilepay.com/api/order-management#tag/Image/operation/postImage)
