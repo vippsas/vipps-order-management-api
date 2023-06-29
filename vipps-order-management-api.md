@@ -18,7 +18,7 @@ END_METADATA -->
 
 <!-- END_COMMENT -->
 
-The Order Management API allows merchants to enrich Vipps MobilePay transactions.
+The Order Management API allows merchants to enrich payments.
 The information given in this API will be shown to the customer in the order
 history in their app. Order Management operates with two concepts:
 [Categories](#categories) (with images) and [Receipts](#receipts).
