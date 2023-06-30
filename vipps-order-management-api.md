@@ -51,7 +51,7 @@ from
 
 ### Authentication
 
-All API calls are authenticated with an access token and an API subscription key.
+All API requests are authenticated with an access token and an API subscription key.
 See
 [Get an access token](https://developer.vippsmobilepay.com/docs/APIs/access-token-api#get-an-access-token), for details.
 
