@@ -64,7 +64,7 @@ in the Getting started guide, for details.
 
 ### Reference and PaymentType
 
-Use order management to add a *Receipt* or *Category* to a transaction made with the ePayment, eCom, or Recurring API. The receipt is connected to a `OrderId` (called `reference` in the new ePayment API). The `OrderId` is what **you** use when either initiating an eCom payment or creating a recurring charge.
+Use order management to add a *Receipt* or *Category* to a transaction made with the ePayment, eCom, or Recurring API. The receipt is connected to a `orderId` (called `reference` in the new ePayment API). The `orderId` is what **you** use when either initiating an eCom payment or creating a recurring charge.
 
 The Order Management API does **no validation if the order exists**. This means that the order management enrichment may be added before or after the payment is actually created. The preferred way is to add the Order Management Data simultaneously as you initiate the payment.
 
