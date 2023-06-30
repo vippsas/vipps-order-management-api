@@ -68,7 +68,7 @@ Use order management to add a *Receipt* or *Category* to a transaction made with
 
 The Order Management API does **no validation if the order exists**. This means that the order management enrichment may be added before or after the payment is actually created. The preferred way is to add the Order Management Data simultaneously as you initiate the payment.
 
-As the same `OrderId` can be used for both a Recurring charge and an eCom payment, you need to supply which Vipps product is being used by setting the appropriate `paymentType` - which is either `ecom` or `recurring`.
+As the same `orderId` can be used for both a Recurring charge and an eCom payment, you need to supply which Vipps product is being used by setting the appropriate `paymentType` - which is either `ecom` or `recurring`.
 
 ### Basic flow
 
