@@ -663,8 +663,10 @@ components:
       title: CurrencyEnum
       enum:
         - NOK
-      nullable: true
+        - DKK
+        - EUR
       description: Currency information
+      nullable: true
     QuantityUnitEnum:
       type: string
       title: QuantityUnitEnum
