@@ -488,26 +488,24 @@ components:
           description: 'Total amount of the order line, including tax and discount. Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 10 kr = 1000 øre.'
           example: 1000
           format: int64
-          nullable: true
+          minimum: 0
         totalAmountExcludingTax:
           type: integer
           description: 'Total amount of order line with discount excluding tax. Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 8 kr = 800 øre.'
           example: 800
           format: int64
-          nullable: true
+          minimum: 0
         totalTaxAmount:
           type: integer
           description: 'Total tax amount paid for the order line. Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 2.5 kr = 250 øre.'
           example: 250
           format: int64
-          nullable: true
+          minimum: 0
         taxPercentage:
           type: integer
-          description: 'Tax percentage for the order line. Between 0-100'
+          description: 'Tax percentage for the order line. Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 0.25 kr = 25 øre.'
           example: 25
           minimum: 0
-          maximum: 100
-          nullable: true
         unitInfo:
           $ref: '#/components/schemas/UnitInfo'
         discount:
@@ -663,8 +661,10 @@ components:
       title: CurrencyEnum
       enum:
         - NOK
-      nullable: true
+        - DKK
+        - EUR
       description: Currency information
+      nullable: true
     QuantityUnitEnum:
       type: string
       title: QuantityUnitEnum
