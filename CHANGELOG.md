@@ -10,6 +10,10 @@ END_METADATA -->
 
 # Changelog
 
-All notable changes to the current Order Management API will be documented in this file.
+All notable changes to the current API will be documented in this file.
+To learn about API versioning, see
+[Common topics: API Lifecycle](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/api-lifecycle/).
 
-## May 2023
+## September 2021
+
+Order Management API launched.
