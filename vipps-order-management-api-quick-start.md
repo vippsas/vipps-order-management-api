@@ -85,9 +85,9 @@ for details about the calls.
    [`POST:/ecomm/v2/payments`][ecom-initiate-payment-endpoint]
     and sets an `order_Id` in environment for usage in subsequent steps.
 
-   The response will be a URL to the Vipps landing page.
+   The response will be a URL to the landing page.
    *Ctrl+click* (*Command-click* on macOS) on the link that appears, and it will take
-   you to the Vipps landing page.
+   you to the [landing page](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/landing-page).
    The phone number of your test user should already be filled in, so you only have to click "Next".
 
    You have now confirmed the payment in Vipps, setting the payment status to reserved.
