@@ -658,6 +658,7 @@ components:
         - DELIVERY
         - TICKET
         - BOOKING
+      nullable: true
     CurrencyEnum:
       type: string
       title: CurrencyEnum
