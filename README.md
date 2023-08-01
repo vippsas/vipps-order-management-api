@@ -25,7 +25,7 @@ with Vipps MobilePay transactions. Users can later find this information in the 
 ## Getting started
 
 See the
-[Getting started guide](https://developer.vippsmobilepay.com/docs/vipps-developers/getting-started/)
+[Getting started guide](https://developer.vippsmobilepay.com/docs/getting-started/)
 for information about API keys, product activation, how to make API calls, etc.
 
 Review the detailed documentation found here:

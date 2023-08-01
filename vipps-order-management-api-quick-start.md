@@ -36,7 +36,7 @@ Use the Order Management API to generate enriched receipts.
 ### Prerequisites
 
 Review
-[Vipps quick start guides](https://developer.vippsmobilepay.com/docs/vipps-developers/quick-start-guides)
+[Vipps quick start guides](https://developer.vippsmobilepay.com/docs/quick-start-guides)
 for information about getting your test environment set up.
 
 ### Step 1: Get the Postman collection and environment
@@ -87,7 +87,7 @@ for details about the calls.
 
    The response will be a URL to the landing page.
    *Ctrl+click* (*Command-click* on macOS) on the link that appears, and it will take
-   you to the [landing page](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/landing-page).
+   you to the [landing page](https://developer.vippsmobilepay.com/docs/common-topics/landing-page).
    The phone number of your test user should already be filled in, so you only have to click "Next".
 
    You have now confirmed the payment in Vipps, setting the payment status to reserved.
