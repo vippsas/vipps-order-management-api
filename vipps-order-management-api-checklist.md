@@ -62,7 +62,7 @@ As this API allows you to update transactions that have been created by using th
 
 ## Flow to go live for direct integrations for partners
 
-See: [Vipps partners](https://developer.vippsmobilepay.com/docs/vipps-partner).
+See: [Vipps partners](https://developer.vippsmobilepay.com/docs/partner).
 
 [order-mgmt-api-reference-url]: https://developer.vippsmobilepay.com/api/order-management
 [add-image-endpoint]: https://developer.vippsmobilepay.com/api/order-management#tag/Image/operation/postImage
