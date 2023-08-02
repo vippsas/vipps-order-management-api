@@ -45,7 +45,7 @@ API version: 2.3.0.
 ## Before you begin
 
 Sign up your organization and retrieve your API credentials for the
-[test environment](https://developer.vippsmobilepay.com/docs/vipps-developers/test-environment)
+[test environment](https://developer.vippsmobilepay.com/docs/test-environment)
 from
 [portal.vipps.no](https://portal.vipps.no).
 
@@ -59,7 +59,7 @@ See
 
 We recommend using the standard HTTP headers for all requests
 
-See [HTTP headers](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/http-headers)
+See [HTTP headers](https://developer.vippsmobilepay.com/docs/common-topics/http-headers)
 in the Getting started guide, for details.
 
 ### Reference and PaymentType
