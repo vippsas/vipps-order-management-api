@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: Vipps Order Management API
-  version: '1.0'
+  version: '2.0'
   description: 'API to add and read additional info for Vipps orders. See the [API Guide](https://developer.vippsmobilepay.com/docs/APIs/order-management-api) for more information.'
   contact:
     name: Vipps MobilePay
@@ -12,6 +12,7 @@ servers:
     description: Production environment (uses the production API keys, the official app and live data)
   - url: https://apitest.vipps.no
     description: Test environment (uses the test API keys, the test app and test data)
+
 
 tags:
   - name: Category
