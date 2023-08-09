@@ -125,7 +125,7 @@ paths:
       - $ref: '#/components/parameters/Order-Id'
       - $ref: '#/components/parameters/Transaction-Type'
     post:
-      summary: Add receipt to an order.
+      summary: Add receipt to an order
       operationId: postReceiptV2
       responses:
         '201':
@@ -272,7 +272,7 @@ paths:
       - $ref: '#/components/parameters/Transaction-Type'
       - $ref: '#/components/parameters/Order-Id'
     put:
-      summary: Add category to an order.
+      summary: Add category to an order
       operationId: putCategoryV2
       responses:
         '200':
