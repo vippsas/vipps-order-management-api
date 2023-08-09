@@ -9,6 +9,9 @@ info:
 
 servers:
   - url: 'https://api.vipps.no/order-management'
+    description: Production environment (uses the production API keys, the official app and live data)
+  - url: 'https://apitest.vipps.no/order-management'
+    description: Test environment (uses the test API keys, the test app and test data)
 
 tags:
   - name: Category
