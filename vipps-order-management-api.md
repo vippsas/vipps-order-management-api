@@ -131,14 +131,18 @@ transaction is also OK. Images are fetched pre-authenticated from the app, so fe
 free to add tickets and receipts as images. Below, you can see an example of a
 transaction containing an image with the `Shipping information` category.
 
-!["Shipping information link"](images/order-link-shipping-information-with-image.png)
+![Shipping information link](images/order-link-shipping-information-with-image.png)
 
 ### Adding an Image
 
 The [`POST:/images`][post-image-endpoint]
 endpoint for uploading pictures. Images exist independently of any transaction.
 It is not possible to overwrite an image. Base64 is the only supported media type at the moment.
-Example request:
+
+
+<details>
+<summary>Example request</summary>
+<div>
 
 Headers:
 
@@ -170,11 +174,18 @@ The response will then look like this:
 }
 ```
 
+</div>
+</details>
+
 ### Adding and changing Category
 
 The [`PUT:/{paymentType}/categories/{orderId}`][put-category-endpoint]
 endpoint is used for adding and updating the `Category` for a transaction.
 The category is mutable, and a new request will completely overwrite previous requests.
+
+<details>
+<summary>Example request</summary>
+<div>
 
 ```json
 {
@@ -183,6 +194,10 @@ The category is mutable, and a new request will completely overwrite previous re
 "imageId": "socks-orange-123"
 }
 ```
+
+</div>
+</details>
+
 
 ## Receipts
 
@@ -201,7 +216,9 @@ endpoint is for sending receipt information.
 
 Receipt information is a combination of order lines and a bottom line with sum and VAT. An `OrderLine` is a description of each item present in the order. Detailed information about each property is available in the [OpenAPI spec][post-receipt-endpoint]. A receipt is immutable and, once sent, cannot be overwritten.
 
-Example request:
+<details>
+<summary>Example request</summary>
+<div>
 
 Headers:
 
@@ -273,6 +290,9 @@ Body:
   }
 }
 ```
+
+</div>
+</details>
 
 ### Fetching Category and Receipt
 
