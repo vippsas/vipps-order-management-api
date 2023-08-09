@@ -76,12 +76,14 @@ As the same `orderId` can be used for both a Recurring charge and an eCom paymen
    * [`POST:/epayment/v1/payments`](https://developer.vippsmobilepay.com/api/epayment/#tag/CreatePayments/operation/createPayment)
 2. Save the `orderId` you used when initiating
 3. Add an image (optional)
-   * [`POST:/v1/images`](https://developer.vippsmobilepay.com/api/order-management#tag/Image/operation/postImage)
+   * [`POST:/images`][post-image-endpoint]
 4. Save the `imageId`
 5. Add a category with link and image
-   * [`/v2/{paymentType}/categories/{orderId}`](https://developer.vippsmobilepay.com/api/order-management#operation/putCategoryV2)
+   * [`/{paymentType}/categories/{orderId}`][put-category-endpoint]
 6. Add a receipt
-   * [`/v2/{paymentType}/receipts/{orderId}`](https://developer.vippsmobilepay.com/api/order-management#operation/postReceiptV2)
+   * [`/{paymentType}/receipts/{orderId}`][post-receipt-endpoint]
+
+Note that you can also create a receipt directly in the [ePayment API `createPayment` request](https://developer.vippsmobilepay.com/api/epayment/#tag/CreatePayments/operation/createPayment).
 
 ## Categories
 
@@ -141,13 +143,13 @@ Example request:
 
 Headers:
 
-```http
+```yaml
 Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni <snip>
 Ocp-Apim-Subscription-Key: 0f14ebcab0ec4b29ae0cb90d91b4a84a
 Merchant-Serial-Number: 123456
-Vipps-System-Name: Acme Commerce
+Vipps-System-Name: Acme
 Vipps-System-Version: 3.1.2
-Vipps-System-Plugin-Name: acme-pos
+Vipps-System-Plugin-Name: acme-webshop
 Vipps-System-Plugin-Version: 4.5.6
 ```
 
@@ -155,7 +157,7 @@ Body:
 
 ```json
 {
-  "imageId": "vipps-socks-orange-123",
+  "imageId": "socks-orange-123",
   "src": "iVBORw0KGgoAAAANSUhEUgAAAKsAAADVCAMAAAAfHv...",
   "type": "base64"
 }
@@ -176,8 +178,8 @@ The [`PUT:/order-management/v2/{paymentType}/categories/{orderId}`](https://deve
 ```json
 {
 "category": "GENERAL",
-"orderDetailsUrl": "https://www.vipps.no",
-"imageId": "vipps-socks-orange-123"
+"orderDetailsUrl": "https://www.example.com/2486791691483852025",
+"imageId": "socks-orange-123"
 }
 ```
 
@@ -202,13 +204,13 @@ Example request:
 
 Headers:
 
-```http
+```yaml
 Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni <snip>
 Ocp-Apim-Subscription-Key: 0f14ebcab0ec4b29ae0cb90d91b4a84a
 Merchant-Serial-Number: 123456
-Vipps-System-Name: Acme Commerce
+Vipps-System-Name: Acme
 Vipps-System-Version: 3.1.2
-Vipps-System-Plugin-Name: acme-pos
+Vipps-System-Plugin-Name: acme-webshop
 Vipps-System-Plugin-Version: 4.5.6
 ```
 
@@ -218,7 +220,7 @@ Body:
 {
   "orderLines": [
     {
-      "name": "Vipps socks",
+      "name": "Socks",
       "id": "line_item_1",
       "totalAmount": 1000,
       "totalAmountExcludingTax": 800,
@@ -231,11 +233,11 @@ Body:
       },
       "discount": 0,
       "productUrl": "https://example.com/store/socks",
-      "isRefund": false,
+      "isReturn": false,
       "isShipping": false
     },
     {
-      "name": "Vipps flip-flops",
+      "name": "Flip-flops",
       "id": "line_item_2",
       "totalAmount": 5000,
       "totalAmountExcludingTax": 4000,
@@ -248,10 +250,10 @@ Body:
       },
       "discount": 2500,
       "productUrl": "https://example.com/store/flipflops",
-      "isRefund": false,
+      "isReturn": false,
       "isShipping": false
     },
-        {
+    {
       "name": "Home delivery",
       "id": "shipping_1",
       "totalAmount": 1000,
@@ -259,15 +261,14 @@ Body:
       "totalTaxAmount": 0,
       "taxPercentage": 0,
       "discount": 0,
-      "isRefund": false,
+      "isReturn": false,
       "isShipping": true
     }
   ],
   "bottomLine": {
     "currency": "NOK",
-    "tipAmount": 0,
-    "giftCardAmount": 0,
-    "terminalId": "vipps_pos_122"
+    "posId": "vipps_pos_122",
+    "receiptNumber": "123456789"
   }
 }
 ```
@@ -287,3 +288,10 @@ If you, as a merchant, do not have a permanent website that can be utilized for 
 This can be relevant if you, for example, do not have a user-facing website or the website is short-lived.
 
 In order to comply with Vipps Assisted Content Monitoring, all transactions must be posted to the Order Management receipts functionality described in the [Receipts](#receipts) section.
+
+
+
+[post-image-endpoint]: https://developer.vippsmobilepay.com/api/order-management#tag/Image/operation/postImage
+[put-category-endpoint]: https://developer.vippsmobilepay.com/api/order-management#tag/Category/operation/putCategoryV2
+[post-receipt-endpoint]: https://developer.vippsmobilepay.com/api/order-management#tag/Receipt/operation/postReceiptV2
+[get-order-endpoint]: https://developer.vippsmobilepay.com/api/order-management#tag/Order/operation/getOrderV2
