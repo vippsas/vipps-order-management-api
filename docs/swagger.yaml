@@ -1,14 +1,27 @@
 openapi: 3.0.0
 info:
   title: Vipps Order Management API
-  version: '1.0'
+  version: '2.0'
   description: 'API to add and read additional info for Vipps orders. See the [API Guide](https://developer.vippsmobilepay.com/docs/APIs/order-management-api) for more information.'
   contact:
     name: Vipps MobilePay
     url: 'https://developer.vippsmobilepay.com/docs/contact/'
+
 servers:
   - url: 'https://api.vipps.no/order-management'
-    description: Vipps Order Management API
+    description: Production environment (uses the production API keys, the official app and live data)
+  - url: 'https://apitest.vipps.no/order-management'
+    description: Test environment (uses the test API keys, the test app and test data)
+
+tags:
+  - name: Category
+  - name: Image
+  - name: Order
+  - name: Receipt
+  - name: Deprecated endpoints
+    description: No longer available
+
+
 paths:
   '/v1/orders/{transactionId}':
     parameters:
@@ -37,15 +50,15 @@ paths:
         description: ''
       description: 'Post additional information about an order that will show up on the Vipps receipt. '
       parameters:
+        - $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/Merchant-Serial-Number'
         - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
-        - $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/Vipps-System-Version'
         - $ref: '#/components/parameters/Vipps-System-Plugin-Name'
         - $ref: '#/components/parameters/Vipps-System-Name'
         - $ref: '#/components/parameters/Vipps-System-Plugin-Version'
       tags:
-        - Order
+        - Deprecated endpoints
       deprecated: true
     get:
       summary: Get info for an order
@@ -69,15 +82,15 @@ paths:
           description: Order Not Found
       description: Retrieve the metadata for an order
       parameters:
+        - $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/Merchant-Serial-Number'
         - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
-        - $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/Vipps-System-Version'
         - $ref: '#/components/parameters/Vipps-System-Plugin-Name'
         - $ref: '#/components/parameters/Vipps-System-Name'
         - $ref: '#/components/parameters/Vipps-System-Plugin-Version'
       tags:
-        - Order
+        - Deprecated endpoints
       deprecated: true
   /v1/images:
     parameters: []
@@ -97,9 +110,9 @@ paths:
                     imageId: vipps-socks-orange-123
       description: Endpoint for uploading images. A imageId will be returned that can be used when adding metadata to orders.
       parameters:
+        - $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/Merchant-Serial-Number'
         - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
-        - $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/Vipps-System-Version'
         - $ref: '#/components/parameters/Vipps-System-Plugin-Name'
         - $ref: '#/components/parameters/Vipps-System-Name'
@@ -119,10 +132,10 @@ paths:
                   type: base64
   '/v2/{paymentType}/receipts/{orderId}':
     parameters:
-      - $ref: '#/components/parameters/Transaction-Type'
       - $ref: '#/components/parameters/Order-Id'
+      - $ref: '#/components/parameters/Transaction-Type'
     post:
-      summary: Add receipt to an order.
+      summary: Add receipt to an order
       operationId: postReceiptV2
       responses:
         '201':
@@ -139,9 +152,9 @@ paths:
         - Receipt
       description: Add receipt to an order.
       parameters:
+        - $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/Merchant-Serial-Number'
         - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
-        - $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/Vipps-System-Version'
         - $ref: '#/components/parameters/Vipps-System-Plugin-Name'
         - $ref: '#/components/parameters/Vipps-System-Name'
@@ -225,11 +238,11 @@ paths:
               examples: {}
       description: Endpoint for retrieving receipts.
       tags:
-        - Receipt
+        - Deprecated endpoints
       parameters:
+        - $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/Merchant-Serial-Number'
         - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
-        - $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/Vipps-System-Version'
         - $ref: '#/components/parameters/Vipps-System-Plugin-Name'
         - $ref: '#/components/parameters/Vipps-System-Name'
@@ -254,11 +267,11 @@ paths:
               $ref: '#/components/schemas/Receipt'
       description: Endpoint for adding receipts to an order.
       tags:
-        - Receipt
+        - Deprecated endpoints
       parameters:
+        - $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/Merchant-Serial-Number'
         - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
-        - $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/Vipps-System-Version'
         - $ref: '#/components/parameters/Vipps-System-Plugin-Name'
         - $ref: '#/components/parameters/Vipps-System-Name'
@@ -269,7 +282,7 @@ paths:
       - $ref: '#/components/parameters/Transaction-Type'
       - $ref: '#/components/parameters/Order-Id'
     put:
-      summary: Add category to an order.
+      summary: Add category to an order
       operationId: putCategoryV2
       responses:
         '200':
@@ -297,9 +310,9 @@ paths:
                   orderDetailsUrl: 'https://www.vipps.no'
                   imageId: vipps-socks-orange-123
       parameters:
+        - $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/Merchant-Serial-Number'
         - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
-        - $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/Vipps-System-Version'
         - $ref: '#/components/parameters/Vipps-System-Plugin-Name'
         - $ref: '#/components/parameters/Vipps-System-Name'
@@ -326,9 +339,9 @@ paths:
         - Order
       description: Get order with category and receipt
       parameters:
+        - $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/Merchant-Serial-Number'
         - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
-        - $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/Vipps-System-Version'
         - $ref: '#/components/parameters/Vipps-System-Plugin-Name'
         - $ref: '#/components/parameters/Vipps-System-Name'
@@ -934,10 +947,6 @@ components:
           examples:
             example:
               value: 16328cb8-d769-4c53-90ad-e19777823f0a
-tags:
-  - name: Category
-  - name: Image
-  - name: Order
-  - name: Receipt
+
 security:
   - BearerToken: []
