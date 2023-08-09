@@ -7,8 +7,10 @@ info:
     name: Vipps MobilePay
     url: 'https://developer.vippsmobilepay.com/docs/contact/'
 servers:
-  - url: 'https://api.vipps.no/order-management'
-    description: Vipps Order Management API
+  - url: https://api.vipps.no
+    description: Production environment (uses the production API keys, the official app and live data)
+  - url: https://apitest.vipps.no
+    description: Test environment (uses the test API keys, the test app and test data)
 paths:
   '/v1/orders/{transactionId}':
     parameters:
