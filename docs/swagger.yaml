@@ -18,6 +18,9 @@ tags:
   - name: Image
   - name: Order
   - name: Receipt
+  - name: Deprecated endpoints
+    description: No longer available
+
 
 paths:
   '/v1/orders/{transactionId}':
@@ -55,7 +58,7 @@ paths:
         - $ref: '#/components/parameters/Vipps-System-Name'
         - $ref: '#/components/parameters/Vipps-System-Plugin-Version'
       tags:
-        - Order
+        - Deprecated endpoints
       deprecated: true
     get:
       summary: Get info for an order
@@ -87,7 +90,7 @@ paths:
         - $ref: '#/components/parameters/Vipps-System-Name'
         - $ref: '#/components/parameters/Vipps-System-Plugin-Version'
       tags:
-        - Order
+        - Deprecated endpoints
       deprecated: true
   /v1/images:
     parameters: []
@@ -235,7 +238,7 @@ paths:
               examples: {}
       description: Endpoint for retrieving receipts.
       tags:
-        - Receipt
+        - Deprecated endpoints
       parameters:
         - $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/Merchant-Serial-Number'
@@ -264,7 +267,7 @@ paths:
               $ref: '#/components/schemas/Receipt'
       description: Endpoint for adding receipts to an order.
       tags:
-        - Receipt
+        - Deprecated endpoints
       parameters:
         - $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/Merchant-Serial-Number'
