@@ -123,20 +123,19 @@ We currently support these categories:
 ### Images
 
 With the Order Management API, you can upload an image that is shown on the
-transaction in the Vipps app. When adding an `Image` along with a `Category`, the `Image` needs to already exist. This means that the image needs to be uploaded first. After uploading an image to
-the [`POST:/images`](https://developer.vippsmobilepay.com/api/order-management#tag/Image/operation/postImage) endpoint, the newly uploaded
-image's `ImageId` needs be used in the Categories API.
+transaction in the app. When adding an `Image` along with a `Category`, the `Image` must be uploaded beforehand. After uploading an image to
+the [`POST:/images`][post-image-endpoint] endpoint, the newly uploaded image's `ImageId` is used in the Categories endpoint.
 
 The same image may be used for multiple transactions, but uploading a unique image for each
-transaction is also OK. Imaged are fetched authenticated from the app, so feel
-free to add tickets and receipts as images. Below you can see an example of a Vipps
-transaction containing an Image with the "Shipping information" `Category`.
+transaction is also OK. Images are fetched pre-authenticated from the app, so feel
+free to add tickets and receipts as images. Below, you can see an example of a
+transaction containing an image with the `Shipping information` category.
 
 !["Shipping information link"](images/order-link-shipping-information-with-image.png)
 
 ### Adding an Image
 
-The [`POST:/order-management/v1/images`](https://developer.vippsmobilepay.com/api/order-management#tag/Image/operation/postImage)
+The [`POST:/images`][post-image-endpoint]
 endpoint for uploading pictures. Images exist independently of any transaction.
 It is not possible to overwrite an image. Base64 is the only supported media type at the moment.
 Example request:
@@ -167,13 +166,15 @@ The response will then look like this:
 
 ```json
 {
-    "imageId": "vipps-socks-orange-123"
+    "imageId": "socks-orange-123"
 }
 ```
 
 ### Adding and changing Category
 
-The [`PUT:/order-management/v2/{paymentType}/categories/{orderId}`](https://developer.vippsmobilepay.com/api/order-management#operation/putCategoryV2) endpoint is used for adding and updating the `Category` for a Vipps transaction. The category is mutable, and a new request will completely overwrite previous requests. Here is an example request:
+The [`PUT:/{paymentType}/categories/{orderId}`][put-category-endpoint]
+endpoint is used for adding and updating the `Category` for a transaction.
+The category is mutable, and a new request will completely overwrite previous requests.
 
 ```json
 {
@@ -189,16 +190,16 @@ The `receipt` concept will allow the merchant to add order lines to a Vipps Tran
 
 !["Example with order lines"](images/order-lines_sm.png)
 
-By using the [`POST:/receipts`](https://developer.vippsmobilepay.com/api/order-management#tag/Receipt/operation/postReceiptV2) endpoint, it is possible to add a `Receipt` to a Vipps transaction. This is done by sending each `OrderLine` with its relevant VAT info. The Sum of the receipt will be calculated based on the order lines that are sent in. In environments where a paper printer isn't accessible, this can be very valuable. The receipt generated in the Vipps app is an "electronic copy" and should be approved by all Norwegian accounting firms.
+By using the [`POST:/{paymentType}/receipts/{orderId}`][post-receipt-endpoint] endpoint, it is possible to add a `Receipt` to a transaction. This is done by sending each `OrderLine` with its relevant VAT info. The `Sum` of the receipt will be calculated based on the order lines that are sent in. In environments where a paper printer isn't accessible, this can be very valuable. The receipt generated in the Vipps app is an "electronic copy" and should be approved by all Norwegian accounting firms.
 
 !["Extended order lines"](images/order-lines-extended_sm.png)
 
 ### Adding a Receipt
 
-The [`POST:/order-management/v2/{paymentType}/receipts/{orderId}`](https://developer.vippsmobilepay.com/api/order-management#operation/postReceiptV2)
+The [`POST:/{paymentType}/receipts/{orderId}`][post-receipt-endpoint]
 endpoint is for sending receipt information.
 
-Receipt information is a combination of order lines and a bottom line with sum and VAT. An `OrderLine` is a description of each item present in the order. Detailed information about each property is available in the [OpenAPI spec](https://developer.vippsmobilepay.com/api/order-management#operation/postReceiptV2). A receipt is immutable and, once sent, cannot be overwritten.
+Receipt information is a combination of order lines and a bottom line with sum and VAT. An `OrderLine` is a description of each item present in the order. Detailed information about each property is available in the [OpenAPI spec][post-receipt-endpoint]. A receipt is immutable and, once sent, cannot be overwritten.
 
 Example request:
 
@@ -275,8 +276,8 @@ Body:
 
 ### Fetching Category and Receipt
 
-The [`GET:/order-management/v2/{paymentType}/{orderId}`](https://developer.vippsmobilepay.com/api/order-management#operation/getOrderV2)
-endpoint is used for getting both `Category` and `Receipt` for the Vipps Transaction. The response body includes ID references to images previously uploaded, Links, and the `OrderLines` added.
+The [`GET:/{paymentType}/{orderId}`][get-order-endpoint]
+endpoint is used for getting both `Category` and `Receipt` for the transaction. The response body includes ID references to images previously uploaded, Links, and the `OrderLines` added.
 
 ## Vipps Assisted Content Monitoring
 
