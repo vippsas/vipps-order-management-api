@@ -6,6 +6,7 @@ info:
   contact:
     name: Vipps MobilePay
     url: 'https://developer.vippsmobilepay.com/docs/contact/'
+
 servers:
   - url: https://api.vipps.no
     description: Production environment (uses the production API keys, the official app and live data)
@@ -39,9 +40,9 @@ paths:
         description: ''
       description: 'Post additional information about an order that will show up on the Vipps receipt. '
       parameters:
+        - $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/Merchant-Serial-Number'
         - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
-        - $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/Vipps-System-Version'
         - $ref: '#/components/parameters/Vipps-System-Plugin-Name'
         - $ref: '#/components/parameters/Vipps-System-Name'
@@ -71,9 +72,9 @@ paths:
           description: Order Not Found
       description: Retrieve the metadata for an order
       parameters:
+        - $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/Merchant-Serial-Number'
         - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
-        - $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/Vipps-System-Version'
         - $ref: '#/components/parameters/Vipps-System-Plugin-Name'
         - $ref: '#/components/parameters/Vipps-System-Name'
@@ -99,9 +100,9 @@ paths:
                     imageId: vipps-socks-orange-123
       description: Endpoint for uploading images. A imageId will be returned that can be used when adding metadata to orders.
       parameters:
+        - $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/Merchant-Serial-Number'
         - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
-        - $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/Vipps-System-Version'
         - $ref: '#/components/parameters/Vipps-System-Plugin-Name'
         - $ref: '#/components/parameters/Vipps-System-Name'
@@ -121,8 +122,8 @@ paths:
                   type: base64
   '/v2/{paymentType}/receipts/{orderId}':
     parameters:
-      - $ref: '#/components/parameters/Transaction-Type'
       - $ref: '#/components/parameters/Order-Id'
+      - $ref: '#/components/parameters/Transaction-Type'
     post:
       summary: Add receipt to an order.
       operationId: postReceiptV2
@@ -141,9 +142,9 @@ paths:
         - Receipt
       description: Add receipt to an order.
       parameters:
+        - $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/Merchant-Serial-Number'
         - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
-        - $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/Vipps-System-Version'
         - $ref: '#/components/parameters/Vipps-System-Plugin-Name'
         - $ref: '#/components/parameters/Vipps-System-Name'
@@ -229,9 +230,9 @@ paths:
       tags:
         - Receipt
       parameters:
+        - $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/Merchant-Serial-Number'
         - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
-        - $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/Vipps-System-Version'
         - $ref: '#/components/parameters/Vipps-System-Plugin-Name'
         - $ref: '#/components/parameters/Vipps-System-Name'
@@ -258,9 +259,9 @@ paths:
       tags:
         - Receipt
       parameters:
+        - $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/Merchant-Serial-Number'
         - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
-        - $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/Vipps-System-Version'
         - $ref: '#/components/parameters/Vipps-System-Plugin-Name'
         - $ref: '#/components/parameters/Vipps-System-Name'
@@ -299,9 +300,9 @@ paths:
                   orderDetailsUrl: 'https://www.vipps.no'
                   imageId: vipps-socks-orange-123
       parameters:
+        - $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/Merchant-Serial-Number'
         - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
-        - $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/Vipps-System-Version'
         - $ref: '#/components/parameters/Vipps-System-Plugin-Name'
         - $ref: '#/components/parameters/Vipps-System-Name'
@@ -328,9 +329,9 @@ paths:
         - Order
       description: Get order with category and receipt
       parameters:
+        - $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/Merchant-Serial-Number'
         - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
-        - $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/Vipps-System-Version'
         - $ref: '#/components/parameters/Vipps-System-Plugin-Name'
         - $ref: '#/components/parameters/Vipps-System-Name'
