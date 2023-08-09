@@ -12,6 +12,13 @@ servers:
     description: Production environment (uses the production API keys, the official app and live data)
   - url: https://apitest.vipps.no
     description: Test environment (uses the test API keys, the test app and test data)
+
+tags:
+  - name: Category
+  - name: Image
+  - name: Order
+  - name: Receipt
+
 paths:
   '/v1/orders/{transactionId}':
     parameters:
@@ -937,10 +944,6 @@ components:
           examples:
             example:
               value: 16328cb8-d769-4c53-90ad-e19777823f0a
-tags:
-  - name: Category
-  - name: Image
-  - name: Order
-  - name: Receipt
+
 security:
   - BearerToken: []
