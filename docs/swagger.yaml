@@ -870,7 +870,7 @@ components:
       required: false
       schema:
         type: string
-        maxLength: 30
+        maxLength: 100
         example: 5.4.0
       description: |-
         The version number of the ecommerce solution.
@@ -881,7 +881,7 @@ components:
       required: false
       schema:
         type: string
-        maxLength: 30
+        maxLength: 100
         example: vipps-woocommerce
       description: |-
         The name of the ecommerce plugin (if applicable).
@@ -893,7 +893,7 @@ components:
       required: false
       schema:
         type: string
-        maxLength: 30
+        maxLength: 100
         example: woocommerce
       description: |-
         The name of the ecommerce solution. 
@@ -905,7 +905,7 @@ components:
       required: false
       schema:
         type: string
-        maxLength: 30
+        maxLength: 100
         example: 1.2.1
       description: |-
         The version number of the ecommerce plugin (if applicable).
@@ -947,6 +947,5 @@ components:
           examples:
             example:
               value: 16328cb8-d769-4c53-90ad-e19777823f0a
-
 security:
   - BearerToken: []
