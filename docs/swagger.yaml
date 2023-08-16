@@ -1,8 +1,8 @@
 openapi: 3.0.0
 info:
-  title: Vipps Order Management API
+  title: Order Management API
   version: '2.0'
-  description: 'API to add and read additional info for Vipps orders. See the [API Guide](https://developer.vippsmobilepay.com/docs/APIs/order-management-api) for more information.'
+  description: 'API to add and read additional info for Vipps MobilePay orders. See the [API Guide](https://developer.vippsmobilepay.com/docs/APIs/order-management-api) for more information.'
   contact:
     name: Vipps MobilePay
     url: 'https://developer.vippsmobilepay.com/docs/contact/'
@@ -48,7 +48,7 @@ paths:
                   orderDetailsUrl: 'https://www.vipps.no'
                   imageId: vipps-socks-orange-123
         description: ''
-      description: 'Post additional information about an order that will show up on the Vipps receipt. '
+      description: 'Post additional information about an order that will show up on the receipt. '
       parameters:
         - $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/Merchant-Serial-Number'
@@ -168,7 +168,7 @@ paths:
               ReceiptExample:
                 value:
                   orderLines:
-                    - name: Vipps socks
+                    - name: socks
                       id: line_item_1
                       totalAmount: 1000
                       totalAmountExcludingTax: 800
@@ -182,7 +182,7 @@ paths:
                       productUrl: 'https://example.com/store/socks'
                       isReturn: false
                       isShipping: false
-                    - name: Vipps flip-flops
+                    - name: flip-flops
                       id: line_item_2
                       totalAmount: 5000
                       totalAmountExcludingTax: 4000
@@ -297,7 +297,7 @@ paths:
           $ref: '#/components/responses/409Conflict'
       tags:
         - Category
-      description: 'The category adds a link, specified by you, to the Transaction page on the Vipps app. Only one (the latest) category is shown in the app.'
+      description: 'The category adds a link, specified by you, to the Transaction page on the Vipps MobilePay app. Only one (the latest) category is shown in the app.'
       requestBody:
         content:
           application/json:
@@ -416,7 +416,7 @@ components:
       x-examples:
         ReceiptExample:
           orderLines:
-            - name: Vipps socks
+            - name: socks
               id: '1234567890'
               totalAmount: 1000
               totalAmountExcludingTax: 800
@@ -463,7 +463,7 @@ components:
         OrderLineExample:
           value:
             orderLines:
-              - name: Vipps socks
+              - name: socks
                 id: line_item_1
                 totalAmount: 1000
                 totalAmountExcludingTax: 800
@@ -475,7 +475,7 @@ components:
                   quantityUnit: KG
                 discount: 0
                 productUrl: 'https://example.com/store/socks'
-              - name: Vipps flip-flops
+              - name: flip-flops
                 id: line_item_2
                 totalAmount: 5000
                 totalAmountExcludingTax: 4000
@@ -491,7 +491,7 @@ components:
         name:
           type: string
           description: Name of the product in the order line.
-          example: Vipps socks
+          example: socks
         id:
           type: string
           description: The product ID
@@ -831,7 +831,7 @@ components:
       required: true
       schema:
         type: string
-      description: The Vipps merchant serial number for this sales unit.
+      description: The merchant serial number for this sales unit.
     Ocp-Apim-Subscription-Key:
       name: Ocp-Apim-Subscription-Key
       in: header
