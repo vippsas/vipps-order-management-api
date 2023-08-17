@@ -1,8 +1,8 @@
 {
 	"info": {
 		"_postman_id": "b84a2bc0-418b-4676-b74e-1d39effa9e92",
-		"name": "Vipps Order Management API",
-		"description": "API to add and read additional info for Vipps orders. See the [API Guide](https://developer.vippsmobilepay.com/docs/APIs/order-management-api) for more information.\n\nContact Support:\n Name: Vipps",
+		"name": "Order Management API",
+		"description": "API to add and read additional info for Vipps MobilePay orders. See the [API Guide](https://developer.vippsmobilepay.com/docs/APIs/order-management-api) for more information.\n\nContact Support:\n Name: Vipps MobilePay",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -194,7 +194,7 @@
 				"method": "POST",
 				"header": [
 					{
-						"description": "(Required) The Vipps merchant serial number for this sales unit.",
+						"description": "(Required) The merchant serial number for this sales unit.",
 						"key": "Merchant-Serial-Number",
 						"value": "{{merchantSerialNumber}}"
 					},
@@ -267,7 +267,7 @@
 				"method": "PUT",
 				"header": [
 					{
-						"description": "(Required) The Vipps merchant serial number for this sales unit.",
+						"description": "(Required) The merchant serial number for this sales unit.",
 						"key": "Merchant-Serial-Number",
 						"value": "{{merchantSerialNumber}}"
 					},
@@ -332,7 +332,7 @@
 						"{{orderId}}"
 					]
 				},
-				"description": "The category adds a link, specified by you, to the Transaction page on the Vipps app. Only one (the latest) category is shown in the app."
+				"description": "The category adds a link, specified by you, to the Transaction page on the Vipps MobilePay app. Only one (the latest) category is shown in the app."
 			},
 			"response": []
 		},
@@ -342,7 +342,7 @@
 				"method": "POST",
 				"header": [
 					{
-						"description": "(Required) The Vipps merchant serial number for this sales unit.",
+						"description": "(Required) The merchant serial number for this sales unit.",
 						"key": "Merchant-Serial-Number",
 						"value": "{{merchantSerialNumber}}"
 					},
@@ -417,7 +417,7 @@
 				"method": "GET",
 				"header": [
 					{
-						"description": "(Required) The Vipps merchant serial number for this sales unit.",
+						"description": "(Required) The merchant serial number for this sales unit.",
 						"key": "Merchant-Serial-Number",
 						"value": "{{merchantSerialNumber}}"
 					},

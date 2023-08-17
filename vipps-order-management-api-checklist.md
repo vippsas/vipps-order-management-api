@@ -31,21 +31,21 @@ As this API allows you to update transactions that have been created by using th
 | Action | Comment |
 |--------|---------|
 |     Handle errors | Make sure to log and handle all errors. All integrations should display errors in a way that the users (customers and merchant employees/administrators) can see and understand them.|
-|     Include Vipps HTTP headers | Send the [Vipps HTTP headers](https://developer.vippsmobilepay.com/docs/common-topics/http-headers) in all API requests for better tracking and troubleshooting (mandatory for partners and platforms, who must send these headers as part of the checklist approval). |
+|     Include standard HTTP headers | Send the [HTTP headers](https://developer.vippsmobilepay.com/docs/common-topics/http-headers) in all API requests for better tracking and troubleshooting (mandatory for partners and platforms, who must send these headers as part of the checklist approval). |
 
 ## Avoid integration pitfalls
 
 | Action | Comment |
 |--------|---------|
-|     Follow design guidelines| The Vipps branding must be according to the [Vipps design guidelines](https://developer.vippsmobilepay.com/docs/design-guidelines).|
+|     Follow design guidelines| The Vipps MobilePay branding must be according to the [design guidelines](https://developer.vippsmobilepay.com/docs/design-guidelines).|
 |     Educate customer support| Make sure your customer service, etc. has all the tools and information they need available in _your_ system, through the APIs listed in the first item in this checklist, and that they do not need to visit [portal.vipps.no](https://portal.vipps.no) for normal work.|
 
 ## Flow to go live for direct integrations
 
 1. The merchant orders
-   [Vipps på Nett](https://www.vipps.no/produkter-og-tjenester/bedrift/ta-betalt-paa-nett/ta-betalt-paa-nett/).
-1. Vipps completes customer control (KYC, PEP, AML, etc.).
-1. The merchant receives an email from Vipps saying that they can log in with
+   [*Vipps på Nett*](https://www.vipps.no/produkter-og-tjenester/bedrift/ta-betalt-paa-nett/ta-betalt-paa-nett/).
+1. Vipps MobilePay completes customer control (KYC, PEP, AML, etc.).
+1. The merchant receives an email saying that they can log in with
    BankID on
    [portal.vipps.no][portal-url]
    and retrieve API keys.
@@ -54,7 +54,7 @@ As this API allows you to update transactions that have been created by using th
 1. The merchant verifies the integration in the production environment:
    * We recommend checking this using both the API itself and the API Dashboard available under _Utvikler_ on
       [portal.vipps.no][portal-url].
-   * **Please note:** Vipps does not do any kind of activation or make any changes based on this checklist.
+   * **Please note:** We don't do any kind of activation or make any changes based on this checklist.
       The API keys for the production environment are made available on
       [portal.vipps.no][portal-url]
       as soon as the customer control (see step 2) is completed, independently of this checklist.
@@ -62,7 +62,7 @@ As this API allows you to update transactions that have been created by using th
 
 ## Flow to go live for direct integrations for partners
 
-See: [Vipps partners](https://developer.vippsmobilepay.com/docs/partner).
+See: [partners](https://developer.vippsmobilepay.com/docs/partner).
 
 [order-mgmt-api-reference-url]: https://developer.vippsmobilepay.com/api/order-management
 [add-image-endpoint]: https://developer.vippsmobilepay.com/api/order-management#tag/Image/operation/postImage
