@@ -6,13 +6,11 @@ info:
   contact:
     name: Vipps MobilePay
     url: 'https://developer.vippsmobilepay.com/docs/contact/'
-
 servers:
   - url: 'https://api.vipps.no/order-management'
-    description: Production environment (uses the production API keys, the official app and live data)
+    description: 'Production environment (uses the production API keys, the official app and live data)'
   - url: 'https://apitest.vipps.no/order-management'
-    description: Test environment (uses the test API keys, the test app and test data)
-
+    description: 'Test environment (uses the test API keys, the test app and test data)'
 tags:
   - name: Category
   - name: Image
@@ -20,8 +18,6 @@ tags:
   - name: Receipt
   - name: Deprecated endpoints
     description: No longer available
-
-
 paths:
   '/v1/orders/{transactionId}':
     parameters:
@@ -501,26 +497,20 @@ components:
           description: 'Total amount of the order line, including tax and discount. Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 10 kr = 1000 øre.'
           example: 1000
           format: int64
-          nullable: true
         totalAmountExcludingTax:
           type: integer
           description: 'Total amount of order line with discount excluding tax. Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 8 kr = 800 øre.'
           example: 800
           format: int64
-          nullable: true
         totalTaxAmount:
           type: integer
           description: 'Total tax amount paid for the order line. Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 2.5 kr = 250 øre.'
           example: 250
           format: int64
-          nullable: true
         taxPercentage:
           type: integer
-          description: 'Tax percentage for the order line. Between 0-100'
+          description: Tax percentage for the order line. Between 0-100
           example: 25
-          minimum: 0
-          maximum: 100
-          nullable: true
         unitInfo:
           $ref: '#/components/schemas/UnitInfo'
         discount:
@@ -539,10 +529,12 @@ components:
           type: boolean
           example: false
           description: Flag for marking the order line as returned. This will make it count negative towards all the sums in bottomLine.
+          nullable: true
         isShipping:
           example: false
           type: boolean
           description: Flag for marking the order line as a shipping line. This will be shown differently in the app.
+          nullable: true
       required:
         - name
         - id
