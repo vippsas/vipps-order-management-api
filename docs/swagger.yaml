@@ -511,6 +511,8 @@ components:
           type: integer
           description: Tax percentage for the order line. Between 0-100
           example: 25
+          maximum: 100
+          minimum: 0
         unitInfo:
           $ref: '#/components/schemas/UnitInfo'
         discount:
