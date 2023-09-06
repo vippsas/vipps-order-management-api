@@ -619,6 +619,9 @@ components:
         receiptNumber:
           type: string
           nullable: true
+        terminalId:
+          type: string
+          nullable: true
       required:
         - currency
     UnitInfo:
@@ -779,21 +782,25 @@ components:
         - taxPercentage
     PaymentSources:
       type: object
-      properties:
-        giftCard:
-          type: integer
-        card:
-          type: integer
-        voucher:
-          type: integer
-        cash:
-          type: integer
       x-examples:
         PaymentSourcesExample:
           giftCard: 200
           card: 50
           voucher: 25
           cash: 25
+      properties:
+        giftCard:
+          type: integer
+          nullable: true
+        card:
+          type: integer
+          nullable: true
+        voucher:
+          type: integer
+          nullable: true
+        cash:
+          type: integer
+          nullable: true
     BarcodeFormatEnum:
       type: string
       title: BarcodeFormatEnum
