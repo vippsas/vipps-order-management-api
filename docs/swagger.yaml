@@ -686,6 +686,7 @@ components:
         - KWH
       description: Available units for quantity. Will default to PCS if not set
       default: PCS
+      nullable: true
     ErrorResponse:
       description: ''
       type: object
