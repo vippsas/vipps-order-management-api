@@ -652,7 +652,6 @@ components:
           pattern: '^\d+([\.]\d{1,8})?$'
           example: '0.822'
           description: Quantity given as a integer or fraction (only for cosmetics)
-          default: 33
         quantityUnit:
           $ref: '#/components/schemas/QuantityUnitEnum'
       required:
