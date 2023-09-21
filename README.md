@@ -12,11 +12,14 @@ END_METADATA -->
 
 # Order Management API
 
-<!-- START_COMMENT -->
+![Vipps](./images/vipps.png) *Available for Vipps now.*
 
+![MobilePay](./images/mp.png) *Available for MobilePay in selected markets at the [Vipps MobilePay joint platform launch](https://www.vippsmobilepay.com/#about).*
+
+
+<!-- START_COMMENT -->
 ℹ️ Please use the website:
 [Vipps MobilePay Technical Documentation](https://developer.vippsmobilepay.com/docs/APIs/order-management-api).
-
 <!-- END_COMMENT -->
 
 The Order Management API allows you to associate extra information (e.g., images and receipts)
