@@ -621,7 +621,9 @@ components:
           nullable: true
         terminalId:
           type: string
+          description: 'Deprecated, use "posId" instead.'
           nullable: true
+          deprecated: true
       required:
         - currency
     UnitInfo:
