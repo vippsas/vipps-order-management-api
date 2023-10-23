@@ -41,7 +41,7 @@ paths:
               Adding order metadata with one image:
                 value:
                   category: GENERAL
-                  orderDetailsUrl: 'https://www.vipps.no'
+                  orderDetailsUrl: 'https://example.com'
                   imageId: vipps-socks-orange-123
         description: ''
       description: 'Post additional information about an order that will show up on the receipt. '
@@ -70,7 +70,7 @@ paths:
                 Retrieve order info:
                   value:
                     category: TICKET
-                    orderDetailsUrl: 'https://www.vipps.no'
+                    orderDetailsUrl: 'https://example.com'
                     imageIds:
                       - id: vipps-socks-orange-123
                         sortOrder: 1
@@ -303,7 +303,7 @@ paths:
               Adding order metadata with one image:
                 value:
                   category: GENERAL
-                  orderDetailsUrl: 'https://www.vipps.no'
+                  orderDetailsUrl: 'https://example.com'
                   imageId: vipps-socks-orange-123
       parameters:
         - $ref: '#/components/parameters/Authorization'
@@ -350,14 +350,14 @@ components:
         example-1:
           value:
             category: GENERAL
-            orderDetailsUrl: 'https://www.vipps.no'
+            orderDetailsUrl: 'https://example.com'
             imageId: vipps-socks-orange-123
       properties:
         category:
           $ref: '#/components/schemas/CategoryEnum'
         orderDetailsUrl:
           type: string
-          example: 'https://www.vipps.no'
+          example: 'https://www.example.com'
           format: uri
           description: URL linking back to the merchant's website/store.
           minLength: 1
@@ -442,7 +442,7 @@ components:
       properties:
         orderLines:
           type: array
-          description: 'All numbers are interpreted as integers with two trailing zeros. ex: 10.00 = 1000. Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 10 kr = 1000 øre.'
+          description: 'Amounts are specified in minor units (i.e., integers with two trailing zeros). For example: 10.00 EUR/NOK/DKK should be written as 1000.'
           minItems: 1
           items:
             $ref: '#/components/schemas/OrderLine'
@@ -454,7 +454,7 @@ components:
     OrderLine:
       title: OrderLine
       type: object
-      description: 'All numbers are interpreted as integers with two trailing zeros. ex: 10.00 = 1000.'
+      description: 'Amounts are specified in minor units (i.e., integers with two trailing zeros). For example: 10.00 EUR/NOK/DKK should be written as 1000.'
       x-examples:
         OrderLineExample:
           value:
@@ -494,17 +494,17 @@ components:
           example: '1234567890'
         totalAmount:
           type: integer
-          description: 'Total amount of the order line, including tax and discount. Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 10 kr = 1000 øre.'
+          description: 'Total amount of the order line, including tax and discount. Amounts are specified in minor units (i.e., integers with two trailing zeros). For example: 10.00 EUR/NOK/DKK should be written as 1000.'
           example: 1000
           format: int64
         totalAmountExcludingTax:
           type: integer
-          description: 'Total amount of order line with discount excluding tax. Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 8 kr = 800 øre.'
+          description: 'Total amount of order line with discount excluding tax. Amounts are specified in minor units (i.e., integers with two trailing zeros). For example: 10.00 EUR/NOK/DKK should be written as 1000.'
           example: 800
           format: int64
         totalTaxAmount:
           type: integer
-          description: 'Total tax amount paid for the order line. Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 2.5 kr = 250 øre.'
+          description: 'Total tax amount paid for the order line. Amounts are specified in minor units (i.e., integers with two trailing zeros). For example: 10.00 EUR/NOK/DKK should be written as 1000.'
           example: 250
           format: int64
         taxPercentage:
@@ -517,7 +517,7 @@ components:
           $ref: '#/components/schemas/UnitInfo'
         discount:
           type: integer
-          description: 'Total discount for the order line. Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 20 kr = 2000 øre.'
+          description: 'Total discount for the order line. Amounts are specified in minor units (i.e., integers with two trailing zeros). For example: 1.00 EUR/NOK/DKK should be written as 100.'
           example: 2000
           minimum: 0
           format: int64
@@ -547,7 +547,7 @@ components:
     BottomLine:
       title: BottomLine
       type: object
-      description: 'Summary of the order. Total amount and total. Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 20 kr = 2000 øre.'
+      description: 'Summary of the order. Total amount and total. Amounts are specified in minor units (i.e., integers with two trailing zeros). For example: 10.00 EUR/NOK/DKK should be written as 1000.'
       x-examples:
         BottomLineExample:
           value:
@@ -566,7 +566,7 @@ components:
           $ref: '#/components/schemas/CurrencyEnum'
         tipAmount:
           type: integer
-          description: 'Tip amount for the order. Amounts are specified in minor units. For Norwegian kroner (NOK) that means 1 kr = 100 øre. Example: 20 kr = 2000 øre.'
+          description: 'Tip amount for the order. Amounts are specified in minor units (i.e., integers with two trailing zeros). For example: 10.00 EUR/NOK/DKK should be written as 1000.'
           example: 2000
           minimum: 0
           format: int64
