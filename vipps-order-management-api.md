@@ -79,12 +79,12 @@ As the same `orderId` can be used for both a Recurring charge and an eCom paymen
 1. Initiate an eCom or recurring payment
 2. Save the `orderId` you used when initiating
 3. Add an image (optional)
-   * [`POST:/images`][post-image-endpoint]
+   * [`POST:/order-management/v1/images`][post-image-endpoint]
 4. Save the `imageId`
 5. Add a category with link and image. Specify `{paymentType}` as `ecom` or `recurring`, based on the type of payment.
-   * [`/{paymentType}/categories/{orderId}`][put-category-endpoint]
+   * [`/order-management/v2/{paymentType}/categories/{orderId}`][put-category-endpoint]
 6. Add a receipt
-   * [`/{paymentType}/receipts/{orderId}`][post-receipt-endpoint]
+   * [`/order-management/v2/{paymentType}/receipts/{orderId}`][post-receipt-endpoint]
 
 **Please note:** You can also use this flow with the ePayment API, but it's better to attach the receipt directly in the [ePayment API `createPayment`](https://developer.vippsmobilepay.com/api/epayment/#tag/CreatePayments/operation/createPayment) request. For ePayment API, the `{paymentType}` is also `ecom`.
 
@@ -127,7 +127,7 @@ We currently support these categories:
 
 With the Order Management API, you can upload an image that is shown on the
 transaction in the app. When adding an `Image` along with a `Category`, the `Image` must be uploaded beforehand. After uploading an image to
-the [`POST:/images`][post-image-endpoint] endpoint, the newly uploaded image's `ImageId` is used in the Categories endpoint.
+the [`POST:/order-management/v1/images`][post-image-endpoint] endpoint, the newly uploaded image's `ImageId` is used in the Categories endpoint.
 
 The same image may be used for multiple transactions, but uploading a unique image for each
 transaction is also OK. Images are fetched pre-authenticated from the app, so feel
@@ -138,7 +138,7 @@ transaction containing an image with the `Shipping information` category.
 
 ### Adding an Image
 
-The [`POST:/images`][post-image-endpoint]
+The [`POST:/order-management/v1/images`][post-image-endpoint]
 endpoint for uploading pictures. Images exist independently of any transaction.
 It is not possible to overwrite an image. Base64 is the only supported media type at the moment.
 
@@ -182,7 +182,7 @@ The response will then look like this:
 
 ### Adding and changing Category
 
-The [`PUT:/{paymentType}/categories/{orderId}`][put-category-endpoint]
+The [`PUT:/order-management/v2/{paymentType}/categories/{orderId}`][put-category-endpoint]
 endpoint is used for adding and updating the `Category` for a transaction.
 The category is mutable, and a new request will completely overwrite previous requests.
 
@@ -208,13 +208,13 @@ The `receipt` concept allows you to add order lines to a transaction. This can b
 
 ![Example with order lines](images/order-lines_sm.png)
 
-By using the [`POST:/{paymentType}/receipts/{orderId}`][post-receipt-endpoint] endpoint, it is possible to add a `Receipt` to a transaction. This is done by sending each `OrderLine` with its relevant VAT info. The `Sum` of the receipt will be calculated based on the order lines that are sent in. In environments where a paper printer isn't accessible, this can be very valuable. The receipt generated in the Vipps app is an "electronic copy" and should be approved by all Norwegian accounting firms.
+By using the [`POST:/order-management/v2/{paymentType}/receipts/{orderId}`][post-receipt-endpoint] endpoint, it is possible to add a `Receipt` to a transaction. This is done by sending each `OrderLine` with its relevant VAT info. The `Sum` of the receipt will be calculated based on the order lines that are sent in. In environments where a paper printer isn't accessible, this can be very valuable. The receipt generated in the Vipps app is an "electronic copy" and should be approved by all Norwegian accounting firms.
 
 ![Extended order lines](images/order-lines-extended_sm.png)
 
 ### Adding a Receipt
 
-The [`POST:/{paymentType}/receipts/{orderId}`][post-receipt-endpoint]
+The [`POST:/order-management/v2/{paymentType}/receipts/{orderId}`][post-receipt-endpoint]
 endpoint is for sending receipt information.
 
 Receipt information is a combination of order lines and a bottom line with sum and VAT. An `OrderLine` is a description of each item present in the order. Detailed information about each property is available in the [OpenAPI spec][post-receipt-endpoint]. A receipt is immutable and, once sent, cannot be overwritten.
@@ -299,7 +299,7 @@ Body:
 
 ### Fetching Category and Receipt
 
-The [`GET:/{paymentType}/{orderId}`][get-order-endpoint]
+The [`GET:/order-management/v2/{paymentType}/{orderId}`][get-order-endpoint]
 endpoint is used for getting both `Category` and `Receipt` for the transaction. The response body includes ID references to images previously uploaded, Links, and the `OrderLines` added.
 
 ## Vipps Assisted Content Monitoring
