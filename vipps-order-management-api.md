@@ -38,7 +38,7 @@ or app from links on the receipt view.
 This functionality is available for
 [recurring](https://developer.vippsmobilepay.com/docs/APIs/recurring-api)
 and
-[direct payments](https://developer.vippsmobilepay.com/docs/APIs/epayment-api),
+[direct payments](https://developer.vippsmobilepay.com/docs/APIs/ecom-api/),
 but not for
 [pass-through payments](https://developer.vippsmobilepay.com/docs/APIs/psp-api).
 
@@ -66,7 +66,9 @@ in the Getting started guide, for details.
 
 ### Reference and PaymentType
 
-Use order management to add a *Receipt* or *Category* to a transaction made with the ePayment, eCom, or Recurring API. The receipt is connected to a `orderId` (called `reference` in the ePayment API). The `orderId` is what **you** use when either initiating an eCom payment or creating a recurring charge.
+Use order management to add a *Receipt* or *Category* to a transaction made with the eCom or Recurring API. The receipt is connected to a `orderId`. The `orderId` is what **you** use when either initiating an eCom payment or creating a recurring charge.
+
+Note that you can also use this with the ePayment API, but it's better to attach the receipt directly in the ePayment API request.
 
 The Order Management API does **no validation if the order exists**. This means that the order management enrichment may be added before or after the payment is actually created. The preferred way is to add the Order Management Data simultaneously as you initiate the payment.
 
@@ -74,18 +76,17 @@ As the same `orderId` can be used for both a Recurring charge and an eCom paymen
 
 ### Basic flow
 
-1. Initiate an ePayment, eCom, or recurring payment
-   * [`POST:/epayment/v1/payments`](https://developer.vippsmobilepay.com/api/epayment/#tag/CreatePayments/operation/createPayment)
+1. Initiate an eCom or recurring payment
 2. Save the `orderId` you used when initiating
 3. Add an image (optional)
    * [`POST:/images`][post-image-endpoint]
 4. Save the `imageId`
-5. Add a category with link and image
+5. Add a category with link and image. Specify `{paymentType}` as `ecom` or `recurring`, based on the type of payment.
    * [`/{paymentType}/categories/{orderId}`][put-category-endpoint]
 6. Add a receipt
    * [`/{paymentType}/receipts/{orderId}`][post-receipt-endpoint]
 
-Note that you can also create a receipt directly in the [ePayment API `createPayment` request](https://developer.vippsmobilepay.com/api/epayment/#tag/CreatePayments/operation/createPayment).
+**Please note:** You can also use this flow with the ePayment API, but it's better to attach the receipt directly in the [ePayment API `createPayment`](https://developer.vippsmobilepay.com/api/epayment/#tag/CreatePayments/operation/createPayment) request. For ePayment API, the `{paymentType}` is also `ecom`.
 
 ## Categories
 
