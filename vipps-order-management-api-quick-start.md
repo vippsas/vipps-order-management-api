@@ -126,11 +126,14 @@ values={[
 <TabItem value="postman">
 
 ```bash
-Send request Create Payment with ePayment API
+Send request Initiate Payment
 ```
 
 </TabItem>
 <TabItem value="curl">
+
+You need to create a payment with either the eCom API or the Recurring API.
+Here is an example with the eCom API.
 
 ```bash
 curl --location 'https://apitest.vipps.no/ecomm/v2/payments/' \
@@ -163,7 +166,9 @@ curl --location 'https://apitest.vipps.no/ecomm/v2/payments/' \
 </TabItem>
 </Tabs>
 
-Note that you can also create a receipt directly in the [ePayment API `createPayment` request](https://developer.vippsmobilepay.com/api/epayment/#tag/CreatePayments/operation/createPayment), but to add a category and image, you will use the steps below.
+Note that you can also create a receipt directly in the
+[ePayment API `createPayment` request](https://developer.vippsmobilepay.com/api/epayment/#tag/CreatePayments/operation/createPayment),
+but to add a category and image, you will use the steps below.
 
 **Please note:**
 The payment doesn't need to exist yet. It is possible to add the receipt first, then create the payment request afterwards.
