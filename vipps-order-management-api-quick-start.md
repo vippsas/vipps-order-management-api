@@ -217,7 +217,8 @@ You can see the image in the payment history of the app, once you create a categ
 ### Step 6 - Add category to an order
 
 Set the category, image, and order details URL by using
-[`PUT:{paymentType}/categories/{orderId}`][put-category-endpoint].
+{paymentType}/categories/{orderId}
+[`PUT:/order-management/v2/{paymentType}/categories/{orderId}`][put-category-endpoint].
 
 Use `ecom` for the `paymentType` of ePayment or eCom payments. Use `recurring` for recurring payments.
 For `orderId`, use the `orderId` or `reference` (for ePayment) of the payment.
@@ -266,7 +267,7 @@ See [API guide: Categories](vipps-order-management-api.md#categories) for detail
 ### Step 7 - Add receipt to the payment
 
 Set all details about the receipt with:
-[`POST:{paymentType}/receipts/{orderId}`][post-receipt-endpoint].
+[`POST:/order-management/v2/{paymentType}/receipts/{orderId}`][post-receipt-endpoint].
 
 A receipt is immutable and, once sent, cannot be overwritten.
 So, if you want to run this example more than once, you'll need to create a new payment request to attach it to.
@@ -323,7 +324,7 @@ See [API guide: Receipts](vipps-order-management-api.md#adding-a-receipt) for mo
 ### Step 8 - (Optional) Fetch the receipt
 
 Fetch the details stored about the order and the receipt by using
-[`GET:{paymentType}/{orderId}`][get-order-endpoint].
+[`GET:/order-management/v2/{paymentType}/{orderId}`][get-order-endpoint].
 
 <Tabs
 defaultValue="curl"
