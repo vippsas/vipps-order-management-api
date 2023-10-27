@@ -11,7 +11,7 @@ pagination_prev: null
 
 Here are the Order Management API FAQs.
 See the
-[Order Management API guide](./api-guide/README.md)
+[Order Management API guide](vipps-order-management-api.md)
 for all the details.
 
 For more common questions, see:
@@ -32,5 +32,5 @@ No, not yet. It is only possible to do
 [`POST:/order-management/v2/{paymentType}/receipts/{orderId}](https://developer.vippsmobilepay.com/api/order-management/#tag/Receipt/operation/postReceiptV2)
 once.
 
-This is a known limitation and we will update here if this changes.
+This is a known limitation, and we will update here if this changes.
 
