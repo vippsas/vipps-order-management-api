@@ -374,4 +374,4 @@ Visit the [Order Management API Guide](vipps-order-management-api.md) to read ab
 [post-receipt-endpoint]: https://developer.vippsmobilepay.com/api/order-management#tag/Receipt/operation/postReceiptV2
 [get-order-endpoint]: https://developer.vippsmobilepay.com/api/order-management#tag/Order/operation/getOrderV2
 [access-token-endpoint]: https://developer.vippsmobilepay.com/api/access-token#tag/Authorization-Service/operation/fetchAuthorizationTokenUsingPost
-[ecom-create-payment-endpoint]: https://developer.vippsmobilepay.com/api/ecom/#tag/Vipps-eCom-API/operation/initiatePaymentV3UsingPOST
+[ecom-create-payment-endpoint]: https://developer.vippsmobilepay.com/api/ecom/#tag/eCom-API/operation/initiatePaymentV3UsingPOST
