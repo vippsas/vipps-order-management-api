@@ -877,7 +877,7 @@ components:
         example: 5.4.0
       description: |-
         The version number of the ecommerce solution.
-        See [http-headers](https://developer.vippsmobilepay.com/docs/common-topics/http-headers).
+        See [http-headers](https://developer.vippsmobilepay.com/docs/knowledge-base/http-headers).
     Vipps-System-Plugin-Name:
       name: Vipps-System-Plugin-Name
       in: header
@@ -889,7 +889,7 @@ components:
       description: |-
         The name of the ecommerce plugin (if applicable).
         One word in lowercase letters is good.
-        See [http-headers](https://developer.vippsmobilepay.com/docs/common-topics/http-headers).
+        See [http-headers](https://developer.vippsmobilepay.com/docs/knowledge-base/http-headers).
     Vipps-System-Name:
       name: Vipps-System-Name
       in: header
@@ -901,7 +901,7 @@ components:
       description: |-
         The name of the ecommerce solution. 
         One word in lowercase letters is good. 
-        See [http-headers](https://developer.vippsmobilepay.com/docs/common-topics/http-headers).
+        See [http-headers](https://developer.vippsmobilepay.com/docs/knowledge-base/http-headers).
     Vipps-System-Plugin-Version:
       name: Vipps-System-Plugin-Version
       in: header
@@ -912,7 +912,7 @@ components:
         example: 1.2.1
       description: |-
         The version number of the ecommerce plugin (if applicable).
-        See [http-headers](https://developer.vippsmobilepay.com/docs/common-topics/http-headers).
+        See [http-headers](https://developer.vippsmobilepay.com/docs/knowledge-base/http-headers).
   responses:
     400BadRequest:
       description: Example response

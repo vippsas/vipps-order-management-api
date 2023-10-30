@@ -61,7 +61,7 @@ See
 
 We recommend using the standard HTTP headers for all requests
 
-See [HTTP headers](https://developer.vippsmobilepay.com/docs/common-topics/http-headers)
+See [HTTP headers](https://developer.vippsmobilepay.com/docs/knowledge-base/http-headers)
 in the Getting started guide, for details.
 
 ### Reference and PaymentType
