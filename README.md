@@ -28,7 +28,7 @@ with Vipps MobilePay transactions. Users can later find this information in the 
 ## Next steps
 
 * [API quick start guide](order-management-api-quick-start.md): Run the basic examples in curl or Postman.
-* [API guide](vorder-management-api.md): Learn about the features.
+* [API guide](order-management-api.md): Learn about the features.
 * [API reference](https://developer.vippsmobilepay.com/api/order-management): Get straight to the endpoint specifications.
 
 If you're new to the platform, see
