@@ -11,7 +11,7 @@ pagination_prev: null
 
 Here are the Order Management API FAQs.
 See the
-[Order Management API guide](vipps-order-management-api.md)
+[Order Management API guide](./order-management-api-guide.md)
 for all the details.
 
 For general information and questions, please check in the

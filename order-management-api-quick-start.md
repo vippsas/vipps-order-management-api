@@ -53,7 +53,7 @@ values={[
 
 In Postman, import the following files:
 
-* [Order Management API Postman collection](/tools/vipps-order-management-api-postman-collection.json)
+* [Order Management API Postman collection](/tools/order-management-api-postman-collection.json)
 * [API Global Postman environment](https://github.com/vippsas/vipps-developers/blob/master/tools/vipps-api-global-postman-environment.json)
 
 🔥 **To reduce risk of exposure, never store production keys in Postman or any similar tools.** 🔥
@@ -267,7 +267,7 @@ curl https://apitest.vipps.no/order-management/v2/ecom/categories/PAYMENT-ORDER-
 </TabItem>
 </Tabs>
 
-See [API guide: Categories](vipps-order-management-api.md#categories) for details.
+See [API guide: Categories](./order-management-api-guide.md#categories) for details.
 
 ### Step 7 - Add receipt to the payment
 
@@ -324,7 +324,7 @@ curl https://apitest.vipps.no/order-management/v2/ecom/receipts/PAYMENT-ORDER-ID
 </TabItem>
 </Tabs>
 
-See [API guide: Receipts](vipps-order-management-api.md#adding-a-receipt) for more details.
+See [API guide: Receipts](./order-management-api-guide.md#adding-a-receipt) for more details.
 
 ### Step 8 - (Optional) Fetch the receipt
 
@@ -366,7 +366,7 @@ curl https://apitest.vipps.no/order-management/v2/ecom/payment12345 \
 
 ## Next Steps
 
-Visit the [Order Management API Guide](vipps-order-management-api.md) to read about the concepts and details.
+Visit the [Order Management API Guide](./order-management-api-guide.md) to read about the concepts and details.
 
 
 [post-image-endpoint]: https://developer.vippsmobilepay.com/api/order-management#tag/Image/operation/postImage
