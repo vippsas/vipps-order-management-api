@@ -222,7 +222,6 @@ You can see the image in the payment history of the app, once you create a categ
 ### Step 6 - Add category to an order
 
 Set the category, image, and order details URL by using
-{paymentType}/categories/{orderId}
 [`PUT:/order-management/v2/{paymentType}/categories/{orderId}`][put-category-endpoint].
 
 Use `ecom` for the `paymentType` of ePayment or eCom payments. Use `recurring` for recurring payments.
