@@ -20,9 +20,9 @@ Integrate _all_ the [API endpoints][order-mgmt-api-reference-url]. For examples 
 | Endpoint | Comment |
 |----------|---------|
 | Add an image to an order | [`POST:/order-management/v1/images`][add-image-endpoint] |
-| Add category to an order | [`PUT:/order-management/v2/{{paymentType}}/categories/{{orderId}}`][add-category-endpoint] |
-| Add receipt to an order | [`POST:/order-management/v2/{{paymentType}}/receipts/{{orderId}}`][add-receipt-endpoint] |
-| Get order with category and receipt | [`GET:/order-management/v2/{{paymentType}}/{{orderId}}`][get-order-endpoint] |
+| Add category to an order | [`PUT:/order-management/v2/{paymentType}/categories/{orderId}`][add-category-endpoint] |
+| Add receipt to an order | [`POST:/order-management/v2/{paymentType}/receipts/{orderId}`][add-receipt-endpoint] |
+| Get order with category and receipt | [`GET:/order-management/v2/{paymentType}/{orderId}`][get-order-endpoint] |
 
 As this API allows you to update transactions that have been created by using the [eCom API](https://developer.vippsmobilepay.com/docs/APIs/ecom-api), [ePayment API](https://developer.vippsmobilepay.com/docs/APIs/epayment-api), or [Recurring API](https://developer.vippsmobilepay.com/docs/APIs/recurring-api), you may need to implement the associated checklist(s) from these.
 
