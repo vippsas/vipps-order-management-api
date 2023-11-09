@@ -24,7 +24,14 @@ Integrate _all_ the [API endpoints][order-mgmt-api-reference-url]. For examples 
 | Add receipt to an order | [`POST:/order-management/v2/{paymentType}/receipts/{orderId}`][add-receipt-endpoint] |
 | Get order with category and receipt | [`GET:/order-management/v2/{paymentType}/{orderId}`][get-order-endpoint] |
 
-As this API allows you to update transactions that have been created by using the [eCom API](https://developer.vippsmobilepay.com/docs/APIs/ecom-api), [ePayment API](https://developer.vippsmobilepay.com/docs/APIs/epayment-api), or [Recurring API](https://developer.vippsmobilepay.com/docs/APIs/recurring-api), you may need to implement the associated checklist(s) from these.
+As this API allows you to update transactions that have been created by using the [eCom API](https://developer.vippsmobilepay.com/docs/APIs/ecom-api) or [Recurring API](https://developer.vippsmobilepay.com/docs/APIs/recurring-api), you may need to implement the associated checklist(s) from these.
+
+When the checklist is completed, notify Vipps MobilePay Integration Service
+at [developer@vippsmobilepay.com](mailto:developer@vippsmobilepay.com).
+Include examples from the test environment, pilot customer info, and a description of the implemented solution.
+
+We will verify the integration and contact you.
+After the checklist is approved, we'll send you the information you need to get started.
 
 ## Quality assurance
 
