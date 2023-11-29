@@ -382,7 +382,7 @@ components:
           example: vipps-socks-orange-123
         src:
           type: string
-          description: The image data as a base64 encoded string (not a URL)
+          description: The image data as a base64 encoded string (not a URL). The image must be in PNG or JPEG format. Square images are recommended. Minimum height is 167px, and max file size is 2MB.
         type:
           type: string
           enum:
