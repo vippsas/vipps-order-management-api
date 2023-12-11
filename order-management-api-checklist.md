@@ -15,7 +15,7 @@ API version: 1.0.
 
 ## Endpoints to integrate
 
-Integrate _all_ the [API endpoints][order-mgmt-api-reference-url]. For examples of requests and responses, see the [Postman collection](/tools/order-management-api-postman-collection.json) and [environment](https://developer.vippsmobilepay.com/internal-tools/global-postman-environment.json).
+Integrate _all_ the [API endpoints][order-mgmt-api-reference-url]. For examples of requests and responses, see the [Postman collection](/tools/order-management-api-postman-collection.json) and [environment](https://developer.vippsmobilepay.com/tools/global-postman-environment.json).
 
 | Endpoint | Comment |
 |----------|---------|
