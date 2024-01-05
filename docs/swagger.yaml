@@ -1,0 +1,956 @@
+openapi: 3.0.0
+info:
+  title: Order Management API
+  version: '2.0'
+  description: |-
+    The Order Management API enables you to read and add information for Vipps MobilePay orders.
+    See the [Order Management API Guide](https://developer.vippsmobilepay.com/docs/APIs/order-management-api/order-management-api-guide/) for more details.
+  contact:
+    name: Vipps MobilePay
+    url: 'https://developer.vippsmobilepay.com/docs/contact/'
+servers:
+  - url: 'https://api.vipps.no/order-management'
+    description: Production environment (uses the production API keys, the official app and live data)
+  - url: 'https://apitest.vipps.no/order-management'
+    description: Test environment (uses the test API keys, the test app and test data)
+tags:
+  - name: Category
+  - name: Image
+  - name: Order
+  - name: Receipt
+  - name: Deprecated endpoints
+    description: No longer available
+paths:
+  '/v1/orders/{transactionId}':
+    parameters:
+      - schema:
+          type: string
+        name: transactionId
+        in: path
+        required: true
+    put:
+      summary: Add info to an order
+      operationId: putOrder
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Order'
+            examples:
+              Adding order metadata with one image:
+                value:
+                  category: GENERAL
+                  orderDetailsUrl: 'https://example.com'
+                  imageId: vipps-socks-orange-123
+        description: ''
+      description: 'Post additional information about an order that will show up on the receipt. '
+      parameters:
+        - $ref: '#/components/parameters/Authorization'
+        - $ref: '#/components/parameters/Merchant-Serial-Number'
+        - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
+        - $ref: '#/components/parameters/Vipps-System-Version'
+        - $ref: '#/components/parameters/Vipps-System-Plugin-Name'
+        - $ref: '#/components/parameters/Vipps-System-Name'
+        - $ref: '#/components/parameters/Vipps-System-Plugin-Version'
+      tags:
+        - Deprecated endpoints
+      deprecated: true
+    get:
+      summary: Get info for an order
+      operationId: getOrder
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+              examples:
+                Retrieve order info:
+                  value:
+                    category: TICKET
+                    orderDetailsUrl: 'https://example.com'
+                    imageIds:
+                      - id: vipps-socks-orange-123
+                        sortOrder: 1
+        '404':
+          description: Order Not Found
+      description: Retrieve the metadata for an order
+      parameters:
+        - $ref: '#/components/parameters/Authorization'
+        - $ref: '#/components/parameters/Merchant-Serial-Number'
+        - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
+        - $ref: '#/components/parameters/Vipps-System-Version'
+        - $ref: '#/components/parameters/Vipps-System-Plugin-Name'
+        - $ref: '#/components/parameters/Vipps-System-Name'
+        - $ref: '#/components/parameters/Vipps-System-Plugin-Version'
+      tags:
+        - Deprecated endpoints
+      deprecated: true
+  /v1/images:
+    parameters: []
+    post:
+      summary: Add an image
+      operationId: postImage
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImageResponse'
+              examples:
+                example-1:
+                  value:
+                    imageId: vipps-socks-orange-123
+      description: Endpoint for uploading images. A imageId will be returned that can be used when adding metadata to orders.
+      parameters:
+        - $ref: '#/components/parameters/Authorization'
+        - $ref: '#/components/parameters/Merchant-Serial-Number'
+        - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
+        - $ref: '#/components/parameters/Vipps-System-Version'
+        - $ref: '#/components/parameters/Vipps-System-Plugin-Name'
+        - $ref: '#/components/parameters/Vipps-System-Name'
+        - $ref: '#/components/parameters/Vipps-System-Plugin-Version'
+      tags:
+        - Image
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Image'
+            examples:
+              ImageUploadExample:
+                value:
+                  imageId: vipps-socks-orange-123
+                  src: iVBORw0KGgoAAAANSUhEUgAAAKsAAADVCAMAAAAfHv
+                  type: base64
+  '/v2/{paymentType}/receipts/{orderId}':
+    parameters:
+      - $ref: '#/components/parameters/Order-Id'
+      - $ref: '#/components/parameters/Transaction-Type'
+    post:
+      summary: Add receipt to an order
+      operationId: postReceiptV2
+      responses:
+        '201':
+          $ref: '#/components/responses/201Created'
+        '400':
+          $ref: '#/components/responses/400BadRequest'
+        '401':
+          description: Unauthorized
+        '404':
+          $ref: '#/components/responses/404NotFound'
+        '409':
+          $ref: '#/components/responses/409Conflict'
+      tags:
+        - Receipt
+      description: Add receipt to an order.
+      parameters:
+        - $ref: '#/components/parameters/Authorization'
+        - $ref: '#/components/parameters/Merchant-Serial-Number'
+        - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
+        - $ref: '#/components/parameters/Vipps-System-Version'
+        - $ref: '#/components/parameters/Vipps-System-Plugin-Name'
+        - $ref: '#/components/parameters/Vipps-System-Name'
+        - $ref: '#/components/parameters/Vipps-System-Plugin-Version'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Receipt'
+            examples:
+              ReceiptExample:
+                value:
+                  orderLines:
+                    - name: socks
+                      id: line_item_1
+                      totalAmount: 1000
+                      totalAmountExcludingTax: 800
+                      totalTaxAmount: 200
+                      taxPercentage: 25
+                      unitInfo:
+                        unitPrice: 400
+                        quantity: '2.5'
+                        quantityUnit: KG
+                      discount: 0
+                      productUrl: 'https://example.com/store/socks'
+                      isReturn: false
+                      isShipping: false
+                    - name: flip-flops
+                      id: line_item_2
+                      totalAmount: 5000
+                      totalAmountExcludingTax: 4000
+                      totalTaxAmount: 1000
+                      taxPercentage: 25
+                      unitInfo:
+                        unitPrice: 2500
+                        quantity: '3'
+                        quantityUnit: PCS
+                      discount: 2500
+                      productUrl: 'https://example.com/store/flipflops'
+                      isReturn: false
+                      isShipping: false
+                    - name: Home Delivery
+                      id: delivery
+                      totalAmount: 1000
+                      totalAmountExcludingTax: 800
+                      totalTaxAmount: 200
+                      taxPercentage: 25
+                      discount: 0
+                      isReturn: false
+                      isShipping: true
+                  bottomLine:
+                    currency: NOK
+                    tipAmount: 0
+                    posId: vipps_pos_122
+                    paymentSources:
+                      giftCard: 0
+                      card: 0
+                      voucher: 0
+                      cash: 0
+                    barcode:
+                      format: CODE 39
+                      data: 'SC0527013501 '
+                    receiptNumber: '0527013501'
+  '/v1/receipts/{transactionId}':
+    parameters:
+      - schema:
+          type: string
+        name: transactionId
+        in: path
+        required: true
+    get:
+      summary: Get receipt for an order
+      operationId: getReceipt
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Receipt'
+              examples: {}
+      description: Endpoint for retrieving receipts.
+      tags:
+        - Deprecated endpoints
+      parameters:
+        - $ref: '#/components/parameters/Authorization'
+        - $ref: '#/components/parameters/Merchant-Serial-Number'
+        - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
+        - $ref: '#/components/parameters/Vipps-System-Version'
+        - $ref: '#/components/parameters/Vipps-System-Plugin-Name'
+        - $ref: '#/components/parameters/Vipps-System-Name'
+        - $ref: '#/components/parameters/Vipps-System-Plugin-Version'
+      deprecated: true
+    post:
+      summary: Add receipt to an order
+      operationId: postReceipt
+      responses:
+        '200':
+          description: ''
+        '400':
+          $ref: '#/components/responses/400BadRequest'
+        '401':
+          description: Unauthorized
+        '404':
+          $ref: '#/components/responses/404NotFound'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Receipt'
+      description: Endpoint for adding receipts to an order.
+      tags:
+        - Deprecated endpoints
+      parameters:
+        - $ref: '#/components/parameters/Authorization'
+        - $ref: '#/components/parameters/Merchant-Serial-Number'
+        - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
+        - $ref: '#/components/parameters/Vipps-System-Version'
+        - $ref: '#/components/parameters/Vipps-System-Plugin-Name'
+        - $ref: '#/components/parameters/Vipps-System-Name'
+        - $ref: '#/components/parameters/Vipps-System-Plugin-Version'
+      deprecated: true
+  '/v2/{paymentType}/categories/{orderId}':
+    parameters:
+      - $ref: '#/components/parameters/Transaction-Type'
+      - $ref: '#/components/parameters/Order-Id'
+    put:
+      summary: Add category to an order
+      operationId: putCategoryV2
+      responses:
+        '200':
+          $ref: '#/components/responses/200Upserted'
+        '400':
+          $ref: '#/components/responses/400BadRequest'
+        '401':
+          description: Unauthorized
+        '404':
+          $ref: '#/components/responses/404NotFound'
+        '409':
+          $ref: '#/components/responses/409Conflict'
+      tags:
+        - Category
+      description: 'The category adds a link, specified by you, to the Transaction page on the Vipps MobilePay app. Only one (the latest) category is shown in the app.'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Order'
+            examples:
+              Adding order metadata with one image:
+                value:
+                  category: GENERAL
+                  orderDetailsUrl: 'https://example.com'
+                  imageId: vipps-socks-orange-123
+      parameters:
+        - $ref: '#/components/parameters/Authorization'
+        - $ref: '#/components/parameters/Merchant-Serial-Number'
+        - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
+        - $ref: '#/components/parameters/Vipps-System-Version'
+        - $ref: '#/components/parameters/Vipps-System-Plugin-Name'
+        - $ref: '#/components/parameters/Vipps-System-Name'
+        - $ref: '#/components/parameters/Vipps-System-Plugin-Version'
+  '/v2/{paymentType}/{orderId}':
+    parameters:
+      - $ref: '#/components/parameters/Transaction-Type'
+      - $ref: '#/components/parameters/Order-Id'
+    get:
+      summary: Get order with category and receipt
+      operationId: getOrderV2
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderV2Response'
+        '401':
+          description: Unauthorized
+        '404':
+          $ref: '#/components/responses/404NotFound'
+      tags:
+        - Order
+      description: Get order with category and receipt
+      parameters:
+        - $ref: '#/components/parameters/Authorization'
+        - $ref: '#/components/parameters/Merchant-Serial-Number'
+        - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
+        - $ref: '#/components/parameters/Vipps-System-Version'
+        - $ref: '#/components/parameters/Vipps-System-Plugin-Name'
+        - $ref: '#/components/parameters/Vipps-System-Name'
+        - $ref: '#/components/parameters/Vipps-System-Plugin-Version'
+components:
+  schemas:
+    Order:
+      type: object
+      x-examples:
+        example-1:
+          value:
+            category: GENERAL
+            orderDetailsUrl: 'https://example.com'
+            imageId: vipps-socks-orange-123
+      properties:
+        category:
+          $ref: '#/components/schemas/CategoryEnum'
+        orderDetailsUrl:
+          type: string
+          example: 'https://www.example.com'
+          format: uri
+          description: URL linking back to the merchant's website/store.
+          minLength: 1
+        imageId:
+          type: string
+          maxLength: 128
+          pattern: '^[0-9A-Za-z-_\.]+$'
+          minLength: 1
+          example: vipps-socks-orange-123
+          nullable: true
+      required:
+        - category
+        - orderDetailsUrl
+    Image:
+      type: object
+      properties:
+        imageId:
+          description: Id of the image to be added
+          maxLength: 128
+          pattern: '^[0-9A-Za-z-_\.]+$'
+          type: string
+          example: vipps-socks-orange-123
+        src:
+          type: string
+          description: The image data as a base64 encoded string (not a URL). The image must be in PNG or JPEG format. Square images are recommended. Minimum height is 167px, and max file size is 2MB.
+        type:
+          type: string
+          enum:
+            - base64
+      required:
+        - imageId
+        - src
+        - type
+      x-examples:
+        example-1:
+          value:
+            imageId: vipps-socks-orange-123
+            src: iVBORw0KGgoAAAANSUhEUgAAAKsAAADVCAMAAAAfHv
+            type: base64
+      title: ''
+    ImageResponse:
+      type: object
+      properties:
+        imageId:
+          type: string
+      x-examples:
+        example-1:
+          imageId: vipps-socks-orange-123
+    Receipt:
+      title: Receipt
+      type: object
+      x-examples:
+        ReceiptExample:
+          orderLines:
+            - name: socks
+              id: '1234567890'
+              totalAmount: 1000
+              totalAmountExcludingTax: 800
+              totalTaxAmount: 250
+              taxPercentage: 25
+              unitInfo:
+                unitPrice: 0
+                quantity: '0.822'
+                quantityUnit: PCS
+              discount: 0
+              productUrl: 'https://example.com/store/socks'
+              isReturn: false
+              isShipping: false
+          bottomLine:
+            tipAmount: 0
+            currency: NOK
+            posId: string
+            paymentSources:
+              giftCard: 0
+              card: 0
+              voucher: 0
+              cash: 0
+            barcode:
+              format: EAN-13
+              data: '123456'
+            receiptNumber: '1234567'
+      properties:
+        orderLines:
+          type: array
+          description: 'Amounts are specified in minor units (i.e., integers with two trailing zeros). For example: 10.00 EUR/NOK/DKK should be written as 1000.'
+          minItems: 1
+          items:
+            $ref: '#/components/schemas/OrderLine'
+        bottomLine:
+          $ref: '#/components/schemas/BottomLine'
+      required:
+        - orderLines
+        - bottomLine
+    OrderLine:
+      title: OrderLine
+      type: object
+      description: 'Amounts are specified in minor units (i.e., integers with two trailing zeros). For example: 10.00 EUR/NOK/DKK should be written as 1000.'
+      x-examples:
+        OrderLineExample:
+          value:
+            orderLines:
+              - name: socks
+                id: line_item_1
+                totalAmount: 1000
+                totalAmountExcludingTax: 800
+                totalTaxAmount: 200
+                taxPercentage: 25
+                unitInfo:
+                  unitPrice: 400
+                  quantity: '2.5'
+                  quantityUnit: KG
+                discount: 0
+                productUrl: 'https://example.com/store/socks'
+              - name: flip-flops
+                id: line_item_2
+                totalAmount: 5000
+                totalAmountExcludingTax: 4000
+                totalTaxAmount: 1000
+                taxPercentage: 25
+                unitInfo:
+                  unitPrice: 2500
+                  quantity: '3'
+                  quantityUnit: PCS
+                discount: 2500
+                productUrl: 'https://example.com/store/flipflops'
+      properties:
+        name:
+          type: string
+          description: Name of the product in the order line.
+          example: socks
+        id:
+          type: string
+          description: The product ID
+          example: '1234567890'
+        totalAmount:
+          type: integer
+          description: 'Total amount of the order line, including tax and discount. Amounts are specified in minor units (i.e., integers with two trailing zeros). For example: 10.00 EUR/NOK/DKK should be written as 1000.'
+          example: 1000
+          format: int64
+        totalAmountExcludingTax:
+          type: integer
+          description: 'Total amount of order line with discount excluding tax. Amounts are specified in minor units (i.e., integers with two trailing zeros). For example: 10.00 EUR/NOK/DKK should be written as 1000.'
+          example: 800
+          format: int64
+        totalTaxAmount:
+          type: integer
+          description: 'Total tax amount paid for the order line. Amounts are specified in minor units (i.e., integers with two trailing zeros). For example: 10.00 EUR/NOK/DKK should be written as 1000.'
+          example: 250
+          format: int64
+        taxPercentage:
+          type: integer
+          description: Tax percentage for the order line. Between 0-100
+          example: 25
+          maximum: 100
+          minimum: 0
+        unitInfo:
+          $ref: '#/components/schemas/UnitInfo'
+        discount:
+          type: integer
+          description: 'Total discount for the order line. Amounts are specified in minor units (i.e., integers with two trailing zeros). For example: 1.00 EUR/NOK/DKK should be written as 100.'
+          example: 2000
+          minimum: 0
+          format: int64
+          nullable: true
+        productUrl:
+          type: string
+          description: Optional URL linking back to the product at the merchant.
+          example: 'https://example.com/store/socks'
+          nullable: true
+        isReturn:
+          type: boolean
+          example: false
+          description: Flag for marking the order line as returned. This will make it count negative towards all the sums in bottomLine.
+          nullable: true
+        isShipping:
+          example: false
+          type: boolean
+          description: Flag for marking the order line as a shipping line. This will be shown differently in the app.
+          nullable: true
+      required:
+        - name
+        - id
+        - totalAmount
+        - totalAmountExcludingTax
+        - totalTaxAmount
+        - taxPercentage
+    BottomLine:
+      title: BottomLine
+      type: object
+      description: 'Summary of the order. Total amount and total. Amounts are specified in minor units (i.e., integers with two trailing zeros). For example: 10.00 EUR/NOK/DKK should be written as 1000.'
+      x-examples:
+        BottomLineExample:
+          value:
+            currency: NOK
+            tipAmount: 0
+            posId: vipps_pos_122
+            paymentSources:
+              card: 100
+              giftCard: 50
+            barcode:
+              format: EAN-13
+              data: '123456'
+            receiptNumber: '1234567'
+      properties:
+        currency:
+          $ref: '#/components/schemas/CurrencyEnum'
+        tipAmount:
+          type: integer
+          description: 'Tip amount for the order. Amounts are specified in minor units (i.e., integers with two trailing zeros). For example: 10.00 EUR/NOK/DKK should be written as 1000.'
+          example: 2000
+          minimum: 0
+          format: int64
+          nullable: true
+        giftCardAmount:
+          type: integer
+          description: Amount paid by gift card or coupon.
+          example: 20000
+          minimum: 0
+          format: int64
+          deprecated: true
+          nullable: true
+        posId:
+          type: string
+          description: POS ID is the device number of the POS terminal
+          nullable: true
+        totalAmount:
+          type: integer
+          description: 'Deprecated, sum will be calculated based on the sum of the orderLines'
+          format: int64
+          deprecated: true
+          nullable: true
+        totalTax:
+          type: integer
+          description: 'Deprecated, tax will be calculated based on the sum of the totalTaxAmount field on each orderLine'
+          minimum: 0
+          format: int64
+          deprecated: true
+          nullable: true
+        totalDiscount:
+          type: integer
+          description: 'Deprecated, discount will be calculated based on the sum of the discount field on each orderLine'
+          minimum: 0
+          format: int64
+          deprecated: true
+          nullable: true
+        shippingAmount:
+          type: integer
+          description: 'Deprecated, use a regular orderLine with "isShipping" flag. Using this will result in faulty calculation of sum and tax.'
+          minimum: 0
+          format: int64
+          deprecated: true
+          nullable: true
+        shippingInfo:
+          $ref: '#/components/schemas/ShippingInfo'
+        paymentSources:
+          $ref: '#/components/schemas/PaymentSources'
+        barcode:
+          $ref: '#/components/schemas/Barcode'
+        receiptNumber:
+          type: string
+          nullable: true
+        terminalId:
+          type: string
+          description: 'Deprecated, use "posId" instead.'
+          nullable: true
+          deprecated: true
+      required:
+        - currency
+    UnitInfo:
+      title: UnitInfo
+      type: object
+      description: Optional. If no quantity info is provided the order line will default to 1 pcs
+      x-examples:
+        example-1:
+          value:
+            quantity: '0.822'
+            unitPrice: 15000
+            quantityUnit: KG
+        example-2:
+          value:
+            quantity: '2'
+            unitPrice: 20000
+            quantityUnit: PCS
+      properties:
+        unitPrice:
+          type: integer
+          minimum: 0
+          format: int64
+          description: 'Total price per unit, including tax and excluding discount'
+          nullable: true
+        quantity:
+          type: string
+          maxLength: 10
+          pattern: '^\d+([\.]\d{1,8})?$'
+          example: '0.822'
+          description: Quantity given as a integer or fraction (only for cosmetics)
+        quantityUnit:
+          $ref: '#/components/schemas/QuantityUnitEnum'
+      required:
+        - unitPrice
+        - quantity
+    CategoryEnum:
+      type: string
+      title: CategoryEnum
+      enum:
+        - GENERAL
+        - RECEIPT
+        - ORDER_CONFIRMATION
+        - DELIVERY
+        - TICKET
+        - BOOKING
+      nullable: true
+    CurrencyEnum:
+      type: string
+      title: CurrencyEnum
+      enum:
+        - NOK
+        - DKK
+        - EUR
+      description: Currency information
+      nullable: true
+    QuantityUnitEnum:
+      type: string
+      title: QuantityUnitEnum
+      enum:
+        - PCS
+        - KG
+        - KM
+        - MINUTE
+        - LITRE
+        - KWH
+      description: Available units for quantity. Will default to PCS if not set
+      default: PCS
+      nullable: true
+    ErrorResponse:
+      description: ''
+      type: object
+      x-examples:
+        example-1:
+          type: 'https://datatracker.ietf.org/doc/html/rfc7231#section-6.5.1'
+          title: One or more validation errors occurred.
+          detail: BadRequest
+          instance: 00-616e415f5af7584eb4d9369d0fe8d7cc-48b90041faff204c-00
+          invalidParams:
+            - name: RedirectUrl
+              reason: 'The field RedirectUrl must match the regular expression ''^https://[\w\.]+([\w#!:.?+=&%@\-/]+)?$''.'
+      properties:
+        type:
+          type: string
+          minLength: 1
+        title:
+          type: string
+          minLength: 1
+        detail:
+          type: string
+          minLength: 1
+        instance:
+          type: string
+          minLength: 1
+        invalidParams:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                minLength: 1
+              reason:
+                type: string
+                minLength: 1
+            required:
+              - name
+              - reason
+      required:
+        - title
+        - detail
+        - instance
+    OrderV2Response:
+      title: OrderV2Response
+      type: object
+      properties:
+        category:
+          $ref: '#/components/schemas/Order'
+        receipt:
+          $ref: '#/components/schemas/Receipt'
+    ShippingInfo:
+      title: ShippingInfo
+      type: object
+      description: 'Deprecated, use a regular orderLine with "isShipping" flag. Using this will result in faulty calculation of sum and tax.'
+      deprecated: true
+      properties:
+        amount:
+          type: integer
+          minimum: 0
+          format: int64
+          description: 'Total amount for the shipping, including tax and discount'
+          example: 1000
+          nullable: true
+        amountExcludingTax:
+          type: integer
+          minimum: 0
+          format: int64
+          description: Total amount for shipping excluding tax
+          example: 1000
+          nullable: true
+        taxAmount:
+          type: integer
+          minimum: 0
+          format: int64
+          description: Total tax amount paid for the shipping
+          example: 250
+          nullable: true
+        taxPercentage:
+          type: integer
+          minimum: 0
+          maximum: 100
+          description: Tax-percentage for the Shipping
+          example: 25
+          nullable: true
+      required:
+        - amount
+        - amountExcludingTax
+        - taxAmount
+        - taxPercentage
+    PaymentSources:
+      type: object
+      x-examples:
+        PaymentSourcesExample:
+          giftCard: 200
+          card: 50
+          voucher: 25
+          cash: 25
+      properties:
+        giftCard:
+          type: integer
+          nullable: true
+        card:
+          type: integer
+          nullable: true
+        voucher:
+          type: integer
+          nullable: true
+        cash:
+          type: integer
+          nullable: true
+    BarcodeFormatEnum:
+      type: string
+      title: BarcodeFormatEnum
+      enum:
+        - EAN-13
+        - CODE 39
+        - CODE 128
+      nullable: true
+    Barcode:
+      title: Barcode
+      type: object
+      properties:
+        format:
+          $ref: '#/components/schemas/BarcodeFormatEnum'
+        data:
+          type: string
+          nullable: true
+      required:
+        - format
+        - data
+  securitySchemes:
+    BearerToken:
+      type: http
+      scheme: bearer
+  parameters:
+    Merchant-Serial-Number:
+      name: Merchant-Serial-Number
+      in: header
+      required: true
+      schema:
+        type: string
+      description: The merchant serial number for this sales unit.
+    Ocp-Apim-Subscription-Key:
+      name: Ocp-Apim-Subscription-Key
+      in: header
+      required: true
+      schema:
+        type: string
+      description: The API subscription key.
+    Authorization:
+      name: Authorization
+      in: header
+      required: true
+      schema:
+        type: string
+      description: 'The access token is a base64-encoded string that is required for all API calls. It is a JWT (JSON Web Token). The access token is fetched from the [`POST:/accesstoken/get`](https://developer.vippsmobilepay.com/api/access-token#tag/Authorization-Service/operation/fetchAuthorizationTokenUsingPost) endpoint. It is valid for 1 hour in the test environment and 24 hours in the production environment.'
+    Transaction-Type:
+      name: paymentType
+      in: path
+      required: true
+      schema:
+        type: string
+        enum:
+          - ecom
+          - recurring
+      description: 'The type of transaction {ecom, recurring}. Use "ecom" for both eCom API and ePayment API payments. Use "recurring" for Recurring API payments.'
+    Order-Id:
+      name: orderId
+      in: path
+      required: true
+      schema:
+        type: string
+        pattern: '^[0-9A-Za-z-_\.]+$'
+      description: 'The orderId of the transaction, unique and managed by merchant'
+    Vipps-System-Version:
+      name: Vipps-System-Version
+      in: header
+      required: false
+      schema:
+        type: string
+        maxLength: 100
+        example: 5.4.0
+      description: |-
+        The version number of the ecommerce solution.
+        See [http-headers](https://developer.vippsmobilepay.com/docs/knowledge-base/http-headers).
+    Vipps-System-Plugin-Name:
+      name: Vipps-System-Plugin-Name
+      in: header
+      required: false
+      schema:
+        type: string
+        maxLength: 100
+        example: vipps-woocommerce
+      description: |-
+        The name of the ecommerce plugin (if applicable).
+        One word in lowercase letters is good.
+        See [http-headers](https://developer.vippsmobilepay.com/docs/knowledge-base/http-headers).
+    Vipps-System-Name:
+      name: Vipps-System-Name
+      in: header
+      required: false
+      schema:
+        type: string
+        maxLength: 100
+        example: woocommerce
+      description: |-
+        The name of the ecommerce solution. 
+        One word in lowercase letters is good. 
+        See [http-headers](https://developer.vippsmobilepay.com/docs/knowledge-base/http-headers).
+    Vipps-System-Plugin-Version:
+      name: Vipps-System-Plugin-Version
+      in: header
+      required: false
+      schema:
+        type: string
+        maxLength: 100
+        example: 1.2.1
+      description: |-
+        The version number of the ecommerce plugin (if applicable).
+        See [http-headers](https://developer.vippsmobilepay.com/docs/knowledge-base/http-headers).
+  responses:
+    400BadRequest:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    409Conflict:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    404NotFound:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    201Created:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            type: string
+          examples:
+            example:
+              value: 16328cb8-d769-4c53-90ad-e19777823f0a
+    200Upserted:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            type: string
+          examples:
+            example:
+              value: 16328cb8-d769-4c53-90ad-e19777823f0a
+security:
+  - BearerToken: []
