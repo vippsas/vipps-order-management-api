@@ -6,3 +6,4 @@ For generating code, you can still find the [OpenAPI spec file here](./docs/swag
 
 <!-- The source of truth for this repository is here: https://github.com/vippsas/vipps-developer-docs/tree/main/docs/APIs/order-management-api 
 -->
+
