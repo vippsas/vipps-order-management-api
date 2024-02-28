@@ -356,11 +356,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  categoryId:
-                    type: string
-                    format: uuid
+                $ref: '#/components/schemas/AddCategoryResponse'
               examples:
                 Example 1:
                   value:
@@ -402,14 +398,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  categories:
-                    type: array
-                    x-stoplight:
-                      id: w5xbwv86p2vch
-                    items:
-                      $ref: '#/components/schemas/Category'
+                $ref: '#/components/schemas/GetCategoriesResponse'
               examples:
                 Example 1:
                   value:
@@ -1046,6 +1035,34 @@ components:
         - RECURRING
       example: ECOM
       description: 'The type of transaction {ECOM, RECURRING}. Use "ECOM" for both eCom API and ePayment API payments. Use "RECURRING" for Recurring API payments.'
+    AddCategoryResponse:
+      title: AddCategoryResponse
+      type: object
+      properties:
+        categoryId:
+          type: string
+          format: uuid
+          example: 337f5e5d-288b-40d5-be14-901cc3acacc0
+      x-examples:
+        Example 1:
+          categoryId: 337f5e5d-288b-40d5-be14-901cc3acacc0
+    GetCategoriesResponse:
+      title: GetCategoriesResponse
+      type: object
+      properties:
+        categories:
+          type: array
+          items:
+            $ref: '#/components/schemas/Category'
+      x-examples:
+        Example 1:
+          categories:
+            - categoryId: 880f5088-7708-4a5a-87d9-31e83aacc035
+              orderId: PaymentReference123
+              paymentType: ECOM
+              type: RECEIPT
+              url: 'https://www.example.com'
+              imageId: f09c6aeb-442e-4da1-b36a-d8f613edc6c9
   securitySchemes:
     BearerToken:
       type: http
