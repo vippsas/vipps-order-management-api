@@ -428,9 +428,12 @@ paths:
           name: orderId
           description: 'The orderId of the transaction, unique and managed by merchant'
   '/v3/categories/{categoryId}':
+    parameters:
+      - $ref: '#/components/parameters/CategoryId'
     get:
-      summary: Query categories
+      summary: Query category
       operationId: getCategoryV3
+      description: Query a category by its id
       tags:
         - Category
       responses:
@@ -455,7 +458,6 @@ paths:
           description: Unauthorized
         '404':
           $ref: '#/components/responses/404NotFound'
-      description: Query a category by its id
       parameters:
         - $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/Merchant-Serial-Number'
@@ -464,8 +466,34 @@ paths:
         - $ref: '#/components/parameters/Vipps-System-Plugin-Name'
         - $ref: '#/components/parameters/Vipps-System-Name'
         - $ref: '#/components/parameters/Vipps-System-Plugin-Version'
-    parameters:
-      - $ref: '#/components/parameters/CategoryId'
+    put:
+      summary: Update category
+      operationId: putCategoryV3
+      tags:
+        - Category
+      responses:
+        '200':
+          description: OK
+        '400':
+          $ref: '#/components/responses/400BadRequest'
+        '401':
+          description: Unauthorized
+        '404':
+          $ref: '#/components/responses/404NotFound'
+      description: Update a category
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateCategoryRequest'
+      parameters:
+        - $ref: '#/components/parameters/Authorization'
+        - $ref: '#/components/parameters/Merchant-Serial-Number'
+        - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
+        - $ref: '#/components/parameters/Vipps-System-Version'
+        - $ref: '#/components/parameters/Vipps-System-Plugin-Name'
+        - $ref: '#/components/parameters/Vipps-System-Name'
+        - $ref: '#/components/parameters/Vipps-System-Plugin-Version'
 components:
   schemas:
     Order:
@@ -1063,6 +1091,29 @@ components:
               type: RECEIPT
               url: 'https://www.example.com'
               imageId: f09c6aeb-442e-4da1-b36a-d8f613edc6c9
+    UpdateCategoryRequest:
+      title: UpdateCategoryRequest
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/CategoryEnum'
+        url:
+          type: string
+          example: 'https://www.example.com'
+          format: uri
+          description: URL linking back to the merchant's website/store.
+          minLength: 1
+        imageId:
+          type: string
+          maxLength: 128
+          pattern: '^[0-9A-Za-z-_\.]+$'
+          minLength: 1
+          example: f09c6aeb-442e-4da1-b36a-d8f613edc6c9
+      x-examples:
+        Example 1:
+          type: RECEIPT
+          url: 'https://www.example.com'
+          imageId: f09c6aeb-442e-4da1-b36a-d8f613edc6c9
   securitySchemes:
     BearerToken:
       type: http
