@@ -647,7 +647,7 @@ components:
               id: '1234567890'
               totalAmount: 1000
               totalAmountExcludingTax: 800
-              totalTaxAmount: 250
+              totalTaxAmount: 200
               taxPercentage: 25
               unitInfo:
                 unitPrice: 0
