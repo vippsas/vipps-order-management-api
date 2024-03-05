@@ -10,9 +10,9 @@ info:
     url: 'https://developer.vippsmobilepay.com/docs/contact/'
 servers:
   - url: 'https://api.vipps.no/order-management'
-    description: Production environment (uses the production API keys, the official app and live data)
+    description: 'Production environment (uses the production API keys, the official app and live data)'
   - url: 'https://apitest.vipps.no/order-management'
-    description: Test environment (uses the test API keys, the test app and test data)
+    description: 'Test environment (uses the test API keys, the test app and test data)'
 tags:
   - name: Category
   - name: Image
@@ -44,7 +44,7 @@ paths:
                 value:
                   category: GENERAL
                   orderDetailsUrl: 'https://example.com'
-                  imageId: vipps-socks-orange-123
+                  imageId: socks-orange-123
         description: ''
       description: 'Post additional information about an order that will show up on the receipt. '
       parameters:
@@ -74,7 +74,7 @@ paths:
                     category: TICKET
                     orderDetailsUrl: 'https://example.com'
                     imageIds:
-                      - id: vipps-socks-orange-123
+                      - id: socks-orange-123
                         sortOrder: 1
         '404':
           description: Order Not Found
@@ -105,7 +105,7 @@ paths:
               examples:
                 example-1:
                   value:
-                    imageId: vipps-socks-orange-123
+                    imageId: socks-orange-123
       description: Endpoint for uploading images. A imageId will be returned that can be used when adding metadata to orders.
       parameters:
         - $ref: '#/components/parameters/Authorization'
@@ -123,10 +123,10 @@ paths:
             schema:
               $ref: '#/components/schemas/Image'
             examples:
-              ImageUploadExample:
+              Example 1:
                 value:
-                  imageId: vipps-socks-orange-123
-                  src: iVBORw0KGgoAAAANSUhEUgAAAKsAAADVCAMAAAAfHv
+                  imageId: f09c6aeb-442e-4da1-b36a-d8f613edc6c9
+                  src: a3NhbGZuc2FrbGZubGthc25ma2Fuc2ZsYXNuZmxrYXNuZmw=
                   type: base64
   '/v2/{paymentType}/receipts/{orderId}':
     parameters:
@@ -206,7 +206,7 @@ paths:
                   bottomLine:
                     currency: NOK
                     tipAmount: 0
-                    posId: vipps_pos_122
+                    posId: pos_122
                     paymentSources:
                       giftCard: 0
                       card: 0
@@ -306,7 +306,7 @@ paths:
                 value:
                   category: GENERAL
                   orderDetailsUrl: 'https://example.com'
-                  imageId: vipps-socks-orange-123
+                  imageId: socks-orange-123
       parameters:
         - $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/Merchant-Serial-Number'
@@ -344,6 +344,156 @@ paths:
         - $ref: '#/components/parameters/Vipps-System-Plugin-Name'
         - $ref: '#/components/parameters/Vipps-System-Name'
         - $ref: '#/components/parameters/Vipps-System-Plugin-Version'
+  /v3/categories:
+    post:
+      summary: Add category to an order.
+      operationId: postCategoryV3
+      tags:
+        - Category
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddCategoryResponse'
+              examples:
+                Example 1:
+                  value:
+                    categoryId: 337f5e5d-288b-40d5-be14-901cc3acacc0
+        '400':
+          $ref: '#/components/responses/400BadRequest'
+        '401':
+          description: Unauthorized
+      description: 'The category adds a link, specified by you, to the Transaction page in the Vipps or MobilePay app.'
+      parameters:
+        - $ref: '#/components/parameters/Authorization'
+        - $ref: '#/components/parameters/Merchant-Serial-Number'
+        - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
+        - $ref: '#/components/parameters/Vipps-System-Version'
+        - $ref: '#/components/parameters/Vipps-System-Plugin-Name'
+        - $ref: '#/components/parameters/Vipps-System-Name'
+        - $ref: '#/components/parameters/Vipps-System-Plugin-Version'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddCategoryRequest'
+            examples:
+              Example 1:
+                value:
+                  orderId: PaymentReference123
+                  paymentType: ECOM
+                  type: RECEIPT
+                  url: 'https://www.example.com'
+                  imageId: f09c6aeb-442e-4da1-b36a-d8f613edc6c9
+    get:
+      summary: Query categories
+      operationId: getCategoriesV3
+      tags:
+        - Category
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetCategoriesResponse'
+              examples:
+                Example 1:
+                  value:
+                    categories:
+                      - categoryId: 880f5088-7708-4a5a-87d9-31e83aacc035
+                        orderId: PaymentReference123
+                        paymentType: ECOM
+                        type: RECEIPT
+                        url: 'https://www.example.com'
+                        imageId: f09c6aeb-442e-4da1-b36a-d8f613edc6c9
+        '400':
+          $ref: '#/components/responses/400BadRequest'
+        '401':
+          description: Unauthorized
+      description: Query categories by orderId
+      parameters:
+        - $ref: '#/components/parameters/Authorization'
+        - $ref: '#/components/parameters/Merchant-Serial-Number'
+        - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
+        - $ref: '#/components/parameters/Vipps-System-Version'
+        - $ref: '#/components/parameters/Vipps-System-Plugin-Name'
+        - $ref: '#/components/parameters/Vipps-System-Name'
+        - $ref: '#/components/parameters/Vipps-System-Plugin-Version'
+        - schema:
+            type: string
+          in: query
+          name: orderId
+          description: 'The orderId of the transaction, unique and managed by merchant'
+  '/v3/categories/{categoryId}':
+    parameters:
+      - $ref: '#/components/parameters/CategoryId'
+    get:
+      summary: Query category
+      operationId: getCategoryV3
+      description: Query a category by its id
+      tags:
+        - Category
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Category'
+              examples:
+                Example 1:
+                  value:
+                    categoryId: 880f5088-7708-4a5a-87d9-31e83aacc035
+                    orderId: PaymentReference123
+                    paymentType: ECOM
+                    type: RECEIPT
+                    url: 'https://www.example.com'
+                    imageId: f09c6aeb-442e-4da1-b36a-d8f613edc6c9
+        '400':
+          $ref: '#/components/responses/400BadRequest'
+        '401':
+          description: Unauthorized
+        '404':
+          $ref: '#/components/responses/404NotFound'
+      parameters:
+        - $ref: '#/components/parameters/Authorization'
+        - $ref: '#/components/parameters/Merchant-Serial-Number'
+        - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
+        - $ref: '#/components/parameters/Vipps-System-Version'
+        - $ref: '#/components/parameters/Vipps-System-Plugin-Name'
+        - $ref: '#/components/parameters/Vipps-System-Name'
+        - $ref: '#/components/parameters/Vipps-System-Plugin-Version'
+    put:
+      summary: Update category
+      operationId: putCategoryV3
+      tags:
+        - Category
+      responses:
+        '200':
+          description: OK
+        '400':
+          $ref: '#/components/responses/400BadRequest'
+        '401':
+          description: Unauthorized
+        '404':
+          $ref: '#/components/responses/404NotFound'
+      description: Update a category
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateCategoryRequest'
+      parameters:
+        - $ref: '#/components/parameters/Authorization'
+        - $ref: '#/components/parameters/Merchant-Serial-Number'
+        - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
+        - $ref: '#/components/parameters/Vipps-System-Version'
+        - $ref: '#/components/parameters/Vipps-System-Plugin-Name'
+        - $ref: '#/components/parameters/Vipps-System-Name'
+        - $ref: '#/components/parameters/Vipps-System-Plugin-Version'
 components:
   schemas:
     Order:
@@ -353,7 +503,7 @@ components:
           value:
             category: GENERAL
             orderDetailsUrl: 'https://example.com'
-            imageId: vipps-socks-orange-123
+            imageId: socks-orange-123
       properties:
         category:
           $ref: '#/components/schemas/CategoryEnum'
@@ -368,38 +518,117 @@ components:
           maxLength: 128
           pattern: '^[0-9A-Za-z-_\.]+$'
           minLength: 1
-          example: vipps-socks-orange-123
+          example: socks-orange-123
           nullable: true
       required:
         - category
         - orderDetailsUrl
+    AddCategoryRequest:
+      title: AddCategoryRequest
+      type: object
+      description: POST /v3/categories request body.
+      x-examples:
+        Example 1:
+          orderId: PaymentReference123
+          paymentType: ECOM
+          type: RECEIPT
+          url: 'https://www.example.com'
+          imageId: f09c6aeb-442e-4da1-b36a-d8f613edc6c9
+      properties:
+        orderId:
+          $ref: '#/components/schemas/OrderId'
+        paymentType:
+          $ref: '#/components/schemas/PaymentType'
+        type:
+          $ref: '#/components/schemas/CategoryEnum'
+        url:
+          type: string
+          example: 'https://www.example.com'
+          format: uri
+          description: URL linking back to the merchant's website/store.
+          minLength: 1
+        imageId:
+          type: string
+          maxLength: 128
+          pattern: '^[0-9A-Za-z-_\.]+$'
+          minLength: 1
+          example: f09c6aeb-442e-4da1-b36a-d8f613edc6c9
+      required:
+        - orderId
+        - paymentType
+        - type
+        - url
+    CategoryId:
+      title: CategoryId
+      type: string
+      format: uuid
+      description: The id of the category
+      example: 880f5088-7708-4a5a-87d9-31e83aacc035
+    Category:
+      title: Category
+      type: object
+      x-examples:
+        Example 1:
+          categoryId: 880f5088-7708-4a5a-87d9-31e83aacc035
+          orderId: PaymentReference123
+          paymentType: ECOM
+          type: RECEIPT
+          url: 'https://www.example.com'
+          imageId: f09c6aeb-442e-4da1-b36a-d8f613edc6c9
+      properties:
+        categoryId:
+          $ref: '#/components/schemas/CategoryId'
+        orderId:
+          $ref: '#/components/schemas/OrderId'
+        paymentType:
+          $ref: '#/components/schemas/PaymentType'
+        type:
+          $ref: '#/components/schemas/CategoryEnum'
+        url:
+          type: string
+          example: 'https://www.example.com'
+          format: uri
+          description: URL linking back to the merchant's website/store.
+          minLength: 1
+        imageId:
+          type: string
+          maxLength: 128
+          pattern: '^[0-9A-Za-z-_\.]+$'
+          minLength: 1
+          example: f09c6aeb-442e-4da1-b36a-d8f613edc6c9
+    OrderId:
+      title: OrderId
+      type: string
+      description: 'The orderId of the transaction, unique and managed by merchant'
+      pattern: '^[0-9A-Za-z-_\.]+$'
+      example: PaymentReference123
     Image:
       type: object
+      x-examples:
+        Example 1:
+          imageId: f09c6aeb-442e-4da1-b36a-d8f613edc6c9
+          src: a3NhbGZuc2FrbGZubGthc25ma2Fuc2ZsYXNuZmxrYXNuZmw=
+          type: base64
       properties:
         imageId:
           description: Id of the image to be added
           maxLength: 128
           pattern: '^[0-9A-Za-z-_\.]+$'
           type: string
-          example: vipps-socks-orange-123
+          example: f09c6aeb-442e-4da1-b36a-d8f613edc6c9
         src:
           type: string
-          description: The image data as a base64 encoded string (not a URL). The image must be in PNG or JPEG format. Square images are recommended. Minimum height is 167px, and max file size is 2MB.
+          description: 'The image data as a base64 encoded string (not a URL). The image must be in PNG or JPEG format. Square images are recommended. Minimum height is 167px, and max file size is 2MB.'
+          example: a3NhbGZuc2FrbGZubGthc25ma2Fuc2ZsYXNuZmxrYXNuZmw=
         type:
           type: string
           enum:
             - base64
+          example: base64
       required:
         - imageId
         - src
         - type
-      x-examples:
-        example-1:
-          value:
-            imageId: vipps-socks-orange-123
-            src: iVBORw0KGgoAAAANSUhEUgAAAKsAAADVCAMAAAAfHv
-            type: base64
-      title: ''
     ImageResponse:
       type: object
       properties:
@@ -407,7 +636,7 @@ components:
           type: string
       x-examples:
         example-1:
-          imageId: vipps-socks-orange-123
+          imageId: socks-orange-123
     Receipt:
       title: Receipt
       type: object
@@ -555,7 +784,7 @@ components:
           value:
             currency: NOK
             tipAmount: 0
-            posId: vipps_pos_122
+            posId: pos_122
             paymentSources:
               card: 100
               giftCard: 50
@@ -671,6 +900,7 @@ components:
         - DELIVERY
         - TICKET
         - BOOKING
+      example: RECEIPT
       nullable: true
     CurrencyEnum:
       type: string
@@ -825,6 +1055,65 @@ components:
       required:
         - format
         - data
+    PaymentType:
+      title: PaymentType
+      type: string
+      enum:
+        - ECOM
+        - RECURRING
+      example: ECOM
+      description: 'The type of transaction {ECOM, RECURRING}. Use "ECOM" for both eCom API and ePayment API payments. Use "RECURRING" for Recurring API payments.'
+    AddCategoryResponse:
+      title: AddCategoryResponse
+      type: object
+      properties:
+        categoryId:
+          type: string
+          format: uuid
+          example: 337f5e5d-288b-40d5-be14-901cc3acacc0
+      x-examples:
+        Example 1:
+          categoryId: 337f5e5d-288b-40d5-be14-901cc3acacc0
+    GetCategoriesResponse:
+      title: GetCategoriesResponse
+      type: object
+      properties:
+        categories:
+          type: array
+          items:
+            $ref: '#/components/schemas/Category'
+      x-examples:
+        Example 1:
+          categories:
+            - categoryId: 880f5088-7708-4a5a-87d9-31e83aacc035
+              orderId: PaymentReference123
+              paymentType: ECOM
+              type: RECEIPT
+              url: 'https://www.example.com'
+              imageId: f09c6aeb-442e-4da1-b36a-d8f613edc6c9
+    UpdateCategoryRequest:
+      title: UpdateCategoryRequest
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/CategoryEnum'
+        url:
+          type: string
+          example: 'https://www.example.com'
+          format: uri
+          description: URL linking back to the merchant's website/store.
+          minLength: 1
+        imageId:
+          type: string
+          maxLength: 128
+          pattern: '^[0-9A-Za-z-_\.]+$'
+          minLength: 1
+          example: f09c6aeb-442e-4da1-b36a-d8f613edc6c9
+      x-examples:
+        Example 1:
+          type: RECEIPT
+          url: 'https://www.example.com'
+          imageId: f09c6aeb-442e-4da1-b36a-d8f613edc6c9
   securitySchemes:
     BearerToken:
       type: http
@@ -858,9 +1147,9 @@ components:
       schema:
         type: string
         enum:
-          - ecom
-          - recurring
-      description: 'The type of transaction {ecom, recurring}. Use "ecom" for both eCom API and ePayment API payments. Use "recurring" for Recurring API payments.'
+          - ECOM
+          - RECURRING
+      description: 'The type of transaction {ECOM, RECURRING}. Use "ECOM" for both eCom API and ePayment API payments. Use "RECURRING" for Recurring API payments.'
     Order-Id:
       name: orderId
       in: path
@@ -869,6 +1158,14 @@ components:
         type: string
         pattern: '^[0-9A-Za-z-_\.]+$'
       description: 'The orderId of the transaction, unique and managed by merchant'
+    CategoryId:
+      name: categoryId
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+      description: The id of the category
     Vipps-System-Version:
       name: Vipps-System-Version
       in: header
