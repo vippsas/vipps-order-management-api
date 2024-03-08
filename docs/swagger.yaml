@@ -466,26 +466,19 @@ paths:
         - $ref: '#/components/parameters/Vipps-System-Plugin-Name'
         - $ref: '#/components/parameters/Vipps-System-Name'
         - $ref: '#/components/parameters/Vipps-System-Plugin-Version'
-    put:
-      summary: Update category
-      operationId: putCategoryV3
+    delete:
+      summary: Delete category
+      operationId: deleteCategoryV3
+      description: Delete a category by its id
       tags:
         - Category
       responses:
         '200':
           description: OK
-        '400':
-          $ref: '#/components/responses/400BadRequest'
         '401':
           description: Unauthorized
         '404':
           $ref: '#/components/responses/404NotFound'
-      description: Update a category
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/UpdateCategoryRequest'
       parameters:
         - $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/Merchant-Serial-Number'
@@ -1091,29 +1084,6 @@ components:
               type: RECEIPT
               url: 'https://www.example.com'
               imageId: f09c6aeb-442e-4da1-b36a-d8f613edc6c9
-    UpdateCategoryRequest:
-      title: UpdateCategoryRequest
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/CategoryEnum'
-        url:
-          type: string
-          example: 'https://www.example.com'
-          format: uri
-          description: URL linking back to the merchant's website/store.
-          minLength: 1
-        imageId:
-          type: string
-          maxLength: 128
-          pattern: '^[0-9A-Za-z-_\.]+$'
-          minLength: 1
-          example: f09c6aeb-442e-4da1-b36a-d8f613edc6c9
-      x-examples:
-        Example 1:
-          type: RECEIPT
-          url: 'https://www.example.com'
-          imageId: f09c6aeb-442e-4da1-b36a-d8f613edc6c9
   securitySchemes:
     BearerToken:
       type: http
@@ -1214,25 +1184,25 @@ components:
         See [http-headers](https://developer.vippsmobilepay.com/docs/knowledge-base/http-headers).
   responses:
     400BadRequest:
-      description: Example response
+      description: BadRequest
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
     409Conflict:
-      description: Example response
+      description: Conflict
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
     404NotFound:
-      description: Example response
+      description: NotFound
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
     201Created:
-      description: Example response
+      description: Created
       content:
         application/json:
           schema:
@@ -1241,7 +1211,7 @@ components:
             example:
               value: 16328cb8-d769-4c53-90ad-e19777823f0a
     200Upserted:
-      description: Example response
+      description: Ok
       content:
         application/json:
           schema:
