@@ -2,9 +2,8 @@ openapi: 3.0.0
 info:
   title: Order Management API
   version: '2.0'
-  description: |-
-    The Order Management API enables you to read and add information for Vipps MobilePay orders.
-    See the [Order Management API Guide](https://developer.vippsmobilepay.com/docs/APIs/order-management-api/order-management-api-guide/) for more details.
+  description: 'The Order Management API enables you to read and add information for Vipps MobilePay orders. See the [Order Management API Guide](https://developer.vippsmobilepay.com/docs/APIs/order-management-api/order-management-api-guide/) for more details. Spec: fe3713a4'
+    
   contact:
     name: Vipps MobilePay
     url: 'https://developer.vippsmobilepay.com/docs/contact/'
