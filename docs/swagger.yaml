@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: Order Management API
-  version: '2.0'
+  version: '2.1'
   description: |-
     The Order Management API enables you to read and add information for Vipps MobilePay orders.
     See the [Order Management API Guide](https://developer.vippsmobilepay.com/docs/APIs/order-management-api/order-management-api-guide/) for more details.
@@ -30,7 +30,7 @@ paths:
         required: true
     put:
       summary: Add info to an order
-      operationId: putOrder
+      operationId: put-order
       responses:
         '200':
           description: OK
@@ -60,7 +60,7 @@ paths:
       deprecated: true
     get:
       summary: Get info for an order
-      operationId: getOrder
+      operationId: get-order
       responses:
         '200':
           description: ''
@@ -94,7 +94,7 @@ paths:
     parameters: []
     post:
       summary: Add an image
-      operationId: postImage
+      operationId: post-image
       responses:
         '200':
           description: OK
@@ -134,7 +134,7 @@ paths:
       - $ref: '#/components/parameters/Transaction-Type'
     post:
       summary: Add receipt to an order
-      operationId: postReceiptV2
+      operationId: post-receipt-v2
       responses:
         '201':
           $ref: '#/components/responses/201Created'
@@ -225,7 +225,7 @@ paths:
         required: true
     get:
       summary: Get receipt for an order
-      operationId: getReceipt
+      operationId: get-receipt
       responses:
         '200':
           description: ''
@@ -248,7 +248,7 @@ paths:
       deprecated: true
     post:
       summary: Add receipt to an order
-      operationId: postReceipt
+      operationId: post-receipt
       responses:
         '200':
           description: ''
@@ -281,7 +281,7 @@ paths:
       - $ref: '#/components/parameters/Order-Id'
     put:
       summary: Add category to an order
-      operationId: putCategoryV2
+      operationId: put-category-v2
       responses:
         '200':
           $ref: '#/components/responses/200Upserted'
@@ -321,7 +321,7 @@ paths:
       - $ref: '#/components/parameters/Order-Id'
     get:
       summary: Get order with category and receipt
-      operationId: getOrderV2
+      operationId: get-order-v2
       responses:
         '200':
           description: OK
@@ -347,7 +347,7 @@ paths:
   /v3/categories:
     post:
       summary: Add category to an order.
-      operationId: postCategoryV3
+      operationId: post-category-v3
       tags:
         - Category
       responses:
@@ -389,7 +389,7 @@ paths:
                   imageId: f09c6aeb-442e-4da1-b36a-d8f613edc6c9
     get:
       summary: Query categories
-      operationId: getCategoriesV3
+      operationId: get-categories-v3
       tags:
         - Category
       responses:
@@ -432,7 +432,7 @@ paths:
       - $ref: '#/components/parameters/CategoryId'
     get:
       summary: Query category
-      operationId: getCategoryV3
+      operationId: get-category-v3
       description: Query a category by its id
       tags:
         - Category
@@ -468,7 +468,7 @@ paths:
         - $ref: '#/components/parameters/Vipps-System-Plugin-Version'
     delete:
       summary: Delete category
-      operationId: deleteCategoryV3
+      operationId: delete-category-v3
       description: Delete a category by its id
       tags:
         - Category
@@ -733,10 +733,21 @@ components:
           format: int64
         taxPercentage:
           type: integer
+          format: int64
           description: Tax percentage for the order line. Between 0-100
           example: 25
-          maximum: 100
+          deprecated: true
           minimum: 0
+          maximum: 100
+          nullable: true
+        taxRate:
+          type: integer
+          format: int64
+          description: 'Tax percentage for the order line, represented with 0.01 decimal points. 5000 equals 50% . Between 0-10000'
+          example: 2500
+          minimum: 0
+          maximum: 10000
+          nullable: true
         unitInfo:
           $ref: '#/components/schemas/UnitInfo'
         discount:
@@ -767,7 +778,6 @@ components:
         - totalAmount
         - totalAmountExcludingTax
         - totalTaxAmount
-        - taxPercentage
     BottomLine:
       title: BottomLine
       type: object
