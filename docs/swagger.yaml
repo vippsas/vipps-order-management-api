@@ -733,7 +733,6 @@ components:
           format: int64
         taxPercentage:
           type: integer
-          format: int64
           description: 'Tax percentage for the order line. Between 0-100. Either this or taxRate must be set.'
           example: 25
           deprecated: true
@@ -742,7 +741,6 @@ components:
           nullable: true
         taxRate:
           type: integer
-          format: int64
           description: 'Tax percentage for the order line, represented with 0.01 decimal points. 5000 equals 50% . Between 0-10000. Either this or taxPercentage must be set.'
           example: 2500
           minimum: 0
