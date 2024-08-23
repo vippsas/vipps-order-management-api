@@ -171,7 +171,7 @@ paths:
                       totalAmount: 1000
                       totalAmountExcludingTax: 800
                       totalTaxAmount: 200
-                      taxPercentage: 25
+                      taxRate: 2500
                       unitInfo:
                         unitPrice: 400
                         quantity: '2.5'
@@ -185,7 +185,7 @@ paths:
                       totalAmount: 5000
                       totalAmountExcludingTax: 4000
                       totalTaxAmount: 1000
-                      taxPercentage: 25
+                      taxRate: 2500
                       unitInfo:
                         unitPrice: 2500
                         quantity: '3'
@@ -199,7 +199,7 @@ paths:
                       totalAmount: 1000
                       totalAmountExcludingTax: 800
                       totalTaxAmount: 200
-                      taxPercentage: 25
+                      taxRate: 2500
                       discount: 0
                       isReturn: false
                       isShipping: true
@@ -641,7 +641,7 @@ components:
               totalAmount: 1000
               totalAmountExcludingTax: 800
               totalTaxAmount: 200
-              taxPercentage: 25
+              taxRate: 2500
               unitInfo:
                 unitPrice: 0
                 quantity: '0.822'
@@ -688,7 +688,7 @@ components:
                 totalAmount: 1000
                 totalAmountExcludingTax: 800
                 totalTaxAmount: 200
-                taxPercentage: 25
+                taxRate: 2500
                 unitInfo:
                   unitPrice: 400
                   quantity: '2.5'
@@ -700,7 +700,7 @@ components:
                 totalAmount: 5000
                 totalAmountExcludingTax: 4000
                 totalTaxAmount: 1000
-                taxPercentage: 25
+                taxRate: 2500
                 unitInfo:
                   unitPrice: 2500
                   quantity: '3'
@@ -741,7 +741,7 @@ components:
           nullable: true
         taxRate:
           type: integer
-          description: 'Tax percentage for the order line, represented with 0.01 decimal points. 5000 equals 50% . Between 0-10000. Either this or taxPercentage must be set.'
+          description: 'Tax rate for the order line, represented with 0.01 decimal points. 5000 equals 50% . Between 0-10000. Either this or taxPercentage must be set.'
           example: 2500
           minimum: 0
           maximum: 10000
