@@ -4,7 +4,8 @@ info:
   version: '2.1'
   description: |-
     The Order Management API enables you to read and add information for Vipps MobilePay orders.
-    See the [Order Management API Guide](https://developer.vippsmobilepay.com/docs/APIs/order-management-api/order-management-api-guide/) for more details.
+    See the [Order Management API Guide](https://developer.vippsmobilepay.com/docs/APIs/order-management-api/order-management-api-guide/)
+    for more details.
   contact:
     name: Vipps MobilePay
     url: 'https://developer.vippsmobilepay.com/docs/contact/'
@@ -15,9 +16,13 @@ servers:
     description: 'Test environment (uses the test API keys, the test app and test data)'
 tags:
   - name: Category
+    description: Create a button linking the user to your website from the Vipps/MobilePay app.
   - name: Image
+    description: An image that can be reused and shown with multiple orders.
   - name: Order
-  - name: Receipt
+    description: All the order details provided for orderlines or category.
+  - name: Orderlines
+    description: The orderlines and bottomline for an order.
   - name: Deprecated endpoints
     description: No longer available
 paths:
@@ -46,7 +51,7 @@ paths:
                   orderDetailsUrl: 'https://example.com'
                   imageId: socks-orange-123
         description: ''
-      description: 'Post additional information about an order that will show up on the receipt. '
+      description: 'Post additional information about an order that will show up in the order details. '
       parameters:
         - $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/Merchant-Serial-Number'
@@ -133,7 +138,7 @@ paths:
       - $ref: '#/components/parameters/Order-Id'
       - $ref: '#/components/parameters/Transaction-Type'
     post:
-      summary: Add receipt to an order
+      summary: Add order details to an order
       operationId: post-receipt-v2
       responses:
         '201':
@@ -147,8 +152,8 @@ paths:
         '409':
           $ref: '#/components/responses/409Conflict'
       tags:
-        - Receipt
-      description: Add receipt to an order.
+        - Orderlines
+      description: Add orderlines and bottom line to an order.
       parameters:
         - $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/Merchant-Serial-Number'
@@ -171,7 +176,7 @@ paths:
                       totalAmount: 1000
                       totalAmountExcludingTax: 800
                       totalTaxAmount: 200
-                      taxRate: 2500
+                      taxPercentage: 25
                       unitInfo:
                         unitPrice: 400
                         quantity: '2.5'
@@ -185,7 +190,7 @@ paths:
                       totalAmount: 5000
                       totalAmountExcludingTax: 4000
                       totalTaxAmount: 1000
-                      taxRate: 2500
+                      taxPercentage: 25
                       unitInfo:
                         unitPrice: 2500
                         quantity: '3'
@@ -199,7 +204,7 @@ paths:
                       totalAmount: 1000
                       totalAmountExcludingTax: 800
                       totalTaxAmount: 200
-                      taxRate: 2500
+                      taxPercentage: 25
                       discount: 0
                       isReturn: false
                       isShipping: true
@@ -224,7 +229,7 @@ paths:
         in: path
         required: true
     get:
-      summary: Get receipt for an order
+      summary: Get orderlines from a order
       operationId: get-receipt
       responses:
         '200':
@@ -234,7 +239,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Receipt'
               examples: {}
-      description: Endpoint for retrieving receipts.
+      description: Endpoint for retrieving orderlines.
       tags:
         - Deprecated endpoints
       parameters:
@@ -247,7 +252,7 @@ paths:
         - $ref: '#/components/parameters/Vipps-System-Plugin-Version'
       deprecated: true
     post:
-      summary: Add receipt to an order
+      summary: Add orderlines to an order
       operationId: post-receipt
       responses:
         '200':
@@ -263,7 +268,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Receipt'
-      description: Endpoint for adding receipts to an order.
+      description: Endpoint for adding orderlines to an order.
       tags:
         - Deprecated endpoints
       parameters:
@@ -320,7 +325,7 @@ paths:
       - $ref: '#/components/parameters/Transaction-Type'
       - $ref: '#/components/parameters/Order-Id'
     get:
-      summary: Get order with category and receipt
+      summary: Get order with category and orderlines
       operationId: get-order-v2
       responses:
         '200':
@@ -335,7 +340,7 @@ paths:
           $ref: '#/components/responses/404NotFound'
       tags:
         - Order
-      description: Get order with category and receipt
+      description: Get order with category and orderlines
       parameters:
         - $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/Merchant-Serial-Number'
@@ -346,7 +351,7 @@ paths:
         - $ref: '#/components/parameters/Vipps-System-Plugin-Version'
   /v3/categories:
     post:
-      summary: Add category to an order.
+      summary: Add category to an order
       operationId: post-category-v3
       tags:
         - Category
@@ -641,7 +646,7 @@ components:
               totalAmount: 1000
               totalAmountExcludingTax: 800
               totalTaxAmount: 200
-              taxRate: 2500
+              taxPercentage: 25
               unitInfo:
                 unitPrice: 0
                 quantity: '0.822'
@@ -688,7 +693,7 @@ components:
                 totalAmount: 1000
                 totalAmountExcludingTax: 800
                 totalTaxAmount: 200
-                taxRate: 2500
+                taxPercentage: 25
                 unitInfo:
                   unitPrice: 400
                   quantity: '2.5'
@@ -700,7 +705,7 @@ components:
                 totalAmount: 5000
                 totalAmountExcludingTax: 4000
                 totalTaxAmount: 1000
-                taxRate: 2500
+                taxPercentage: 25
                 unitInfo:
                   unitPrice: 2500
                   quantity: '3'
@@ -741,7 +746,7 @@ components:
           nullable: true
         taxRate:
           type: integer
-          description: 'Tax rate for the order line, represented with 0.01 decimal points. 5000 equals 50% . Between 0-10000. Either this or taxPercentage must be set.'
+          description: 'Tax percentage for the order line, represented with 0.01 decimal points. 5000 equals 50% . Between 0-10000. Either this or taxPercentage must be set.'
           example: 2500
           minimum: 0
           maximum: 10000
